@@ -1,0 +1,47 @@
+<soc-sidebar selected-person="selectedPerson"
+             persons="people"
+             select="selectPerson(person)"
+             download="downloadPersons()">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <form class="soc-form btn-left vertical"
+                          name="searchform"
+                          novalidate>
+                        <div>
+                            <label for="nameSearch"
+                                   i18n="Searchfield name">Name</label>
+                            <div>
+                                <input type="text"
+                                       focus-on="name"
+                                       class="form-control"
+                                       id="nameSearch"
+                                       (ngModel)="surName"
+                                       placeholder="{{'Name Placeholder' | i18n}}">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="firstnameSearch"
+                                   i18n="Searchfield firstname">First name</label>
+                            <div>
+                                <input type="text"
+                                       class="form-control"
+                                       id="firstnameSearch"
+                                       (ngModel)="firstName"
+                                       [ngClass]="{'has-error': searchform.firstname.$invalid, 'has-success': searchform.firstname.$valid}"
+                                       placeholder="{{'First name Placeholder' | i18n}}">
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                                class="btn-default collapse-on-search"
+                                (click)="search()"
+                                [disabled]="searchform.$pristine || !surName"
+                                i18n="Button search form">Search
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+</soc-sidebar>

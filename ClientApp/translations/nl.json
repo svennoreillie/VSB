@@ -1,0 +1,22 @@
+{
+    "MAIN_TITLE": {
+        "originalText": "Main title",
+        "value": "VSBase"
+    },
+    "FILTER_BY_NAME": {
+        "originalText": "Filter by name",
+        "value": "Naam"
+    },
+    "FILTER_BY_NATIONAL_NUMBER": {
+        "originalText": "Filter by national number",
+        "value": "Nationaal nummer"
+    },
+    "FILTER_BY_MEMBER_NUMBER": {
+        "originalText": "Filter by member number",
+        "value": "Lidnummer"
+    },
+    "FILTER_BY_STATE": {
+        "originalText": "Filter by state",
+        "value": "Status van de aanvraag"
+    }
+}

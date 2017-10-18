@@ -1,0 +1,57 @@
+<div class="soc-navbar">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+                <!-- Sidebar toggler -->
+                <button type="button" class="toggler-navbar" id="soc-sidebar-toggler">
+                    <i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-angle-double-right fa-2x hide" aria-hidden="true"></i>
+                </button>
+
+                <!-- Navigation dropdown toggler (small screens) -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Title -->
+                <a class="navbar-brand" href="#top" i18n>Main title</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li routerLinkActive="active">
+                        <a routerLink="/byname" i18n>
+                            Filter by name
+                        </a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/bymembernr" i18n>
+                            Filter by member number
+                        </a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/byrrnr" i18n>
+                            Filter by national number
+                        </a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/bystate" i18n>
+                            Filter by state
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li>
+                        <a>
+                            <span class="fa fa-user"></span> {{userName}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

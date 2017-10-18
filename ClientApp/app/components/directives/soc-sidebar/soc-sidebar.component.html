@@ -1,0 +1,73 @@
+<div class="soc-sidebar">
+    <div class="soc-sidebar-wrapper">
+        <!-- Search form view -->
+        <div class="soc-search">
+            <!-- Search form -->
+            <div class="soc-search-form"
+                 *ngIf="formVisible">
+                <ng-content></ng-content>
+            </div>
+
+            <!-- Collapse search form -->
+            <div class="btn soc-search-button"
+                 (click)="collapseForm()">
+                <i class="fa fa-filter"
+                   aria-hidden="true"></i>
+                <span i18n="Search collapse button">Collapse</span>
+            </div>
+        </div>
+
+        <!-- Searchresults -->
+        <div class="soc-sidebar-content">
+            <div class="soc-searchitem"
+                 *ngFor="person in people"
+                 [ngClass]="{'active':person == selectedPerson}"
+                 (click)="selectPerson({person: person})">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12 soc-typography-bold">
+                                <span class="soc-typography-name">{{person.name}}</span> {{person.firstName}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                {{person.nissNb}}
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                {{person.birthDate | date: ('COMMON_DATEFORMAT' | i18n)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                {{person.federationNumber}}/{{person.memberNumber}}
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <i class="fa fa-venus"
+                                   *ngIf="(person.sex % 2) == 0"
+                                   aria-hidden="true"></i>
+                                <i class="fa fa-mars"
+                                   *ngIf="(person.sex % 2) == 1"
+                                   aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search count -->
+        <div class="soc-searchresult">
+            <div class="badge badge-info">{{persons==null ? 0 : persons.length}}</div>
+        </div>
+
+        <!-- Search action bar -->
+        <div class="soc-actionbar">
+            <button class="soc-actionbutton"
+                    (click)="downloadPersons()">
+                    <i class="fa fa-download" aria-hidden="true"></i><br>
+                </button>
+        </div>
+
+    </div>
+</div>

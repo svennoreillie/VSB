@@ -1,0 +1,17 @@
+<div class="soc-appversion">{{applicationVersion}}</div>
+
+<div class="soc-page has-navbar has-sidebar" 
+
+    ng-class="{'is-loading' : mainCtrl.isLoading}">
+    <!-- loader -->
+    <div class="soc-loader-block"></div>
+    <div class="soc-loader">Loading...</div>
+
+    <!-- Navbar -->
+    <nav-menu></nav-menu>
+    <!-- Sidebar -->
+    <router-outlet></router-outlet>
+    <!-- MainContent -->
+    <!-- <content-main></content-main> -->
+
+</div>

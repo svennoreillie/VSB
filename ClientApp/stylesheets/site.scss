@@ -1,0 +1,7 @@
+//Set our own variables first, these can override the bootstrap variables
+@import "templatevariables";
+
+//import soc-core
+@import "~soc-core/src/stylesheets/soc.scss";
+
+//Add custom scss below
