@@ -18,5 +18,23 @@
     "FILTER_BY_STATE": {
         "originalText": "Filter by state",
         "value": "Status van de aanvraag"
+    },
+    "NAME_PLACEHOLDER": {
+        "originalText": "Name Placeholder",
+        "value": "Naam"
+    },
+    "FIRST_NAME_PLACEHOLDER": {
+        "originalText": "First name Placeholder",
+        "value": "Voornaam"
+    },
+    "COLLAPSE": {
+        "originalText": "Collapse",
+        "description": "Search collapse button",
+        "value": "Filter & Zoek"
+    },
+    "SEARCH": {
+        "originalText": "Search",
+        "description": "Button search form",
+        "value": "Zoeken"
     }
 }
