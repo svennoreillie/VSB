@@ -36,5 +36,15 @@
         "originalText": "Search",
         "description": "Button search form",
         "value": "Zoeken"
+    },
+    "NAME": {
+        "originalText": "Name",
+        "description": "Searchfield name",
+        "value": "Naam"
+    },
+    "FIRST_NAME": {
+        "originalText": "First name",
+        "description": "Searchfield firstname",
+        "value": "Voornaam"
     }
 }
