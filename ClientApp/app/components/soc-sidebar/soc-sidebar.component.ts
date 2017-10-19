@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class SocSidebarComponent implements OnInit {
-    private formVisible = true;
+    private formVisible: boolean = true;
 
     constructor() { }
 

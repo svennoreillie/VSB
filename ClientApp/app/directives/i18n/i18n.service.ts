@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import nl from '../../../../translations/nl.json'
+import nl from '../../../translations/nl.json'
 
 @Injectable()
 export class I18nService {
@@ -17,7 +17,7 @@ export class I18nService {
                 description: description,
                 value: ""
             };
-            let jsonExampleTranslation = '"' + key + '" : ' + JSON.stringify(newTranslation)
+            let jsonExampleTranslation = '"' + key + '" : ' + JSON.stringify(newTranslation) + ',';
             console.warn('Translation not found, add the following json block to the translation files \n\n' + jsonExampleTranslation);
             return key;
         }

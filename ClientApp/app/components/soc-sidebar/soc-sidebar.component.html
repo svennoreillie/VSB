@@ -3,8 +3,8 @@
         <!-- Search form view -->
         <div class="soc-search">
             <!-- Search form -->
-            <div class="soc-search-form"
-                 *ngIf="formVisible">
+            <div class="soc-search-form">
+                 
                 <ng-content></ng-content>
             </div>
 
@@ -20,7 +20,7 @@
         <!-- Searchresults -->
         <div class="soc-sidebar-content">
             <div class="soc-searchitem"
-                 *ngFor="person in people"
+                 *ngFor="let person of people"
                  [ngClass]="{'active':person == selectedPerson}"
                  (click)="selectPerson({person: person})">
                 <div class="row">

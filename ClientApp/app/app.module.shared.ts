@@ -12,10 +12,13 @@ import { CounterComponent } from './components/counter/counter.component';
 
 //Components
 import { SearchByNameComponent } from './components/search/searchbyname/search-by-name.component';
+import { SocSidebarComponent } from './components/soc-sidebar/soc-sidebar.component';
 
 //Directives
-import * as directives from './components/directives/index';
+import * as directives from './directives';
 
+//Services
+import * as services from './services'
 
 @NgModule({
     declarations: [
@@ -24,10 +27,16 @@ import * as directives from './components/directives/index';
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
+
         SearchByNameComponent,
+        SocSidebarComponent,
+
         directives.I18nDirective,
-        directives.I18nPipe,
-        directives.SocSidebarComponent
+        directives.I18nPipe
+    ],
+    providers: [
+        directives.I18nService,
+        services.SearchPersonService
     ],
     imports: [
         CommonModule,

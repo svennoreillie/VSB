@@ -1,3 +1,5 @@
+import { ComponentFixture } from '@angular/core/testing';
+import { SearchModel } from './../components/search/searchbyname/search';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -10,8 +12,8 @@ export class SearchPersonService {
 
     constructor(private http: Http) { }
     
-    public getPeopleByName = (firstName: string, name: string) => {
-        return this.http.get(this.url + '?firstname=' + firstName + '&name=' + name)
+    public getPeopleByName = (search: SearchModel) => {
+        return this.http.get(this.url + '?firstname=' + search.firstName || "%" + '&name=' + search.name)
                         .map((resp: Response) => {
                             return resp.json();
                         });

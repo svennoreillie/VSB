@@ -1,3 +1,4 @@
+import { SearchModel } from './search';
 import { Component, OnInit } from '@angular/core';
 import { SelectPersonController } from '../select-person.controller';
 import { SearchPersonService } from '../../../services/search-person.service';
@@ -6,10 +7,8 @@ import { SearchPersonService } from '../../../services/search-person.service';
     selector: 'search-by-name',
     templateUrl: 'search-by-name.component.html'
 })
-
 export class SearchByNameComponent extends SelectPersonController implements OnInit {
-    public firstName: string;
-    public surName: string;
+    public searchModel: SearchModel = new SearchModel();
 
     constructor(private searchPersonService: SearchPersonService) { 
         super();
@@ -18,9 +17,8 @@ export class SearchByNameComponent extends SelectPersonController implements OnI
     ngOnInit() { }
 
     public search(): void {
-        if (!this.firstName) this.firstName = "%";
-        if (this.firstName && this.surName) {
-            this.people = this.searchPersonService.getPeopleByName(this.firstName, this.surName);
+        if (this.searchModel.name) {
+            this.people = this.searchPersonService.getPeopleByName(this.searchModel);
         }
     }
 }
