@@ -12,7 +12,7 @@ export class SearchPersonService {
 
     constructor(private http: Http) { }
     
-    public getPeopleByName = (search: SearchModel) => {
+    public getPeopleByName = (search: SearchModel) : Observable<any> => {
         return this.http.get(this.url + '?firstname=' + search.firstName || "%" + '&name=' + search.name)
                         .map((resp: Response) => {
                             return resp.json();

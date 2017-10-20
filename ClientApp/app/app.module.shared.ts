@@ -36,7 +36,8 @@ import * as services from './services'
     ],
     providers: [
         directives.I18nService,
-        services.SearchPersonService
+        services.SearchPersonService,
+        service.
     ],
     imports: [
         CommonModule,
