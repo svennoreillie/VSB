@@ -6,11 +6,11 @@ using VSBaseAngular;
 namespace VSBaseAngular.Controllers
 {
     [Route("api/admin/[controller]")]
-    public class VersionController : Controller
+    public class VersionsController : Controller
     {
         private readonly AppConfig _config;
 
-        public VersionController(IOptions<AppConfig> config)
+        public VersionsController(IOptions<AppConfig> config)
         {
             _config = config.Value;
         }

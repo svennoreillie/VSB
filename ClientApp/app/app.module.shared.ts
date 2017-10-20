@@ -28,7 +28,7 @@ import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.compon
         // Services
         directives.I18nService,
         services.GeneralDataService,
-        services.SearchPersonService,
+        services.PeopleService,
         services.UrlService,
         services.ConfigService,
     ],

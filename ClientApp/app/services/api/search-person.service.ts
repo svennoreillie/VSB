@@ -8,11 +8,11 @@ import { SearchModel } from "./../../components/search/searchbyname/search";
 import { UrlService } from "./../url/url.service";
 
 @Injectable()
-export class SearchPersonService {
+export class PeopleService {
 
     constructor(private http: Http, private urlService: UrlService) { }
 
-    public getPeopleByName = (search: SearchModel): Observable<any> => {
+    public search = (search: SearchModel): Observable<any> => {
         let url = this.urlService.createUrl("people");
         url = this.urlService.addQueryParameters(url, search);
 

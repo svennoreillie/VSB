@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace VSBaseAngular.Controllers
 {
     [Route("api/admin/[controller]")]
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         [Authorize]
         public IActionResult Get()

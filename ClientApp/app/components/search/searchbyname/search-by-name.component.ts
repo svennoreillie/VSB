@@ -1,22 +1,22 @@
 import { Component, OnInit } from "@angular/core";
-import { SearchPersonService } from "../../../services";
+import { PeopleService } from "../../../services";
 import { SelectPersonController } from "../select-person.controller";
-import { SearchModel } from "./search";
+import { NameSearchModel } from "./search";
 
 @Component({
     selector: "search-by-name",
     templateUrl: "search-by-name.component.html",
 })
 export class SearchByNameComponent extends SelectPersonController  {
-    public searchModel: SearchModel = new SearchModel();
+    public searchModel: NameSearchModel = new  NameSearchModel();
 
-    constructor(private searchPersonService: SearchPersonService) {
+    constructor(private peopleService: PeopleService) {
         super();
     }
 
     public search(): void {
         if (this.searchModel.name) {
-            this.people = this.searchPersonService.getPeopleByName(this.searchModel);
+            this.people = this.peopleService.search(this.searchModel);
         }
     }
 }

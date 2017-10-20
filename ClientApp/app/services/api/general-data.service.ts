@@ -12,7 +12,7 @@ export class GeneralDataService {
                 private url: UrlService) { }
 
     public getVersion = (): Observable<string> => {
-        const url = this.url.createUrl("admin", "version");
+        const url = this.url.createUrl("admin", "versions");
         return this.http.get(url)
                  .map((response) => {
                      return response.text();

@@ -8,7 +8,8 @@
         "interface-name": false,
         "object-literal-sort-keys": false,
         "curly": false,
-        "trailing-comma": false
+        "trailing-comma": false,
+        "max-classes-per-file": false
     },
     "rulesDirectory": []
 }
