@@ -14,7 +14,9 @@ export class GeneralDataService {
     public getVersion = (): Observable<string> => {
         const url = this.url.createUrl("admin", "version");
         return this.http.get(url)
-                 .map((response) => response.toString());
+                 .map((response) => {
+                     return response.text();
+                    });
     }
 
 }

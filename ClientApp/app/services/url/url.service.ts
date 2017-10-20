@@ -9,7 +9,8 @@ export class UrlService {
     public createUrl(...resources: string[]): string {
         let url: string = this.config.config.api.apiUrl;
         resources.forEach((resource) => {
-            url += (resource + "/");
+            if (!url.endsWith("/")) url += "/";
+            url += resource;
         });
         return url;
     }
@@ -23,8 +24,13 @@ export class UrlService {
 
     private encodeQueryData = (data: any): string => {
         const ret = [];
-        for (const d of data) {
-            ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                const element = data[key];
+                if (element) {
+                    ret.push(encodeURIComponent(key) + "=" + encodeURIComponent(element));
+                }
+            }
         }
         return ret.join("&");
      }

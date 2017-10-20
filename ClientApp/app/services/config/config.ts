@@ -1,14 +1,14 @@
-import { Injectable, OnInit } from "@angular/core";
-import configuration from "../../../config.json";
+import { Injectable } from "@angular/core";
+import configJson from "../../../config.json";
 import { Configuration } from "./configuration";
 
 @Injectable()
-export class ConfigService implements OnInit {
+export class ConfigService {
 
     private configuration: Configuration;
 
-    public ngOnInit(): void {
-        this.configuration = configuration;
+    constructor() {
+        this.configuration = configJson;
     }
 
     public get config(): Configuration {
