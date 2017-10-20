@@ -1,5 +1,5 @@
-import { Person } from '../../models/person';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from "rxjs/Observable";
+import { Person } from "../../models";
 
 export class SelectPersonController {
     public people: Observable<Person[]>;

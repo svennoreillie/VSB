@@ -1,20 +1,18 @@
-import { SearchModel } from './search';
-import { Component, OnInit } from '@angular/core';
-import { SelectPersonController } from '../select-person.controller';
-import { SearchPersonService } from '../../../services/search-person.service';
+import { Component, OnInit } from "@angular/core";
+import { SearchPersonService } from "../../../services";
+import { SelectPersonController } from "../select-person.controller";
+import { SearchModel } from "./search";
 
 @Component({
-    selector: 'search-by-name',
-    templateUrl: 'search-by-name.component.html'
+    selector: "search-by-name",
+    templateUrl: "search-by-name.component.html",
 })
-export class SearchByNameComponent extends SelectPersonController implements OnInit {
+export class SearchByNameComponent extends SelectPersonController  {
     public searchModel: SearchModel = new SearchModel();
 
-    constructor(private searchPersonService: SearchPersonService) { 
+    constructor(private searchPersonService: SearchPersonService) {
         super();
     }
-
-    ngOnInit() { }
 
     public search(): void {
         if (this.searchModel.name) {

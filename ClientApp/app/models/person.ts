@@ -13,7 +13,6 @@ export class Person {
         public zipCode: string,
         public locality: string,
         public nissNb: string,
-        public memberNumber: string
+        public memberNumber: string,
     ) { }
 }
-
