@@ -10,34 +10,35 @@
                       #searchForm="ngForm"
                       novalidate>
                     <div>
-                        <label for="name"
-                               i18n="Searchfield name">Name</label>
+                        <label for="federation"
+                               i18n="Searchfield name">Federation</label>
                         <div>
-                            <input type="text"
-                                   focus-on="name"
+                            <input type="number"
+                                   focus-on="federation"
                                    class="form-control"
-                                   id="name"
-                                   name="name"
-                                   #name="ngModel"
+                                   id="federation"
+                                   name="federation"
+                                   #federation="ngModel"
                                    required
-                                   [(ngModel)]="searchModel.name"
-                                   placeholder="{{'Name Placeholder' | i18n}}">
-                        </div>
-                        <div *ngIf="(name.dirty || name.touched) && name.errors"
-                             class="alert alert-danger">
-                            Name is required
+                                   [(ngModel)]="searchModel.federation"
+                                   placeholder="{{'Federation Placeholder' | i18n}}">
                         </div>
                     </div>
+
+
                     <div>
-                        <label for="firstName"
-                               i18n="Searchfield firstname">First name</label>
+                        <label for="membernr"
+                               i18n="Searchfield name">Member nr</label>
                         <div>
-                            <input type="text"
+                            <input type="number"
+                                   focus-on="membernr"
                                    class="form-control"
-                                   id="firstName"
-                                   name="firstName"
-                                   [(ngModel)]="searchModel.firstName"
-                                   placeholder="{{'First name Placeholder' | i18n}}">
+                                   id="membernr"
+                                   name="membernr"
+                                   #membernr="ngModel"
+                                   required
+                                   [(ngModel)]="searchModel.memberNr"
+                                   placeholder="{{'Membernr Placeholder' | i18n}}">
                         </div>
                     </div>
 

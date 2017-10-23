@@ -13,7 +13,7 @@
                         <label for="insz"
                                i18n="Searchfield name">Insz</label>
                         <div>
-                            <input type="text"
+                            <input type="number"
                                    focus-on="insz"
                                    class="form-control"
                                    id="insz"
@@ -29,7 +29,6 @@
                             class="btn-default collapse-on-search"
                             (click)="search()"
                             [disabled]="!searchForm.form.valid"
-                            w
                             i18n="Button search form">Search
                     </button>
 

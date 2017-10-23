@@ -1,4 +1,3 @@
-import { SearchByInszComponent } from "./components/search/search-by-insz/search-by-insz";
 // 3rd party
 import * as angular from "./angular-barrel";
 
@@ -19,6 +18,7 @@ import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.compon
         AppComponent,
         // Components
         search.SearchByNameComponent,
+        search.SearchByMembernrComponent,
         search.SearchByInszComponent,
         SocSidebarComponent,
         NavMenuComponent,
@@ -51,6 +51,10 @@ import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.compon
             {
                 path: "byinsz",
                 component: search.SearchByInszComponent
+            },
+            {
+                path: "bymembernr",
+                component: search.SearchByMembernrComponent
             },
             {
                 path: "**",
