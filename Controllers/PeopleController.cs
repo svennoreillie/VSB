@@ -1,21 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace VSBAngular.Controllers
+namespace VSBaseAngular.Controllers
 {
-    [Route("api/[Controller]")]
-    public class PeopleController : Controller
+    [ApiVersion(ControllerVersion.v1)]
+    [ApiVersion(ControllerVersion.v2)]
+    [Route("api/v{version:apiVersion}/[Controller]")]
+    public class PeopleController : BaseController
     {
+        [HttpGet]
+        [Route("{id:int}")]
         public IActionResult Get(int id)
         {
-            return Ok();
+            return Ok(id);
         }
 
-        public IActionResult Search([FromQuery]string firstname,
+        [HttpGet]
+        [Route("")]
+        public IActionResult Get([FromQuery]string firstname,
                                     [FromQuery]string name,
                                     [FromQuery]string insz,
                                     [FromQuery]string membernr)
         {
             return Ok($"{firstname}-{name}-{insz}-{membernr}");
         }
+
     }
 }

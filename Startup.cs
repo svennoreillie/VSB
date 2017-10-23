@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,13 @@ namespace VSBaseAngular
             services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
 
             services.AddMvc();
+
+            // Decorate controller functions to apply a specific version to them: [MapToApiVersion(ControllerVersion.v1)]
+            services.AddApiVersioning(o => {
+                o.ReportApiVersions = true;
+                o.AssumeDefaultVersionWhenUnspecified = true;
+                o.DefaultApiVersion = new ApiVersion(1,0);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
