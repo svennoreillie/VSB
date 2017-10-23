@@ -1,0 +1,42 @@
+<soc-sidebar selected-person="selectedPerson"
+             persons="people"
+             select="selectPerson(person)"
+             download="downloadPersons()">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>{{people | async}}</h1>
+                <form class="soc-form btn-left vertical"
+                      #searchForm="ngForm"
+                      novalidate>
+                    <div>
+                        <label for="insz"
+                               i18n="Searchfield name">Insz</label>
+                        <div>
+                            <input type="text"
+                                   focus-on="insz"
+                                   class="form-control"
+                                   id="insz"
+                                   name="insz"
+                                   #insz="ngModel"
+                                   required
+                                   [(ngModel)]="searchModel.insz"
+                                   placeholder="{{'Insz Placeholder' | i18n}}">
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                            class="btn-default collapse-on-search"
+                            (click)="search()"
+                            [disabled]="!searchForm.form.valid"
+                            w
+                            i18n="Button search form">Search
+                    </button>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</soc-sidebar>

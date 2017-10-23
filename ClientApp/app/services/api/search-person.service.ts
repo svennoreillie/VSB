@@ -4,7 +4,7 @@ import { Http, Response } from "@angular/http";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
-import { SearchModel } from "./../../components/search/searchbyname/search";
+import { SearchModel } from "./../../components/search/models/search";
 import { UrlService } from "./../url/url.service";
 
 @Injectable()

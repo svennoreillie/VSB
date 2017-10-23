@@ -5,7 +5,8 @@ using VSBaseAngular;
 
 namespace VSBaseAngular.Controllers
 {
-    [Route("api/admin/[controller]")]
+    [ApiVersion(ControllerVersion.v1)]
+    [Route("api/v{version:apiVersion}/admin/[controller]")]
     public class VersionsController : Controller
     {
         private readonly AppConfig _config;

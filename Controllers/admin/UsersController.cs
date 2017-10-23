@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VSBaseAngular.Controllers
 {
-    [Route("api/admin/[controller]")]
+    [ApiVersion(ControllerVersion.v1)]
+    [Route("api/v{version:apiVersion}/admin/[controller]")]
     public class UsersController : Controller
     {
         [Authorize]

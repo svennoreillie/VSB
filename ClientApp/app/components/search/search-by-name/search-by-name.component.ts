@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PeopleService } from "../../../services";
 import { SelectPersonController } from "../select-person.controller";
-import { NameSearchModel } from "./search";
+import { NameSearchModel } from "./../models/search";
 
 @Component({
     selector: "search-by-name",

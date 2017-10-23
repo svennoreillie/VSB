@@ -8,10 +8,12 @@ export class UrlService {
 
     public createUrl(...resources: string[]): string {
         let url: string = this.config.config.api.apiUrl;
+
         resources.forEach((resource) => {
             if (!url.endsWith("/")) url += "/";
             url += resource;
         });
+
         return url;
     }
 

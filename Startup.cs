@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VSBaseAngular.Controllers;
 
 namespace VSBaseAngular
 {
@@ -25,13 +27,13 @@ namespace VSBaseAngular
         {
             services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
 
+            DependencyInjection.AddServices(services);
+
             services.AddMvc();
 
-            // Decorate controller functions to apply a specific version to them: [MapToApiVersion(ControllerVersion.v1)]
-            services.AddApiVersioning(o => {
+            services.AddApiVersioning(o =>
+            {
                 o.ReportApiVersions = true;
-                o.AssumeDefaultVersionWhenUnspecified = true;
-                o.DefaultApiVersion = new ApiVersion(1,0);
             });
         }
 
@@ -51,17 +53,32 @@ namespace VSBaseAngular
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
 
+            app.Use(async (context, next) =>
+            {
+                var path = context.Request.Path.Value;
+                if (path.StartsWith("/api")) await next();
+                else if (Path.HasExtension(path)) await next();
+                else
+                {
+                    context.Request.Path = "/";
+                    await next();
+                }
+            });
+
+            app.UseCors("AllowAll");
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
+                //Default MVC
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Home", action = "Index" });
+                // routes.MapSpaFallbackRoute(
+                //  name: "spa-fallback",
+                //  defaults: new { controller = "Home", action = "Index" });
+
             });
         }
     }

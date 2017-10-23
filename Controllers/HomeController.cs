@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VSBaseAngular.Controllers
 {
+    [ApiVersionNeutral]
     public class HomeController : Controller
     {
         public IActionResult Index()

@@ -1,3 +1,4 @@
+import { SearchByInszComponent } from "./components/search/search-by-insz/search-by-insz";
 // 3rd party
 import * as angular from "./angular-barrel";
 
@@ -10,14 +11,15 @@ import * as services from "./services";
 // Components
 import { AppComponent } from "./components/app/app.component";
 import { NavMenuComponent } from "./components/navmenu/navmenu.component";
-import { SearchByNameComponent } from "./components/search/searchbyname/search-by-name.component";
+import * as search from "./components/search";
 import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.component";
 
 @angular.NgModule({
     declarations: [
         AppComponent,
         // Components
-        SearchByNameComponent,
+        search.SearchByNameComponent,
+        search.SearchByInszComponent,
         SocSidebarComponent,
         NavMenuComponent,
         // Directives
@@ -44,7 +46,11 @@ import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.compon
             },
             {
                 path: "byname",
-                component: SearchByNameComponent
+                component: search.SearchByNameComponent
+            },
+            {
+                path: "byinsz",
+                component: search.SearchByInszComponent
             },
             {
                 path: "**",
