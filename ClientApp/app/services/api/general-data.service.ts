@@ -19,4 +19,12 @@ export class GeneralDataService {
                     });
     }
 
+    public getEnvironment = (): Observable<number> => {
+        const url = this.url.createUrl("admin", "environment");
+        return this.http.get(url)
+                 .map((response) => {
+                     return Number(response.text());
+                    });
+    }
+
 }

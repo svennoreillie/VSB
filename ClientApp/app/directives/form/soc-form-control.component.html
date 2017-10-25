@@ -1,0 +1,9 @@
+<mat-form-field>
+        <input matInput
+               [type]="type"
+               [(ngModel)]="property"
+               [formControl]="control"
+               required
+               placeholder="{{placeholder | i18n}}">
+        <mat-error *ngIf="control.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>

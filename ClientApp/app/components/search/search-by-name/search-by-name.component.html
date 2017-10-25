@@ -1,15 +1,36 @@
 <soc-sidebar selected-person="selectedPerson"
-             persons="people"
+             persons="people | async"
              select="selectPerson(person)"
              download="downloadPersons()">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <h1>{{people | async}}</h1>
-                <form class="soc-form btn-left vertical"
+
+                <mat-form-field>
+                    <input matInput
+                           [(ngModel)]="searchModel.name"
+                           [formControl]="name"
+                           required
+                           placeholder="{{'Name Placeholder' | i18n}}">
+                    <mat-error *ngIf="name.invalid">{{'Name is required' | i18n}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput
+                           [(ngModel)]="searchModel.firstName"
+                           placeholder="{{'First name Placeholder' | i18n}}">
+                </mat-form-field>
+
+                <button mat-raised-button
+                        (click)="search()">{{'Search' | i18n}}</button>
+
+                <!--<form class="soc-form btn-left vertical"
                       #searchForm="ngForm"
                       novalidate>
-                    <div>
+
+
+
+                     <div>
                         <label for="name"
                                i18n="Searchfield name">Name</label>
                         <div>
@@ -27,8 +48,10 @@
                              class="alert alert-danger">
                             Name is required
                         </div>
-                    </div>
-                    <div>
+                    </div> -->
+
+
+                <!-- <div>
                         <label for="firstName"
                                i18n="Searchfield firstname">First name</label>
                         <div>
@@ -39,18 +62,18 @@
                                    [(ngModel)]="searchModel.firstName"
                                    placeholder="{{'First name Placeholder' | i18n}}">
                         </div>
-                    </div>
+                    </div> 
 
                     <button type="submit"
                             class="btn-default collapse-on-search"
                             (click)="search()"
-                            [disabled]="!searchForm.form.valid"
                             i18n="Button search form">Search
                     </button>
 
 
 
                 </form>
+                -->
             </div>
         </div>
     </div>

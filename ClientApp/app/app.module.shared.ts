@@ -8,6 +8,7 @@ import * as directives from "./directives";
 import * as services from "./services";
 
 // Components
+import { MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatButtonModule } from "@angular/material";
 import { AppComponent } from "./components/app/app.component";
 import { NavMenuComponent } from "./components/navmenu/navmenu.component";
 import * as search from "./components/search";
@@ -20,9 +21,11 @@ import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.compon
         search.SearchByNameComponent,
         search.SearchByMembernrComponent,
         search.SearchByInszComponent,
+        search.SearchByStateComponent,
         SocSidebarComponent,
         NavMenuComponent,
         // Directives
+        directives.SocFormControlComponent,
         directives.I18nDirective,
         directives.I18nPipe,
     ],
@@ -35,9 +38,15 @@ import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.compon
         services.ConfigService,
     ],
     imports: [
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
         // Modules
         angular.CommonModule,
         angular.FormsModule,
+        angular.ReactiveFormsModule,
         angular.HttpModule,
         angular.RouterModule.forRoot([{
                 path: "",
@@ -55,6 +64,10 @@ import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.compon
             {
                 path: "bymembernr",
                 component: search.SearchByMembernrComponent
+            },
+            {
+                path: "bystate",
+                component: search.SearchByStateComponent
             },
             {
                 path: "**",

@@ -13,3 +13,27 @@ export class MemberNrSearchModel extends SearchModel {
 export class InszSearchModel extends SearchModel {
     public insz: string;
 }
+
+export class StateSearchModel extends SearchModel {
+
+    public ZVZ: boolean;
+    public BOB: boolean;
+    public THAB: boolean;
+
+    public StateInitiated: boolean;
+    public StateCompleted: boolean;
+    public StateCompletedDate: Date;
+    public StateRejected: boolean;
+    public StateRejectedDate: Date;
+
+    public federation: number;
+
+    constructor() {
+        super();
+
+        let firstOfTheMonth = new Date();
+        firstOfTheMonth.setDate(1);
+        this.StateCompletedDate = firstOfTheMonth;
+        this.StateRejectedDate = firstOfTheMonth;
+    }
+}

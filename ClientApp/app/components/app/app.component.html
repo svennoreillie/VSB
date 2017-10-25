@@ -1,8 +1,7 @@
 <div class="soc-appversion">{{ applicationVersion | async}}</div>
 
-<div class="soc-page has-navbar has-sidebar" 
-
-    ng-class="{'is-loading' : mainCtrl.isLoading}">
+<div class="soc-page has-navbar has-sidebar"
+     ng-class="{'is-loading' : mainCtrl.isLoading}">
     <!-- loader -->
     <div class="soc-loader-block"></div>
     <div class="soc-loader">Loading...</div>
@@ -13,5 +12,13 @@
     <router-outlet></router-outlet>
     <!-- MainContent -->
     <!-- <content-main></content-main> -->
-
+    <mat-form-field>
+        <input matInput
+               [matDatepicker]="test2"
+               placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix
+                               [for]="test2"></mat-datepicker-toggle>
+        <mat-datepicker #test2
+                        mode="month"></mat-datepicker>
+    </mat-form-field>
 </div>

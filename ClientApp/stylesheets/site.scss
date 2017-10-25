@@ -4,4 +4,13 @@
 //import soc-core
 @import "~soc-core/src/stylesheets/soc.scss";
 
+//@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 //Add custom scss below
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+@import 'materialtheme.scss';
+
+@include angular-material-theme($soc-theme);

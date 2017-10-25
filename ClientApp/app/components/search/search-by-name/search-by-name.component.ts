@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl, Validators } from "@angular/forms";
 import { PeopleService } from "../../../services";
 import { SelectPersonController } from "../select-person.controller";
 import { NameSearchModel } from "./../models/search";
@@ -9,6 +10,8 @@ import { NameSearchModel } from "./../models/search";
 })
 export class SearchByNameComponent extends SelectPersonController  {
     public searchModel: NameSearchModel = new  NameSearchModel();
+
+    public name = new FormControl("", [Validators.required]);
 
     constructor(private peopleService: PeopleService) {
         super();
