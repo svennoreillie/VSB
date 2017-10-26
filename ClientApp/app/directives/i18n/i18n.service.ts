@@ -1,4 +1,6 @@
-import { Injectable } from "@angular/core";
+import {
+    Injectable
+} from "@angular/core";
 import nl from "../../../translations/nl.json";
 
 @Injectable()
@@ -19,7 +21,6 @@ export class I18nService {
             const translationWarning = "Translation not found, add the following json block to the translation files ";
             const jsonExampleTranslation = '"' + key + '" : ' + JSON.stringify(newTranslation) + ",";
             console.warn(translationWarning + "\n\n" + jsonExampleTranslation);
-            
             return key;
         }
         if (!translation.value) return translation.originalText;
@@ -29,15 +30,19 @@ export class I18nService {
     public getOriginalText = (originalValue: string): string => {
         let originalText: string = originalValue;
         originalText = originalText.trim();
+        originalText = originalText.replace(/\n/g, " ");
 
-        // Check for html elements and cut them
-        const htmlStartCharPosition = originalText.indexOf("<");
-        if (htmlStartCharPosition === 0) {
-            // starts with html element right away => ignore this
-            throw Error("Element contains html instead of text");
-        } else if (htmlStartCharPosition > 0) {
-            // element found => substring text part
-            originalText = originalText.substring(0, htmlStartCharPosition);
+
+        let regexPieces = /^(<.*>)/g.exec(originalText);
+        if (regexPieces != null) {
+            regexPieces.forEach((regexPiece) => {
+                originalText = originalText.replace(regexPiece, " ");
+            });
+        }
+
+        originalText = originalText.trim();
+        if (originalText.length == 0) {
+            throw new Error("I18N translation, only found html. consider using the pipe version => " + originalValue);
         }
 
         return originalText;

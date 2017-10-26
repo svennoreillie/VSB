@@ -20,7 +20,7 @@ namespace VSBaseAngular.Business
         {
             System.Console.WriteLine("Search person");
 
-            return await Task.FromResult(new List<Person>());
+            return await Task.FromResult(new List<Person>() { new Person { FirstName = "Sven", Name = "Noreillie" } });
         }
     }
 }

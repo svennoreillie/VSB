@@ -23,10 +23,11 @@
         "originalText": "Name Placeholder",
         "value": "Naam"
     },
-    "FIRST_NAME_PLACEHOLDER": {
+    "FIRSTNAME_PLACEHOLDER": {
         "originalText": "First name Placeholder",
         "value": "Voornaam"
     },
+    "NAME_IS_REQUIRED" : {"originalText":"Name is required","value":"Naam is verplicht"},
     "COLLAPSE": {
         "originalText": "Collapse",
         "description": "Search collapse button",
@@ -36,15 +37,5 @@
         "originalText": "Search",
         "description": "Button search form",
         "value": "Zoeken"
-    },
-    "NAME": {
-        "originalText": "Name",
-        "description": "Searchfield name",
-        "value": "Naam"
-    },
-    "FIRST_NAME": {
-        "originalText": "First name",
-        "description": "Searchfield firstname",
-        "value": "Voornaam"
     }
 }

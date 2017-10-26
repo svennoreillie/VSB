@@ -39,8 +39,8 @@ namespace VSBaseAngular.Controllers
             PersonSearch model = new PersonSearch();
             
             var people = await _peopleReader.SearchAsync(model);
-            
-            return Ok($"{firstname}-{name}-{insz}-{membernr}");
+
+            return Ok(people);
         }
 
     }

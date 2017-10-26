@@ -25,7 +25,6 @@ import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.compon
         SocSidebarComponent,
         NavMenuComponent,
         // Directives
-        directives.SocFormControlComponent,
         directives.I18nDirective,
         directives.I18nPipe,
     ],
