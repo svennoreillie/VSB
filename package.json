@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "test": "karma start ClientApp/test/karma.conf.js",
-    "i18n": "ng-xi18n"
+    "test": "karma start ClientApp/test/karma.conf.js"
   },
   "dependencies": {
     "@angular/animations": "4.2.5",

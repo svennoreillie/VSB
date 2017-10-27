@@ -5,52 +5,30 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <form class="soc-form btn-left vertical"
-                      #searchForm="ngForm"
-                      novalidate>
-                    <div>
-                        <label for="federation"
-                               i18n="Searchfield name">Federation</label>
-                        <div>
-                            <input type="number"
-                                   focus-on="federation"
-                                   class="form-control"
-                                   id="federation"
-                                   name="federation"
-                                   #federation="ngModel"
-                                   required
-                                   [(ngModel)]="searchModel.federation"
-                                   placeholder="{{'Federation Placeholder' | i18n}}">
-                        </div>
-                    </div>
 
+                <mat-form-field>
+                    <input matInput
+                           [(ngModel)]="searchModel.federation"
+                           [formControl]="federation"
+                           type="number"
+                           placeholder="{{'Federation Placeholder' | i18n}}">
+                    <mat-error *ngIf="federation.invalid">{{'Federation is required' | i18n}}</mat-error>
+                </mat-form-field>
 
-                    <div>
-                        <label for="membernr"
-                               i18n="Searchfield name">Member nr</label>
-                        <div>
-                            <input type="number"
-                                   focus-on="membernr"
-                                   class="form-control"
-                                   id="membernr"
-                                   name="membernr"
-                                   #membernr="ngModel"
-                                   required
-                                   [(ngModel)]="searchModel.memberNr"
-                                   placeholder="{{'Membernr Placeholder' | i18n}}">
-                        </div>
-                    </div>
+                <mat-form-field>
+                    <input matInput
+                           type="number"
+                           [(ngModel)]="searchModel.memberNr"
+                           [formControl]="memberNr"
+                           placeholder="{{'MemberNr Placeholder' | i18n}}">
+                    <mat-error *ngIf="memberNr.invalid">{{'MemberNr is required' | i18n}}</mat-error>
+                </mat-form-field>
 
-                    <button type="submit"
-                            class="btn-default collapse-on-search"
-                            (click)="search()"
-                            [disabled]="!searchForm.form.valid"
-                            i18n="Button search form">Search
-                    </button>
-
-
-
-                </form>
+                <button mat-raised-button
+                        class="btn-default collapse-on-search"
+                        (click)="search()"
+                        [disabled]="isInvalid()">{{'Search' | i18n}}</button>
+               
             </div>
         </div>
     </div>

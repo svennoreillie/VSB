@@ -28,6 +28,10 @@
         "value": "Voornaam"
     },
     "NAME_IS_REQUIRED" : {"originalText":"Name is required","value":"Naam is verplicht"},
+    "FEDERATION_PLACEHOLDER" : {"originalText":"Federation Placeholder","value":"Federatie"},
+    "MEMBERNR_PLACEHOLDER" : {"originalText":"MemberNr Placeholder","value":"Lidnummer"},
+    "FEDERATION_IS_REQUIRED" : {"originalText":"Federation is required","value":"Federatie is verplicht"},
+    "MEMBERNR_IS_REQUIRED" : {"originalText":"MemberNr is required","value":"Lidnummer is verplicht"},
     "COLLAPSE": {
         "originalText": "Collapse",
         "description": "Search collapse button",

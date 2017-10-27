@@ -18,9 +18,6 @@ export class SearchByNameComponent extends SelectPersonController  {
     }
 
     public search() {
-        if (this.searchModel.name) {
-            this.people = this.peopleService.search(this.searchModel);
-        }
+        this.people = this.peopleService.search(this.searchModel);
     }
-
 }
