@@ -9,11 +9,12 @@ import { StateSearchModel } from "./../models/search";
 @Component({
     selector: "search-by-state",
     templateUrl: "search-by-state.component.html",
+    styleUrls: ["search-by-state.component.css"]
 })
 export class SearchByStateComponent extends SelectPersonController implements OnInit {
 
     public searchModel: StateSearchModel = new  StateSearchModel();
-    public environment: number;
+    public environment: number = 300;
 
     constructor(private peopleService: PeopleService,
                 private generalDataService: GeneralDataService) {

@@ -5,149 +5,123 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <p i18n="State title 1">SUB_SEARCHMENU_SEARCH_PERSON_BY_STATE_AREA_VSB</p>
+                <p i18n>State Search By Area</p>
 
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" [(ngModel)]="searchModel.ZVZ" />
-                        {{'VSB_SUB_SEARCHFIELDS_ZVZ' | i18n}}
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" [(ngModel)]="searchModel.BOB" />
-                        {{'VSB_SUB_SEARCHFIELDS_BOB' | i18n}}
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" [(ngModel)]="searchModel.THAB" />
-                        {{'VSB_SUB_SEARCHFIELDS_THAB' | i18n}}
-                    </label>
-                </div>
-            </div>
+                <section class="example-section">
+                    <mat-checkbox [(ngModel)]="searchModel.ZVZ">{{'ZVZ' | i18n}}</mat-checkbox>
+                </section>
+                <section class="example-section">
+                    <mat-checkbox [(ngModel)]="searchModel.BOB">{{'BOB' | i18n}}</mat-checkbox>
+                </section>
+                <section class="example-section">
+                    <mat-checkbox [(ngModel)]="searchModel.THAB">{{'THAB' | i18n}}</mat-checkbox>
+                </section>
 
-            <div class="col-xs-12">
-                <p i18n="State title 2 ">SUB_SEARCHMENU_SEARCH_PERSON_BY_STATE_STATE</p>
-                
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" [(ngModel)]="searchModel.StateInitiated" />
-                        {{'VSB_SUB_SEARCHFIELDS_INITIATED' | i18n}}
-                    </label>
-                </div>
-                
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" [(ngModel)]="searchModel.StateConfirmed" />
-                        {{'VSB_SUB_SEARCHFIELDS_CONFIRMED' | i18n}}
-                    </label>
-                </div>
-                
-                <div *ngIf="searchModel.StateConfirmed">
-                    <!-- <mat-form-field>
-                        <input matInput
-                               [matDatepicker]="stateConfirmedPicker"
-                               [(ngModel)]="searchModel.stateConfirmedDate"
-                               placeholder="Choose a date">
+                <br/>
+                <p i18n>State Search By State</p>
 
-                        <mat-datepicker-toggle matSuffix
-                                               [for]="stateConfirmedPicker"></mat-datepicker-toggle>
-                        <mat-datepicker #stateConfirmedPicker></mat-datepicker>
-                    </mat-form-field> -->
-                    <!-- <label for="cb">{{'VSB_SUB_SEARCHMENU_SEARCH_PERSON_BY_STATE_STARTDATE' | i18n}}</label> -->
+                <section class="example-section">
+                    <mat-checkbox [(ngModel)]="searchModel.StateInitiated">{{'Initiated' | i18n}}</mat-checkbox>
+                </section>
+                <section class="example-section">
+                    <mat-checkbox [(ngModel)]="searchModel.StateConfirmed">{{'Confirmed' | i18n}}</mat-checkbox>
+                    <div *ngIf="searchModel.StateConfirmed">
+                        <mat-form-field>
+                            <input matInput
+                                   [matDatepicker]="stateConfirmedPicker"
+                                   [(ngModel)]="searchModel.stateConfirmedDate"
+                                   placeholder="Choose a date">
 
-                    <!-- <my-monthpicker mmp-get-date="searchModel.getConfirmedMonth()"
-                                        mmp-update-date="searchModel.updateConfirmedMonth(newValue)"></my-monthpicker> -->
-                </div>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" [(ngModel)]="searchModel.StateRejected" />
-                        {{'VSB_SUB_SEARCHFIELDS_REJECTED' | i18n}}
-                    </label>
-                </div>
-
-                <div *ngIf="searchModel.StateRejected">
-                    <!-- <mat-form-field>
-                        <input matInput
-                               [matDatepicker]="stateRejectedPicker"
-                               [(ngModel)]="searchModel.stateRejectedDate"
-                               placeholder="Choose a date">
-
-                        <mat-datepicker-toggle matSuffix
-                                               [for]="stateRejectedPicker"></mat-datepicker-toggle>
-                        <mat-datepicker #stateRejectedPicker
-                                        mode="month"></mat-datepicker>
-                    </mat-form-field> -->
-                    <!-- <div>
-                        
-                        <my-monthpicker mmp-description="{{'VSB_SUB_SEARCHMENU_SEARCH_PERSON_BY_STATE_DECISIONDATE' | i18n}}"
-                                        mmp-get-date="searchModel.getDecisionMonth()"
-                                        mmp-update-date="searchModel.updateDecisionMonth(newValue)"></my-monthpicker>
-                    </div> -->
-                </div>
-
-            </div>
-
-            <div class="col-sm-12">
-                <p i18n="Title state 3">SUB_SEARCHMENU_SEARCH_PERSON_BY_STATE_FED</p>
-
-                <div ng-show="environment==300">
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="304">304</label>
+                            <mat-datepicker-toggle matSuffix
+                                                   [for]="stateConfirmedPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #stateConfirmedPicker></mat-datepicker>
+                        </mat-form-field>
                     </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="309">309</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="311">311</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="322">322</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="300">{{'VSB_SUB_SEARCHFIELDS_ALL_FED' | i18n}}</label>
-                    </div>
-                </div>
+                </section>
+                <section class="example-section">
+                    <mat-checkbox [(ngModel)]="searchModel.StateRejected">{{'Rejected' | i18n}}</mat-checkbox>
+                    <div *ngIf="searchModel.StateRejected">
+                        <mat-form-field>
+                            <input matInput
+                                   [matDatepicker]="stateConfirmedPicker"
+                                   [(ngModel)]="searchModel.stateConfirmedDate"
+                                   placeholder="Choose a date">
 
-                <div ng-show="environment==400">
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="401">401</label>
+                            <mat-datepicker-toggle matSuffix
+                                                   [for]="stateConfirmedPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #stateConfirmedPicker></mat-datepicker>
+                        </mat-form-field>
                     </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="403">403</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="404">404</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="407">407</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="415">415</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="417">417</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" [(ngModel)]="searchModel.federation" value="400">{{'VSB_SUB_SEARCHFIELDS_ALL_FEDVSB_SUB_SEARCHFIELDS_ALL_FED' | i18n}}</label>
-                    </div>
-                </div>
+                </section>
 
-            </div>
-            
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <p class="soc-searchinfo"
-                       i18N="Optional search information before search button at state search">VSB_SEARCHBYSTATE_INFO</p>
-                </div>
 
-                <button type="submit"
-                        class="btn btn-default collapse-on-search"
+                <br/>
+
+                <p i18n>State Search By Federation</p>
+
+                <ng-container *ngIf="environment==300">
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="300"
+                                          i18n>all</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="304">304</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="309">309</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="311">311</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="322">322</mat-radio-button>
+                    </section>
+
+                </ng-container>
+
+                <ng-container *ngIf="environment==400">
+
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="400"
+                                          i18n>all</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="401">401</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="403">403</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="404">404</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="407">407</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="415">415</mat-radio-button>
+                    </section>
+                    <section class="example-section">
+                        <mat-radio-button [(ngModel)]="searchModel.federation"
+                                          value="417">417</mat-radio-button>
+                    </section>
+                </ng-container>
+                <p i18n="Optional search information before search button at state search">VSB_SEARCHBYSTATE_INFO</p>
+                <button mat-raised-button
+                        class="btn-default collapse-on-search"
                         (click)="search()"
-                        [disabled]="isSearchDisabled()"
-                        i18n="Search button">Search</button>
+                        [disabled]="isSearchDisabled()">{{'Search' | i18n}}</button>
+
             </div>
         </div>
     </div>

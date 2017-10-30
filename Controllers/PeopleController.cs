@@ -29,6 +29,7 @@ namespace VSBaseAngular.Controllers
             return Ok(p);
         }
 
+
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> Get([FromQuery]string firstname,

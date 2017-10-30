@@ -8,11 +8,29 @@ import * as directives from "./directives";
 import * as services from "./services";
 
 // Components
-import { MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatButtonModule } from "@angular/material";
-import { AppComponent } from "./components/app/app.component";
-import { NavMenuComponent } from "./components/navmenu/navmenu.component";
+import {
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatCardModule
+} from "@angular/material";
+import {
+    AppComponent
+} from "./components/app/app.component";
+import {
+    NavMenuComponent
+} from "./components/navmenu/navmenu.component";
 import * as search from "./components/search";
-import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.component";
+import {
+    SocSidebarComponent
+} from "./components/soc-sidebar/soc-sidebar.component";
+
+
+
 
 @angular.NgModule({
     declarations: [
@@ -42,6 +60,9 @@ import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.compon
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
+        MatCheckboxModule,
+        MatRadioModule,
+        MatCardModule,
         // Modules
         angular.CommonModule,
         angular.FormsModule,

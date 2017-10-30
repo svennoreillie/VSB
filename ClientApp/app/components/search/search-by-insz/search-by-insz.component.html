@@ -5,35 +5,21 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <form class="soc-form btn-left vertical"
-                      #searchForm="ngForm"
-                      novalidate>
-                    <div>
-                        <label for="insz"
-                               i18n="Searchfield name">Insz</label>
-                        <div>
-                            <input type="number"
-                                   focus-on="insz"
-                                   class="form-control"
-                                   id="insz"
-                                   name="insz"
-                                   #insz="ngModel"
-                                   required
-                                   [(ngModel)]="searchModel.insz"
-                                   placeholder="{{'Insz Placeholder' | i18n}}">
-                        </div>
-                    </div>
 
-                    <button type="submit"
-                            class="btn-default collapse-on-search"
-                            (click)="search()"
-                            [disabled]="!searchForm.form.valid"
-                            i18n="Button search form">Search
-                    </button>
+                <mat-form-field>
+                    <input matInput
+                           [(ngModel)]="searchModel.insz"
+                           [formControl]="insz"
+                           type="number"
+                           placeholder="{{'insz Placeholder' | i18n}}">
+                           <mat-error *ngIf="insz.invalid">{{'INSZ required' | i18n}}</mat-error>
+                </mat-form-field>
 
+                <button mat-raised-button
+                        class="btn-default collapse-on-search"
+                        [disabled]="insz.invalid"
+                        (click)="search()">{{'Search' | i18n}}</button>
 
-
-                </form>
             </div>
         </div>
     </div>
