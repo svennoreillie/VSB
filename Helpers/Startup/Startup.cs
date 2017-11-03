@@ -28,7 +28,7 @@ namespace VSBaseAngular
         {
             services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
             services.Configure<ServiceConfig>(Configuration.GetSection("ServiceConfig"));
-            services.Configure<ApiConfig[]>(Configuration.GetSection("Api"));
+            services.Configure<ApiConfig>(Configuration.GetSection("Api"));
 
             DependencyInjection.AddServices(services);
             Automapper.AddMapper(services);

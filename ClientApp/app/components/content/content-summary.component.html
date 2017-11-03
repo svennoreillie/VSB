@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="soc-panel"
-                 ng-class="{'collapsed': !vm.person }"
-                 ng-show="!vm.vsbInfo.zvzInfo.fullContract.contract.closeDate">
+                 [ngStyle]="{'collapsed': !vm.person }"
+                 [hidden]="vm.vsbInfo.zvzInfo.fullContract.contract.closeDate">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -38,8 +38,8 @@
             </div>
 
             <div class="soc-panel"
-                 ng-class="{'collapsed': !vm.person }"
-                 ng-show="vm.vsbInfo.zvzInfo.fullContract.contract.closeDate">
+                 [ngStyle]="{'collapsed': !vm.person }"
+                 [hidden]="!vm.vsbInfo.zvzInfo.fullContract.contract.closeDate">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -76,7 +76,7 @@
 
         <div class="col-sm-12">
             <div class="soc-panel"
-                 ng-class="{'collapsed': !vm.person }">
+                 [ngStyle]="{'collapsed': !vm.person }">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -139,7 +139,7 @@
 
         <div class="col-sm-12">
             <div class="soc-panel"
-                 ng-class="{'collapsed': !vm.person }">
+                 [ngStyle]="{'collapsed': !vm.person }">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -161,7 +161,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="cont in vm.vsbInfo.zvzInfo.fullContract.contributions">
+                                            <tr *ngFor="let cont of vm.vsbInfo.zvzInfo.fullContract.contributions">
                                                 <td>{{cont.year}}</td>
                                                 <td>{{cont.amount}} {{cont.currency}}</td>
                                                 <td>{{cont.state}}</td>
@@ -181,7 +181,7 @@
 
         <div class="col-sm-12 ">
             <div class="soc-panel"
-                 ng-class="{'collapsed': !vm.person }">
+                 [ngStyle]="{'collapsed': !vm.person }">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -193,21 +193,21 @@
                             <div class="col-sm-12">
                                 <textarea class="form-control"
                                           rows="7"
-                                          data-ng-model="vm.vsbInfo.vsbRemark"></textarea>
+                                          [(ngModel)]="vm.vsbInfo.vsbRemark"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-sm-12">
 
-                                    <a ng-href="{{vm.createMailTo()}}"
+                                    <a [href]="{{vm.createMailTo()}}"
                                        class="notunderlinedlink btn btn-default"
-                                       ng-hide="vm.vsbInfo.vsbRemark == null || vm.vsbInfo.vsbRemark == '' ">
+                                       [hidden]="vm.vsbInfo.vsbRemark == null || vm.vsbInfo.vsbRemark == '' ">
                                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
                                         </a>
                                     <button title="{{'VSB_REMARK_SAVE' | i18n}} "
-                                            ng-click="vm.saveVsbRemark()"
-                                            ng-hide="vm.vsbInfo.vsbRemark == null || vm.vsbInfo.vsbRemark == vm.oldvsbRemark"
+                                            (click)="vm.saveVsbRemark()"
+                                            [hidden]="vm.vsbInfo.vsbRemark == null || vm.vsbInfo.vsbRemark == vm.oldvsbRemark"
                                             class="btn btn-default">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i>
                                         </button>

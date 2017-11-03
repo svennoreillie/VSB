@@ -1,9 +1,9 @@
 <div class="soc-main"
-     [class]="{'has-actionbar' : currentView == $root.Enum.ContentView.Returns}">
+     [ngStyle]="{'has-actionbar' : currentView == $root.Enum.ContentView.Returns}">
 
     <!-- tabheader -->
     <div class="soc-header fixed"
-         *ngf="person">
+         *ngIf="person">
         <div>
             <span class="soc-header-right">{{person.locality}}</span>
             <span class="soc-header-title">
@@ -34,60 +34,60 @@
 
         <div class="soc-tabs top follow-header">
             <ul class="nav nav-tabs">
-                <li [class]="{'active' : currentView == $root.Enum.ContentView.Summary}">
+                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Summary}">
                     <a (click)="setView($root.Enum.ContentView.Summary)">{{'VSB_TAB_HEADING_SUMMARY' | i18n}}</a>
                 </li>
-                <li [class]="{'active' : currentView == $root.Enum.ContentView.Zorgverzekering}">
+                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Zorgverzekering}">
                     <a (click)="setView($root.Enum.ContentView.Zorgverzekering)">{{'VSB_TAB_HEADING_ZVZ' | i18n}}</a>
                 </li>
-                <li [class]="{'active' : currentView == $root.Enum.ContentView.Bob}">
+                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Bob}">
                     <a (click)="setView($root.Enum.ContentView.Bob)">{{'VSB_TAB_HEADING_BOB' | i18n}}</a>
                 </li>
-                <li [class]="{'active' : currentView == $root.Enum.ContentView.Thab}">
+                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Thab}">
                     <a (click)="setView($root.Enum.ContentView.Thab)">{{'VSB_TAB_HEADING_THAB' | i18n}}</a>
                 </li>
-                <li [class]="{'active' : currentView == $root.Enum.ContentView.Attachments}">
+                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Attachments}">
                     <a (click)="setView($root.Enum.ContentView.Attachments)">{{'VSB_ATTACHMENTS_TITLE' | i18n}}</a>
                 </li>
                 
-                <!-- <li [class]="{'active' : currentView == $root.Enum.ContentView.Returns}">
+                <!-- <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Returns}">
                     <a (click)="setView($root.Enum.ContentView.Returns)">{{'VSB_TAB_HEADING_RETURNS' | i18n}}</a>
                 </li> -->
             </ul>
             <div class="tab-content">
                 <div id="tab_summary"
                      class="tab-pane"
-                     [class]="{'active' : currentView == $root.Enum.ContentView.Summary}">
+                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Summary}">
                     <content-summary person="person"
-                                     vsb-info="vsbInfo" />
+                                     vsb-info="vsbInfo"></content-summary>
                 </div>
                 <div id="tab_zvz"
                      class="tab-pane"
-                     [class]="{'active' : currentView == $root.Enum.ContentView.Zorgverzekering}">
-                    <content-zorgverzekering person="person"
-                                             vsb-info="vsbInfo" />
+                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Zorgverzekering}">
+                    <!-- <content-zorgverzekering person="person"
+                                             vsb-info="vsbInfo" /> -->
                 </div>
                 <div id="tab_bob"
                      class="tab-pane"
-                     [class]="{'active' : currentView == $root.Enum.ContentView.Bob}">
-                    <content-bob person="person"
-                                 vsb-info="vsbInfo" />
+                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Bob}">
+                    <!-- <content-bob person="person"
+                                 vsb-info="vsbInfo" /> -->
                 </div>
                 <div id="tab_thab"
                      class="tab-pane"
-                     [class]="{'active' : currentView == $root.Enum.ContentView.Thab}">
-                    <content-thab person="person"
-                                  vsb-info="vsbInfo" />
+                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Thab}">
+                    <!-- <content-thab person="person"
+                                  vsb-info="vsbInfo" /> -->
                 </div>
                 <div id="tab_thab"
                      class="tab-pane"
-                     [class]="{'active' : currentView == $root.Enum.ContentView.Attachments}">
-                    <content-attachment person="person" />
+                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Attachments}">
+                    <!-- <content-attachment person="person" /> -->
                 </div>
 <!--                 
                 <div id="tab_returns"
                      class="tab-pane"
-                     [class]="{'active' : currentView == $root.Enum.ContentView.Returns}">
+                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Returns}">
                     <content-returns person="person"
                                      vsb-info="vsbInfo" />
                 </div> -->

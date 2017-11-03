@@ -1,15 +1,5 @@
-import { ContentSummaryComponent } from "./components/content/content-summary.componnent";
-import { MainContentComponent } from "./components/main-content/main-content.component";
 // 3rd party
 import * as angular from "./angular-barrel";
-
-// Directives
-import * as directives from "./directives";
-
-// Services
-import * as services from "./services";
-
-// Components
 import {
     MatNativeDateModule,
     MatDatepickerModule,
@@ -20,31 +10,33 @@ import {
     MatRadioModule,
     MatCardModule
 } from "@angular/material";
-import {
-    AppComponent
-} from "./components/app/app.component";
-import {
-    NavMenuComponent
-} from "./components/navmenu/navmenu.component";
-import * as search from "./components/search";
-import {
-    SocSidebarComponent
-} from "./components/soc-sidebar/soc-sidebar.component";
 
+// Directives
+import * as directives from "./directives";
+
+// Services
+import * as services from "./services";
+
+// Components
+import { AppComponent } from "./components/app/app.component";
+import { NavMenuComponent } from "./components/navmenu/navmenu.component";
+import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.component";
+import * as search from "./components/search";
+import * as content from "./components/content";
 
 
 @angular.NgModule({
     declarations: [
         AppComponent,
         // Components
+        NavMenuComponent,
+        SocSidebarComponent,
         search.SearchByNameComponent,
         search.SearchByMembernrComponent,
         search.SearchByInszComponent,
         search.SearchByStateComponent,
-        SocSidebarComponent,
-        NavMenuComponent,
-        MainContentComponent,
-        ContentSummaryComponent,
+        content.MainContentComponent,
+        content.ContentSummaryComponent,
         // Directives
         directives.I18nDirective,
         directives.I18nPipe,

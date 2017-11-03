@@ -39,7 +39,7 @@ namespace VSBaseAngular.Controllers
                                     [FromQuery]string membernr,
                                     [FromQuery]long sinumber,
                                     [FromQuery]int skip,
-                                    [FromQuery]int limit)
+                                    [FromQuery]int limit = int.MaxValue)
         {
             PersonSearch model = new PersonSearch();
             model.Federation = federation;
