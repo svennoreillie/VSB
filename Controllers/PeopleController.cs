@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using VSBaseAngular.Business;
@@ -20,12 +21,11 @@ namespace VSBaseAngular.Controllers
 
 
         [HttpGet]
-        //[Route("{sinumber:string}")]
-        [Route("{id:int}")]
-        public async Task<IActionResult> Get(int id)
+        [Route("{sinumber:long}")]
+        public async Task<IActionResult> Get(long sinumber)
         {
-            var key = new PersonKey("sinumber");
-            Person  p = await _peopleReader.GetAsync(key);
+            var key = new PersonKey(sinumber);
+            Person p = await _peopleReader.GetAsync(key);
             return Ok(p);
         }
 
@@ -35,10 +35,23 @@ namespace VSBaseAngular.Controllers
         public async Task<IActionResult> Get([FromQuery]string firstname,
                                     [FromQuery]string name,
                                     [FromQuery]string insz,
-                                    [FromQuery]string membernr)
+                                    [FromQuery]int federation,
+                                    [FromQuery]string membernr,
+                                    [FromQuery]long sinumber,
+                                    [FromQuery]int skip,
+                                    [FromQuery]int limit)
         {
             PersonSearch model = new PersonSearch();
-            
+            model.Federation = federation;
+            model.FirstName = firstname;
+            model.Insz = insz;
+            model.MemberNr = membernr;
+            model.Name = name;
+            model.SiNumber = sinumber;
+
+            model.Limit = limit;
+            model.Skip = skip;
+
             var people = await _peopleReader.SearchAsync(model);
 
             return Ok(people);

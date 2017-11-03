@@ -7,11 +7,16 @@ export class NameSearchModel extends SearchModel {
 }
 
 export class MemberNrSearchModel extends SearchModel {
+    public federation: number;
     public memberNr: number;
 }
 
 export class InszSearchModel extends SearchModel {
     public insz: string;
+}
+
+export class SiNumberSearchModel extends SearchModel {
+    public siNumber: number;
 }
 
 export class StateSearchModel extends SearchModel {

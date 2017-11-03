@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VSBaseAngular.Controllers;
+using VSBaseAngular.Helpers.Options;
 
 namespace VSBaseAngular
 {
@@ -26,8 +27,11 @@ namespace VSBaseAngular
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
+            services.Configure<ServiceConfig>(Configuration.GetSection("ServiceConfig"));
+            services.Configure<ApiConfig[]>(Configuration.GetSection("Api"));
 
             DependencyInjection.AddServices(services);
+            Automapper.AddMapper(services);
 
             services.AddMvc();
 

@@ -6,11 +6,11 @@ namespace VSBaseAngular.Models.Keys
         {
             
         }
-        public PersonKey(string SiNumber)
+        public PersonKey(long SiNumber)
         {
             this.SiNumber = SiNumber;
         }
 
-        public string SiNumber { get; set; }
+        public long SiNumber { get; set; }
     }
 }
