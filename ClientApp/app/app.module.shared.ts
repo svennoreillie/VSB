@@ -1,3 +1,5 @@
+import { ContentSummaryComponent } from "./components/content/content-summary.componnent";
+import { MainContentComponent } from "./components/main-content/main-content.component";
 // 3rd party
 import * as angular from "./angular-barrel";
 
@@ -31,7 +33,6 @@ import {
 
 
 
-
 @angular.NgModule({
     declarations: [
         AppComponent,
@@ -42,6 +43,8 @@ import {
         search.SearchByStateComponent,
         SocSidebarComponent,
         NavMenuComponent,
+        MainContentComponent,
+        ContentSummaryComponent,
         // Directives
         directives.I18nDirective,
         directives.I18nPipe,

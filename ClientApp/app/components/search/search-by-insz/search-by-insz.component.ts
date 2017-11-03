@@ -12,7 +12,7 @@ import { InszSearchModel } from "./../models/search";
 export class SearchByInszComponent extends SelectPersonController  {
     public searchModel: InszSearchModel = new  InszSearchModel();
     public insz = new FormControl("", [Validators.required]);
-    
+
     constructor(private peopleService: PeopleService) {
         super();
     }

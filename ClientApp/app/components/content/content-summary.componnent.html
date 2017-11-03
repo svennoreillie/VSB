@@ -1,0 +1,223 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="soc-panel"
+                 ng-class="{'collapsed': !vm.person }"
+                 ng-show="!vm.vsbInfo.zvzInfo.fullContract.contract.closeDate">
+                <div class="soc-collapser">
+                    <i class="fa fa-ellipsis-h fa-lg"
+                       aria-hidden="true"></i>
+                </div>
+                <div class="soc-title">{{'ZVZ_CONTRACT_LEGEND' | i18n}}</div>
+                <div class="soc-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <b [hidden]="!(vm.vsbInfo != null && vm.vsbInfo.zvzInfo != null && vm.vsbInfo.zvzInfo.fullContract != null && vm.vsbInfo.zvzInfo.fullContract.contract)"><span i18n="ZVZ_CONTRACT_CONTRACT_STARTED"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.contractDate | date: ('COMMON_DATEFORMAT' | i18n)}}</b>
+                                    <b [hidden]="vm.vsbInfo != null && vm.vsbInfo.zvzInfo != null && vm.vsbInfo.zvzInfo.fullContract != null && vm.vsbInfo.zvzInfo.fullContract.contract"><span i18n="ZVZ_CONTRACT_CONTRACT_NOT_FOUND"></span></b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <span i18n="ZVZ_CONTRACT_CONTRACT_STARTED_MOTIVE"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.contractMotive}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <span i18n="ZVZ_CONTRACT_CONTRACT_STARTED_REASON"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.contractReason}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="soc-panel"
+                 ng-class="{'collapsed': !vm.person }"
+                 ng-show="vm.vsbInfo.zvzInfo.fullContract.contract.closeDate">
+                <div class="soc-collapser">
+                    <i class="fa fa-ellipsis-h fa-lg"
+                       aria-hidden="true"></i>
+                </div>
+                <div class="soc-title">{{'ZVZ_CONTRACT_LEGEND' | i18n}}</div>
+                <div class="soc-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <b><span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.closeDate | date: ('COMMON_DATEFORMAT' | i18n)}}</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED_MOTIVE"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.closeMotive}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED_REASON"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.closeReason}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-12">
+            <div class="soc-panel"
+                 ng-class="{'collapsed': !vm.person }">
+                <div class="soc-collapser">
+                    <i class="fa fa-ellipsis-h fa-lg"
+                       aria-hidden="true"></i>
+                </div>
+                <div class="soc-title">{{'VSB_CURRENT_SITUATION_LEGEND' | i18n}}</div>
+                <div class="soc-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="soc-table striped secondary">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_STATUS"></th>
+                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_DECISIONDATE"></th>
+                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_REQUESTDATE"></th>
+                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_STARTDATE"></th>
+                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_ENDDATE"></th>
+                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_REFUSALREASON"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td i18n="VSB_CURRENT_SITUATION_ROW_ZVZ"></td>
+                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].state}}</td>
+                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].requestDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].startDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].endDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].refusalReason}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td i18n="VSB_CURRENT_SITUATION_ROW_BOB"></td>
+                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].state}}</td>
+                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td></td>
+                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].terminationReason}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td i18n="VSB_CURRENT_SITUATION_ROW_THAB"></td>
+                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].state}}</td>
+                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].referenceDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].terminationReason}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="soc-panel"
+                 ng-class="{'collapsed': !vm.person }">
+                <div class="soc-collapser">
+                    <i class="fa fa-ellipsis-h fa-lg"
+                       aria-hidden="true"></i>
+                </div>
+                <div class="soc-title">{{'ZVZ_CONTRIBUTIONS_LEGEND' | i18n}}</div>
+                <div class="soc-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="soc-table striped secondary">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_YEAR"></th>
+                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_AMOUNT"></th>
+                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_STATUS"></th>
+                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_CIRCUIT"></th>
+                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_PAYMENTDATE"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="cont in vm.vsbInfo.zvzInfo.fullContract.contributions">
+                                                <td>{{cont.year}}</td>
+                                                <td>{{cont.amount}} {{cont.currency}}</td>
+                                                <td>{{cont.state}}</td>
+                                                <td>{{cont.circuit}}</td>
+                                                <td>{{cont.paymentDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 ">
+            <div class="soc-panel"
+                 ng-class="{'collapsed': !vm.person }">
+                <div class="soc-collapser">
+                    <i class="fa fa-ellipsis-h fa-lg"
+                       aria-hidden="true"></i>
+                </div>
+                <div class="soc-title">{{'VSB_REMARK_LEGEND' | i18n}}</div>
+                <div class="soc-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <textarea class="form-control"
+                                          rows="7"
+                                          data-ng-model="vm.vsbInfo.vsbRemark"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+
+                                    <a ng-href="{{vm.createMailTo()}}"
+                                       class="notunderlinedlink btn btn-default"
+                                       ng-hide="vm.vsbInfo.vsbRemark == null || vm.vsbInfo.vsbRemark == '' ">
+                                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                        </a>
+                                    <button title="{{'VSB_REMARK_SAVE' | i18n}} "
+                                            ng-click="vm.saveVsbRemark()"
+                                            ng-hide="vm.vsbInfo.vsbRemark == null || vm.vsbInfo.vsbRemark == vm.oldvsbRemark"
+                                            class="btn btn-default">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                        </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
