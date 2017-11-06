@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs/Observable";
 import { PeopleService } from "../../../services";
 import { SelectPersonController } from "../select-person.controller";
 import { GeneralDataService } from "./../../../services/api/general-data.service";
-import { SearchModel } from "./../models/search";
 import { StateSearchModel } from "./../models/search";
 
 @Component({

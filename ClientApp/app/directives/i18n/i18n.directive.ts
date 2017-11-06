@@ -26,7 +26,6 @@ export class I18nDirective implements OnInit {
 
     /** Private functions */
     public setReplacementValue = (value: string) => {
-        let originalText: string = this.el.nativeElement.innerHTML;
         this.el.nativeElement.innerHTML = value;
     }
 

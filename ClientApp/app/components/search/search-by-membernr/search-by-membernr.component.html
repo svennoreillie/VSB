@@ -1,7 +1,6 @@
-<soc-sidebar selected-person="selectedPerson"
-             persons="people"
-             select="selectPerson(person)"
-             download="downloadPersons()">
+<soc-sidebar [people]="people | async"
+             (select)="selectPerson(person)"
+             (download)="downloadPersons()">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
@@ -9,6 +8,7 @@
                 <mat-form-field>
                     <input matInput
                            [(ngModel)]="searchModel.federation"
+                           (keydown.enter)="search()"
                            [formControl]="federation"
                            type="number"
                            placeholder="{{'Federation Placeholder' | i18n}}">
@@ -20,6 +20,7 @@
                            type="number"
                            [(ngModel)]="searchModel.memberNr"
                            [formControl]="memberNr"
+                           (keydown.enter)="search()"
                            placeholder="{{'MemberNr Placeholder' | i18n}}">
                     <mat-error *ngIf="memberNr.invalid">{{'MemberNr is required' | i18n}}</mat-error>
                 </mat-form-field>
@@ -28,7 +29,7 @@
                         class="btn-default collapse-on-search"
                         (click)="search()"
                         [disabled]="isInvalid()">{{'Search' | i18n}}</button>
-               
+
             </div>
         </div>
     </div>

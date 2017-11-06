@@ -21,7 +21,7 @@ namespace VSBaseAngular.Controllers
 
         [HttpGet]
         [Route("{sinumber:long}")]
-        public async Task<IActionResult> Get(long sinumber)
+        public IActionResult Get(long sinumber)
         {
             var response = _service.GetCertificates(new GW.VSB.THAB.Contracts.GetCertificates.GetCertificatesRequest() { SiNumber = sinumber, Insz = "75111904963" });
             return Ok(response);

@@ -2,11 +2,11 @@ import { Person } from "./../../models";
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-    selector: 'content-summary',
-    templateUrl: 'content-summary.component.html'
+    selector: 'content-bob',
+    templateUrl: 'content-bob.component.html'
 })
 
-export class ContentSummaryComponent implements OnInit {
+export class ContentBobComponent implements OnInit {
     @Input() public person: Person  = new Person();
     public vsbInfo: any;
     

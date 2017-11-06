@@ -1,5 +1,5 @@
 <div class="soc-main"
-     [ngStyle]="{'has-actionbar' : currentView == $root.Enum.ContentView.Returns}">
+     [ngClass]="{'has-actionbar' : getActive(contentTab.Returns) }">
 
     <!-- tabheader -->
     <div class="soc-header fixed"
@@ -8,17 +8,17 @@
             <span class="soc-header-right">{{person.locality}}</span>
             <span class="soc-header-title">
                     <span class="soc-typography-name">{{person.name}} </span> {{person.firstName}}
-            <i [hidden]="person.sex !== Models.GenderTypeModel.Male"
+            <i [hidden]="person.sex !== genderTypeModel.Male"
                class="fa fa-mars"
                aria-hidden="true"></i>
-            <i [hidden]="person.sex !== Models.GenderTypeModel.FeMale"
+            <i [hidden]="person.sex !== genderTypeModel.FeMale"
                class="fa fa-venus"
                aria-hidden="true"></i>
             </span>
         </div>
         <div>
-            <span>{{person.nissNb}}</span>
-            <span class="soc-header-right">{{person.federationNumber}}/{{person.memberNumber}}</span>
+            <span>{{person.insz}}</span>
+            <span class="soc-header-right">{{person.federationNumber}}}</span>
         </div>
     </div>
 
@@ -34,60 +34,60 @@
 
         <div class="soc-tabs top follow-header">
             <ul class="nav nav-tabs">
-                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Summary}">
-                    <a (click)="setView($root.Enum.ContentView.Summary)">{{'VSB_TAB_HEADING_SUMMARY' | i18n}}</a>
+                <li [ngClass]="{'active': getActive(contentTab.Summary)}">
+                    <a (click)="setView(contentTab.Summary)" i18n>VSB_TAB_HEADING_SUMMARY</a>
                 </li>
-                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Zorgverzekering}">
-                    <a (click)="setView($root.Enum.ContentView.Zorgverzekering)">{{'VSB_TAB_HEADING_ZVZ' | i18n}}</a>
+                <li [ngClass]="{'active': getActive(contentTab.Zorgverzekering)}">
+                    <a (click)="setView(contentTab.Zorgverzekering)" i18n>VSB_TAB_HEADING_ZVZ</a>
                 </li>
-                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Bob}">
-                    <a (click)="setView($root.Enum.ContentView.Bob)">{{'VSB_TAB_HEADING_BOB' | i18n}}</a>
+                <li [ngClass]="{'active': getActive(contentTab.Bob)}">
+                    <a (click)="setView(contentTab.Bob)" i18n>VSB_TAB_HEADING_BOB</a>
                 </li>
-                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Thab}">
-                    <a (click)="setView($root.Enum.ContentView.Thab)">{{'VSB_TAB_HEADING_THAB' | i18n}}</a>
+                <li [ngClass]="{'active': getActive(contentTab.Thab)}">
+                    <a (click)="setView(contentTab.Thab)" i18n>VSB_TAB_HEADING_THAB</a>
                 </li>
-                <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Attachments}">
-                    <a (click)="setView($root.Enum.ContentView.Attachments)">{{'VSB_ATTACHMENTS_TITLE' | i18n}}</a>
+                <li [ngClass]="{'active': getActive(contentTab.Attachments)}">
+                    <a (click)="setView(contentTab.Attachments)" i18n>VSB_ATTACHMENTS_TITLE</a>
                 </li>
                 
-                <!-- <li [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Returns}">
-                    <a (click)="setView($root.Enum.ContentView.Returns)">{{'VSB_TAB_HEADING_RETURNS' | i18n}}</a>
+                <!-- <li [ngClass]="{'active': getActive(contentTab.Returns)}">
+                    <a (click)="setView(contentTab.Returns)" i18n>VSB_TAB_HEADING_RETURNS</a>
                 </li> -->
             </ul>
             <div class="tab-content">
                 <div id="tab_summary"
                      class="tab-pane"
-                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Summary}">
-                    <content-summary person="person"
-                                     vsb-info="vsbInfo"></content-summary>
+                     [ngClass]="{'active': getActive(contentTab.Summary)}">
+                    <content-summary></content-summary>
                 </div>
                 <div id="tab_zvz"
                      class="tab-pane"
-                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Zorgverzekering}">
+                     [ngClass]="{'active': getActive(contentTab.Zorgverzekering)}">
                     <!-- <content-zorgverzekering person="person"
                                              vsb-info="vsbInfo" /> -->
                 </div>
                 <div id="tab_bob"
                      class="tab-pane"
-                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Bob}">
+                     [ngClass]="{'active': getActive(contentTab.Bob)}">
+                     <content-bob></content-bob>
                     <!-- <content-bob person="person"
                                  vsb-info="vsbInfo" /> -->
                 </div>
                 <div id="tab_thab"
                      class="tab-pane"
-                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Thab}">
+                     [ngClass]="{'active': getActive(contentTab.Thab)}">
                     <!-- <content-thab person="person"
                                   vsb-info="vsbInfo" /> -->
                 </div>
                 <div id="tab_thab"
                      class="tab-pane"
-                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Attachments}">
+                     [ngClass]="{'active': getActive(contentTab.Attachments)}">
                     <!-- <content-attachment person="person" /> -->
                 </div>
 <!--                 
                 <div id="tab_returns"
                      class="tab-pane"
-                     [ngStyle]="{'active' : currentView == $root.Enum.ContentView.Returns}">
+                     [ngClass]="{'active': getActive(contentTab.Returns)}">
                     <content-returns person="person"
                                      vsb-info="vsbInfo" />
                 </div> -->

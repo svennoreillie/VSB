@@ -27,11 +27,26 @@
         "originalText": "First name Placeholder",
         "value": "Voornaam"
     },
-    "NAME_IS_REQUIRED" : {"originalText":"Name is required","value":"Naam is verplicht"},
-    "FEDERATION_PLACEHOLDER" : {"originalText":"Federation Placeholder","value":"Federatie"},
-    "MEMBERNR_PLACEHOLDER" : {"originalText":"MemberNr Placeholder","value":"Lidnummer"},
-    "FEDERATION_IS_REQUIRED" : {"originalText":"Federation is required","value":"Federatie is verplicht"},
-    "MEMBERNR_IS_REQUIRED" : {"originalText":"MemberNr is required","value":"Lidnummer is verplicht"},
+    "NAME_IS_REQUIRED": {
+        "originalText": "Name is required",
+        "value": "Naam is verplicht"
+    },
+    "FEDERATION_PLACEHOLDER": {
+        "originalText": "Federation Placeholder",
+        "value": "Federatie"
+    },
+    "MEMBERNR_PLACEHOLDER": {
+        "originalText": "MemberNr Placeholder",
+        "value": "Lidnummer"
+    },
+    "FEDERATION_IS_REQUIRED": {
+        "originalText": "Federation is required",
+        "value": "Federatie is verplicht"
+    },
+    "MEMBERNR_IS_REQUIRED": {
+        "originalText": "MemberNr is required",
+        "value": "Lidnummer is verplicht"
+    },
     "COLLAPSE": {
         "originalText": "Collapse",
         "description": "Search collapse button",
@@ -41,5 +56,75 @@
         "originalText": "Search",
         "description": "Button search form",
         "value": "Zoeken"
-    }
+    },
+    "VSB_TAB_HEADING_SUMMARY": {
+        "originalText": "VSB_TAB_HEADING_SUMMARY",
+        "value": "Overzicht"
+    },
+    "VSB_TAB_HEADING_ZVZ": {
+        "originalText": "VSB_TAB_HEADING_ZVZ",
+        "value": "Zorgverzekering"
+    },
+    "VSB_TAB_HEADING_BOB": {
+        "originalText": "VSB_TAB_HEADING_BOB",
+        "value": "BOB"
+    },
+    "VSB_TAB_HEADING_THAB": {
+        "originalText": "VSB_TAB_HEADING_THAB",
+        "value": "THAB"
+    },
+    "VSB_ATTACHMENTS_TITLE": {
+        "originalText": "VSB_ATTACHMENTS_TITLE",
+        "value": "Bijlagen"
+    },
+    "STATE_SEARCH_BY_AREA": {
+        "originalText": "State Search By Area",
+        "value": "Domein VSB"
+    },
+    "STATE_SEARCH_BY_STATE": {
+        "originalText": "State Search By State",
+        "value": "Status"
+    },
+    "STATE_SEARCH_BY_FEDERATION": {
+        "originalText": "State Search By Federation",
+        "value": "Federatie"
+    },
+    "VSB_SEARCHBYSTATE_INFO": {
+        "originalText": "VSB_SEARCHBYSTATE_INFO",
+        "description": "Optional search information before search button at state search",
+        "value": "U moet domein VSB, status én federatie invullen"
+    },
+    "ZVZ": {
+        "originalText": "ZVZ",
+        "value": "ZVZ"
+    },
+    "BOB": {
+        "originalText": "BOB",
+        "value": "BOB"
+    },
+    "THAB": {
+        "originalText": "THAB",
+        "value": "THAB"
+    },
+    "INITIATED": {
+        "originalText": "Initiated",
+        "value": "In afwachting"
+    },
+    "REJECTED": {
+        "originalText": "Rejected",
+        "value": "Geweigerd"
+    },
+    "CONFIRMED": {
+        "originalText": "Confirmed",
+        "value": "Aanvaard"
+    },
+    "INSZ_PLACEHOLDER": {
+        "originalText": "insz Placeholder",
+        "value": "Nationaal nummer"
+    },
+    "INSZ_REQUIRED": {
+        "originalText": "INSZ required",
+        "value": "Nationaal nummer is verplicht"
+    },
+    "COMMON_DATEFORMAT" : {"originalText":"COMMON_DATEFORMAT","value":"dd/MM/yyyy"}
 }

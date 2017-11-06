@@ -1,7 +1,6 @@
-<soc-sidebar selected-person="selectedPerson"
-             persons="people"
-             select="selectPerson(person)"
-             download="downloadPersons()">
+<soc-sidebar [people]="people | async"
+             (select)="selectPerson(person)"
+             (download)="downloadPersons()">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
@@ -11,8 +10,9 @@
                            [(ngModel)]="searchModel.insz"
                            [formControl]="insz"
                            type="number"
+                           (keydown.enter)="search()"
                            placeholder="{{'insz Placeholder' | i18n}}">
-                           <mat-error *ngIf="insz.invalid">{{'INSZ required' | i18n}}</mat-error>
+                    <mat-error *ngIf="insz.invalid">{{'INSZ required' | i18n}}</mat-error>
                 </mat-form-field>
 
                 <button mat-raised-button

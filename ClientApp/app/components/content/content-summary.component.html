@@ -1,9 +1,17 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
+            <h1>Summary</h1>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
             <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !vm.person }"
-                 [hidden]="vm.vsbInfo.zvzInfo.fullContract.contract.closeDate">
+                 [ngStyle]="{'collapsed': !person }"
+                 [hidden]="vsbInfo.zvzInfo.fullContract.contract.closeDate">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -14,22 +22,22 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <b [hidden]="!(vm.vsbInfo != null && vm.vsbInfo.zvzInfo != null && vm.vsbInfo.zvzInfo.fullContract != null && vm.vsbInfo.zvzInfo.fullContract.contract)"><span i18n="ZVZ_CONTRACT_CONTRACT_STARTED"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.contractDate | date: ('COMMON_DATEFORMAT' | i18n)}}</b>
-                                    <b [hidden]="vm.vsbInfo != null && vm.vsbInfo.zvzInfo != null && vm.vsbInfo.zvzInfo.fullContract != null && vm.vsbInfo.zvzInfo.fullContract.contract"><span i18n="ZVZ_CONTRACT_CONTRACT_NOT_FOUND"></span></b>
+                                    <b [hidden]="!(vsbInfo != null && vsbInfo.zvzInfo != null && vsbInfo.zvzInfo.fullContract != null && vsbInfo.zvzInfo.fullContract.contract)"><span i18n="ZVZ_CONTRACT_CONTRACT_STARTED"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractDate | date: ('COMMON_DATEFORMAT' | i18n)}}</b>
+                                    <b [hidden]="vsbInfo != null && vsbInfo.zvzInfo != null && vsbInfo.zvzInfo.fullContract != null && vsbInfo.zvzInfo.fullContract.contract"><span i18n="ZVZ_CONTRACT_CONTRACT_NOT_FOUND"></span></b>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <span i18n="ZVZ_CONTRACT_CONTRACT_STARTED_MOTIVE"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.contractMotive}}
+                                    <span i18n="ZVZ_CONTRACT_CONTRACT_STARTED_MOTIVE"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractMotive}}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <span i18n="ZVZ_CONTRACT_CONTRACT_STARTED_REASON"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.contractReason}}
+                                    <span i18n="ZVZ_CONTRACT_CONTRACT_STARTED_REASON"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractReason}}
                                 </div>
                             </div>
                         </div>
@@ -38,8 +46,8 @@
             </div>
 
             <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !vm.person }"
-                 [hidden]="!vm.vsbInfo.zvzInfo.fullContract.contract.closeDate">
+                 [ngStyle]="{'collapsed': !person }"
+                 [hidden]="!vsbInfo.zvzInfo.fullContract.contract.closeDate">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -50,21 +58,21 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <b><span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.closeDate | date: ('COMMON_DATEFORMAT' | i18n)}}</b>
+                                    <b><span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeDate | date: ('COMMON_DATEFORMAT' | i18n)}}</b>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED_MOTIVE"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.closeMotive}}
+                                    <span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED_MOTIVE"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeMotive}}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED_REASON"></span>: {{vm.vsbInfo.zvzInfo.fullContract.contract.closeReason}}
+                                    <span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED_REASON"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeReason}}
                                 </div>
                             </div>
                         </div>
@@ -76,7 +84,7 @@
 
         <div class="col-sm-12">
             <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !vm.person }">
+                 [ngStyle]="{'collapsed': !person }">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -102,30 +110,30 @@
                                         <tbody>
                                             <tr>
                                                 <td i18n="VSB_CURRENT_SITUATION_ROW_ZVZ"></td>
-                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].state}}</td>
-                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].requestDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].startDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].endDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.zvzInfo.fullContract.warranties[0].refusalReason}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].state}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].requestDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].startDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].endDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].refusalReason}}</td>
                                             </tr>
                                             <tr>
                                                 <td i18n="VSB_CURRENT_SITUATION_ROW_BOB"></td>
-                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].state}}</td>
-                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.bobInfo.certificates[0].state}}</td>
+                                                <td>{{vsbInfo.bobInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
                                                 <td></td>
-                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.bobInfo.certificates[0].terminationReason}}</td>
+                                                <td>{{vsbInfo.bobInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.bobInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.bobInfo.certificates[0].terminationReason}}</td>
                                             </tr>
                                             <tr>
                                                 <td i18n="VSB_CURRENT_SITUATION_ROW_THAB"></td>
-                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].state}}</td>
-                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].referenceDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vm.vsbInfo.thabInfo.certificates[0].terminationReason}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].state}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].referenceDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].terminationReason}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -139,7 +147,7 @@
 
         <div class="col-sm-12">
             <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !vm.person }">
+                 [ngStyle]="{'collapsed': !person }">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -161,7 +169,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let cont of vm.vsbInfo.zvzInfo.fullContract.contributions">
+                                            <tr *ngFor="let cont of vsbInfo.zvzInfo.fullContract.contributions">
                                                 <td>{{cont.year}}</td>
                                                 <td>{{cont.amount}} {{cont.currency}}</td>
                                                 <td>{{cont.state}}</td>
@@ -181,7 +189,7 @@
 
         <div class="col-sm-12 ">
             <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !vm.person }">
+                 [ngStyle]="{'collapsed': !person }">
                 <div class="soc-collapser">
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
@@ -193,21 +201,21 @@
                             <div class="col-sm-12">
                                 <textarea class="form-control"
                                           rows="7"
-                                          [(ngModel)]="vm.vsbInfo.vsbRemark"></textarea>
+                                          [(ngModel)]="vsbInfo.vsbRemark"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-sm-12">
 
-                                    <a [href]="{{vm.createMailTo()}}"
+                                    <a [href]="createMailTo()"
                                        class="notunderlinedlink btn btn-default"
-                                       [hidden]="vm.vsbInfo.vsbRemark == null || vm.vsbInfo.vsbRemark == '' ">
+                                       [hidden]="vsbInfo.vsbRemark == null || vsbInfo.vsbRemark == '' ">
                                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
                                         </a>
                                     <button title="{{'VSB_REMARK_SAVE' | i18n}} "
-                                            (click)="vm.saveVsbRemark()"
-                                            [hidden]="vm.vsbInfo.vsbRemark == null || vm.vsbInfo.vsbRemark == vm.oldvsbRemark"
+                                            (click)="saveVsbRemark()"
+                                            [hidden]="vsbInfo.vsbRemark == null || vsbInfo.vsbRemark == oldvsbRemark"
                                             class="btn btn-default">
                                             <i class="fa fa-floppy-o" aria-hidden="true"></i>
                                         </button>
@@ -220,4 +228,4 @@
         </div>
 
     </div>
-</div>
+</div> -->

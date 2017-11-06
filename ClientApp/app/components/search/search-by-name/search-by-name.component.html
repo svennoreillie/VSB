@@ -9,6 +9,7 @@
                     <input matInput
                            [(ngModel)]="searchModel.name"
                            [formControl]="name"
+                           (keydown.enter)="search()"
                            type="text"
                            placeholder="{{'Name Placeholder' | i18n}}">
                     <mat-error *ngIf="name.invalid">{{'Name is required' | i18n}}</mat-error>
@@ -18,6 +19,7 @@
                     <input matInput
                            type="text"
                            [(ngModel)]="searchModel.firstName"
+                           (keydown.enter)="search()"
                            placeholder="{{'FirstName Placeholder' | i18n}}">
                 </mat-form-field>
 

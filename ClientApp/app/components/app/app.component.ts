@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
 import { GeneralDataService } from "./../../services/api/general-data.service";
 
 @Component({

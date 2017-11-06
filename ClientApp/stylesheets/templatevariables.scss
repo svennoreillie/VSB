@@ -1,34 +1,18 @@
-//Set variables here
 $soc-base-color:                white;
 $soc-base-text-color:           black;
-$soc-navigation-color:          #eee;
-$soc-navigation-text-color:     #333;
-$soc-secondary-color:           #ddd;
+$soc-navigation-color:          #333;
+$soc-navigation-text-color:     #eee;
+$soc-secondary-color:           #ededed;
 $soc-secondary-text-color:      black;
-$soc-accent-color:              #4FAFDB;
+$soc-accent-color:              #519595;
 $soc-accent-text-color:         white;
-$soc-secondary-accent-color:    darkred;
+
 $soc-tab-bg-color:              #f8f8f8;
 $soc-tab-color:                 #555;
 $soc-tab-border-color:          #bbb;
-
-
-//Check for color schemes @ https://coolors.co
-//Example: https://coolors.co/fc4700-fcde00-cbf276-18b4ba-18827c
-$soc-color-1:                     rgba(38, 70, 83, 1);
-$soc-color-2:                     rgba(42, 157, 143, 1);
-$soc-color-3:                     rgba(233, 196, 106, 1);
-$soc-color-4:                     rgba(244, 162, 97, 1);
-$soc-color-5:                     rgba(231, 111, 81, 1);
-$soc-color-6:		              rgba(4, 21, 31, 1);
-$soc-color-7:		              rgba(24, 58, 55, 1);
-$soc-color-8:		              rgba(239, 214, 172, 1);
-$soc-color-9:		              rgba(196, 73, 0, 1);
-$soc-color-10:		              rgba(35, 31, 32, 1);
 
 $soc-sidebar-width:                 320px;
 $soc-actionbar-height:              75px;
 $soc-navbar-height:                 50px;
 
 $soc-transition-timing-multiplier:  4;
-

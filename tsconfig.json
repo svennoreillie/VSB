@@ -8,6 +8,10 @@
     "emitDecoratorMetadata": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "strict": true,
     "lib": [ "es6", "dom" ],
     "types": [ "webpack-env" ]

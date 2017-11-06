@@ -1,8 +1,7 @@
 import { Validators, FormControl } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { PeopleService } from "../../../services";
 import { SelectPersonController } from "../select-person.controller";
-import { SearchModel } from "./../models/search";
 import { InszSearchModel } from "./../models/search";
 
 @Component({

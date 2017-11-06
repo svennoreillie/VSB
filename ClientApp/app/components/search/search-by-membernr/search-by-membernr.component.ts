@@ -1,10 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { PeopleService } from "../../../services";
 import { SelectPersonController } from "../select-person.controller";
 import { MemberNrSearchModel } from "./../models/search";
-import { SearchModel } from "./../models/search";
-import { InszSearchModel } from "./../models/search";
 
 @Component({
     selector: "search-by-membernr",
@@ -20,6 +18,7 @@ export class SearchByMembernrComponent extends SelectPersonController  {
     }
 
     public search(): void {
+        if (this.isInvalid()) return;
         this.people = this.peopleService.search(this.searchModel);
     }
 

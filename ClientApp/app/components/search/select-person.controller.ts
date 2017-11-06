@@ -6,10 +6,10 @@ export class SelectPersonController {
     public selectedPerson: Person;
 
     public selectPerson = (person: Person) => {
-        console.error("TODO");
+        console.error(`TODO => implement person ${person}`);
     }
 
     public downloadList = () => {
-        console.error("TODO");
+        console.error("TODO => donwload list");
     }
 }

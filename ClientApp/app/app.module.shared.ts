@@ -37,6 +37,7 @@ import * as content from "./components/content";
         search.SearchByStateComponent,
         content.MainContentComponent,
         content.ContentSummaryComponent,
+        content.ContentBobComponent,
         // Directives
         directives.I18nDirective,
         directives.I18nPipe,
