@@ -13,7 +13,7 @@ export class SearchByInszComponent extends SelectPersonController  {
     public insz = new FormControl("", [Validators.required]);
 
     constructor(private peopleService: PeopleService) {
-        super();
+        super(peopleService);
     }
 
     public search(): void {

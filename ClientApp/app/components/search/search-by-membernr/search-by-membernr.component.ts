@@ -14,7 +14,7 @@ export class SearchByMembernrComponent extends SelectPersonController  {
     public memberNr = new FormControl("", [Validators.required]);
 
     constructor(private peopleService: PeopleService) {
-        super();
+        super(peopleService);
     }
 
     public search(): void {

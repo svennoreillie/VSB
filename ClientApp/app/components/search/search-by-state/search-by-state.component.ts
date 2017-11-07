@@ -16,7 +16,7 @@ export class SearchByStateComponent extends SelectPersonController implements On
 
     constructor(private peopleService: PeopleService,
                 private generalDataService: GeneralDataService) {
-        super();
+        super(peopleService);
     }
 
     public ngOnInit(): void {

@@ -14,7 +14,7 @@ export class SearchByNameComponent extends SelectPersonController  {
     public name = new FormControl("", [Validators.required]);
 
     constructor(private peopleService: PeopleService) {
-        super();
+        super(peopleService);
     }
 
     public search() {

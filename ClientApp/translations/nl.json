@@ -126,5 +126,6 @@
         "originalText": "INSZ required",
         "value": "Nationaal nummer is verplicht"
     },
-    "COMMON_DATEFORMAT" : {"originalText":"COMMON_DATEFORMAT","value":"dd/MM/yyyy"}
+    "COMMON_DATEFORMAT" : {"originalText":"COMMON_DATEFORMAT","value":"dd/MM/yyyy"},
+    "BOB_NO_DATA_FOUND" : {"originalText":"BOB_NO_DATA_FOUND","value":"Geen BOB gegevens gevonden"}
 }

@@ -22,7 +22,7 @@
             <div class="soc-searchitem"
                  *ngFor="let person of people"
                  [ngClass]="{'active':person == selectedPerson}"
-                 (click)="selectPerson({person: person})">
+                 (click)="selectPerson(person)">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="row">

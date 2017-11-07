@@ -47,6 +47,7 @@ import * as content from "./components/content";
         directives.I18nService,
         services.GeneralDataService,
         services.PeopleService,
+        services.BobService,
         services.UrlService,
         services.ConfigService,
     ],

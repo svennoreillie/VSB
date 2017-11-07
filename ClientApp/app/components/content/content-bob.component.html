@@ -1,7 +1,73 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>Bob</h1>
+    <ng-container *ngIf="hasData();then content else notfound"></ng-container>
+
+    <ng-template #notfound>
+        <div class="soc-not-found"
+             i18n>BOB No data found</div>
+    </ng-template>
+
+    <ng-template #content>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-header">
+                    <h1 i18n>BOB</h1>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="soc-panel">
+                    <div class="soc-collapser">
+                        <i class="fa fa-ellipsis-h fa-lg"
+                           aria-hidden="true"></i>
+                    </div>
+
+                    <div class="soc-title"
+                         i18n>BOB Certificates</div>
+
+                    <div class="soc-content">
+                        <!-- Loader -->
+                        <div class="soc-loader"
+                             *ngIf="!(certificates | async)"
+                             i18n>Loading</div>
+
+                        <!-- Certificates -->
+                        <div class="container-fluid"
+                            *ngIf="(certificates | async)">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="soc-table striped secondary">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th i18n>BOB_ADMISSIONS_COLUMN_ADMISSION_ID</th>
+                                                    <th i18n>BOB_ADMISSIONS_COLUMN_ADMISSION_START</th>
+                                                    <th i18n>BOB_ADMISSIONS_COLUMN_ADMISSION_END</th>
+                                                    <th i18n>BOB_ADMISSIONS_COLUMN_ADMISSION_STATE</th>
+                                                    <th i18n>BOB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE</th>
+                                                    <th i18n>BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_TERMINATED</th>
+                                                    <th i18n>BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let cert of (certificates | async)">
+                                                    <td>{{cert.certificateId}}</td>
+                                                    <td>{{cert.beginDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                    <td>{{cert.endDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                    <td>{{cert.state}}</td>
+                                                    <td>{{cert.decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                    <td *ngIf="cert.TerminationEndDate">{{cert.terminationStartDate | date: ('COMMON_DATEFORMAT' | i18n)}} {{'BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_PERIOD_TO' | i18n}} {{cert.terminationEndDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                    <td>{{cert.terminationReason}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </ng-template>
+
 </div>
