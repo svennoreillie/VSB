@@ -2,11 +2,11 @@ namespace VSBaseAngular.Helpers.Options
 {
     public class ServiceConfig
     {
-        public ServiceBaseConfig IThabService { get; set; }
-        public ServiceBaseConfig IPopuWsiService { get; set; }
+        public ServiceBaseConfig[] Configs { get; set; }
     }
 
     public class ServiceBaseConfig {
+        public string ServiceName { get; set; }
         public string ApplicationName { get; set; }
         public string ServiceUrl { get; set; }
         public BindingMode Binding { get; set; }

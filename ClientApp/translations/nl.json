@@ -126,6 +126,40 @@
         "originalText": "INSZ required",
         "value": "Nationaal nummer is verplicht"
     },
-    "COMMON_DATEFORMAT" : {"originalText":"COMMON_DATEFORMAT","value":"dd/MM/yyyy"},
-    "BOB_NO_DATA_FOUND" : {"originalText":"BOB_NO_DATA_FOUND","value":"Geen BOB gegevens gevonden"}
+    "COMMON_DATEFORMAT": {
+        "originalText": "COMMON_DATEFORMAT",
+        "value": "dd/MM/yyyy"
+    },
+    "BOB_NO_DATA_FOUND": {
+        "originalText": "BOB_NO_DATA_FOUND",
+        "value": "Geen BOB gegevens gevonden"
+    },
+    "BOB_ADMISSIONS_COLUMN_ADMISSION_ID": {
+        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_ID",
+        "value": "Erkenning ID"
+    },
+    "BOB_ADMISSIONS_COLUMN_ADMISSION_START": {
+        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_START",
+        "value": "Begindatum erkenning"
+    },
+    "BOB_ADMISSIONS_COLUMN_ADMISSION_END": {
+        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_END",
+        "value": "Einddatum erkenning"
+    },
+    "BOB_ADMISSIONS_COLUMN_ADMISSION_STATE": {
+        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_STATE",
+        "value": "Status"
+    },
+    "BOB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE": {
+        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE",
+        "value": "Beslissingsdatum"
+    },
+    "BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_TERMINATED": {
+        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_TERMINATED",
+        "value": "Stopzetting betaling"
+    },
+    "BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON": {
+        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON",
+        "value": "Reden stopzetting"
+    }
 }

@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using BobService;
 using Microsoft.AspNetCore.Mvc;
 using VSBaseAngular.Business;
@@ -13,10 +15,13 @@ namespace VSBaseAngular.Controllers
     public class BOBCertificatesController : BaseController
     {
         private readonly IBobService _service;
+        private readonly IMapper _mapper;
 
-        public BOBCertificatesController(IServiceFactory<IBobService> bobServiceFactory)
+        public BOBCertificatesController(IServiceFactory<IBobService> bobServiceFactory,
+                                         IMapper mapper)
         {
             _service = bobServiceFactory.GetService();
+            _mapper = mapper;
         }
 
 
@@ -28,7 +33,8 @@ namespace VSBaseAngular.Controllers
             var response = await _service.GetCertificatesAsync(new GetCertificatesRequest() { SiNumber = sinumber});
             if (response.BusinessMessages != null && response.BusinessMessages.Length > 0) 
                 return BadRequest(response.BusinessMessages);
-            return Ok(response.Value?.Certificates);
+            var mapped = _mapper.Map<IEnumerable<BobCertificate>>(response.Value?.Certificates);
+            return Ok(mapped);
         }
     }
 }

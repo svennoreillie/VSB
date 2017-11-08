@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/shareReplay";
 import { Observable } from "rxjs/Observable";
 import { UrlService } from "./../url/url.service";
 
@@ -30,9 +31,9 @@ export class BobService {
         return this.makeCall(url);
     }
 
-    public getCertificates = (sinumber: number): Observable < any > => {
+    public getCertificates = (sinumber: number): Observable < BOBCertificate[] > => {
         let url = this.createUrl(sinumber, "certificates");
-        return this.makeCall(url);
+        return this.makeCall(url);//.map((json:any) => json as BOBCertificate[]);
     }
 
     public getPayments = (sinumber: number): Observable < any > => {
@@ -52,7 +53,8 @@ export class BobService {
         return this.http.get(url)
             .map((resp: Response) => {
                 return resp.json();
-            });
+            })
+            .shareReplay(1);
     }
 
     private createUrl(sinumber: number, endpoint ? : string): string {

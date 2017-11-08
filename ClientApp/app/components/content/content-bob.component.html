@@ -49,13 +49,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let cert of (certificates | async)">
+                                                <tr *ngFor="let cert of certificates | async">
                                                     <td>{{cert.certificateId}}</td>
                                                     <td>{{cert.beginDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
                                                     <td>{{cert.endDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
                                                     <td>{{cert.state}}</td>
                                                     <td>{{cert.decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                    <td *ngIf="cert.TerminationEndDate">{{cert.terminationStartDate | date: ('COMMON_DATEFORMAT' | i18n)}} {{'BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_PERIOD_TO' | i18n}} {{cert.terminationEndDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                    <td *ngIf="cert.TerminationEndDate;else noTerminationDate">{{cert.terminationStartDate | date: ('COMMON_DATEFORMAT' | i18n)}} {{'BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_PERIOD_TO' | i18n}} {{cert.terminationEndDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                    <ng-template  #noTerminationDate><td>-</td></ng-template>
                                                     <td>{{cert.terminationReason}}</td>
                                                 </tr>
                                             </tbody>

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/shareReplay";
 import { Observable } from "rxjs/Observable";
 import { SearchModel } from "./../../components/search/models/search";
 import { UrlService } from "./../url/url.service";
@@ -36,6 +37,7 @@ export class PeopleService {
         return this.http.get(url)
                         .map((resp: Response) => {
                             return resp.json();
-                        });
+                        })
+                        .shareReplay(1);
     }
 }

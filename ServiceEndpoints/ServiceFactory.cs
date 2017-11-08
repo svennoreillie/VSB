@@ -78,16 +78,8 @@ public class ServiceFactory<T> : IServiceFactory<T> where T : class
         Type genericType = typeof(T);
         string genericName = genericType.Name;
 
-        Type serviceConfigType = this.options.Value.GetType();
-
-        if (serviceConfigType.GetProperties().Any(p => p.Name == genericName))
-        {
-            object block = serviceConfigType.GetProperty(genericName).GetValue(this.options.Value);
-            return block as ServiceBaseConfig;
-        }
-        else
-        {
-            throw new Exception($"No configuration object found for {genericName}");
-        }
+        var block = this.options.Value.Configs.FirstOrDefault(c => c.ServiceName == genericName);
+        if (block == null) throw new Exception($"No configuration object found for {genericName}");
+        return block;
     }
 }
