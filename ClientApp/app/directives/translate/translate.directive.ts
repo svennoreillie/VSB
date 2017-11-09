@@ -1,24 +1,22 @@
 import { Directive, Input, ElementRef, OnInit } from '@angular/core';
-import { I18nService } from './i18n.service';
+import { TranslateService } from './translate.service';
 
-
-
-@Directive({ selector: '[i18n]' })
-export class I18nDirective implements OnInit {
+@Directive({ selector: '[translate]' })
+export class TranslateDirective implements OnInit {
 
     @Input() description : string;
     @Input('i18n') i18n : string;
 
     constructor(
         private el: ElementRef,
-        private i18nService: I18nService) {
+        private translateService: TranslateService) {
     }
 
     ngOnInit(): any {
         let innerHtml: string = this.el.nativeElement.innerHTML;
         if (innerHtml == undefined) return;
 
-        let replacement: string = this.i18nService.getReplacementValue(innerHtml, this.i18n || this.description);
+        let replacement: string = this.translateService.getReplacementValue(innerHtml, this.i18n || this.description);
         
         this.setReplacementValue(replacement);
     }

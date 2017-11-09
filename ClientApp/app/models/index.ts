@@ -1,2 +1,5 @@
 export { ContentTab, GenderTypeModel } from "./enums";
-export { Person } from "./Person";
+export { PersonModel } from "./Person";
+export { BOBCertificate } from "./bob/certificate";
+export { BOBLetter } from "./bob/letter";
+export { BOBPayment } from "./bob/payment";

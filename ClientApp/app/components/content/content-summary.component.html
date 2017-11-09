@@ -16,28 +16,28 @@
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
                 </div>
-                <div class="soc-title">{{'ZVZ_CONTRACT_LEGEND' | i18n}}</div>
+                <div class="soc-title">{{'ZVZ_CONTRACT_LEGEND' | translate}}</div>
                 <div class="soc-content">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <b [hidden]="!(vsbInfo != null && vsbInfo.zvzInfo != null && vsbInfo.zvzInfo.fullContract != null && vsbInfo.zvzInfo.fullContract.contract)"><span i18n="ZVZ_CONTRACT_CONTRACT_STARTED"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractDate | date: ('COMMON_DATEFORMAT' | i18n)}}</b>
-                                    <b [hidden]="vsbInfo != null && vsbInfo.zvzInfo != null && vsbInfo.zvzInfo.fullContract != null && vsbInfo.zvzInfo.fullContract.contract"><span i18n="ZVZ_CONTRACT_CONTRACT_NOT_FOUND"></span></b>
+                                    <b [hidden]="!(vsbInfo != null && vsbInfo.zvzInfo != null && vsbInfo.zvzInfo.fullContract != null && vsbInfo.zvzInfo.fullContract.contract)"><span translate="ZVZ_CONTRACT_CONTRACT_STARTED"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractDate | date: ('COMMON_DATEFORMAT' | translate)}}</b>
+                                    <b [hidden]="vsbInfo != null && vsbInfo.zvzInfo != null && vsbInfo.zvzInfo.fullContract != null && vsbInfo.zvzInfo.fullContract.contract"><span translate="ZVZ_CONTRACT_CONTRACT_NOT_FOUND"></span></b>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <span i18n="ZVZ_CONTRACT_CONTRACT_STARTED_MOTIVE"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractMotive}}
+                                    <span translate="ZVZ_CONTRACT_CONTRACT_STARTED_MOTIVE"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractMotive}}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <span i18n="ZVZ_CONTRACT_CONTRACT_STARTED_REASON"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractReason}}
+                                    <span translate="ZVZ_CONTRACT_CONTRACT_STARTED_REASON"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractReason}}
                                 </div>
                             </div>
                         </div>
@@ -52,27 +52,27 @@
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
                 </div>
-                <div class="soc-title">{{'ZVZ_CONTRACT_LEGEND' | i18n}}</div>
+                <div class="soc-title">{{'ZVZ_CONTRACT_LEGEND' | translate}}</div>
                 <div class="soc-content">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <b><span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeDate | date: ('COMMON_DATEFORMAT' | i18n)}}</b>
+                                    <b><span translate="ZVZ_CONTRACT_CONTRACT_TERMINATED"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeDate | date: ('COMMON_DATEFORMAT' | translate)}}</b>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED_MOTIVE"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeMotive}}
+                                    <span translate="ZVZ_CONTRACT_CONTRACT_TERMINATED_MOTIVE"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeMotive}}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <span i18n="ZVZ_CONTRACT_CONTRACT_TERMINATED_REASON"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeReason}}
+                                    <span translate="ZVZ_CONTRACT_CONTRACT_TERMINATED_REASON"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeReason}}
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
                 </div>
-                <div class="soc-title">{{'VSB_CURRENT_SITUATION_LEGEND' | i18n}}</div>
+                <div class="soc-title">{{'VSB_CURRENT_SITUATION_LEGEND' | translate}}</div>
                 <div class="soc-content">
                     <div class="container-fluid">
                         <div class="row">
@@ -99,40 +99,40 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_STATUS"></th>
-                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_DECISIONDATE"></th>
-                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_REQUESTDATE"></th>
-                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_STARTDATE"></th>
-                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_ENDDATE"></th>
-                                                <th i18n="VSB_CURRENT_SITUATION_COLUMN_REFUSALREASON"></th>
+                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_STATUS"></th>
+                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_DECISIONDATE"></th>
+                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_REQUESTDATE"></th>
+                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_STARTDATE"></th>
+                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_ENDDATE"></th>
+                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_REFUSALREASON"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td i18n="VSB_CURRENT_SITUATION_ROW_ZVZ"></td>
+                                                <td translate="VSB_CURRENT_SITUATION_ROW_ZVZ"></td>
                                                 <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].state}}</td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].requestDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].startDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].endDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].requestDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].startDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].refusalReason}}</td>
                                             </tr>
                                             <tr>
-                                                <td i18n="VSB_CURRENT_SITUATION_ROW_BOB"></td>
+                                                <td translate="VSB_CURRENT_SITUATION_ROW_BOB"></td>
                                                 <td>{{vsbInfo.bobInfo.certificates[0].state}}</td>
-                                                <td>{{vsbInfo.bobInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.bobInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td></td>
-                                                <td>{{vsbInfo.bobInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vsbInfo.bobInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.bobInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{vsbInfo.bobInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{vsbInfo.bobInfo.certificates[0].terminationReason}}</td>
                                             </tr>
                                             <tr>
-                                                <td i18n="VSB_CURRENT_SITUATION_ROW_THAB"></td>
+                                                <td translate="VSB_CURRENT_SITUATION_ROW_THAB"></td>
                                                 <td>{{vsbInfo.thabInfo.certificates[0].state}}</td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].referenceDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].referenceDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{vsbInfo.thabInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{vsbInfo.thabInfo.certificates[0].terminationReason}}</td>
                                             </tr>
                                         </tbody>
@@ -152,7 +152,7 @@
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
                 </div>
-                <div class="soc-title">{{'ZVZ_CONTRIBUTIONS_LEGEND' | i18n}}</div>
+                <div class="soc-title">{{'ZVZ_CONTRIBUTIONS_LEGEND' | translate}}</div>
                 <div class="soc-content">
                     <div class="container-fluid">
                         <div class="row">
@@ -161,11 +161,11 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_YEAR"></th>
-                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_AMOUNT"></th>
-                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_STATUS"></th>
-                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_CIRCUIT"></th>
-                                                <th i18n="ZVZ_CONTRIBUTIONS_COLUMN_PAYMENTDATE"></th>
+                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_YEAR"></th>
+                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_AMOUNT"></th>
+                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_STATUS"></th>
+                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_CIRCUIT"></th>
+                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_PAYMENTDATE"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -174,7 +174,7 @@
                                                 <td>{{cont.amount}} {{cont.currency}}</td>
                                                 <td>{{cont.state}}</td>
                                                 <td>{{cont.circuit}}</td>
-                                                <td>{{cont.paymentDate | date: ('COMMON_DATEFORMAT' | i18n)}}</td>
+                                                <td>{{cont.paymentDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -194,7 +194,7 @@
                     <i class="fa fa-ellipsis-h fa-lg"
                        aria-hidden="true"></i>
                 </div>
-                <div class="soc-title">{{'VSB_REMARK_LEGEND' | i18n}}</div>
+                <div class="soc-title">{{'VSB_REMARK_LEGEND' | translate}}</div>
                 <div class="soc-content">
                     <div class="container-fluid">
                         <div class="row">
@@ -213,7 +213,7 @@
                                        [hidden]="vsbInfo.vsbRemark == null || vsbInfo.vsbRemark == '' ">
                                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
                                         </a>
-                                    <button title="{{'VSB_REMARK_SAVE' | i18n}} "
+                                    <button title="{{'VSB_REMARK_SAVE' | translate}} "
                                             (click)="saveVsbRemark()"
                                             [hidden]="vsbInfo.vsbRemark == null || vsbInfo.vsbRemark == oldvsbRemark"
                                             class="btn btn-default">

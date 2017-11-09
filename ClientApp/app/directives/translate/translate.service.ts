@@ -4,7 +4,7 @@ import {
 import nl from "../../../translations/nl.json";
 
 @Injectable()
-export class I18nService {
+export class TranslateService {
 
     public getReplacementValue = (originalValue: string, description: string): string => {
         const original: string = this.getOriginalText(originalValue);
@@ -42,7 +42,7 @@ export class I18nService {
 
         originalText = originalText.trim();
         if (originalText.length == 0) {
-            throw new Error("I18N translation, only found html. consider using the pipe version => " + originalValue);
+            throw new Error("Translation, only found html. consider using the pipe version => " + originalValue);
         }
 
         return originalText;

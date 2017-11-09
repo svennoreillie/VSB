@@ -11,8 +11,8 @@
                            (keydown.enter)="search()"
                            [formControl]="federation"
                            type="number"
-                           placeholder="{{'Federation Placeholder' | i18n}}">
-                    <mat-error *ngIf="federation.invalid">{{'Federation is required' | i18n}}</mat-error>
+                           placeholder="{{'Federation Placeholder' | translate}}">
+                    <mat-error *ngIf="federation.invalid">{{'Federation is required' | translate}}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -21,14 +21,14 @@
                            [(ngModel)]="searchModel.memberNr"
                            [formControl]="memberNr"
                            (keydown.enter)="search()"
-                           placeholder="{{'MemberNr Placeholder' | i18n}}">
-                    <mat-error *ngIf="memberNr.invalid">{{'MemberNr is required' | i18n}}</mat-error>
+                           placeholder="{{'MemberNr Placeholder' | translate}}">
+                    <mat-error *ngIf="memberNr.invalid">{{'MemberNr is required' | translate}}</mat-error>
                 </mat-form-field>
 
                 <button mat-raised-button
                         class="btn-default collapse-on-search"
                         (click)="search()"
-                        [disabled]="isInvalid()">{{'Search' | i18n}}</button>
+                        [disabled]="isInvalid()">{{'Search' | translate}}</button>
 
             </div>
         </div>

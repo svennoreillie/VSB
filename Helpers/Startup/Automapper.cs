@@ -24,13 +24,35 @@ namespace VSBaseAngular
                     .ForMember(dest => dest.TerminationReason, opt => opt.Ignore())
                     .ForMember(dest => dest.TerminationEndDate, opt => opt.Ignore())
 
-                    .AfterMap((src, dest) => {
-                       if (src.EndPayment != null)  {
-                           dest.TerminationStartDate = src.EndPayment?.From;
-                           dest.TerminationReason = src.EndPayment?.Reason;
-                           dest.TerminationEndDate = src.EndPayment?.Until;
-                       }
+                    .AfterMap((src, dest) =>
+                    {
+                        if (src.EndPayment != null)
+                        {
+                            dest.TerminationStartDate = src.EndPayment?.From;
+                            dest.TerminationReason = src.EndPayment?.Reason;
+                            dest.TerminationEndDate = src.EndPayment?.Until;
+                        }
                     });
+
+                cfg.CreateMap<BobService.Payment, BobPayment>()
+                    .ForMember(dest => dest.AccountNb, opt => opt.Ignore())
+                    .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount))
+                    .ForMember(dest => dest.BeginDate, opt => opt.MapFrom(src => src.PeriodStart))
+                    .ForMember(dest => dest.CertificateId, opt => opt.ResolveUsing((src, dest, value, context) => context.Options.Items["Id"]))
+                    .ForMember(dest => dest.Currency, opt => opt.MapFrom(src => src.Currency))
+                    .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.PeriodEnd))
+                    .ForMember(dest => dest.SendDate, opt => opt.MapFrom(src => src.SendDate))
+                    .ForMember(dest => dest.UnCode, opt => opt.MapFrom(src => src.UnCode))
+                    .AfterMap((src, dest) =>
+                    {
+                        dest.AccountNb = src.Account?.Iban;
+                    });
+
+                cfg.CreateMap<BobService.Letter, BobLetter>()
+                    .ForMember(dest => dest.LetterDate, opt => opt.MapFrom(src => src.Date))
+                    .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Description))
+                    .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Url));
+
 
             });
 

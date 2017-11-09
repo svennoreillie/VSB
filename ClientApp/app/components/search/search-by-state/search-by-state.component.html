@@ -4,26 +4,26 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <p i18n>State Search By Area</p>
+                <p translate>State Search By Area</p>
 
                 <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.ZVZ">{{'ZVZ' | i18n}}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="searchModel.ZVZ">{{'ZVZ' | translate}}</mat-checkbox>
                 </section>
                 <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.BOB">{{'BOB' | i18n}}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="searchModel.BOB">{{'BOB' | translate}}</mat-checkbox>
                 </section>
                 <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.THAB">{{'THAB' | i18n}}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="searchModel.THAB">{{'THAB' | translate}}</mat-checkbox>
                 </section>
 
                 <br/>
-                <p i18n>State Search By State</p>
+                <p translate>State Search By State</p>
 
                 <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.StateInitiated">{{'Initiated' | i18n}}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="searchModel.StateInitiated">{{'Initiated' | translate}}</mat-checkbox>
                 </section>
                 <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.StateConfirmed">{{'Confirmed' | i18n}}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="searchModel.StateConfirmed">{{'Confirmed' | translate}}</mat-checkbox>
                     <div *ngIf="searchModel.StateConfirmed">
                         <mat-form-field>
                             <input matInput
@@ -38,7 +38,7 @@
                     </div>
                 </section>
                 <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.StateRejected">{{'Rejected' | i18n}}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="searchModel.StateRejected">{{'Rejected' | translate}}</mat-checkbox>
                     <div *ngIf="searchModel.StateRejected">
                         <mat-form-field>
                             <input matInput
@@ -56,13 +56,13 @@
 
                 <br/>
 
-                <p i18n>State Search By Federation</p>
+                <p translate>State Search By Federation</p>
 
                 <ng-container *ngIf="environment==300">
                     <section class="example-section">
                         <mat-radio-button [(ngModel)]="searchModel.federation"
                                           value="300"
-                                          i18n>all</mat-radio-button>
+                                          translate>all</mat-radio-button>
                     </section>
                     <section class="example-section">
                         <mat-radio-button [(ngModel)]="searchModel.federation"
@@ -88,7 +88,7 @@
                     <section class="example-section">
                         <mat-radio-button [(ngModel)]="searchModel.federation"
                                           value="400"
-                                          i18n>all</mat-radio-button>
+                                          translate>all</mat-radio-button>
                     </section>
                     <section class="example-section">
                         <mat-radio-button [(ngModel)]="searchModel.federation"
@@ -115,11 +115,11 @@
                                           value="417">417</mat-radio-button>
                     </section>
                 </ng-container>
-                <p i18n="Optional search information before search button at state search">VSB_SEARCHBYSTATE_INFO</p>
+                <p translate="Optional search information before search button at state search">VSB_SEARCHBYSTATE_INFO</p>
                 <button mat-raised-button
                         class="btn-default collapse-on-search"
                         (click)="search()"
-                        [disabled]="isSearchDisabled()">{{'Search' | i18n}}</button>
+                        [disabled]="isSearchDisabled()">{{'Search' | translate}}</button>
 
             </div>
         </div>

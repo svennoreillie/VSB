@@ -1,5 +1,6 @@
 // 3rd party
 import * as angular from "./angular-barrel";
+import { HttpClientModule } from '@angular/common/http';
 import {
     MatNativeDateModule,
     MatDatepickerModule,
@@ -8,7 +9,9 @@ import {
     MatButtonModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
 } from "@angular/material";
 
 // Directives
@@ -21,6 +24,7 @@ import * as services from "./services";
 import { AppComponent } from "./components/app/app.component";
 import { NavMenuComponent } from "./components/navmenu/navmenu.component";
 import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.component";
+import { SocPanelComponent } from "./components/soc-panel/soc-panel.component";
 import * as search from "./components/search";
 import * as content from "./components/content";
 
@@ -31,6 +35,7 @@ import * as content from "./components/content";
         // Components
         NavMenuComponent,
         SocSidebarComponent,
+        SocPanelComponent,
         search.SearchByNameComponent,
         search.SearchByMembernrComponent,
         search.SearchByInszComponent,
@@ -39,12 +44,12 @@ import * as content from "./components/content";
         content.ContentSummaryComponent,
         content.ContentBobComponent,
         // Directives
-        directives.I18nDirective,
-        directives.I18nPipe,
+        directives.TranslateDirective,
+        directives.TranslatePipe,
     ],
     providers: [
         // Services
-        directives.I18nService,
+        directives.TranslateService,
         services.GeneralDataService,
         services.PeopleService,
         services.BobService,
@@ -60,11 +65,13 @@ import * as content from "./components/content";
         MatCheckboxModule,
         MatRadioModule,
         MatCardModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
         // Modules
         angular.CommonModule,
         angular.FormsModule,
         angular.ReactiveFormsModule,
-        angular.HttpModule,
+        HttpClientModule,
         angular.RouterModule.forRoot([{
                 path: "",
                 redirectTo: "byname",

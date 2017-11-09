@@ -161,5 +161,9 @@
     "BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON": {
         "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON",
         "value": "Reden stopzetting"
-    }
+    },
+    "BOB_CERTIFICATES": {
+        "value": "Erkenningsperiodes"
+    },
+    "BOB_LETTERS" : {"originalText":"BOB Letters","value":"Brieven"}
 }

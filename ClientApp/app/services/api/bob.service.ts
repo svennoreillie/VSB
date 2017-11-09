@@ -1,5 +1,6 @@
+import { BOBPayment, BOBCertificate, BOBLetter } from "./../../models";
 import { Injectable } from "@angular/core";
-import { Http, Response } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/shareReplay";
@@ -9,53 +10,44 @@ import { UrlService } from "./../url/url.service";
 @Injectable()
 export class BobService {
 
-    constructor(private http: Http, private urlService: UrlService) {}
+    constructor(private http: HttpClient, private urlService: UrlService) {}
 
     public getBOBPerson = (sinumber: number): Observable < any > => {
         let url = this.createUrl(sinumber);
-        return this.makeCall(url);
+        return this.http.get(url);
     }
 
     public getBOBAddress = (sinumber: number): Observable < any > => {
         let url = this.createUrl(sinumber, "address");
-        return this.makeCall(url);
+        return this.http.get(url);
     }
 
     public getBOBAccount = (sinumber: number): Observable < any > => {
         let url = this.createUrl(sinumber, "acccount");
-        return this.makeCall(url);
+        return this.http.get(url);
     }
 
     public getBOBContact = (sinumber: number): Observable < any > => {
         let url = this.createUrl(sinumber, "contact");
-        return this.makeCall(url);
+        return this.http.get(url);
     }
 
-    public getCertificates = (sinumber: number): Observable < BOBCertificate[] > => {
+    public getCertificates = (sinumber: number): Observable<BOBCertificate[]> => {
         let url = this.createUrl(sinumber, "certificates");
-        return this.makeCall(url);//.map((json:any) => json as BOBCertificate[]);
+        return this.http.get<BOBCertificate[]>(url);
     }
 
-    public getPayments = (sinumber: number): Observable < any > => {
+    public getPayments = (sinumber: number): Observable<BOBPayment[]> => {
         let url = this.createUrl(sinumber, "payments");
-        return this.makeCall(url);
+        return this.http.get<BOBPayment[]>(url);
     }
 
-    public getLetters = (sinumber: number, certificateid: string): Observable < any > => {
-        let url = this.createUrl(sinumber, `/certificates/${certificateid}/letters`);
-        return this.makeCall(url);
+    public getLetters = (sinumber: number): Observable<BOBLetter[]> => {
+        let url = this.createUrl(sinumber, `letters`);
+        return this.http.get<BOBLetter[]>(url);
     }
 
 
-
-
-    private makeCall(url: string): Observable < any > {
-        return this.http.get(url)
-            .map((resp: Response) => {
-                return resp.json();
-            })
-            .shareReplay(1);
-    }
 
     private createUrl(sinumber: number, endpoint ? : string): string {
         if (!endpoint) return this.urlService.createUrl(`bobpeople/${sinumber}`);

@@ -25,7 +25,7 @@ module.exports = (env) => {
                 { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' },
                 {
                     test: /\.scss$/,
-                    use: extractText.extract('css-loader!sass-loader?sourceMap')
+                    use: extractText.extract(isDevBuild ? 'css-loader!sass-loader?sourceMap' : 'css-loader!sass-loader')
                 },
                 // {
                 //     test: /\.json$/,

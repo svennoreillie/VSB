@@ -1,4 +1,4 @@
-interface BOBCertificate {
+export interface BOBCertificate {
     certificateId: string;
     beginDate: Date;
     decisionDate: Date;

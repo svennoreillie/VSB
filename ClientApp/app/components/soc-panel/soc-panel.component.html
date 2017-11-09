@@ -1,0 +1,21 @@
+<div class="soc-panel">
+    <div class="soc-collapser"
+         *ngIf="collapsable">
+        <i class="fa fa-ellipsis-h fa-lg"
+           aria-hidden="true"></i>
+    </div>
+
+    <div class="soc-title">{{title | translate}}</div>
+
+    <div class="soc-content">
+        <!--Loader-->
+        <mat-progress-bar *ngIf="loading;else panelContent"
+                          mode="indeterminate">
+        </mat-progress-bar>
+
+        <!--Actual content -->
+        <ng-template #panelContent>
+            <ng-content></ng-content>
+        </ng-template>
+    </div>
+</div>

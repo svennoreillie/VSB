@@ -1,6 +1,5 @@
-import { Person } from "./../../models/person";
 import { Component, Input } from "@angular/core";
-import { ContentTab, GenderTypeModel } from '../../models';
+import { ContentTab, GenderTypeModel, PersonModel } from '../../models';
 
 @Component({
     selector: 'main-content',
@@ -13,7 +12,7 @@ export class MainContentComponent {
     public genderTypeModel = GenderTypeModel;
 
     public currentTab: ContentTab = ContentTab.Summary;
-    @Input() public person: Person  = new Person();
+    @Input() public person: PersonModel  = new PersonModel();
 
     constructor() { }
 

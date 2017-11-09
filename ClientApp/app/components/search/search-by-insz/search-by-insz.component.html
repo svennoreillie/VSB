@@ -11,14 +11,14 @@
                            [formControl]="insz"
                            type="number"
                            (keydown.enter)="search()"
-                           placeholder="{{'insz Placeholder' | i18n}}">
-                    <mat-error *ngIf="insz.invalid">{{'INSZ required' | i18n}}</mat-error>
+                           placeholder="{{'insz Placeholder' | translate}}">
+                    <mat-error *ngIf="insz.invalid">{{'INSZ required' | translate}}</mat-error>
                 </mat-form-field>
 
                 <button mat-raised-button
                         class="btn-default collapse-on-search"
                         [disabled]="insz.invalid"
-                        (click)="search()">{{'Search' | i18n}}</button>
+                        (click)="search()">{{'Search' | translate}}</button>
 
             </div>
         </div>

@@ -26,7 +26,7 @@
     <div class="soc-header fixed"
          *ngIf="!person">
         <div class="soc-header-title"
-             i18n="VSB_HEADER_NOTHING_SELECTED"></div>
+             translate="VSB_HEADER_NOTHING_SELECTED"></div>
         <div>&nbsp;</div>
     </div>
 
@@ -35,23 +35,23 @@
         <div class="soc-tabs top follow-header">
             <ul class="nav nav-tabs">
                 <li [ngClass]="{'active': getActive(contentTab.Summary)}">
-                    <a (click)="setView(contentTab.Summary)" i18n>VSB_TAB_HEADING_SUMMARY</a>
+                    <a (click)="setView(contentTab.Summary)" translate>VSB_TAB_HEADING_SUMMARY</a>
                 </li>
                 <li [ngClass]="{'active': getActive(contentTab.Zorgverzekering)}">
-                    <a (click)="setView(contentTab.Zorgverzekering)" i18n>VSB_TAB_HEADING_ZVZ</a>
+                    <a (click)="setView(contentTab.Zorgverzekering)" translate>VSB_TAB_HEADING_ZVZ</a>
                 </li>
                 <li [ngClass]="{'active': getActive(contentTab.Bob)}">
-                    <a (click)="setView(contentTab.Bob)" i18n>VSB_TAB_HEADING_BOB</a>
+                    <a (click)="setView(contentTab.Bob)" translate>VSB_TAB_HEADING_BOB</a>
                 </li>
                 <li [ngClass]="{'active': getActive(contentTab.Thab)}">
-                    <a (click)="setView(contentTab.Thab)" i18n>VSB_TAB_HEADING_THAB</a>
+                    <a (click)="setView(contentTab.Thab)" translate>VSB_TAB_HEADING_THAB</a>
                 </li>
                 <li [ngClass]="{'active': getActive(contentTab.Attachments)}">
-                    <a (click)="setView(contentTab.Attachments)" i18n>VSB_ATTACHMENTS_TITLE</a>
+                    <a (click)="setView(contentTab.Attachments)" translate>VSB_ATTACHMENTS_TITLE</a>
                 </li>
                 
                 <!-- <li [ngClass]="{'active': getActive(contentTab.Returns)}">
-                    <a (click)="setView(contentTab.Returns)" i18n>VSB_TAB_HEADING_RETURNS</a>
+                    <a (click)="setView(contentTab.Returns)" translate>VSB_TAB_HEADING_RETURNS</a>
                 </li> -->
             </ul>
             <div class="tab-content">

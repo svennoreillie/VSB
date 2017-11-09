@@ -1,6 +1,6 @@
 import { Input, Output } from "@angular/core";
 import { Component, EventEmitter, OnInit } from "@angular/core";
-import { Person } from "./../../models/person";
+import { PersonModel } from "./../../models/person";
 
 @Component({
     selector: "soc-sidebar",
@@ -9,10 +9,10 @@ import { Person } from "./../../models/person";
 
 export class SocSidebarComponent implements OnInit {
 
-    public selectedPerson: Person;
-    @Input() public people: Person[];
-    @Output() public download: EventEmitter<Person[]> = new EventEmitter<Person[]>();
-    @Output() public select: EventEmitter<Person> = new EventEmitter<Person>();
+    public selectedPerson: PersonModel;
+    @Input() public people: PersonModel[];
+    @Output() public download: EventEmitter<PersonModel[]> = new EventEmitter<PersonModel[]>();
+    @Output() public select: EventEmitter<PersonModel> = new EventEmitter<PersonModel>();
 
     private formVisible: boolean = true;
 
@@ -26,7 +26,7 @@ export class SocSidebarComponent implements OnInit {
         this.download.emit(this.people);
     }
 
-    public selectPerson(p: Person ) {
+    public selectPerson(p: PersonModel ) {
         this.selectedPerson = p;
         this.select.emit(this.selectedPerson);
     }

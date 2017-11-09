@@ -11,8 +11,8 @@
                            [formControl]="name"
                            (keydown.enter)="search()"
                            type="text"
-                           placeholder="{{'Name Placeholder' | i18n}}">
-                    <mat-error *ngIf="name.invalid">{{'Name is required' | i18n}}</mat-error>
+                           placeholder="{{'Name Placeholder' | translate}}">
+                    <mat-error *ngIf="name.invalid">{{'Name is required' | translate}}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -20,13 +20,13 @@
                            type="text"
                            [(ngModel)]="searchModel.firstName"
                            (keydown.enter)="search()"
-                           placeholder="{{'FirstName Placeholder' | i18n}}">
+                           placeholder="{{'FirstName Placeholder' | translate}}">
                 </mat-form-field>
 
                 <button mat-raised-button
                         class="btn-default collapse-on-search"
                         (click)="search()"
-                        [disabled]="name.invalid">{{'Search' | i18n}}</button>
+                        [disabled]="name.invalid">{{'Search' | translate}}</button>
 
             </div>
         </div>
