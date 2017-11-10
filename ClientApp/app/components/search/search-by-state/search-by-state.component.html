@@ -1,6 +1,6 @@
 <soc-sidebar [people]="people | async"
-             (select)="selectPerson($event)"
-             (download)="downloadPersons()">
+             (socSelect)="selectPerson($event)"
+             (socDownload)="downloadPersons()">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
@@ -28,7 +28,7 @@
                         <mat-form-field>
                             <input matInput
                                    [matDatepicker]="stateConfirmedPicker"
-                                   [(ngModel)]="searchModel.stateConfirmedDate"
+                                   [(ngModel)]="searchModel.StateConfirmedDate"
                                    placeholder="Choose a date">
 
                             <mat-datepicker-toggle matSuffix
@@ -43,7 +43,7 @@
                         <mat-form-field>
                             <input matInput
                                    [matDatepicker]="stateConfirmedPicker"
-                                   [(ngModel)]="searchModel.stateConfirmedDate"
+                                   [(ngModel)]="searchModel.StateConfirmedDate"
                                    placeholder="Choose a date">
 
                             <mat-datepicker-toggle matSuffix
@@ -59,62 +59,30 @@
                 <p translate>State Search By Federation</p>
 
                 <ng-container *ngIf="environment==300">
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="300"
-                                          translate>all</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="304">304</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="309">309</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="311">311</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="322">322</mat-radio-button>
-                    </section>
-
+                    <mat-radio-group style="display: inline-flex; flex-direction:column"
+                                     [(ngModel)]="searchModel.Federation">
+                        <mat-radio-button value="300">{{'all' | translate}}</mat-radio-button>
+                        <mat-radio-button value="304">{{'304' | translate}}</mat-radio-button>
+                        <mat-radio-button value="309">{{'309' | translate}}</mat-radio-button>
+                        <mat-radio-button value="311">{{'311' | translate}}</mat-radio-button>
+                        <mat-radio-button value="322">{{'322' | translate}}</mat-radio-button>
+                    </mat-radio-group>
                 </ng-container>
 
                 <ng-container *ngIf="environment==400">
-
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="400"
-                                          translate>all</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="401">401</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="403">403</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="404">404</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="407">407</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="415">415</mat-radio-button>
-                    </section>
-                    <section class="example-section">
-                        <mat-radio-button [(ngModel)]="searchModel.federation"
-                                          value="417">417</mat-radio-button>
-                    </section>
+                    <mat-radio-group style="display: inline-flex; flex-direction:column"
+                                     [(ngModel)]="searchModel.Federation">
+                        <mat-radio-button value="400">{{'400' | translate}}</mat-radio-button>
+                        <mat-radio-button value="401">{{'401' | translate}}</mat-radio-button>
+                        <mat-radio-button value="403">{{'403' | translate}}</mat-radio-button>
+                        <mat-radio-button value="404">{{'404' | translate}}</mat-radio-button>
+                        <mat-radio-button value="407">{{'407' | translate}}</mat-radio-button>
+                        <mat-radio-button value="415">{{'415' | translate}}</mat-radio-button>
+                        <mat-radio-button value="417">{{'417' | translate}}</mat-radio-button>
+                    </mat-radio-group>
                 </ng-container>
+
+
                 <p translate="Optional search information before search button at state search">VSB_SEARCHBYSTATE_INFO</p>
                 <button mat-raised-button
                         class="btn-default collapse-on-search"

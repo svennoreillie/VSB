@@ -10,11 +10,11 @@ export class SelectPersonController {
 
     }
 
-    public selectPerson = (person: PersonModel) => {
+    public selectPerson(person: PersonModel): void  {
         this.peopleS.setActivePerson(person);
     }
 
-    public downloadList = () => {
+    public downloadList(): void {
         console.error("TODO => download list");
     }
 }

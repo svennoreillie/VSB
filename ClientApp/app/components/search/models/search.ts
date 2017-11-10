@@ -31,7 +31,7 @@ export class StateSearchModel extends SearchModel {
     public StateRejected: boolean;
     public StateRejectedDate: Date;
 
-    public federation: number;
+    public Federation: number;
 
     constructor() {
         super();

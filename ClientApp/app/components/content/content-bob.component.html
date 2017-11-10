@@ -19,7 +19,7 @@
                 <!-- Certificates -->
                 <soc-panel title="BOB Certificates"
                            collapsable="true"
-                           [loading]="certificatesLoading"
+                           [loading]="certificates && !(certificates|async)"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
@@ -38,7 +38,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let cert of certificates">
+                                            <tr *ngFor="let cert of certificates | async">
                                                 <td>{{cert.certificateId}}</td>
                                                 <td>{{cert.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{cert.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
@@ -62,7 +62,7 @@
                 <!-- Payments -->
                 <soc-panel title="BOB Certificates"
                            collapsable="true"
-                           [loading]="paymentsLoading"
+                           [loading]="!(payments|async)"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
@@ -80,7 +80,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let paym of payments">
+                                            <tr *ngFor="let paym of payments | async">
                                                 <td>{{paym.certificateId}}</td>
                                                 <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
@@ -100,12 +100,12 @@
                 <!-- Letters -->
                 <soc-panel title="BOB Letters"
                            collapsable="true"
-                           [loading]="lettersLoading"
+                           [loading]="!(letters|async)"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
-                                <span translate="BOB_FORM"></span>:
+                                <span translate>BOB_FORM</span>:
                                 <button ng-click="downloadBobForm()"
                                         class="btn btn-default">
                                     <i class="fa fa-file" aria-hidden="true"></i>
@@ -122,8 +122,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ng-container *ngFor="let cert of certificate">
-                                            <tr *ngFor="let letter of bobService.getLetters(person.siNumber, cert.certificateId) | async">
+                                            <tr *ngFor="let letter of letters | async">
                                                 <td>{{letter.letterterDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{letter.type}}</td>
                                                 <td><a target="_blank"
@@ -131,7 +130,6 @@
                                                        href="{{letter.url != '' ? letter.url : '#'}}"
                                                        class="fa fa-file notunderlinedlink btn btn-default"></a></td>
                                             </tr>
-                                            </ng-container>
                                         </tbody>
                                     </table>
                                 </div>

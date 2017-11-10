@@ -52,7 +52,7 @@
             "processId": "${command:pickProcess}"
         },
         {
-            "name": "Attach to chrome",
+            "name": "Launch Chrome",
             "type": "chrome",
             "request": "launch",
             "sourceMaps": true,

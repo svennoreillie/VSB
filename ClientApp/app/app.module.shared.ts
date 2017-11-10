@@ -1,6 +1,6 @@
+import { HttpClientModule } from "@angular/common/http";
 // 3rd party
 import * as angular from "./angular-barrel";
-import { HttpClientModule } from '@angular/common/http';
 import {
     MatNativeDateModule,
     MatDatepickerModule,
@@ -68,10 +68,11 @@ import * as content from "./components/content";
         MatProgressSpinnerModule,
         MatProgressBarModule,
         // Modules
+        HttpClientModule,
         angular.CommonModule,
         angular.FormsModule,
         angular.ReactiveFormsModule,
-        HttpClientModule,
+        //angular.HttpModule,
         angular.RouterModule.forRoot([{
                 path: "",
                 redirectTo: "byname",

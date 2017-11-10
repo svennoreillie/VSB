@@ -11,8 +11,8 @@ export class SocSidebarComponent implements OnInit {
 
     public selectedPerson: PersonModel;
     @Input() public people: PersonModel[];
-    @Output() public download: EventEmitter<PersonModel[]> = new EventEmitter<PersonModel[]>();
-    @Output() public select: EventEmitter<PersonModel> = new EventEmitter<PersonModel>();
+    @Output() public socDownload: EventEmitter<PersonModel[]> = new EventEmitter<PersonModel[]>();
+    @Output() public socSelect: EventEmitter<PersonModel> = new EventEmitter<PersonModel>();
 
     private formVisible: boolean = true;
 
@@ -23,15 +23,15 @@ export class SocSidebarComponent implements OnInit {
     }
 
     public downloadPeople() {
-        this.download.emit(this.people);
+        this.socDownload.emit(this.people);
     }
 
-    public selectPerson(p: PersonModel ) {
-        this.selectedPerson = p;
-        this.select.emit(this.selectedPerson);
+    public selectPerson(person: PersonModel ) {
+        this.selectedPerson = person;
+        this.socSelect.emit(this.selectedPerson);
     }
 
     public collapseForm = () => {
-        this.formVisible = this.formVisible;
+        this.formVisible = !this.formVisible;
     }
 }

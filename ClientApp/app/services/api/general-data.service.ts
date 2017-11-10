@@ -1,3 +1,5 @@
+import { Version } from "./../../models/admin/version";
+import { Environment } from "./../../models/admin/environment";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import "rxjs/add/operator/catch";
@@ -12,14 +14,14 @@ export class GeneralDataService {
     constructor(private http: HttpClient,
                 private url: UrlService) { }
 
-    public getVersion = (): Observable<string> => {
+    public getVersion = (): Observable<Version> => {
         const url = this.url.createUrl("admin", "versions");
-        return this.http.get<string>(url);
+        return this.http.get<Version>(url);
     }
 
-    public getEnvironment = (): Observable<number> => {
+    public getEnvironment = (): Observable<Environment> => {
         const url = this.url.createUrl("admin", "environment");
-        return this.http.get<number>(url);
+        return this.http.get<Environment>(url);
     }
 
 }

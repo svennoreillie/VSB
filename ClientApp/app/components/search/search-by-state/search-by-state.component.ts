@@ -22,7 +22,7 @@ export class SearchByStateComponent extends SelectPersonController implements On
     public ngOnInit(): void {
         this.generalDataService.getEnvironment()
                                .subscribe(
-                                    (value) => { this.environment = value; },
+                                    (value) => { this.environment = value.environment; },
                                     (error) => { console .log(error); }
                                 );
     }
@@ -40,7 +40,7 @@ export class SearchByStateComponent extends SelectPersonController implements On
         if (!(sm.StateCompleted || sm.StateInitiated || sm.StateRejected)) return true;
         if (sm.StateRejected && sm.StateRejectedDate == null) return true;
         if (sm.StateCompleted && sm.StateCompletedDate == null) return true;
-        if (sm.federation <= 0) return true;
+        if (sm.Federation <= 0) return true;
         return false;
     }
 
