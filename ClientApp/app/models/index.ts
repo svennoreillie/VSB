@@ -1,3 +1,8 @@
+export { ZVZContribution } from "./zvz/contribution";
+export { ZVZContract } from "./zvz/contract";
+export { ZVZPayment } from "./zvz/payment";
+export { ZVZLetter } from "./zvz/letter";
+export { ZVZWarranty } from "./zvz/warranty";
 export { ContentTab, GenderTypeModel } from "./enums";
 export { PersonModel } from "./Person";
 export { BOBCertificate } from "./bob/certificate";

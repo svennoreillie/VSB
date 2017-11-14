@@ -3,23 +3,23 @@
 
     <ng-template #notfound>
         <div class="soc-not-found"
-             translate>BOB No data found</div>
+             translate>ZVZ No data found</div>
     </ng-template>
 
     <ng-template #content>
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-header">
-                    <h1 translate>BOB</h1>
+                    <h1 translate>ZVZ Full</h1>
                 </div>
             </div>
 
             <div class="col-sm-12">
 
                 <!-- Certificates -->
-                <soc-panel title="BOB Certificates"
+                <soc-panel title="ZVZ Warranties"
                            collapsable="true"
-                           [loading]="certificates && !(certificates|async)"
+                           [loading]="warranties && !(warranties|async)"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
@@ -28,27 +28,30 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th translate>BOB_ADMISSIONS_COLUMN_ADMISSION_ID</th>
-                                                <th translate>BOB_ADMISSIONS_COLUMN_ADMISSION_START</th>
-                                                <th translate>BOB_ADMISSIONS_COLUMN_ADMISSION_END</th>
-                                                <th translate>BOB_ADMISSIONS_COLUMN_ADMISSION_STATE</th>
-                                                <th translate>BOB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE</th>
-                                                <th translate>BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_TERMINATED</th>
-                                                <th translate>BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON</th>
+                                                <th translate>ZVZ_WARRANTIES_COLUMN_CAREFORM</th>
+                                                <th translate>ZVZ_WARRANTIES_COLUMN_REQUESTDATE</th>
+                                                <th translate>ZVZ_WARRANTIES_COLUMN_STARTDATE</th>
+                                                <th translate>ZVZ_WARRANTIES_COLUMN_ENDDATE</th>
+                                                <th translate>ZVZ_WARRANTIES_COLUMN_STATUS</th>
+                                                <th translate>ZVZ_WARRANTIES_COLUMN_DECISIONDATE</th>
+                                                <th translate>ZVZ_WARRANTIES_COLUMN_CERTIFICATE</th>
+                                                <th translate>ZVZ_WARRANTIES_COLUMN_SCALE</th>
+                                                <th translate>ZVZ_WARRANTIES_COLUMN_REFUSALREASON</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let cert of certificates | async">
-                                                <td>{{cert.certificateId}}</td>
-                                                <td>{{cert.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{cert.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{cert.state}}</td>
-                                                <td>{{cert.decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td *ngIf="cert.TerminationEndDate;else noTerminationDate">{{cert.terminationStartDate | date: ('COMMON_DATEFORMAT' | translate)}} {{'BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_PERIOD_TO' | translate}} {{cert.terminationEndDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <ng-template #noTerminationDate>
-                                                    <td>-</td>
-                                                </ng-template>
-                                                <td>{{cert.terminationReason}}</td>
+                                            <tr *ngFor="let warranty of warranties | async"
+                                                (click)="selectWarranty(warranty)"
+                                                [ngClass]="{'active':warranty == selectedWarranty">
+                                                <td>{{warranty.careForm}}</td>
+                                                <td>{{warranty.requestDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{warranty.startDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{warranty.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{warranty.state}}</td>
+                                                <td>{{warranty.decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{warranty.certificate}}</td>
+                                                <td>{{warranty.scale}}</td>
+                                                <td>{{warranty.refusalReason}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -60,9 +63,9 @@
 
 
                 <!-- Payments -->
-                <soc-panel title="BOB_ADMISSION_PAYMENTS_LEGEND"
+                <soc-panel title="ZVZ_WARRANTY_PAYMENTS_LEGEND"
+                           *ngIf="(warranties|async).length > 0"
                            collapsable="true"
-                           [loading]="!(payments|async)"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
@@ -71,17 +74,15 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_ID</th>
-                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_STARTDATE</th>
-                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_ENDDATE</th>
-                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_AMOUNT</th>
-                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE</th>
-                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER</th>
+                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_STARTDATE</th>
+                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_ENDDATE</th>
+                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_AMOUNT</th>
+                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_PAYMENTDATE</th>
+                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_ACCOUNTNUMBER</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let paym of payments | async">
-                                                <td>{{paym.certificateId}}</td>
+                                            <tr *ngFor="let paym of selectedWarranty.payments">
                                                 <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{paym.amount}} {{paym.currency}}</td>
@@ -98,7 +99,7 @@
 
 
                 <!-- Letters -->
-                <soc-panel title="BOB Letters"
+                <soc-panel title="ZVZ_DECISION_LETTERS_LEGEND"
                            collapsable="true"
                            [loading]="!(letters|async)"
                            type="bar">
@@ -116,9 +117,9 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th translate>BOB_LETTERS_COLUMN_DATE</th>
-                                                <th translate>BOB_LETTERS_COLUMN_TYPE</th>
-                                                <th translate>BOB_LETTERS_COLUMN_DOWNLOAD</th>
+                                                <th translate>ZVZ_DECISION_LETTERS_COLUMN_DATE</th>
+                                                <th translate>ZVZ_DECISION_LETTERS_COLUMN_TYPE</th>
+                                                <th translate>ZVZ_DECISION_LETTERS_COLUMN_DOWNLOAD</th>
                                             </tr>
                                         </thead>
                                         <tbody>

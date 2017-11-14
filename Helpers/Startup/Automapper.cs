@@ -53,7 +53,48 @@ namespace VSBaseAngular
                     .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Description))
                     .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Url));
 
+                cfg.CreateMap<ZvzService.DecisionLetter, ZvzLetter>()
+                    .ForMember(dest => dest.LetterDate, opt => opt.MapFrom(src => src.SendedDate))
+                    .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
+                    .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Url));
 
+
+                cfg.CreateMap<ZvzService.Contract, ZvzContract>()
+                    .ForMember(dest => dest.CloseDate, opt => opt.MapFrom(src => src.EndDate))
+                    .ForMember(dest => dest.CloseMotive, opt => opt.MapFrom(src => src.EndMotivation))
+                    .ForMember(dest => dest.CloseReason, opt => opt.MapFrom(src => src.EndReason))
+                    .ForMember(dest => dest.ContractDate, opt => opt.MapFrom(src => src.StartDate))
+                    .ForMember(dest => dest.ContractMotive, opt => opt.MapFrom(src => src.StartMotivation))
+                    .ForMember(dest => dest.ContractReason, opt => opt.MapFrom(src => src.StartReason));
+
+                cfg.CreateMap<ZvzService.Warranty, ZvzWarranty>()
+                    .ForMember(dest => dest.CareForm, opt => opt.MapFrom(src => src.Care))
+                    .ForMember(dest => dest.Certificate, opt => opt.MapFrom(src => src.Certificate))
+                    .ForMember(dest => dest.DecisionDate, opt => opt.MapFrom(src => src.DecisionDate))
+                    .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.DateUntil))
+                    .ForMember(dest => dest.RefusalReason, opt => opt.MapFrom(src => src.RefusalReason))
+                    .ForMember(dest => dest.RequestDate, opt => opt.MapFrom(src => src.RequestDate))
+                    .ForMember(dest => dest.Scale, opt => opt.MapFrom(src => src.Scale))
+                    .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.DateFrom))
+                    .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State));
+
+                cfg.CreateMap<ZvzService.Payment, ZvzPayment>()
+                    .ForMember(dest => dest.AccountNb, opt => opt.MapFrom(src => src.Account != null ? src.Account.Iban : null))
+                    .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount))
+                    .ForMember(dest => dest.BeginDate, opt => opt.MapFrom(src => src.PeriodStart))
+                    .ForMember(dest => dest.Currency, opt => opt.MapFrom(src => src.Currency))
+                    .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.PeriodEnd))
+                    .ForMember(dest => dest.SendDate, opt => opt.MapFrom(src => src.SendDate))
+                    .ForMember(dest => dest.UnCode, opt => opt.MapFrom(src => src.UnCode));
+
+
+                cfg.CreateMap<ZvzService.Contribution, ZvzContribution>()
+                    .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount))
+                    .ForMember(dest => dest.Circuit, opt => opt.MapFrom(src => src.Circuit))
+                    .ForMember(dest => dest.Currency, opt => opt.MapFrom(src => src.Currency))
+                    .ForMember(dest => dest.PaymentDate, opt => opt.MapFrom(src => src.PaymentDate))
+                    .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
+                    .ForMember(dest => dest.Year, opt => opt.MapFrom(src => src.Year));
             });
 
             config.AssertConfigurationIsValid();

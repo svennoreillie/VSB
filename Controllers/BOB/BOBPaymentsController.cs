@@ -26,7 +26,7 @@ namespace VSBaseAngular.Controllers
 
 
         [HttpGet]
-        [Route("~/api/v{version:apiVersion}/bobpeople/{sinumber}/certificates/{certificateId}/payments")]
+        [Route("~/api/v{version:apiVersion}/bobpeople/{sinumber:long}/certificates/{certificateId}/payments")]
         public async Task<IActionResult> GetSpecific(long sinumber, string certificateId)
         {
             var certificates = await _service.GetCertificatesAsync(new GetCertificatesRequest { SiNumber = sinumber });

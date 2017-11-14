@@ -25,7 +25,7 @@ namespace VSBaseAngular.Controllers
 
 
         [HttpGet]
-        [Route("~/api/v{version:apiVersion}/bobpeople/{sinumber}/certificates/{certificateId}/leters")]
+        [Route("~/api/v{version:apiVersion}/bobpeople/{sinumber:long}/certificates/{certificateId}/leters")]
         [Route("~/api/v{version:apiVersion}/bobcertificates/{certificateId}/leters")]
         public async Task<IActionResult> Get(string certificateId)
         {
