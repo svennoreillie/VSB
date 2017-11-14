@@ -1,0 +1,218 @@
+<!-- <div class="container-fluid">
+
+    <div class="soc-not-found"
+         ng-show="vm.vsbInfo.thabInfo == null || vm.vsbInfo.thabInfo.certificates == null">
+        {{'THAB_NO_DATA_FOUND' | translate }}
+    </div>
+
+    <div ng-hide="vm.vsbInfo.thabInfo == null || vm.vsbInfo.thabInfo.certificates == null">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-header">
+                    <h1>THAB</h1>
+                </div>
+
+
+                <div class="soc-panel"
+                     ng-show="vm.vsbInfo.thabInfo != null && vm.vsbInfo.thabInfo.certificates != null">
+                    <div class="soc-collapser">
+                        <i class="fa fa-ellipsis-h fa-lg"
+                           aria-hidden="true"></i>
+                    </div>
+                    <div class="soc-title">{{'THAB_ADMISSIONS_LEGEND' | translate}}</div>
+                    <div class="soc-content">
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <h4>{{'THAB_ADMISSIONS' | translate}}</h4>
+
+                                    <div class="soc-table striped secondary">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th data-translate="THAB_ADMISSIONS_COLUMN_ADMISSION_ID"></th>
+                                                    <th data-translate="THAB_ADMISSIONS_COLUMN_ADMISSION_MIGRATED"></th>
+                                                    <th data-translate="THAB_ADMISSIONS_COLUMN_ADMISSION_INITIALDATE"></th>
+                                                    <th data-translate="THAB_ADMISSIONS_COLUMN_ADMISSION_START"></th>
+                                                    <th data-translate="THAB_ADMISSIONS_COLUMN_ADMISSION_END"></th>
+                                                    <th data-translate="THAB_ADMISSIONS_COLUMN_ADMISSION_STATE"></th>
+                                                    <th data-translate="THAB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE"></th>
+                                                    <th data-translate="THAB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON"></th>
+                                                    <th data-translate="THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_REMARK"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="cert in vm.vsbInfo.thabInfo.certificates">
+                                                    <td>{{cert.certificateId}}</td>
+                                                    <td><i ng-class="{ 'fa': true,  'fa-check-square-o' : cert.isMigrated, 'fa-square-o' : !cert.isMigrated }"
+                                                           aria-hidden="true"></i></td>
+                                                    <td>{{cert.referenceDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>{{cert.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>{{cert.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>
+                                                        {{cert.state}}
+                                                        <a uib-popover-html="vm.createPopoverContent(cert)"
+                                                           popover-class="soc-popover wider"
+                                                           popover-trigger="'mouseenter'"
+                                                           class="fa fa-info-circle soc-popover"
+                                                           ng-hide="cert.certificateNotification==null || cert.certificateNotification.notifications == null || cert.certificateNotification.notifications.length == 0">
+                                                            </a>
+                                                    </td>
+                                                    <td>{{cert.decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>{{cert.terminationReason}}</td>
+                                                    <td>
+                                                        <textarea class="form-control"
+                                                                  rows="1"
+                                                                  data-ng-model="cert.remark"></textarea>
+                                                        <button title="{{'THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_SAVE' | translate}} "
+                                                                ng-click="vm.saveThabRemark(cert)"
+                                                                ng-hide="cert.remark == null || cert.remark == cert.initialRemark"
+                                                                class="btn btn-default">
+                                                                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                            </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <h4>{{ 'THAB_PAYABLEAMOUNT' |translate}}</h4>
+                                    <div class="soc-table striped secondary">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th data-translate="THAB_PAYABLEAMOUNT_COLUMN_ID"></th>
+                                                    <th data-translate="THAB_PAYABLEAMOUNT_COLUMN_START"></th>
+                                                    <th data-translate="THAB_PAYABLEAMOUNT_COLUMN_END"></th>
+                                                    <th data-translate="THAB_PAYABLEAMOUNT_COLUMN_AMOUNT"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="amount in vm.vsbInfo.thabInfo.payableAmounts">
+                                                    <td>{{amount.certificateId}}</td>
+                                                    <td>{{amount.start | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>{{amount.end | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>{{amount.amount}} EUR</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="soc-panel"
+                     ng-show="vm.vsbInfo.thabInfo != null && vm.vsbInfo.thabInfo.certificates != null">
+                    <div class="soc-collapser">
+                        <i class="fa fa-ellipsis-h fa-lg"
+                           aria-hidden="true"></i>
+                    </div>
+                    <div class="soc-title">{{'THAB_ADMISSION_PAYMENTS_LEGEND' | translate}}</div>
+                    <div class="soc-content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="soc-table striped secondary">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th data-translate="THAB_ADMISSION_PAYMENTS_COLUMN_ID"></th>
+                                                    <th data-translate="THAB_ADMISSION_PAYMENTS_COLUMN_STARTDATE"></th>
+                                                    <th data-translate="THAB_ADMISSION_PAYMENTS_COLUMN_ENDDATE"></th>
+                                                    <th data-translate="THAB_ADMISSION_PAYMENTS_COLUMN_AMOUNT"></th>
+                                                    <th data-translate="THAB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE"></th>
+                                                    <th data-translate="THAB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="paym in vm.vsbInfo.thabInfo.payments">
+                                                    <td>{{paym.certificateId}}</td>
+                                                    <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>{{paym.amount}} {{paym.currency}}</td>
+                                                    <td>{{paym.sendDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>{{paym.accountNb}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="soc-panel"
+                     ng-show="vm.vsbInfo.thabInfo != null && vm.vsbInfo.thabInfo.certificates != null">
+                    <div class="soc-collapser">
+                        <i class="fa fa-ellipsis-h fa-lg"
+                           aria-hidden="true"></i>
+                    </div>
+                    <div class="soc-title">{{'THAB_LETTERS_LEGEND' | translate}}</div>
+                    <div class="soc-content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span data-translate="THAB_DOCUMENTS"></span><br />
+                                    <div class="soc-table striped secondary">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th data-translate="THAB_DOCUMENTS_COLUMN_ID"></th>
+                                                    <th data-translate="THAB_DOCUMENTS_COLUMN_DOWNLOAD"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="cert in vm.vsbInfo.thabInfo.certificates">
+                                                    <td>{{cert.certificateId}}</td>
+                                                    <td><a ng-hide="cert.calculationBasicRightDocument == null || cert.calculationBasicRightDocument.UniqueId == '' "
+                                                           ng-click="vm.downloadThabCalculationDocument(cert)"
+                                                           class="fa fa-file notunderlinedlink btn btn-default"></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="soc-table striped secondary">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th data-translate="THAB_LETTERS_COLUMN_DATE"></th>
+                                                    <th data-translate="THAB_LETTERS_COLUMN_ID"></th>
+                                                    <th data-translate="THAB_LETTERS_COLUMN_TYPE"></th>
+                                                    <th data-translate="THAB_LETTERS_COLUMN_DOWNLOAD"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="let in vm.vsbInfo.thabInfo.letters">
+                                                    <td>{{let.letterDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                    <td>{{let.certificateId}}</td>
+                                                    <td>{{let.type}}</td>
+                                                    <td ng-hide="let.type===vm.extraInfoLetterType"><a target="_blank"
+                                                           ng-show="let.url != ''"
+                                                           href="{{let.url != '' ? let.url : '#'}}"
+                                                           class="fa fa-file notunderlinedlink btn btn-default"></a></td>
+                                                    <td ng-show="let.type===vm.extraInfoLetterType"><a ng-click="vm.downloadThabForm(let)"
+                                                           href="#"
+                                                           class="fa fa-file notunderlinedlink btn btn-default"></a>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

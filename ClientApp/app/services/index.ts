@@ -1,3 +1,5 @@
+export { ThabService } from "./api/thab.service";
+export { ZvzService } from "./api/zvz.service";
 export { UrlService } from "./url/url.service";
 export { ConfigService } from "./config/config";
 

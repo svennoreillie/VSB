@@ -33,7 +33,7 @@ namespace VSBaseAngular
             DependencyInjection.AddServices(services);
             Automapper.AddMapper(services);
 
-            services.AddCors();
+            //services.AddCors();
 
             services.AddMvc();
 
@@ -59,8 +59,6 @@ namespace VSBaseAngular
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseCors(options => options.AllowAnyHeader());
-
 
             app.Use(async (context, next) =>
             {
@@ -74,7 +72,7 @@ namespace VSBaseAngular
                 }
             });
 
-            app.UseCors("AllowAll");
+            //app.UseCors("AllowAll");
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {

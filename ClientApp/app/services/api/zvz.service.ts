@@ -1,3 +1,4 @@
+import { PersonModel } from "./../../models/person";
 import { ZVZContribution, ZVZWarranty, ZVZLetter, ZVZPayment } from "./../../models";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -29,11 +30,27 @@ export class ZvzService {
         return this.http.get<ZVZPayment[]>(url);
     }
 
-    public getLetters(letterSearchModel: ZvzLetterSearchModel): Observable<ZVZLetter[]> {
+    public getLetters(person: PersonModel): Observable<ZVZLetter[]> {
         let url = this.urlService.createUrl(`zvzletters`); 
-        url = this.urlService.addQueryParameters(url, letterSearchModel);
+
+        let model = new ZvzLetterSearchModel();
+        model.birthdate = person.birthDate;
+        model.federation = person.federationNumber;
+        model.membernr = parseInt(person.memberNumber);
+        model.sex = person.sex;
+        model.sinumber = person.siNumber;
+
+        url = this.urlService.addQueryParameters(url, model);
         
         return this.http.get<ZVZLetter[]>(url);
     }
 
+}
+
+class ZvzLetterSearchModel {
+    federation: number;
+    membernr: number;
+    sex: number;
+    birthdate: Date;
+    sinumber: number;
 }

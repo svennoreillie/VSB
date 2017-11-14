@@ -19,7 +19,7 @@
                 <!-- Certificates -->
                 <soc-panel title="ZVZ Warranties"
                            collapsable="true"
-                           [loading]="warranties && !(warranties|async)"
+                           [loading]="warrantiesLoading"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
@@ -40,9 +40,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let warranty of warranties | async"
+                                            <tr *ngFor="let warranty of warranties"
                                                 (click)="selectWarranty(warranty)"
-                                                [ngClass]="{'active':warranty == selectedWarranty">
+                                                [ngClass]="{'active':warranty == selectedWarranty}">
                                                 <td>{{warranty.careForm}}</td>
                                                 <td>{{warranty.requestDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{warranty.startDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
@@ -64,8 +64,9 @@
 
                 <!-- Payments -->
                 <soc-panel title="ZVZ_WARRANTY_PAYMENTS_LEGEND"
-                           *ngIf="(warranties|async).length > 0"
+                           *ngIf="showPayments()"
                            collapsable="true"
+                           [loading]="payments && !(payments|async)"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
@@ -82,7 +83,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let paym of selectedWarranty.payments">
+                                            <tr *ngFor="let paym of payments | async">
                                                 <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{paym.amount}} {{paym.currency}}</td>

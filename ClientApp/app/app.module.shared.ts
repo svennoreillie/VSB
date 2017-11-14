@@ -50,6 +50,8 @@ import "rxjs/add/operator/toPromise";
         content.MainContentComponent,
         content.ContentSummaryComponent,
         content.ContentBobComponent,
+        content.ContentZvzComponent,
+        content.ContentThabComponent,
         // Directives
         directives.TranslateDirective,
         directives.TranslatePipe,
@@ -60,6 +62,8 @@ import "rxjs/add/operator/toPromise";
         services.GeneralDataService,
         services.PeopleService,
         services.BobService,
+        services.ThabService,
+        services.ZvzService,
         services.UrlService,
         services.ConfigService,
     ],

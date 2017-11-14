@@ -26,13 +26,13 @@ namespace VSBaseAngular.Controllers
 
 
 
+        [HttpGet]
         [Route("")]
         public async Task<IActionResult> Get([FromQuery]short federation,
                                     [FromQuery]int membernr,
                                     [FromQuery]int sex,
                                     [FromQuery]DateTime birthdate,
-                                    [FromQuery]long sinumber)
-        {
+                                    [FromQuery]long sinumber) {
             var request = new GetDecisionLettersRequest
             {
                 BirthDate = birthdate,

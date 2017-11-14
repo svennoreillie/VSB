@@ -13,12 +13,12 @@ namespace VSBaseAngular.Controllers
 {
     [ApiVersion(ControllerVersion.v1)]
     [Route("api/v{version:apiVersion}/[Controller]")]
-    public class ZVZWarrentiesController : BaseController
+    public class ZVZWarrantiesController : BaseController
     {
         private readonly IZvzService _service;
         private IMapper _mapper;
 
-        public ZVZWarrentiesController(IServiceFactory<IZvzService> zvzServiceFactory, IMapper mapper)
+        public ZVZWarrantiesController(IServiceFactory<IZvzService> zvzServiceFactory, IMapper mapper)
         {
             this._service = zvzServiceFactory.GetService();
             this._mapper = mapper;

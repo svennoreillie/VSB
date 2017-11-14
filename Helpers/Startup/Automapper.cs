@@ -26,12 +26,9 @@ namespace VSBaseAngular
 
                     .AfterMap((src, dest) =>
                     {
-                        if (src.EndPayment != null)
-                        {
-                            dest.TerminationStartDate = src.EndPayment?.From;
-                            dest.TerminationReason = src.EndPayment?.Reason;
-                            dest.TerminationEndDate = src.EndPayment?.Until;
-                        }
+                        dest.TerminationStartDate = src.EndPayment?.From;
+                        dest.TerminationReason = src.EndPayment?.Reason;
+                        dest.TerminationEndDate = src.EndPayment?.Until;
                     });
 
                 cfg.CreateMap<BobService.Payment, BobPayment>()
@@ -95,6 +92,7 @@ namespace VSBaseAngular
                     .ForMember(dest => dest.PaymentDate, opt => opt.MapFrom(src => src.PaymentDate))
                     .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
                     .ForMember(dest => dest.Year, opt => opt.MapFrom(src => src.Year));
+
             });
 
             config.AssertConfigurationIsValid();

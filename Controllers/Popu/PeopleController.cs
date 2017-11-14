@@ -57,5 +57,15 @@ namespace VSBaseAngular.Controllers
             return Ok(people);
         }
 
+        [HttpPost]
+        [Route("")]
+        public IActionResult Post([FromBody]TestModel model ) {
+            return Ok(model.name);
+        }
+
+    }
+
+    public class TestModel {
+        public string name {get;set;}
     }
 }
