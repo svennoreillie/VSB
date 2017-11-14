@@ -165,5 +165,18 @@
     "BOB_CERTIFICATES": {
         "value": "Erkenningsperiodes"
     },
-    "BOB_LETTERS" : {"originalText":"BOB Letters","value":"Brieven"}
+    "BOB_LETTERS" : {"originalText":"BOB Letters","value":"Brieven"},
+    "VSB_HEADER_NOTHING_SELECTED" : {"originalText":"VSB_HEADER_NOTHING_SELECTED","value":"Geen persoon geselecteerd"},
+    "BOB_ADMISSION_PAYMENTS_LEGEND" : {"value":"BOB: uitbetalingen"},
+    "BOB_ADMISSION_PAYMENTS_COLUMN_ID" : {"originalText":"BOB_ADMISSION_PAYMENTS_COLUMN_ID","value":"Erkenning ID"},
+    "BOB_ADMISSION_PAYMENTS_COLUMN_STARTDATE" : {"originalText":"BOB_ADMISSION_PAYMENTS_COLUMN_STARTDATE","value":"Begindatum"},
+    "BOB_ADMISSION_PAYMENTS_COLUMN_ENDDATE" : {"originalText":"BOB_ADMISSION_PAYMENTS_COLUMN_ENDDATE","value":"Einddatum"},
+    "BOB_ADMISSION_PAYMENTS_COLUMN_AMOUNT" : {"originalText":"BOB_ADMISSION_PAYMENTS_COLUMN_AMOUNT","value":"Bedrag"},
+    "BOB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE" : {"originalText":"BOB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE","value":"Data uitbetalingen"},
+    "BOB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER" : {"originalText":"BOB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER","value":"Rekeningnummer begunstigde"},
+    "BOB_FORM" : {"originalText":"BOB_FORM","value":"Formulier BOB"},
+    "BOB_LETTERS_COLUMN_DATE" : {"originalText":"BOB_LETTERS_COLUMN_DATE","value":"Datum brief"},
+    "BOB_LETTERS_COLUMN_TYPE" : {"originalText":"BOB_LETTERS_COLUMN_TYPE","value":"Type brief"},
+    "BOB_LETTERS_COLUMN_DOWNLOAD" : {"originalText":"BOB_LETTERS_COLUMN_DOWNLOAD","value":"Download"}
+
 }

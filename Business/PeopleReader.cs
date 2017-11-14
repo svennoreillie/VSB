@@ -90,14 +90,14 @@ namespace VSBaseAngular.Business
 
         private async Task<Person> SearchBySiNumber(long siNumber)
         {
-            var response = await _client.GetAsync(CreateUrl($"member/sinumber/{siNumber}"));
+            var response = await _client.GetAsync(CreateUrl($"members/sinumber/{siNumber}"));
 
             return response.ContentAsType<Person>();
         }
 
         private async Task<Person> SearchByInsz(PersonSearch model)
         {
-            var response = await _client.GetAsync(CreateUrl($"member/insz/{model.Insz}"));
+            var response = await _client.GetAsync(CreateUrl($"members/insz/{model.Insz}"));
 
             return response.ContentAsType<Person>();
         }

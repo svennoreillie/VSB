@@ -60,7 +60,7 @@
 
 
                 <!-- Payments -->
-                <soc-panel title="BOB Certificates"
+                <soc-panel title="BOB_ADMISSION_PAYMENTS_LEGEND"
                            collapsable="true"
                            [loading]="!(payments|async)"
                            type="bar">
@@ -106,7 +106,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <span translate>BOB_FORM</span>:
-                                <button ng-click="downloadBobForm()"
+                                <button (click)="downloadBobForm()"
                                         class="btn btn-default">
                                     <i class="fa fa-file" aria-hidden="true"></i>
                                 </button>

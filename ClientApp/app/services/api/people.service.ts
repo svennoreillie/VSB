@@ -1,10 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { PersonModel } from "./../../models/person";
 import { Injectable } from "@angular/core";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/shareReplay";
-import "rxjs/add/operator/share";
 import { Observable } from "rxjs/Observable";
 import { SearchModel } from "./../../components/search/models/search";
 import { UrlService } from "./../url/url.service";
@@ -36,5 +32,10 @@ export class PeopleService {
         url = this.urlService.addQueryParameters(url, search);
 
         return this.http.get<PersonModel[]>(url);
+    }
+
+    public get(sinumber: number): Observable<PersonModel> {
+        let url = this.urlService.createUrl("people", sinumber.toString());
+        return this.http.get<PersonModel>(url);
     }
 }

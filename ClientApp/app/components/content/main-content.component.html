@@ -5,28 +5,28 @@
     <div class="soc-header fixed"
          *ngIf="person">
         <div>
-            <span class="soc-header-right">{{person.locality}}</span>
+            <span class="soc-header-right" *ngIf="person.locality">{{person.locality}}</span>
             <span class="soc-header-title">
                     <span class="soc-typography-name">{{person.name}} </span> {{person.firstName}}
-            <i [hidden]="person.sex !== genderTypeModel.Male"
+            <i *ngIf="person.sex === genderTypeModel.Male"
                class="fa fa-mars"
                aria-hidden="true"></i>
-            <i [hidden]="person.sex !== genderTypeModel.FeMale"
+            <i *ngIf="person.sex === genderTypeModel.FeMale"
                class="fa fa-venus"
                aria-hidden="true"></i>
             </span>
         </div>
         <div>
             <span>{{person.insz}}</span>
-            <span class="soc-header-right">{{person.federationNumber}}}</span>
+            <span class="soc-header-right" *ngIf="!person.memberNumber">{{person.federationNumber}}</span>
+            <span class="soc-header-right" *ngIf="person.memberNumber">{{person.federationNumber}}/{{person.memberNumber}}</span>
         </div>
     </div>
 
     <!-- tabheader if no person -->
     <div class="soc-header fixed"
          *ngIf="!person">
-        <div class="soc-header-title"
-             translate="VSB_HEADER_NOTHING_SELECTED"></div>
+        <div class="soc-header-title">{{'VSB_HEADER_NOTHING_SELECTED' | translate}}</div>
         <div>&nbsp;</div>
     </div>
 

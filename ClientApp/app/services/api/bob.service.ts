@@ -1,9 +1,6 @@
 import { BOBPayment, BOBCertificate, BOBLetter } from "./../../models";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/shareReplay";
 import { Observable } from "rxjs/Observable";
 import { UrlService } from "./../url/url.service";
 
@@ -45,6 +42,11 @@ export class BobService {
     public getLetters = (sinumber: number): Observable<BOBLetter[]> => {
         let url = this.createUrl(sinumber, `letters`);
         return this.http.get<BOBLetter[]>(url);
+    }
+
+    public downloadBobForm(sinumber: number): Observable<Blob> {
+        let url = this.createUrl(sinumber, `form`);
+        return this.http.get(url, { responseType: "blob"});
     }
 
 

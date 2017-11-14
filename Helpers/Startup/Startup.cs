@@ -33,6 +33,8 @@ namespace VSBaseAngular
             DependencyInjection.AddServices(services);
             Automapper.AddMapper(services);
 
+            services.AddCors();
+
             services.AddMvc();
 
             services.AddApiVersioning(o =>
@@ -56,6 +58,8 @@ namespace VSBaseAngular
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseCors(options => options.AllowAnyHeader());
 
 
             app.Use(async (context, next) =>

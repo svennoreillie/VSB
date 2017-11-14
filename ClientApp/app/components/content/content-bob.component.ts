@@ -16,6 +16,8 @@ export class ContentBobComponent implements OnInit, OnDestroy {
 
     //Properties
     public activePersonSubscription: Subscription;
+    public downloadBob: Subscription;
+
     public person: PersonModel | null;
 
     public certificates: Observable<BOBCertificate[]>;
@@ -32,17 +34,26 @@ export class ContentBobComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy(): void {
         this.activePersonSubscription.unsubscribe();
+        if (this.downloadBob) this.downloadBob.unsubscribe();
     }
 
 
 
     //Template methods
     public hasData(): boolean {
-        return true; //vm.vsbInfo.bobInfo == null || vm.vsbInfo.bobInfo.certificates == null
+        return this.person !== undefined && this.person !== null;
     }
 
     public downloadBobForm() {
-        console.error("todo download bob");
+        if (this.person !== null) {
+            this.downloadBob = this.bobService.downloadBobForm(this.person.siNumber)
+                                              .subscribe(blob => {
+                                                  var link = document.createElement('a');
+                                                  link.href = window.URL.createObjectURL(blob);
+                                                  if (this.person != null) link.download = `aanvraag formulier bob voor ${this.person.firstName} ${this.person.name}.pdf`;
+                                                  link.click();
+                                              }, error => console.error(error));
+        }
     }
 
 

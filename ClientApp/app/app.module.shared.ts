@@ -28,6 +28,13 @@ import { SocPanelComponent } from "./components/soc-panel/soc-panel.component";
 import * as search from "./components/search";
 import * as content from "./components/content";
 
+//rxjs
+import "rxjs/add/operator/catch";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/shareReplay";
+import "rxjs/add/operator/share";
+import "rxjs/add/operator/toPromise";
+
 
 @angular.NgModule({
     declarations: [

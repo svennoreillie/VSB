@@ -12,6 +12,12 @@ export class PersonModel {
     public deceaseDate: Date;
     
     public sex: number;
+    
+    public Street: string;
+    public HouseNumber: string;
+    public NumberBox: string;
+    public ZipCode: string;
+    public Locality: string;
 
     constructor() {}
 }

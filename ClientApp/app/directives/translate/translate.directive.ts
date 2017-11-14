@@ -3,6 +3,7 @@ import { TranslateService } from './translate.service';
 
 @Directive({ selector: '[translate]' })
 export class TranslateDirective implements OnInit {
+    
 
     @Input() description : string;
     @Input('i18n') i18n : string;
@@ -20,7 +21,6 @@ export class TranslateDirective implements OnInit {
         
         this.setReplacementValue(replacement);
     }
-
 
     /** Private functions */
     public setReplacementValue = (value: string) => {
