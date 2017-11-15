@@ -1,3 +1,6 @@
+export { THABPayment } from "./thab/payment";
+export { THABPayableAmount } from "./thab/payableamount";
+export { THABCertificate } from "./thab/certificate";
 export { ZVZContribution } from "./zvz/contribution";
 export { ZVZContract } from "./zvz/contract";
 export { ZVZPayment } from "./zvz/payment";

@@ -13,11 +13,11 @@ export class SearchByNameComponent extends SelectPersonController  {
 
     public name = new FormControl("", [Validators.required]);
 
-    constructor(private peopleService: PeopleService) {
+    constructor(peopleService: PeopleService) {
         super(peopleService);
     }
 
     public search() {
-        this.people = this.peopleService.search(this.searchModel);
+        this.doSearch(this.searchModel);
     }
 }

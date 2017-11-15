@@ -1,8 +1,8 @@
 export class ZVZContract {
-    CloseDate: Date;
-    CloseMotive: string;
-    CloseReason: string;
-    ContractDate: Date;
-    ContractMotive: string;
-    ContractReason: string;
+    closeDate: Date;
+    closeMotive: string;
+    closeReason: string;
+    contractDate: Date;
+    contractMotive: string;
+    contractReason: string;
 }

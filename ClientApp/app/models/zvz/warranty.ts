@@ -1,11 +1,11 @@
 export class ZVZWarranty {
-    CareForm: string;
-    Certificate: string;
-    DecisionDate: Date;
-    EndDate: Date;
-    RefusalReason: string;
-    RequestDate: Date;
-    Scale: string;
-    StartDate: Date;
-    State: string;
+    careForm: string;
+    certificate: string;
+    decisionDate: Date;
+    endDate: Date;
+    refusalReason: string;
+    requestDate: Date;
+    scale: string;
+    startDate: Date;
+    state: string;
 }

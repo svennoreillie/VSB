@@ -20,7 +20,7 @@
         <!-- Searchresults -->
         <div class="soc-sidebar-content">
             
-            <mat-spinner *ngIf="loading && people.length == 0"></mat-spinner>
+            <mat-spinner *ngIf="loading"></mat-spinner>
 
             <div class="soc-searchitem"
                  *ngFor="let person of people"

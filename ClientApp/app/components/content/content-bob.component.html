@@ -62,7 +62,7 @@
                 <!-- Payments -->
                 <soc-panel title="BOB_ADMISSION_PAYMENTS_LEGEND"
                            collapsable="true"
-                           [loading]="!(payments|async)"
+                           [loading]="payments && !(payments|async)"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
@@ -100,7 +100,7 @@
                 <!-- Letters -->
                 <soc-panel title="BOB Letters"
                            collapsable="true"
-                           [loading]="!(letters|async)"
+                           [loading]="letters && !(letters|async)"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">

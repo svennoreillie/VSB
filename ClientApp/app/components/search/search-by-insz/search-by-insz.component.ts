@@ -12,13 +12,13 @@ export class SearchByInszComponent extends SelectPersonController  {
     public searchModel: InszSearchModel = new  InszSearchModel();
     public insz = new FormControl("", [Validators.required]);
 
-    constructor(private peopleService: PeopleService) {
+    constructor(peopleService: PeopleService) {
         super(peopleService);
     }
 
     public search(): void {
         if (this.searchModel.insz) {
-            this.people = this.peopleService.search(this.searchModel);
+            this.doSearch(this.searchModel);
         }
     }
 }

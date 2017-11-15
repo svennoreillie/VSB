@@ -93,6 +93,33 @@ namespace VSBaseAngular
                     .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
                     .ForMember(dest => dest.Year, opt => opt.MapFrom(src => src.Year));
 
+                //thab
+                cfg.CreateMap<GW.VSB.THAB.Contracts.Data.Certificate, ThabCertificate>()
+                    .ForMember(dest => dest.BeginDate, opt => opt.MapFrom(src => src.From))
+                    .ForMember(dest => dest.CertificateId, opt => opt.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.DecisionDate, opt => opt.MapFrom(src => src.DecisionDate))
+                    .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.Until))
+                    .ForMember(dest => dest.IsMigrated, opt => opt.MapFrom(src => src.MigrateDate.HasValue))
+                    .ForMember(dest => dest.MigrateDate, opt => opt.MapFrom(src => src.MigrateDate))
+                    .ForMember(dest => dest.ReferenceDate, opt => opt.MapFrom(src => src.InitialDate))
+                    .ForMember(dest => dest.RegistrationDate, opt => opt.MapFrom(src => src.RegistrationDate))
+                    .ForMember(dest => dest.Remark, opt => opt.Ignore())
+                    .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
+                    .ForMember(dest => dest.TerminationReason, opt => opt.MapFrom(src => src.ReasonClosure));
+
+                cfg.CreateMap<GW.VSB.THAB.Contracts.Data.Payment, ThabPayment>()
+                    .ForMember(dest => dest.Currency, opt => opt.MapFrom(src => src.Currency))
+                    .ForMember(dest => dest.SendDate, opt => opt.MapFrom(src => src.SendDate))
+                    .ForMember(dest => dest.Iban, opt => opt.MapFrom(src => src.Account != null ? src.Account.Iban : null))
+                    .ForMember(dest => dest.PeriodStart, opt => opt.MapFrom(src => src.PeriodStart))
+                    .ForMember(dest => dest.PeriodEnd, opt => opt.MapFrom(src => src.MigrateDate.PeriodEnd))
+                    .ForMember(dest => dest.UnCode, opt => opt.MapFrom(src => src.UnCode));
+
+                cfg.CreateMap<GW.VSB.THAB.Contracts.Data.CertificatePayableAmount, ThabPayableAmount>()
+                    .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.Start))
+                    .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.End))
+                    .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount));
+
             });
 
             config.AssertConfigurationIsValid();

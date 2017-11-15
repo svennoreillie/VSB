@@ -14,7 +14,7 @@ export class SearchByStateComponent extends SelectPersonController implements On
     public searchModel: StateSearchModel = new  StateSearchModel();
     public environment: number = 300;
 
-    constructor(private peopleService: PeopleService,
+    constructor(peopleService: PeopleService,
                 private generalDataService: GeneralDataService) {
         super(peopleService);
     }
@@ -29,7 +29,7 @@ export class SearchByStateComponent extends SelectPersonController implements On
 
     public search(): void {
         if (!this.isSearchDisabled()) {
-            this.people = this.peopleService.search(this.searchModel);
+            this.doSearch(this.searchModel);
         }
     }
 

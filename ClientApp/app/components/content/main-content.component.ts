@@ -14,7 +14,8 @@ export class MainContentComponent implements OnInit, OnDestroy {
     public genderTypeModel = GenderTypeModel;
 
     public activePersonSubscription: Subscription;
-    public peopleSubsricption: Subscription;
+    public updatePersonSubscription: Subscription;
+    //public peopleSubsricption: Subscription;
 
     public currentTab: ContentTab = ContentTab.Summary;
     public person: PersonModel | null;
@@ -22,12 +23,14 @@ export class MainContentComponent implements OnInit, OnDestroy {
     constructor(private peopleService: PeopleService) { }
 
     public ngOnInit(): void {
-        this.activePersonSubscription = this.peopleService.activePerson.subscribe(p => this.personChanged(p));
+        this.activePersonSubscription = this.peopleService.activePerson.subscribe(p => this.person = p);
+        this.updatePersonSubscription = this.peopleService.activePersonFullDetails.subscribe(p => this.person = p);
     }
 
     public ngOnDestroy(): void {
         this.activePersonSubscription.unsubscribe();
-        if (this.peopleService) this.peopleSubsricption.unsubscribe();
+        this.updatePersonSubscription.unsubscribe();
+        //if (this.peopleSubsricption) this.peopleSubsricption.unsubscribe();
     }
 
     public setView(tab: ContentTab) {
@@ -38,10 +41,10 @@ export class MainContentComponent implements OnInit, OnDestroy {
         return this.currentTab === tab;
     }
 
-    private personChanged(person: PersonModel | null)  {
-        this.person = person;
-        if (person == null) return;
-        this.peopleSubsricption = this.peopleService.get(person.siNumber)
-                                                    .subscribe(response => this.person = response);
-    }
+    // private personChanged(person: PersonModel | null)  {
+    //     this.person = person;
+    //     if (person == null) return;
+    //     this.peopleSubsricption = this.peopleService.get(person.siNumber)
+    //                                                 .subscribe(response => this.person = response);
+    // }
 }

@@ -13,13 +13,13 @@ export class SearchByMembernrComponent extends SelectPersonController  {
     public federation = new FormControl("", [Validators.required]);
     public memberNr = new FormControl("", [Validators.required]);
 
-    constructor(private peopleService: PeopleService) {
+    constructor(peopleService: PeopleService) {
         super(peopleService);
     }
 
     public search(): void {
         if (this.isInvalid()) return;
-        this.people = this.peopleService.search(this.searchModel);
+        this.doSearch(this.searchModel);
     }
 
     public isInvalid(): boolean {

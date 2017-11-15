@@ -4,7 +4,8 @@ import { PersonModel } from "./../../models/person";
 
 @Component({
     selector: "soc-sidebar",
-    templateUrl: "soc-sidebar.component.html"
+    templateUrl: "soc-sidebar.component.html",
+    styleUrls: ["soc-sidebar.component.css"]
 })
 
 export class SocSidebarComponent {
