@@ -23,9 +23,7 @@ export class SiNumberSearchModel extends SearchModel {
 
 export class StateSearchModel extends SearchModel {
 
-    public ZVZ: boolean;
-    public BOB: boolean;
-    public THAB: boolean;
+    public Pillar: string;
 
     public StateInitiated: boolean;
     public StateCompleted: boolean;

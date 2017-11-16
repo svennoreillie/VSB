@@ -1,18 +1,19 @@
 import { HttpClientModule } from "@angular/common/http";
-// 3rd party
-import * as angular from "./angular-barrel";
 import {
-    MatNativeDateModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatCardModule,
+    MatNativeDateModule,
+    MatProgressBarModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatRadioModule,
+    MatSelectModule
 } from "@angular/material";
+// 3rd party
+import * as angular from "./angular-barrel";
 
 // Directives
 import * as directives from "./directives";
@@ -22,23 +23,21 @@ import * as services from "./services";
 
 // Components
 import { AppComponent } from "./components/app/app.component";
-import { VersionComponent } from "./components/version/version.component";
-import { NavMenuComponent } from "./components/navmenu/navmenu.component";
-import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.component";
-import { SocPanelComponent } from "./components/soc-panel/soc-panel.component";
-import * as search from "./components/search";
 import * as content from "./components/content";
+import { NavMenuComponent } from "./components/navmenu/navmenu.component";
+import * as search from "./components/search";
+import { SocPanelComponent } from "./components/soc-panel/soc-panel.component";
+import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.component";
+import { VersionComponent } from "./components/version/version.component";
 
-//rxjs
+// rxjs
 import "rxjs/add/operator/catch";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/shareReplay";
-import "rxjs/add/operator/share";
-import "rxjs/add/operator/toPromise";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/distinctUntilChanged";
-
-
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/share";
+import "rxjs/add/operator/shareReplay";
+import "rxjs/add/operator/toPromise";
 
 @angular.NgModule({
     declarations: [
@@ -83,12 +82,13 @@ import "rxjs/add/operator/distinctUntilChanged";
         MatCardModule,
         MatProgressSpinnerModule,
         MatProgressBarModule,
+        MatSelectModule,
         // Modules
         HttpClientModule,
         angular.CommonModule,
         angular.FormsModule,
         angular.ReactiveFormsModule,
-        //angular.HttpModule,
+        // angular.HttpModule,
         angular.RouterModule.forRoot([{
                 path: "",
                 redirectTo: "byname",

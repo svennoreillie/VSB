@@ -1,10 +1,26 @@
-import { Subscription } from "rxjs/Subscription";
-import { PersonModel } from "./../../../models/person";
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { PeopleService } from "../../../services";
-import { SelectPersonController } from "../select-person.controller";
-import { GeneralDataService } from "./../../../services/api/general-data.service";
-import { StateSearchModel } from "./../models/search";
+import {
+    Subscription
+} from "rxjs/Subscription";
+import {
+    PersonModel
+} from "./../../../models/person";
+import {
+    Component,
+    OnInit,
+    OnDestroy
+} from "@angular/core";
+import {
+    PeopleService
+} from "../../../services";
+import {
+    SelectPersonController
+} from "../select-person.controller";
+import {
+    GeneralDataService
+} from "./../../../services/api/general-data.service";
+import {
+    StateSearchModel
+} from "./../models/search";
 
 @Component({
     selector: "search-by-state",
@@ -12,31 +28,38 @@ import { StateSearchModel } from "./../models/search";
     styleUrls: ["search-by-state.component.css"]
 })
 export class SearchByStateComponent extends SelectPersonController implements OnInit, OnDestroy {
+    private generalDataSub: Subscription;
     private peopleLoading: boolean;
     private allLoaded: boolean = false;;
     private subscription: Subscription;
     private loadCount: number = 15;
 
-    public searchModel: StateSearchModel = new  StateSearchModel();
+    public searchModel: StateSearchModel = new StateSearchModel();
     public environment: number = 300;
     public StateRejectedDate: Date;
     public StateCompletedDate: Date;
     public peopleList: PersonModel[] = [];
 
     constructor(private peopleServices: PeopleService,
-                private generalDataService: GeneralDataService) {
+        private generalDataService: GeneralDataService) {
         super(peopleServices);
     }
 
     public ngOnInit(): void {
-        this.generalDataService.getEnvironment()
-                               .subscribe(
-                                    (value) => { this.environment = value.environment; },
-                                    (error) => { console .log(error); }
-                                );
+        this.generalDataSub = this.generalDataService.getEnvironment()
+            .subscribe(
+                (value) => {
+                    this.environment = value.environment;
+                    this.searchModel.Federation = value.environment;
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
     }
 
     public ngOnDestroy(): void {
+        this.generalDataSub.unsubscribe();
         if (this.subscription) this.subscription.unsubscribe();
     }
 
@@ -55,7 +78,7 @@ export class SearchByStateComponent extends SelectPersonController implements On
     public isSearchDisabled = (): boolean => {
         if (!this.searchModel) return true;
         const sm = this.searchModel;
-        if (!(sm.ZVZ || sm.BOB || sm.THAB)) return true;
+        if (!sm.Pillar) return true;
         if (!(sm.StateCompleted || sm.StateInitiated || sm.StateRejected)) return true;
         if (sm.StateRejected && sm.StateRejectedDate == null) return true;
         if (sm.StateCompleted && sm.StateCompletedDate == null) return true;
@@ -71,11 +94,11 @@ export class SearchByStateComponent extends SelectPersonController implements On
 
     private makeSearchCall() {
         this.subscription = this.peopleServices.search(this.searchModel)
-        .subscribe(data => {
-            this.peopleList = this.peopleList.concat(data);
-            if (data.length < this.loadCount) this.allLoaded = true;
-        }, 
-        (error) => console.error(error), 
-        () => this.peopleLoading = false);
+            .subscribe(data => {
+                    this.peopleList = this.peopleList.concat(data);
+                    if (data.length < this.loadCount) this.allLoaded = true;
+                },
+                (error) => console.error(error),
+                () => this.peopleLoading = false);
     }
 }

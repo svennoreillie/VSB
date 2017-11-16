@@ -64,15 +64,27 @@ namespace VSBaseAngular.Business
             if (!string.IsNullOrEmpty(search.MemberNr)) peopleTasks.Add(SearchByMemberNr(search));
             if (search.SiNumber.HasValue) peopleTasks.Add(SearchBySiNumbers(search.SiNumber.Value));
             if (!string.IsNullOrEmpty(search.Name)) peopleTasks.Add(SearchByName(search));
-            if (search.ZVZ == true) peopleTasks.Add(SearchZVZState(search));
-            if (search.BOB == true) peopleTasks.Add(SearchBOBState(search));
-            if (search.THAB == true) peopleTasks.Add(SearchTHABState(search));
+            switch (search.Pillar)
+            {
+                case "ZVZ":
+                    peopleTasks.Add(SearchZVZState(search));
+                    break;
+                case "BOB":
+                    peopleTasks.Add(SearchBOBState(search));
+                break;
+                case "THAB":
+                    peopleTasks.Add(SearchTHABState(search));
+                    break;
+                default:
+                    break;
+            }
 
             var peopleLists = await Task.WhenAll(peopleTasks);
             var people = peopleLists.SelectMany(p => p);
 
             //temp fix for federation state search => should be in calls for mainframe!!!!!!
-            if (search.Federation.HasValue && search.Federation.Value % 100 != 0) {
+            if (search.Federation.HasValue && search.Federation.Value % 100 != 0)
+            {
                 people = people.Where(p => p.FederationNumber == search.Federation.Value);
             }
 

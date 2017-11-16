@@ -42,9 +42,7 @@ namespace VSBaseAngular.Controllers
                                     //sinumber
                                     [FromQuery]long? sinumber,
                                     //state
-                                    [FromQuery]bool? ZVZ,
-                                    [FromQuery]bool? BOB,
-                                    [FromQuery]bool? THAB,
+                                    [FromQuery]string pillar,
                                     [FromQuery]bool? StateInitiated,
                                     [FromQuery]bool? StateCompleted,
                                     [FromQuery]DateTime? StateCompletedDate,
@@ -62,9 +60,7 @@ namespace VSBaseAngular.Controllers
             model.Name = name;
             model.SiNumber = sinumber;
 
-            model.ZVZ = ZVZ;
-            model.BOB = BOB;
-            model.THAB = THAB;
+            model.Pillar = pillar;
             model.StateInitiated = StateInitiated;
             model.StateCompleted = StateCompleted;
             model.StateCompletedDate = StateCompletedDate;

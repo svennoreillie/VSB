@@ -1,0 +1,4 @@
+mat-radio-group.vertical-radio {
+    display: inline-flex; 
+    flex-direction:column;
+} 

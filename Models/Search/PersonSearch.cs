@@ -11,9 +11,7 @@ namespace VSBaseAngular.Models.Search
         public string FirstName { get; set; }
         public string Name { get; set; }
 
-        public bool? ZVZ { get; set; }
-        public bool? BOB { get; set; }
-        public bool? THAB { get; set; }
+        public string Pillar { get; set; }
 
         public bool? StateInitiated { get; set; }
         public bool? StateCompleted { get; set; }

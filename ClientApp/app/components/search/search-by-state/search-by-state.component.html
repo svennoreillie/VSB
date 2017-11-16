@@ -6,8 +6,45 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
+
+                <ng-container *ngIf="environment==300">
+                    <mat-form-field>
+                        <mat-select placeholder="{{'Federation' | translate}}"
+                                    [(ngModel)]="searchModel.Federation">
+                            <mat-option [value]="300">{{'all' | translate}}</mat-option>
+                            <mat-option [value]="304">304</mat-option>
+                            <mat-option [value]="309">309</mat-option>
+                            <mat-option [value]="311">311</mat-option>
+                            <mat-option [value]="322">322</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </ng-container>
+
+                <ng-container *ngIf="environment==400">
+                    <mat-form-field>
+                        <mat-select placeholder="{{'Federation' | translate}}"
+                                    [(ngModel)]="searchModel.Federation">
+                            <mat-option [value]="400">{{'all' | translate}}</mat-option>
+                            <mat-option [value]="401">401</mat-option>
+                            <mat-option [value]="403">403</mat-option>
+                            <mat-option [value]="404">404</mat-option>
+                            <mat-option [value]="407">407</mat-option>
+                            <mat-option [value]="415">415</mat-option>
+                            <mat-option [value]="417">417</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </ng-container>
+
+                <br/>
+
                 <p translate>State Search By Area</p>
 
+                <mat-radio-group [(ngModel)]="searchModel.Pillar">
+                    <mat-radio-button value="ZVZ">{{'ZVZ' | translate}}</mat-radio-button>
+                    <mat-radio-button value="BOB">{{'BOB' | translate}}</mat-radio-button>
+                    <mat-radio-button value="THAB">{{'THAB' | translate}}</mat-radio-button>
+                </mat-radio-group>
+                <!-- 
                 <section class="example-section">
                     <mat-checkbox [(ngModel)]="searchModel.ZVZ">{{'ZVZ' | translate}}</mat-checkbox>
                 </section>
@@ -16,7 +53,7 @@
                 </section>
                 <section class="example-section">
                     <mat-checkbox [(ngModel)]="searchModel.THAB">{{'THAB' | translate}}</mat-checkbox>
-                </section>
+                </section> -->
 
                 <br/>
                 <p translate>State Search By State</p>
@@ -56,33 +93,6 @@
                 </section>
 
 
-                <br/>
-
-                <p translate>State Search By Federation</p>
-
-                <ng-container *ngIf="environment==300">
-                    <mat-radio-group style="display: inline-flex; flex-direction:column"
-                                     [(ngModel)]="searchModel.Federation">
-                        <mat-radio-button value="300">{{'all' | translate}}</mat-radio-button>
-                        <mat-radio-button value="304">{{'304' | translate}}</mat-radio-button>
-                        <mat-radio-button value="309">{{'309' | translate}}</mat-radio-button>
-                        <mat-radio-button value="311">{{'311' | translate}}</mat-radio-button>
-                        <mat-radio-button value="322">{{'322' | translate}}</mat-radio-button>
-                    </mat-radio-group>
-                </ng-container>
-
-                <ng-container *ngIf="environment==400">
-                    <mat-radio-group style="display: inline-flex; flex-direction:column"
-                                     [(ngModel)]="searchModel.Federation">
-                        <mat-radio-button value="400">{{'400' | translate}}</mat-radio-button>
-                        <mat-radio-button value="401">{{'401' | translate}}</mat-radio-button>
-                        <mat-radio-button value="403">{{'403' | translate}}</mat-radio-button>
-                        <mat-radio-button value="404">{{'404' | translate}}</mat-radio-button>
-                        <mat-radio-button value="407">{{'407' | translate}}</mat-radio-button>
-                        <mat-radio-button value="415">{{'415' | translate}}</mat-radio-button>
-                        <mat-radio-button value="417">{{'417' | translate}}</mat-radio-button>
-                    </mat-radio-group>
-                </ng-container>
 
 
                 <p translate="Optional search information before search button at state search">VSB_SEARCHBYSTATE_INFO</p>
