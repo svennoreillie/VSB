@@ -6,7 +6,7 @@ export class TranslateDirective implements OnInit {
     
 
     @Input() description : string;
-    @Input('i18n') i18n : string;
+    @Input('translate') i18n : string;
 
     constructor(
         private el: ElementRef,

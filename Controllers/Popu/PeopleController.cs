@@ -34,10 +34,23 @@ namespace VSBaseAngular.Controllers
         [Route("")]
         public async Task<IActionResult> Get([FromQuery]string firstname,
                                     [FromQuery]string name,
+                                    //insz
                                     [FromQuery]string insz,
-                                    [FromQuery]int federation,
+                                    //member
+                                    [FromQuery]int? federation,
                                     [FromQuery]string membernr,
-                                    [FromQuery]long sinumber,
+                                    //sinumber
+                                    [FromQuery]long? sinumber,
+                                    //state
+                                    [FromQuery]bool? ZVZ,
+                                    [FromQuery]bool? BOB,
+                                    [FromQuery]bool? THAB,
+                                    [FromQuery]bool? StateInitiated,
+                                    [FromQuery]bool? StateCompleted,
+                                    [FromQuery]DateTime? StateCompletedDate,
+                                    [FromQuery]bool? StateRejected,
+                                    [FromQuery]DateTime? StateRejectedDate,
+                                    //general
                                     [FromQuery]int skip,
                                     [FromQuery]int limit = int.MaxValue)
         {
@@ -49,6 +62,15 @@ namespace VSBaseAngular.Controllers
             model.Name = name;
             model.SiNumber = sinumber;
 
+            model.ZVZ = ZVZ;
+            model.BOB = BOB;
+            model.THAB = THAB;
+            model.StateInitiated = StateInitiated;
+            model.StateCompleted = StateCompleted;
+            model.StateCompletedDate = StateCompletedDate;
+            model.StateRejected = StateRejected;
+            model.StateRejectedDate = StateRejectedDate;
+
             model.Limit = limit;
             model.Skip = skip;
 
@@ -59,13 +81,15 @@ namespace VSBaseAngular.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult Post([FromBody]TestModel model ) {
+        public IActionResult Post([FromBody]TestModel model)
+        {
             return Ok(model.name);
         }
 
     }
 
-    public class TestModel {
-        public string name {get;set;}
+    public class TestModel
+    {
+        public string name { get; set; }
     }
 }

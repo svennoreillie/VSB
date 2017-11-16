@@ -14,16 +14,18 @@ namespace VSBaseAngular.Controllers
     [Route("api/v{version:apiVersion}/[Controller]")]
     public class THABCertificatesController : BaseController
     {
-        public IReader<Person> _peopleService { get; }
-
+        private readonly IReader<Person> _peopleService;
+        private readonly IReader<ThabCertificate> _thabCertificateService;
         private readonly IThabService _service;
         private readonly IMapper _mapper;
 
         public THABCertificatesController(IServiceFactory<IThabService> thabServiceFactory,
+                                         IReader<ThabCertificate> thabCertificateService,
                                          IReader<Person> peopleService,
                                          IMapper mapper)
         {
             _peopleService = peopleService;
+            _thabCertificateService = thabCertificateService;
             _service = thabServiceFactory.GetService();
             _mapper = mapper;
         }
@@ -33,25 +35,9 @@ namespace VSBaseAngular.Controllers
         [Route("{sinumber:long}")]
         public async Task<IActionResult> GetAll(long sinumber, [FromQuery]string insz)
         {
-            if (string.IsNullOrEmpty(insz))
-            {
-                var person = await _peopleService.GetAsync(new PersonKey(sinumber));
-                if (person == null) return BadRequest("INSZ could not be found");
-                insz = person.Insz;
-            }
+            var certificates = await _thabCertificateService.SearchAsync(new ThabCertificateSearch() { SiNumber = sinumber, Insz = insz });
 
-            var request = new GW.VSB.THAB.Contracts.GetCertificates.GetCertificatesRequest()
-            {
-                SiNumber = sinumber,
-                Insz = insz
-            };
-
-            var response = _service.GetCertificates(request);
-            if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
-                return BadRequest(response.BusinessMessages);
-
-            var mappedModels = _mapper.Map<IEnumerable<ThabCertificate>>(response?.Value?.Certificates);
-            return Ok(mappedModels);
+            return Ok(certificates);
 
             // List<ThabCertificate> certificates = new List<ThabCertificate>();
 

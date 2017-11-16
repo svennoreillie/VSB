@@ -32,14 +32,14 @@ namespace VSBaseAngular.Controllers
 
         [HttpGet]
         [Route("~/api/v{version:apiVersion}/thabcertificates/{sinumber:long}/payableamounts/{referenceDate:datetime}")]
-        public IActionResult Get(long sinumber, string certificateid)
+        public async Task<IActionResult> Get(long sinumber, string certificateid)
         {
-            var request = new GW.VSB.THAB.Contracts.GetCertificates.GetCertificatesPayableAmountRequest()
+            var request = new GetCertificatesPayableAmountRequest()
             {
                 SiNumber = sinumber,
                 Id = certificateid
             };
-            var response = _service.GetCertificatesPayableAmounts(request);
+            var response = await _service.GetCertificatesPayableAmountsAsync(request);
             if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                 return BadRequest(response.BusinessMessages);
 

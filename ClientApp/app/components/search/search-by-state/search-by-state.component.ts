@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Subscription } from "rxjs/Subscription";
+import { PersonModel } from "./../../../models/person";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { PeopleService } from "../../../services";
 import { SelectPersonController } from "../select-person.controller";
 import { GeneralDataService } from "./../../../services/api/general-data.service";
@@ -9,14 +11,21 @@ import { StateSearchModel } from "./../models/search";
     templateUrl: "search-by-state.component.html",
     styleUrls: ["search-by-state.component.css"]
 })
-export class SearchByStateComponent extends SelectPersonController implements OnInit {
+export class SearchByStateComponent extends SelectPersonController implements OnInit, OnDestroy {
+    private peopleLoading: boolean;
+    private allLoaded: boolean = false;;
+    private subscription: Subscription;
+    private loadCount: number = 15;
 
     public searchModel: StateSearchModel = new  StateSearchModel();
     public environment: number = 300;
+    public StateRejectedDate: Date;
+    public StateCompletedDate: Date;
+    public peopleList: PersonModel[] = [];
 
-    constructor(peopleService: PeopleService,
+    constructor(private peopleServices: PeopleService,
                 private generalDataService: GeneralDataService) {
-        super(peopleService);
+        super(peopleServices);
     }
 
     public ngOnInit(): void {
@@ -27,9 +36,19 @@ export class SearchByStateComponent extends SelectPersonController implements On
                                 );
     }
 
+    public ngOnDestroy(): void {
+        if (this.subscription) this.subscription.unsubscribe();
+    }
+
     public search(): void {
         if (!this.isSearchDisabled()) {
-            this.doSearch(this.searchModel);
+            this.allLoaded = false;
+            this.peopleList = [];
+            this.peopleLoading = true;
+            this.searchModel.limit = this.loadCount;
+            if (this.StateCompletedDate) this.searchModel.StateCompletedDate = this.StateCompletedDate.toISOString();
+            if (this.StateRejectedDate) this.searchModel.StateRejectedDate = this.StateRejectedDate.toISOString();
+            this.makeSearchCall();
         }
     }
 
@@ -44,19 +63,19 @@ export class SearchByStateComponent extends SelectPersonController implements On
         return false;
     }
 
-    public getConfirmedMonth = (): Date => {
-        return this.searchModel.StateCompletedDate;
+    public loadMore() {
+        if (this.allLoaded) return;
+        this.searchModel.skip += this.loadCount;
+        this.makeSearchCall();
     }
 
-    public updateConfirmedMonth(newValue: Date): void {
-        this.searchModel.StateCompletedDate = newValue;
-    }
-
-    public getDecisionMonth(): Date {
-        return this.searchModel.StateRejectedDate;
-    }
-
-    public updateDecisionMonth(newValue: Date): void {
-        this.searchModel.StateRejectedDate = newValue;
+    private makeSearchCall() {
+        this.subscription = this.peopleServices.search(this.searchModel)
+        .subscribe(data => {
+            this.peopleList = this.peopleList.concat(data);
+            if (data.length < this.loadCount) this.allLoaded = true;
+        }, 
+        (error) => console.error(error), 
+        () => this.peopleLoading = false);
     }
 }

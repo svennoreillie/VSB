@@ -3,8 +3,8 @@
         <!-- Search form view -->
         <div class="soc-search">
             <!-- Search form -->
-            <div class="soc-search-form">
-                 
+            <div class="soc-search-form" 
+                [hidden]="!formVisible">
                 <ng-content></ng-content>
             </div>
 
@@ -18,7 +18,8 @@
         </div>
 
         <!-- Searchresults -->
-        <div class="soc-sidebar-content">
+        <div class="soc-sidebar-content"
+             (scroll)="scroll.next($event)">
             
             <mat-spinner *ngIf="loading"></mat-spinner>
 

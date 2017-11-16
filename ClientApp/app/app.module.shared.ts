@@ -22,6 +22,7 @@ import * as services from "./services";
 
 // Components
 import { AppComponent } from "./components/app/app.component";
+import { VersionComponent } from "./components/version/version.component";
 import { NavMenuComponent } from "./components/navmenu/navmenu.component";
 import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.component";
 import { SocPanelComponent } from "./components/soc-panel/soc-panel.component";
@@ -34,12 +35,16 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/shareReplay";
 import "rxjs/add/operator/share";
 import "rxjs/add/operator/toPromise";
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/distinctUntilChanged";
+
 
 
 @angular.NgModule({
     declarations: [
         AppComponent,
         // Components
+        VersionComponent,
         NavMenuComponent,
         SocSidebarComponent,
         SocPanelComponent,

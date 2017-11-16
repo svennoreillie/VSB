@@ -1,18 +1,15 @@
-import { THABCertificate } from "./../../models/thab/certificate";
 import { ThabService } from "./../../services/api/thab.service";
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 import { PeopleService } from "./../../services/api/people.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { PersonModel, THABCertificate } from "../../models";
+import { PersonModel, THABCertificate, THABPayableAmount, THABPayment } from "../../models";
 
 @Component({
     selector: 'content-thab',
     templateUrl: 'content-thab.component.html'
 })
 export class ContentThabComponent implements OnInit, OnDestroy {
-    selectedCertificate: THABCertificate;
-    payableAmounts: Observable<THABPayableAmount[]>;
     
     //Properties
     public activePersonSubscription: Subscription;
@@ -20,7 +17,9 @@ export class ContentThabComponent implements OnInit, OnDestroy {
     public downloadBob: Subscription;
 
     public person: PersonModel | null;
-
+    public payments: Observable<THABPayment[]>;
+    public selectedCertificate: THABCertificate;
+    public payableAmounts: Observable<THABPayableAmount[]>;
     public certificates: Observable<THABCertificate[]>;
 
 
@@ -75,6 +74,8 @@ export class ContentThabComponent implements OnInit, OnDestroy {
 
         this.certificates = this.thabService.getCertificates(this.person.siNumber, this.person.insz)
                                             .share();
+        this.payments = this.thabService.getPayments(this.person.siNumber, this.person.insz)
+                                        .share();
     }
 
 }

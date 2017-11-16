@@ -11,6 +11,8 @@ namespace VSBaseAngular {
             services.AddSingleton<HttpClient>(new HttpClient());
 
             services.AddTransient<IReader<Person>, PeopleReader>();
+            services.AddTransient<IReader<ThabCertificate>, ThabCertificateReader>();
+            
             services.AddTransient(typeof(IServiceFactory<>), typeof(ServiceFactory<>));
             
         }

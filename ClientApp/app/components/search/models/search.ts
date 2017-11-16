@@ -1,4 +1,6 @@
 export class SearchModel {
+    public skip: number = 0;
+    public limit: number = 100;
 }
 
 export class NameSearchModel extends SearchModel {
@@ -27,9 +29,9 @@ export class StateSearchModel extends SearchModel {
 
     public StateInitiated: boolean;
     public StateCompleted: boolean;
-    public StateCompletedDate: Date;
+    public StateCompletedDate: string;
     public StateRejected: boolean;
-    public StateRejectedDate: Date;
+    public StateRejectedDate: string;
 
     public Federation: number;
 
@@ -38,7 +40,7 @@ export class StateSearchModel extends SearchModel {
 
         let firstOfTheMonth = new Date();
         firstOfTheMonth.setDate(1);
-        this.StateCompletedDate = firstOfTheMonth;
-        this.StateRejectedDate = firstOfTheMonth;
+        this.StateCompletedDate = firstOfTheMonth.toISOString();
+        this.StateRejectedDate = firstOfTheMonth.toISOString();
     }
 }

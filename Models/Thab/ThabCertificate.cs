@@ -1,6 +1,7 @@
 using System;
+using VSBaseAngular.Models;
 
-public class ThabCertificate
+public class ThabCertificate : ModelBase
 {
     public DateTime? BeginDate { get; set; }
     public string CertificateId { get; set; }

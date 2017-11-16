@@ -1,18 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { GeneralDataService } from "./../../services/api/general-data.service";
+import { Component } from "@angular/core";
 
 @Component({
     selector: "app",
     templateUrl: "./app.component.html"
 })
-export class AppComponent implements OnInit {
-
-    public applicationVersion: any;
-
-    constructor(private generalDataService: GeneralDataService) {}
-
-    public ngOnInit(): void {
-        this.applicationVersion = this.generalDataService.getVersion();
-    }
+export class AppComponent {
 
 }

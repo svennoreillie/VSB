@@ -34,12 +34,12 @@ namespace VSBaseAngular.Controllers
         [Route("~/api/v{version:apiVersion}/thabcertificates/{sinumber:long}/remarks/{referenceDate:datetime}")]
         public async Task<IActionResult> Get(long sinumber, DateTime referenceDate)
         {
-            var remarkRequest = new GW.VSB.THAB.Contracts.GetRemark.GetRemarkRequest()
+            var remarkRequest = new GetRemarkRequest()
             {
                 SiNumber = sinumber,
                 ReferenceDate = referenceDate
             };
-            var remarkResponse = _service.GetRemark(remarkRequest);
+            var remarkResponse = await _service.GetRemarkAsync(remarkRequest);
             if (remarkResponse.BusinessMessages != null && remarkResponse.BusinessMessages.Length > 0)
                 return BadRequest(remarkResponse.BusinessMessages);
 
