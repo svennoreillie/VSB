@@ -37,23 +37,23 @@
 
                 <br/>
 
+
+                <mat-form-field>
+                    <mat-select placeholder="{{'State Search By Area' | translate}}"
+                                [(ngModel)]="searchModel.Pillar">
+                        <mat-option [value]="ZVZ">{{'ZVZ' | translate}}</mat-option>
+                        <mat-option [value]="BOB">{{'BOB' | translate}}</mat-option>
+                        <mat-option [value]="THAB">{{'THAB' | translate}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+<!-- 
                 <p translate>State Search By Area</p>
 
                 <mat-radio-group [(ngModel)]="searchModel.Pillar">
                     <mat-radio-button value="ZVZ">{{'ZVZ' | translate}}</mat-radio-button>
                     <mat-radio-button value="BOB">{{'BOB' | translate}}</mat-radio-button>
                     <mat-radio-button value="THAB">{{'THAB' | translate}}</mat-radio-button>
-                </mat-radio-group>
-                <!-- 
-                <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.ZVZ">{{'ZVZ' | translate}}</mat-checkbox>
-                </section>
-                <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.BOB">{{'BOB' | translate}}</mat-checkbox>
-                </section>
-                <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.THAB">{{'THAB' | translate}}</mat-checkbox>
-                </section> -->
+                </mat-radio-group> -->
 
                 <br/>
                 <p translate>State Search By State</p>
