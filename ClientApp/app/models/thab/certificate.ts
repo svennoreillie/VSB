@@ -9,4 +9,8 @@ export interface THABCertificate {
     registrationDate: Date;
     state: string;
     terminationReason: string;
+    initialRemark: string;
+    remark: string;
+    tooltip: string;
+    tooltipTitle: string;
 }

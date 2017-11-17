@@ -28,16 +28,17 @@ import {
     styleUrls: ["search-by-state.component.css"]
 })
 export class SearchByStateComponent extends SelectPersonController implements OnInit, OnDestroy {
+    
     private generalDataSub: Subscription;
     private peopleLoading: boolean;
     private allLoaded: boolean = false;;
     private subscription: Subscription;
-    private loadCount: number = 15;
+    private loadCount: number = 20;
 
     public searchModel: StateSearchModel = new StateSearchModel();
     public environment: number = 300;
-    public StateRejectedDate: Date;
-    public StateCompletedDate: Date;
+    public stateRejectedDate: Date;
+    public stateCompletedDate: Date;
     public peopleList: PersonModel[] = [];
 
     constructor(private peopleServices: PeopleService,
@@ -50,7 +51,7 @@ export class SearchByStateComponent extends SelectPersonController implements On
             .subscribe(
                 (value) => {
                     this.environment = value.environment;
-                    this.searchModel.Federation = value.environment;
+                    this.searchModel.federation = value.environment;
                 },
                 (error) => {
                     console.log(error);
@@ -69,8 +70,8 @@ export class SearchByStateComponent extends SelectPersonController implements On
             this.peopleList = [];
             this.peopleLoading = true;
             this.searchModel.limit = this.loadCount;
-            if (this.StateCompletedDate) this.searchModel.StateCompletedDate = this.StateCompletedDate.toISOString();
-            if (this.StateRejectedDate) this.searchModel.StateRejectedDate = this.StateRejectedDate.toISOString();
+            if (this.stateCompletedDate) this.searchModel.stateCompletedDate = this.stateCompletedDate.toISOString();
+            if (this.stateRejectedDate) this.searchModel.stateRejectedDate = this.stateRejectedDate.toISOString();
             this.makeSearchCall();
         }
     }
@@ -78,11 +79,11 @@ export class SearchByStateComponent extends SelectPersonController implements On
     public isSearchDisabled = (): boolean => {
         if (!this.searchModel) return true;
         const sm = this.searchModel;
-        if (!sm.Pillar) return true;
-        if (!(sm.StateCompleted || sm.StateInitiated || sm.StateRejected)) return true;
-        if (sm.StateRejected && sm.StateRejectedDate == null) return true;
-        if (sm.StateCompleted && sm.StateCompletedDate == null) return true;
-        if (sm.Federation <= 0) return true;
+        if (!sm.pillar) return true;
+        if (!(sm.stateCompleted || sm.stateInitiated || sm.stateRejected)) return true;
+        if (sm.stateRejected && sm.stateRejectedDate == null) return true;
+        if (sm.stateCompleted && sm.stateCompletedDate == null) return true;
+        if (sm.federation <= 0) return true;
         return false;
     }
 

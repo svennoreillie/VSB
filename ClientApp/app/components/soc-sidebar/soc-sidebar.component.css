@@ -1,6 +1,6 @@
 mat-spinner {
-    width: 90px;
-    height: 90px;
+    width: 90px !important;
+    height: 90px !important;
     margin: auto;
     margin-top: 40px;
 }

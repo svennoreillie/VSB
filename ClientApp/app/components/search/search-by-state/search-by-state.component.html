@@ -10,7 +10,7 @@
                 <ng-container *ngIf="environment==300">
                     <mat-form-field>
                         <mat-select placeholder="{{'Federation' | translate}}"
-                                    [(ngModel)]="searchModel.Federation">
+                                    [(ngModel)]="searchModel.federation">
                             <mat-option [value]="300">{{'all' | translate}}</mat-option>
                             <mat-option [value]="304">304</mat-option>
                             <mat-option [value]="309">309</mat-option>
@@ -23,7 +23,7 @@
                 <ng-container *ngIf="environment==400">
                     <mat-form-field>
                         <mat-select placeholder="{{'Federation' | translate}}"
-                                    [(ngModel)]="searchModel.Federation">
+                                    [(ngModel)]="searchModel.federation">
                             <mat-option [value]="400">{{'all' | translate}}</mat-option>
                             <mat-option [value]="401">401</mat-option>
                             <mat-option [value]="403">403</mat-option>
@@ -35,72 +35,63 @@
                     </mat-form-field>
                 </ng-container>
 
-                <br/>
-
 
                 <mat-form-field>
                     <mat-select placeholder="{{'State Search By Area' | translate}}"
-                                [(ngModel)]="searchModel.Pillar">
-                        <mat-option [value]="ZVZ">{{'ZVZ' | translate}}</mat-option>
-                        <mat-option [value]="BOB">{{'BOB' | translate}}</mat-option>
-                        <mat-option [value]="THAB">{{'THAB' | translate}}</mat-option>
+                                [(ngModel)]="searchModel.pillar">
+                        <mat-option value="ZVZ">{{'ZVZ' | translate}}</mat-option>
+                        <mat-option value="BOB">{{'BOB' | translate}}</mat-option>
+                        <mat-option value="THAB">{{'THAB' | translate}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-<!-- 
-                <p translate>State Search By Area</p>
-
-                <mat-radio-group [(ngModel)]="searchModel.Pillar">
-                    <mat-radio-button value="ZVZ">{{'ZVZ' | translate}}</mat-radio-button>
-                    <mat-radio-button value="BOB">{{'BOB' | translate}}</mat-radio-button>
-                    <mat-radio-button value="THAB">{{'THAB' | translate}}</mat-radio-button>
-                </mat-radio-group> -->
 
                 <br/>
                 <p translate>State Search By State</p>
 
                 <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.StateInitiated">{{'Initiated' | translate}}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="searchModel.stateInitiated">{{'Initiated' | translate}}</mat-checkbox>
                 </section>
                 <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.StateCompleted">{{'Confirmed' | translate}}</mat-checkbox>
-                    <div *ngIf="searchModel.StateCompleted">
+                    <mat-checkbox [(ngModel)]="searchModel.stateCompleted">{{'Confirmed' | translate}}</mat-checkbox>
+                    <div *ngIf="searchModel.stateCompleted">
                         <mat-form-field>
                             <input matInput
-                                   [matDatepicker]="StateCompletedPicker"
-                                   [(ngModel)]="StateCompletedDate"
+                                   [matDatepicker]="stateCompletedPicker"
+                                   [(ngModel)]="stateCompletedDate"
                                    placeholder="{{'Choose a date' | translate}}">
 
                             <mat-datepicker-toggle matSuffix
-                                                   [for]="StateCompletedPicker"></mat-datepicker-toggle>
-                            <mat-datepicker #StateCompletedPicker></mat-datepicker>
+                                                   [for]="stateCompletedPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #stateCompletedPicker></mat-datepicker>
                         </mat-form-field>
                     </div>
                 </section>
                 <section class="example-section">
-                    <mat-checkbox [(ngModel)]="searchModel.StateRejected">{{'Rejected' | translate}}</mat-checkbox>
-                    <div *ngIf="searchModel.StateRejected">
+                    <mat-checkbox [(ngModel)]="searchModel.stateRejected">{{'Rejected' | translate}}</mat-checkbox>
+                    <div *ngIf="searchModel.stateRejected">
                         <mat-form-field>
                             <input matInput
-                                   [matDatepicker]="stateRejectedicker"
-                                   [(ngModel)]="StateRejectedDate"
+                                   [matDatepicker]="stateRejectedPicker"
+                                   [(ngModel)]="stateRejectedDate"
                                    placeholder="{{'Choose a date' | translate}}">
 
                             <mat-datepicker-toggle matSuffix
-                                                   [for]="stateRejectedicker"></mat-datepicker-toggle>
-                            <mat-datepicker #stateRejectedicker></mat-datepicker>
+                                                   [for]="stateRejectedPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #stateRejectedPicker></mat-datepicker>
                         </mat-form-field>
                     </div>
                 </section>
 
-
-
-
-                <p translate="Optional search information before search button at state search">VSB_SEARCHBYSTATE_INFO</p>
-                <button mat-raised-button
+                <br/>
+                <!-- <p translate="Optional search information before search button at state search">VSB_SEARCHBYSTATE_INFO</p> -->
+                <span matTooltip="{{'VSB_SEARCHBYSTATE_INFO' | translate}}"
+                      [matTooltipDisabled]="!isSearchDisabled()"
+                      matTooltipPosition="right">
+                    <button mat-raised-button
                         class="btn-default collapse-on-search"
                         (click)="search()"
                         [disabled]="isSearchDisabled()">{{'Search' | translate}}</button>
-
+                </span>
             </div>
         </div>
     </div>

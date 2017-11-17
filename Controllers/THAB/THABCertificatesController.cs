@@ -36,28 +36,20 @@ namespace VSBaseAngular.Controllers
         public async Task<IActionResult> GetAll(long sinumber, [FromQuery]string insz)
         {
             var certificates = await _thabCertificateService.SearchAsync(new ThabCertificateSearch() { SiNumber = sinumber, Insz = insz });
-
+            foreach (var cert in certificates)
+            {
+                var remark = await _service.GetRemarkAsync(new GetRemarkRequest { SiNumber = sinumber, ReferenceDate = cert.ReferenceDate});
+                cert.Remark = remark?.Value?.Remark;
+                var notifications = await _service.GetCertificateNotificationsAsync(new GetCertificateNotificationsRequest() { CertificateId = cert.CertificateId });
+                foreach (var notification in notifications?.Value?.CertificateNotifications?.notificications)
+                {
+                    cert.Tooltip += $"{notification.CreationDate.ToShortDateString()}: {notification.Description} \n";
+                }
+                cert.TooltipTile = notifications?.Value?.CertificateNotifications?.nextStep?.Description;
+            }
             return Ok(certificates);
 
-            // List<ThabCertificate> certificates = new List<ThabCertificate>();
-
-            // foreach (var certificate in response?.Value?.Certificates)
-            // {
-            //     var remarkRequest = new GW.VSB.THAB.Contracts.GetRemark.GetRemarkRequest()
-            //     {
-            //         SiNumber = sinumber,
-            //         ReferenceDate = certificate.InitialDate
-            //     };
-            //     var remarkResponse = _service.GetRemark(remarkRequest);
-            //     if (remarkResponse.BusinessMessages != null && remarkResponse.BusinessMessages.Length > 0)
-            //         return BadRequest(remarkResponse.BusinessMessages);
-
-            //     var cert = _mapper.Map<ThabCertificate>(certificate);
-            //     cert.Remark = remarkResponse?.Value?.Remark;
-            //     certificates.Add(cert);
-            // }
-
-            // return Ok(certificates);
+        
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using VSBaseAngular.Business;
@@ -72,7 +73,7 @@ namespace VSBaseAngular.Controllers
 
             var people = await _peopleReader.SearchAsync(model);
 
-            return Ok(people);
+            return Ok(people.Where(p => p != null));
         }
 
         [HttpPost]

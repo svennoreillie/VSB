@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { THABCertificate, THABPayableAmount, THABPayment } from "../../models";
 import { Observable } from "rxjs/Observable";
+import { THABNotification } from "../../models/thab/notification";
 
 @Injectable()
 export class ThabService {
@@ -33,5 +34,11 @@ export class ThabService {
         url = this.urlService.addQueryParameters(url, { insz: insz});
         
         return this.http.get<THABPayment[]>(url);
+    }
+
+    public getNotifications(certificateid: string): Observable<THABNotification> {
+        let url = this.urlService.createUrl('thabnotifications', certificateid);
+        
+        return this.http.get<THABNotification>(url);
     }
 }

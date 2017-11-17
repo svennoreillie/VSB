@@ -177,6 +177,10 @@
     "BOB_FORM" : {"originalText":"BOB_FORM","value":"Formulier BOB"},
     "BOB_LETTERS_COLUMN_DATE" : {"originalText":"BOB_LETTERS_COLUMN_DATE","value":"Datum brief"},
     "BOB_LETTERS_COLUMN_TYPE" : {"originalText":"BOB_LETTERS_COLUMN_TYPE","value":"Type brief"},
-    "BOB_LETTERS_COLUMN_DOWNLOAD" : {"originalText":"BOB_LETTERS_COLUMN_DOWNLOAD","value":"Download"}
-
+    "BOB_LETTERS_COLUMN_DOWNLOAD" : {"originalText":"BOB_LETTERS_COLUMN_DOWNLOAD","value":"Download"},
+    "ZVZ_NO_DATA_FOUND" : {"originalText":"ZVZ No data found","value":"Geen ZVZ gegevens gevonden"},
+    "THAB_NO_DATA_FOUND" : {"originalText":"THAB No data found","value":"Geen THAB gegevens gevonden"},
+    "FEDERATION" : {"originalText":"Federation","value":"Federatie"},
+    "ALL" : {"originalText":"all","value":"Alle"},
+    "CHOOSE_A_DATE" : {"originalText":"Choose a date","value":"Kies een datum"}
 }

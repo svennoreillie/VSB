@@ -20,7 +20,7 @@
                 <!-- Certificates -->
                 <soc-panel title="THAB_ADMISSIONS_LEGEND"
                            collapsable="true"
-                           [loading]="certificates && !(certificates|async)"
+                           [loading]="personDetailsLoading || (certificates && !(certificates|async))"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
@@ -58,18 +58,25 @@
                                                 <td>{{cert.referenceDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{cert.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{cert.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>
-                                                    {{cert.state}}
-                                                    <!-- <a uib-popover-html="vm.createPopoverContent(cert)"
-                                                       popover-class="soc-popover wider"
-                                                       popover-trigger="'mouseenter'"
-                                                       class="fa fa-info-circle soc-popover"
-                                                       ng-hide="cert.certificateNotification==null || cert.certificateNotification.notifications == null || cert.certificateNotification.notifications.length == 0">
-                                                                                    </a> -->
+                                                <td [popover]="cert.tooltip | safeHtml"
+                                                    [popoverTitle]="cert.tooltipTitle"
+                                                    [popoverOnHover]="true"
+                                                    [popoverAnimation]="true">
+                                                        {{cert.state}}
                                                 </td>
                                                 <td>{{cert.decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{cert.terminationReason}}</td>
-                                                <td>{{getRemark(cert) | async}}
+                                                <td>
+                                                    <textarea matInput
+                                                              style="border: 1px solid lightgray"
+                                                              placeholder="{{'Remark' | translate}}"
+                                                              [(ngModel)]="cert.remark"></textarea>
+                                                    <button title="{{'THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_SAVE' | translate}} "
+                                                            (click)="saveThabRemark(cert)"
+                                                            [hidden]="cert.remark == cert.initialRemark"
+                                                            class="btn btn-default">
+                                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                    </button>
                                                     <!-- <textarea class="form-control"
                                                               rows="1"
                                                               [(ngModel)]="cert.remark"></textarea>
@@ -118,38 +125,38 @@
                 <!-- Payments -->
                 <soc-panel title="THAB_ADMISSION_PAYMENTS_LEGEND"
                            collapsable="true"
-                           [loading]="payments && !(payments|async)"
+                           [loading]="personDetailsLoading || (payments && !(payments|async))"
                            type="bar">
-                           <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="soc-table striped secondary">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_ID</th>
-                                                        <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_STARTDATE</th>
-                                                        <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_ENDDATE</th>
-                                                        <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_AMOUNT</th>
-                                                        <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE</th>
-                                                        <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr *ngFor="let paym of payments | async">
-                                                        <td>{{paym.certificateId}}</td>
-                                                        <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                        <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                        <td>{{paym.amount}} {{paym.currency}}</td>
-                                                        <td>{{paym.sendDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                        <td>{{paym.accountNb}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="soc-table striped secondary">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_ID</th>
+                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_STARTDATE</th>
+                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_ENDDATE</th>
+                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_AMOUNT</th>
+                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE</th>
+                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let paym of payments | async">
+                                                <td>{{paym.certificateId}}</td>
+                                                <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{paym.amount}} {{paym.currency}}</td>
+                                                <td>{{paym.sendDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{paym.accountNb}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
+                        </div>
+                    </div>
                 </soc-panel>
 
             </div>

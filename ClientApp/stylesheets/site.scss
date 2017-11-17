@@ -14,3 +14,23 @@
 @import 'materialtheme.scss';
 
 @include angular-material-theme($soc-theme);
+
+
+
+.soc-sidebar {
+    .soc-search-form {
+        mat-form-field {
+            width: 100%;
+        }
+    }
+}
+
+label{
+    &.mat-checkbox-layout {
+        font-weight: normal;
+    }
+}
+
+.multiline {
+    white-space: pre-line;
+}

@@ -50,7 +50,7 @@ namespace VSBaseAngular.Business
         public async Task<Models.Person> GetAsync(KeySet<Models.Person> key)
         {
             var pKey = key as PersonKey;
-            return await SearchBySiNumber(pKey.SiNumber);
+            return (await SearchBySiNumber(pKey.SiNumber)).FirstOrDefault();
         }
 
         public async Task<IEnumerable<Models.Person>> SearchAsync(SearchBaseModel<Models.Person> model)
@@ -62,7 +62,7 @@ namespace VSBaseAngular.Business
 
             if (!string.IsNullOrEmpty(search.Insz)) peopleTasks.Add(SearchByInsz(search));
             if (!string.IsNullOrEmpty(search.MemberNr)) peopleTasks.Add(SearchByMemberNr(search));
-            if (search.SiNumber.HasValue) peopleTasks.Add(SearchBySiNumbers(search.SiNumber.Value));
+            if (search.SiNumber.HasValue) peopleTasks.Add(SearchBySiNumber(search.SiNumber.Value));
             if (!string.IsNullOrEmpty(search.Name)) peopleTasks.Add(SearchByName(search));
             switch (search.Pillar)
             {
@@ -178,16 +178,18 @@ namespace VSBaseAngular.Business
             return new List<Models.Person> { response.ContentAsType<Models.Person>() };
         }
 
-        private async Task<Models.Person> SearchBySiNumber(long siNumber)
+        private async Task<IEnumerable<Models.Person>> SearchBySiNumber(long siNumber)
         {
             var response = await _client.GetAsync(CreateUrl($"members/sinumber/{siNumber}"));
 
-            return response.ContentAsType<Models.Person>();
+            return new List<Models.Person> { response.ContentAsType<Models.Person>() };
         }
 
-        private async Task<IEnumerable<Models.Person>> SearchBySiNumbers(long siNumber)
+        private async Task<IEnumerable<Models.Person>> SearchBySiNumbers(IEnumerable<long> siNumbers)
         {
-            return new List<Models.Person> { await this.SearchBySiNumber(siNumber) };
+            var response = await _client.PostAsync(CreateUrl($"members/sinumber"), new JsonContent(new { siNumbers = siNumbers}));
+
+            return response.ContentAsType<IEnumerable<Models.Person>>();
         }
 
         private async Task<IEnumerable<Models.Person>> SearchByInsz(PersonSearch model)
@@ -210,14 +212,15 @@ namespace VSBaseAngular.Business
         {
             if (model.Limit > 0) sinumbers = sinumbers.Skip(model.Skip).Take(model.Limit).ToList();
 
-            List<Task<Models.Person>> tasks = new List<Task<Models.Person>>();
-            foreach (var snr in sinumbers)
-            {
-                tasks.Add(this.SearchBySiNumber(snr));
-            }
+            //  !!!   Commented code is faster => but popu doesn't like it so we bulk search instead
+            // List<Task<Models.Person>> tasks = new List<Task<Models.Person>>();
+            // foreach (var snr in sinumbers)
+            // {
+            //     tasks.Add(this.SearchBySiNumber(snr));
+            // }
+            // return await Task.WhenAll(tasks);
 
-            IEnumerable<Models.Person> people = await Task.WhenAll(tasks);
-            return people;
+            return await this.SearchBySiNumbers(sinumbers);
         }
     }
 }

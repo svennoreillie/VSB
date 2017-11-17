@@ -1,4 +1,6 @@
 import { HttpClientModule } from "@angular/common/http";
+import { MatDialogModule } from "@angular/material/dialog";
+import { PopoverModule } from "ngx-popover"
 import {
     MatButtonModule,
     MatCardModule,
@@ -10,7 +12,8 @@ import {
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule
 } from "@angular/material";
 // 3rd party
 import * as angular from "./angular-barrel";
@@ -59,6 +62,7 @@ import "rxjs/add/operator/toPromise";
         // Directives
         directives.TranslateDirective,
         directives.TranslatePipe,
+        directives.SafeHtmlPipe,
     ],
     providers: [
         // Services
@@ -83,6 +87,9 @@ import "rxjs/add/operator/toPromise";
         MatProgressSpinnerModule,
         MatProgressBarModule,
         MatSelectModule,
+        MatTooltipModule,
+        MatDialogModule,
+        PopoverModule,
         // Modules
         HttpClientModule,
         angular.CommonModule,

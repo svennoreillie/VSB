@@ -105,6 +105,7 @@ namespace VSBaseAngular
                     .ForMember(dest => dest.RegistrationDate, opt => opt.MapFrom(src => src.RegistrationDate))
                     .ForMember(dest => dest.Remark, opt => opt.Ignore())
                     .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
+                    .ForMember(dest => dest.Tooltip, opt => opt.Ignore())
                     .ForMember(dest => dest.TerminationReason, opt => opt.MapFrom(src => src.ReasonClosure));
 
                 cfg.CreateMap<ThabService.Payment, ThabPayment>()
@@ -119,6 +120,16 @@ namespace VSBaseAngular
                     .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.Start))
                     .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.End))
                     .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount));
+
+                cfg.CreateMap<ThabService.Notification, Notification>()
+                    .ForMember(dest => dest.ReceivedDate, opt => opt.MapFrom(src => src.CreationDate))
+                    .ForMember(dest => dest.Message, opt => opt.MapFrom(src => src.Description));
+
+                cfg.CreateMap<ThabService.CertificateNotifications, ThabNotification>()
+                    .ForMember(dest => dest.NextStep, opt => opt.MapFrom(src => src.nextStep != null ? src.nextStep.Description: null))
+                    .ForMember(dest => dest.Notifications, opt => opt.MapFrom(src => src.notificications));
+
+            
 
             });
 

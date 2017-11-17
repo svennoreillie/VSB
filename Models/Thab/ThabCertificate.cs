@@ -11,6 +11,8 @@ public class ThabCertificate : ModelBase
     public DateTime? MigrateDate { get; set; }
     public DateTime ReferenceDate { get; set; }
     public DateTime? RegistrationDate { get; set; }
+    public string Tooltip { get; set; }
+    public string TooltipTile { get; set; }
     public string Remark { get; set; }
     public string State { get; set; }
     public string TerminationReason { get; set; }

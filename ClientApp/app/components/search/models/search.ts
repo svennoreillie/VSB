@@ -23,22 +23,22 @@ export class SiNumberSearchModel extends SearchModel {
 
 export class StateSearchModel extends SearchModel {
 
-    public Pillar: string;
+    public pillar: string;
 
-    public StateInitiated: boolean;
-    public StateCompleted: boolean;
-    public StateCompletedDate: string;
-    public StateRejected: boolean;
-    public StateRejectedDate: string;
+    public stateInitiated: boolean;
+    public stateCompleted: boolean;
+    public stateCompletedDate: string;
+    public stateRejected: boolean;
+    public stateRejectedDate: string;
 
-    public Federation: number;
+    public federation: number;
 
     constructor() {
         super();
 
         let firstOfTheMonth = new Date();
         firstOfTheMonth.setDate(1);
-        this.StateCompletedDate = firstOfTheMonth.toISOString();
-        this.StateRejectedDate = firstOfTheMonth.toISOString();
+        this.stateCompletedDate = firstOfTheMonth.toISOString();
+        this.stateRejectedDate = firstOfTheMonth.toISOString();
     }
 }
