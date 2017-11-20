@@ -23,6 +23,12 @@ export class ThabService {
         return this.http.get(url, { responseType: "text"});
     }
 
+    public saveRemark(sinumber: number, certificate: THABCertificate): Observable<any> {
+        let url = this.urlService.createUrl('thabcertificates', sinumber.toString(), 'remarks');
+        
+        return this.http.post(url, { remark: certificate.remark, referenceDate: certificate.referenceDate });
+    }
+
     public getPayableAmounts(sinumber: number, certificateid: string): Observable<THABPayableAmount[]> {
         let url = this.urlService.createUrl('thabcertificates', sinumber.toString(), 'payableamounts', certificateid);
         

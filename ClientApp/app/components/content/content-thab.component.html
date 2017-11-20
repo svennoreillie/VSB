@@ -35,8 +35,6 @@
                         </ng-template>
                     </popover-content>
 
-
-
                     <div class="container-fluid">
                         <div class="row">
 
@@ -88,19 +86,10 @@
                                                               [(ngModel)]="cert.remark"></textarea>
                                                     <button title="{{'THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_SAVE' | translate}} "
                                                             (click)="saveThabRemark(cert)"
-                                                            [hidden]="cert.remark == cert.initialRemark"
+                                                            *ngIf="cert.remark !== cert.initialRemark"
                                                             class="btn btn-default">
                                                         <i class="fa fa-floppy-o" aria-hidden="true"></i>
                                                     </button>
-                                                    <!-- <textarea class="form-control"
-                                                              rows="1"
-                                                              [(ngModel)]="cert.remark"></textarea>
-                                                    <button title="{{'THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_SAVE' | translate}} "
-                                                            (click)="saveThabRemark(cert)"
-                                                            [hidden]="cert.remark == null || cert.remark == cert.initialRemark"
-                                                            class="btn btn-default">
-                                                                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                                                                    </button> -->
                                                 </td>
                                             </tr>
                                         </tbody>

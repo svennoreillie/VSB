@@ -84,6 +84,14 @@ export class ContentThabComponent implements OnInit, OnDestroy {
                                                        .shareReplay(1);
     }
 
+    public saveThabRemark(certificate: THABCertificate) {
+        if (this.person != null) {
+            this.thabService.saveRemark(this.person.siNumber, certificate)
+                            .subscribe(data => data, 
+                                       error => console.error(error));
+        }
+    }
+
 
 
     //Private methods

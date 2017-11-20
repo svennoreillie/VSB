@@ -8,6 +8,7 @@ using VSBaseAngular.Models;
 using VSBaseAngular.Models.Keys;
 using VSBaseAngular.Models.Search;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VSBaseAngular.Controllers
 {
@@ -46,6 +47,28 @@ namespace VSBaseAngular.Controllers
             return Ok(remarkResponse?.Value?.Remark);
         }
 
-        
+        [HttpPost]
+        [Authorize]
+        [Route("~/api/v{version:apiVersion}/thabcertificates/{sinumber:long}/remarks")]
+        public async Task<IActionResult> Get(long sinumber, PostThabRemark model)
+        {
+            if (ModelState.IsValid)
+            {
+                var remarkRequest = new SaveRemarkRequest()
+                {
+                    Remark = model.Remark,
+                    Userid = User.Identity.Name,
+                    Sinr = sinumber,
+                    ReferenceDate = model.ReferenceDate
+                };
+
+                var remarkResponse = await _service.SaveRemarkAsync(remarkRequest);
+                if (remarkResponse.BusinessMessages != null && remarkResponse.BusinessMessages.Length > 0)
+                    return BadRequest(remarkResponse.BusinessMessages);
+
+                return Ok(remarkResponse?.Value?.Remark);
+            }
+            return BadRequest(ModelState);
+        }
     }
 }
