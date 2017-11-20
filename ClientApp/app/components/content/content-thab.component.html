@@ -18,10 +18,25 @@
             <div class="col-sm-12">
 
                 <!-- Certificates -->
-                <soc-panel title="THAB_ADMISSIONS_LEGEND"
+                <soc-panel paneltitle="THAB_ADMISSIONS_LEGEND"
                            collapsable="true"
                            [loading]="personDetailsLoading || (certificates && !(certificates|async))"
                            type="bar">
+
+                    <popover-content #certificatePopoverTemplate>
+                        <div *ngIf="certificateNotification | async; let notification; else loadingNotification">
+                            <p style="color:red">{{notification.nextStep}}</p>
+                            <p *ngFor="let note of notification.notifications">
+                                {{note.receivedDate | date: ('COMMON_DATEFORMAT' | translate)}}: {{note.message}}
+                            </p>
+                        </div>
+                        <ng-template #loadingNotification>
+                            <mat-spinner></mat-spinner>
+                        </ng-template>
+                    </popover-content>
+
+
+
                     <div class="container-fluid">
                         <div class="row">
 
@@ -58,11 +73,11 @@
                                                 <td>{{cert.referenceDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{cert.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{cert.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td [popover]="cert.tooltip | safeHtml"
-                                                    [popoverTitle]="cert.tooltipTitle"
+                                                <td (mouseenter)="setCertificatePopover(cert)"
+                                                    [popover]="certificatePopoverTemplate"
                                                     [popoverOnHover]="true"
                                                     [popoverAnimation]="true">
-                                                        {{cert.state}}
+                                                    {{cert.state}}
                                                 </td>
                                                 <td>{{cert.decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{cert.terminationReason}}</td>
@@ -123,7 +138,7 @@
 
 
                 <!-- Payments -->
-                <soc-panel title="THAB_ADMISSION_PAYMENTS_LEGEND"
+                <soc-panel paneltitle="THAB_ADMISSION_PAYMENTS_LEGEND"
                            collapsable="true"
                            [loading]="personDetailsLoading || (payments && !(payments|async))"
                            type="bar">

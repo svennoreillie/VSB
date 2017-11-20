@@ -1,3 +1,4 @@
+import { THABNotification } from "./../../models/thab/notification";
 import {
     ThabService
 } from "./../../services/api/thab.service";
@@ -40,6 +41,7 @@ export class ContentThabComponent implements OnInit, OnDestroy {
     public person: PersonModel | null;
     public payments: Observable < THABPayment[] > ;
     public selectedCertificate: THABCertificate;
+    public certificateNotification: Observable<THABNotification>;
     public payableAmounts: Observable < THABPayableAmount[] > ;
     public certificates: Observable < THABCertificate[] > ;
 
@@ -77,6 +79,13 @@ export class ContentThabComponent implements OnInit, OnDestroy {
         }
     }
 
+    public setCertificatePopover(certificate: THABCertificate) {
+        this.certificateNotification = this.thabService.getNotifications(certificate.certificateId)
+                                                       .shareReplay(1);
+    }
+
+
+
     //Private methods
     private personChanged(person: PersonModel | null) {
         this.person = person;
@@ -96,7 +105,6 @@ export class ContentThabComponent implements OnInit, OnDestroy {
             .map(data => {
                 data.forEach(element => {
                     element.initialRemark = element.remark;
-                    element.tooltip = element.tooltip.replace("\n", " <br> ");
                 })
                 return data;
             })

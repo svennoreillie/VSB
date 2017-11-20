@@ -105,7 +105,6 @@ namespace VSBaseAngular
                     .ForMember(dest => dest.RegistrationDate, opt => opt.MapFrom(src => src.RegistrationDate))
                     .ForMember(dest => dest.Remark, opt => opt.Ignore())
                     .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
-                    .ForMember(dest => dest.Tooltip, opt => opt.Ignore())
                     .ForMember(dest => dest.TerminationReason, opt => opt.MapFrom(src => src.ReasonClosure));
 
                 cfg.CreateMap<ThabService.Payment, ThabPayment>()

@@ -17,7 +17,7 @@
             <div class="col-sm-12">
 
                 <!-- Certificates -->
-                <soc-panel title="ZVZ Warranties"
+                <soc-panel paneltitle="ZVZ Warranties"
                            collapsable="true"
                            [loading]="warrantiesLoading"
                            type="bar">
@@ -63,7 +63,7 @@
 
 
                 <!-- Payments -->
-                <soc-panel title="ZVZ_WARRANTY_PAYMENTS_LEGEND"
+                <soc-panel paneltitle="ZVZ_WARRANTY_PAYMENTS_LEGEND"
                            *ngIf="showPayments()"
                            collapsable="true"
                            [loading]="payments && !(payments|async)"
@@ -100,7 +100,7 @@
 
 
                 <!-- Letters -->
-                <soc-panel title="ZVZ_DECISION_LETTERS_LEGEND"
+                <soc-panel paneltitle="ZVZ_DECISION_LETTERS_LEGEND"
                            collapsable="true"
                            [loading]="!(letters|async)"
                            type="bar">

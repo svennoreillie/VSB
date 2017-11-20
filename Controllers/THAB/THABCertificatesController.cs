@@ -40,12 +40,6 @@ namespace VSBaseAngular.Controllers
             {
                 var remark = await _service.GetRemarkAsync(new GetRemarkRequest { SiNumber = sinumber, ReferenceDate = cert.ReferenceDate});
                 cert.Remark = remark?.Value?.Remark;
-                var notifications = await _service.GetCertificateNotificationsAsync(new GetCertificateNotificationsRequest() { CertificateId = cert.CertificateId });
-                foreach (var notification in notifications?.Value?.CertificateNotifications?.notificications)
-                {
-                    cert.Tooltip += $"{notification.CreationDate.ToShortDateString()}: {notification.Description} \n";
-                }
-                cert.TooltipTile = notifications?.Value?.CertificateNotifications?.nextStep?.Description;
             }
             return Ok(certificates);
 
