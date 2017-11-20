@@ -182,5 +182,53 @@
     "THAB_NO_DATA_FOUND" : {"originalText":"THAB No data found","value":"Geen THAB gegevens gevonden"},
     "FEDERATION" : {"originalText":"Federation","value":"Federatie"},
     "ALL" : {"originalText":"all","value":"Alle"},
-    "CHOOSE_A_DATE" : {"originalText":"Choose a date","value":"Kies een datum"}
+    "CHOOSE_A_DATE" : {"originalText":"Choose a date","value":"Kies een datum"},
+    "ZVZ_FULL" : {"originalText":"ZVZ Full","value":"Zorgverzekering"},
+    
+    "ZVZ_WARRANTIES" : {"originalText":"ZVZ Warranties","value":"Tenlastenemingen"},
+    "ZVZ_WARRANTIES_COLUMN_CAREFORM" : {"originalText":"ZVZ_WARRANTIES_COLUMN_CAREFORM","value":"Zorgvorm"},
+    "ZVZ_WARRANTIES_COLUMN_REQUESTDATE" : {"originalText":"ZVZ_WARRANTIES_COLUMN_REQUESTDATE","value":"Datum aanvraag"},
+    "ZVZ_WARRANTIES_COLUMN_STARTDATE" : {"originalText":"ZVZ_WARRANTIES_COLUMN_STARTDATE","value":"Startdatum"},
+    "ZVZ_WARRANTIES_COLUMN_ENDDATE" : {"originalText":"ZVZ_WARRANTIES_COLUMN_ENDDATE","value":"Einddatum"},
+    "ZVZ_WARRANTIES_COLUMN_STATUS" : {"originalText":"ZVZ_WARRANTIES_COLUMN_STATUS","value":"Status"},
+    "ZVZ_WARRANTIES_COLUMN_DECISIONDATE" : {"originalText":"ZVZ_WARRANTIES_COLUMN_DECISIONDATE","value":"Beslissingsdatum"},
+    "ZVZ_WARRANTIES_COLUMN_CERTIFICATE" : {"originalText":"ZVZ_WARRANTIES_COLUMN_CERTIFICATE","value":"Attest"},
+    "ZVZ_WARRANTIES_COLUMN_SCALE" : {"originalText":"ZVZ_WARRANTIES_COLUMN_SCALE","value":"Schaal"},
+    "ZVZ_WARRANTIES_COLUMN_REFUSALREASON" : {"originalText":"ZVZ_WARRANTIES_COLUMN_REFUSALREASON","value":"Reden weigering"},
+
+    "ZVZ_DECISION_LETTERS_LEGEND" : {"originalText":"ZVZ_DECISION_LETTERS_LEGEND","value":"Documenten en brieven"},
+    "ZVZ_DECISION_LETTERS_COLUMN_DATE" : {"originalText":"ZVZ_DECISION_LETTERS_COLUMN_DATE","value":"Datum brief"},
+    "ZVZ_DECISION_LETTERS_COLUMN_TYPE" : {"originalText":"ZVZ_DECISION_LETTERS_COLUMN_TYPE","value":"Type brief"},
+    "ZVZ_DECISION_LETTERS_COLUMN_DOWNLOAD" : {"originalText":"ZVZ_DECISION_LETTERS_COLUMN_DOWNLOAD","value":"Download"},
+
+    "THAB_ADMISSIONS" : {"originalText":"THAB_ADMISSIONS","value":"Erkenningen"},
+    "THAB_ADMISSIONS_LEGEND" : {"originalText":"THAB_ADMISSIONS_LEGEND","value":"Erkenningen"},
+    "THAB_ADMISSIONS_COLUMN_ADMISSION_ID" : {"originalText":"THAB_ADMISSIONS_COLUMN_ADMISSION_ID","value":"Erkenning ID"},
+    "THAB_ADMISSIONS_COLUMN_ADMISSION_MIGRATED" : {"originalText":"THAB_ADMISSIONS_COLUMN_ADMISSION_MIGRATED","value":"Migratie"},
+    "THAB_ADMISSIONS_COLUMN_ADMISSION_INITIALDATE" : {"originalText":"THAB_ADMISSIONS_COLUMN_ADMISSION_INITIALDATE","value":"Initiatiedatum erkenning"},
+    "THAB_ADMISSIONS_COLUMN_ADMISSION_START" : {"originalText":"THAB_ADMISSIONS_COLUMN_ADMISSION_START","value":"Begindatum erkenning"},
+    "THAB_ADMISSIONS_COLUMN_ADMISSION_END" : {"originalText":"THAB_ADMISSIONS_COLUMN_ADMISSION_END","value":"Einddatum erkenning"},
+    "THAB_ADMISSIONS_COLUMN_ADMISSION_STATE" : {"originalText":"THAB_ADMISSIONS_COLUMN_ADMISSION_STATE","value":"Status"},
+    "THAB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE" : {"originalText":"THAB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE","value":"Beslissingsdatum"},
+    "THAB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON" : {"originalText":"THAB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON","value":"Reden stopzetting"},
+    "THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_REMARK" : {"originalText":"THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_REMARK","value":"Dossierbeheerder/Opmerking"},
+    "REMARK" : {"originalText":"Remark","value":"Opmerking"},
+    "THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_SAVE" : {"originalText":"THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_SAVE","value":"Opslaan"},
+    
+    "THAB_PAYABLEAMOUNT" : {"originalText":"THAB_PAYABLEAMOUNT","value":"Bedrag per periode"},
+    "THAB_PAYABLEAMOUNT_COLUMN_ID" : {"originalText":"THAB_PAYABLEAMOUNT_COLUMN_ID","value":"Erkenning ID"},
+    "THAB_PAYABLEAMOUNT_COLUMN_START" : {"originalText":"THAB_PAYABLEAMOUNT_COLUMN_START","value":"Begindatum"},
+    "THAB_PAYABLEAMOUNT_COLUMN_END" : {"originalText":"THAB_PAYABLEAMOUNT_COLUMN_END","value":"Einddatum"},
+    "THAB_PAYABLEAMOUNT_COLUMN_AMOUNT" : {"originalText":"THAB_PAYABLEAMOUNT_COLUMN_AMOUNT","value":"Bedrag"},
+
+    "THAB_ADMISSION_PAYMENTS_LEGEND" : {"originalText":"THAB_ADMISSION_PAYMENTS_LEGEND","value":"THAB: Uitbetalingen"},
+    "THAB_ADMISSION_PAYMENTS_COLUMN_ID" : {"originalText":"THAB_ADMISSION_PAYMENTS_COLUMN_ID","value":"Erkenning ID"},
+    "THAB_ADMISSION_PAYMENTS_COLUMN_STARTDATE" : {"originalText":"THAB_ADMISSION_PAYMENTS_COLUMN_STARTDATE","value":"Begindatum"},
+    "THAB_ADMISSION_PAYMENTS_COLUMN_ENDDATE" : {"originalText":"THAB_ADMISSION_PAYMENTS_COLUMN_ENDDATE","value":"Einddatum"},
+    "THAB_ADMISSION_PAYMENTS_COLUMN_AMOUNT" : {"originalText":"THAB_ADMISSION_PAYMENTS_COLUMN_AMOUNT","value":"Bedrag"},
+    "THAB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE" : {"originalText":"THAB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE","value":"Data uitbetalingen"},
+    "THAB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER" : {"originalText":"THAB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER","value":"Rekeningnummer begunstigde"}
 }
+
+
+
