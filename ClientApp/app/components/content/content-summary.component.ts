@@ -114,7 +114,7 @@ export class ContentSummaryComponent implements OnInit, OnDestroy {
     public saveVsbRemark(): void {
         if (this.vsbRemark && this.person != null) {
             this.vsbRemarkSub = this.vsbService.saveRemark(this.person.siNumber, this.vsbRemark)
-                                               .subscribe();
+                                               .subscribe(data => data);
         }
     }
 

@@ -29,11 +29,11 @@ namespace VSBaseAngular.Controllers
 
         [HttpPost]
         [Route("{sinumber:long}")]
-        public async Task<IActionResult> Post(long sinumber, PostRemarkModel model)
+        public async Task<IActionResult> Post(long sinumber, [FromBody]PostRemarkModel model)
         {
             if (ModelState.IsValid)
             {
-                var response = await _vsbService.SaveRemarkAsync(new SaveRemarkRequest() { Sinr = sinumber, Remark = model.Remark });
+                var response = await _vsbService.SaveRemarkAsync(new SaveRemarkRequest() { Sinr = sinumber, Remark = model.Remark, Userid = "TODO UID" });
                 if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                     return BadRequest(response.BusinessMessages);
 

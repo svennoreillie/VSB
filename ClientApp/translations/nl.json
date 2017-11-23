@@ -257,7 +257,20 @@
     "ZVZ_WARRANTY_PAYMENTS_COLUMN_PAYMENTDATE" : {"originalText":"ZVZ_WARRANTY_PAYMENTS_COLUMN_PAYMENTDATE","value":"Datum betaling"},
     "ZVZ_WARRANTY_PAYMENTS_COLUMN_ACCOUNTNUMBER" : {"originalText":"ZVZ_WARRANTY_PAYMENTS_COLUMN_ACCOUNTNUMBER","value":"Rekeningnummer begunstigde"},
     "ZVZ_WARRANTY_PAYMENTS_LEGEND" : {"originalText":"ZVZ_WARRANTY_PAYMENTS_LEGEND","value":"Tenlastenemingen: uitbetalingen"},
-    "VSB_CURRENT_SITUATION_ROW_ZVZ" : {"originalText":"VSB_CURRENT_SITUATION_ROW_ZVZ","value":"Zorgverzekering"}
+    "VSB_CURRENT_SITUATION_ROW_ZVZ" : {"originalText":"VSB_CURRENT_SITUATION_ROW_ZVZ","value":"Zorgverzekering"},
+    "VSB_MAIL_SUBJECT_LEGEND" : {"originalText":"VSB_MAIL_SUBJECT_LEGEND","value":"Doorverwijzing"},
+    "VSB_MAIL_BODY_LINE_NAME" : {"originalText":"VSB_MAIL_BODY_LINE_NAME","value":"Naam:"},
+    "VSB_MAIL_BODY_LINE_NISSNUMBER" : {"originalText":"VSB_MAIL_BODY_LINE_NISSNUMBER","value":"Rijksregisternummer:"},
+    "VSB_MAIL_BODY_LINE_PHONE" : {"originalText":"VSB_MAIL_BODY_LINE_PHONE","value":"Telefoonnummer:"},
+    "VSB_MAIL_BODY_LINE_MAIL" : {"originalText":"VSB_MAIL_BODY_LINE_MAIL","value":"Email:"},
+    "VSB_MAIL_BODY_LINE_EMPTY" : {"originalText":"VSB_MAIL_BODY_LINE_EMPTY","value":"geen"},
+    "VSB_MAIL_BODY_LINE_REMARK" : {"originalText":"VSB_MAIL_BODY_LINE_REMARK","value":"Opmerking:"},
+    "VSB_REMARK_SAVE" : {"originalText":"VSB_REMARK_SAVE","value":"Opslaan"},
+    "ZVZ_LETTERS_ERROR" : {"originalText":"","value":"ZVZ brieven ophalen mislukt"},
+    "ZVZ_PAYMENTS_ERROR" : {"originalText":"","value":"ZVZ betalingen ophalen mislukt"},
+    "ZVZ_WARRANTIES_ERROR" : {"originalText":"","value":"ZVZ tenlastenemingen ophalen mislukt"},
+    "ZVZ_CONTRACT_ERROR" : {"originalText":"","value":"ZVZ contracten ophalen mislukt"},
+    "ZVZ_CONTRIBUTIONS_ERROR" : {"originalText":"","value":"ZVZ bijdragen ophalen mislukt"}
 }
 
 

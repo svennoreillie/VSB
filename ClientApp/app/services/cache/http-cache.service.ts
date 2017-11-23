@@ -1,3 +1,10 @@
+import { TranslateService } from "./../../directives/translate/translate.service";
+import { ErrorMessageService } from "./../error/error-message.service";
+import {
+    HttpClient,
+    HttpResponse,
+    HttpErrorResponse
+} from "@angular/common/http";
 import {
     Subscription
 } from "rxjs/Subscription";
@@ -10,15 +17,14 @@ import {
     Inject,
     PLATFORM_ID
 } from '@angular/core';
-import {
-    Http,
-    Response
-} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/retry';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/interval';
-import { isPlatformBrowser } from '@angular/common';
+import {
+    isPlatformBrowser
+} from '@angular/common';
 
 @Injectable()
 export class HttpCacheService implements OnDestroy {
@@ -27,9 +33,12 @@ export class HttpCacheService implements OnDestroy {
     private subscription: Subscription;
     private items: CacheItem < any > [] = [];
 
-    constructor(private http: Http, @Inject(PLATFORM_ID) private platformId: Object) { }
+    constructor(private http: HttpClient, 
+        private errorService: ErrorMessageService,
+        private translate: TranslateService,
+        @Inject(PLATFORM_ID) private platformId: Object) {}
 
-    public get < T > (url: string): Observable < T > {
+    public get < T > (url: string, errormessage?: string): Observable<T> {
         this.init();
 
         let item = this.items.find(x => x.url === url);
@@ -43,31 +52,40 @@ export class HttpCacheService implements OnDestroy {
             }
         }
         //make call 
-        let observable = this.http.get(url).map((response: Response) => {
-                let item = this.items.find(x => x.url === response.url);
-                if (item != undefined) {
-                    item.loading = false;
-                    item.observable = null;
-                }
-
-                if (response.status == 400) {
-                    //do something
-                } else if (response.status == 200) {
-                    let data = response.json();
-                    if (item != undefined) item.data = data;
-                    return data;
-                }
-
-                return undefined;
+        let observable = this.http.get < T > (url, {
+                observe: 'response'
             })
-            .share() as Observable < T > ;
-        let timestamp =  (new Date()).getTime();
+            .retry(2)
+            .share()
+            .map(
+                //Success
+                (response: HttpResponse<T>) => {
+                    let item = this.items.find(x => x.url === response.url);
+                    if (item != undefined) {
+                        item.loading = false;
+                        item.observable = null;
+                        item.data = response.body;
+                    }
+
+                    if (!response.ok) {
+                        if (item != undefined && item.errortext) {
+                            let translation = this.translate.getReplacementValue(`${item.errortext} Error`);
+                            this.errorService.showError(`${translation} (${response.status})`);
+                        }
+                        else this.errorService.showError(`${response.status} - ${response.statusText}`);
+                    }
+
+                    if (response.body != null) return response.body;
+                }
+            );
+
+        let timestamp = (new Date()).getTime();
         timestamp += this.cacheTimeMinutes * 60 * 1000;
-        let newItem = new CacheItem(url, true, timestamp, observable);
+        let newItem = new CacheItem(url, errormessage, true, timestamp, observable);
 
         this.items.push(newItem);
 
-        return observable;
+        return observable as Observable<T>;
     }
     public init(): void {
         if (isPlatformBrowser(this.platformId)) {
@@ -93,9 +111,10 @@ export class HttpCacheService implements OnDestroy {
 
 class CacheItem < T > {
     constructor(public url: string,
+        public errortext: string | undefined,
         public loading: boolean,
         public deleteTime: number,
-        public observable: Observable < T > | null) {
+        public observable: Observable<T> | null) {
 
     }
     public data: T;

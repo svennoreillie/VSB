@@ -13,7 +13,8 @@ import {
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
 } from "@angular/material";
 // 3rd party
 import * as angular from "./angular-barrel";
@@ -76,6 +77,7 @@ import "rxjs/add/operator/toPromise";
         services.VSBService,
         services.ConfigService,
         services.HttpCacheService,
+        services.ErrorMessageService,
     ],
     imports: [
         MatDatepickerModule,
@@ -91,6 +93,7 @@ import "rxjs/add/operator/toPromise";
         MatSelectModule,
         MatTooltipModule,
         MatDialogModule,
+        MatSnackBarModule,
         PopoverModule,
         // Modules
         HttpClientModule,
