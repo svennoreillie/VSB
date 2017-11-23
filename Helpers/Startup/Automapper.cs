@@ -128,7 +128,9 @@ namespace VSBaseAngular
                     .ForMember(dest => dest.NextStep, opt => opt.MapFrom(src => src.nextStep != null ? src.nextStep.Description: null))
                     .ForMember(dest => dest.Notifications, opt => opt.MapFrom(src => src.notificications));
 
-            
+                cfg.CreateMap<BobService.ContactData, BobContact>()
+                    .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
+                    .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email));
 
             });
 

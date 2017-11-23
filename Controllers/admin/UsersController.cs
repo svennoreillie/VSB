@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,11 +8,9 @@ namespace VSBaseAngular.Controllers
     [Route("api/v{version:apiVersion}/admin/[controller]")]
     public class UsersController : Controller
     {
-        [Authorize]
         public IActionResult Get()
         {
-            //TODO
-            return Ok(User.Identity.Name);
+            return Ok(new { User = User.Identity.Name ?? "TODO" });
         }
     }
 }

@@ -25,4 +25,8 @@ export class SearchByMembernrComponent extends SelectPersonController  {
     public isInvalid(): boolean {
          return this.federation.invalid || this.memberNr.invalid;
     }
+
+    public downloadList() {
+        this.doDownloadList(this.searchModel);
+    }
 }

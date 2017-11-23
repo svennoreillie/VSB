@@ -20,4 +20,8 @@ export class SearchByNameComponent extends SelectPersonController  {
     public search() {
         this.doSearch(this.searchModel);
     }
+
+    public downloadList() {
+        this.doDownloadList(this.searchModel);
+    }
 }

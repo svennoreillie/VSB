@@ -74,7 +74,7 @@ export class ContentZvzComponent implements OnInit, OnDestroy {
     public selectWarranty(warranty: ZVZWarranty | null) {
         this.selectedWarranty = warranty;
         if (this.person != null && warranty != null) {
-            this.payments = this.zvzService.getSpecificPayments(this.person.siNumber, warranty.requestDate).share();
+            this.payments = this.zvzService.getSpecificPayments(this.person.siNumber, warranty.requestDate);
         }
     }
 
@@ -88,14 +88,13 @@ export class ContentZvzComponent implements OnInit, OnDestroy {
     private fullDetailsLoaded(person: PersonModel | null) {
         this.person = person;
         if (this.person == null) return;
-        this.letters = this.zvzService.getLetters(this.person).share();
+        this.letters = this.zvzService.getLetters(this.person);
     }
 
     private loadWarranties() {
         if (this.person == null) return;
         this.warrantiesLoading = true;
         this.warrantiesSubscription = this.zvzService.getWarranties(this.person.siNumber)
-            .share()
             .subscribe(data => {
                     this.warranties = data;
                     if (data.length > 0) this.selectWarranty(data[0]);

@@ -66,7 +66,7 @@ namespace VSBaseAngular.Controllers
                 if (remarkResponse.BusinessMessages != null && remarkResponse.BusinessMessages.Length > 0)
                     return BadRequest(remarkResponse.BusinessMessages);
 
-                return Ok(remarkResponse?.Value?.Remark);
+                return Ok(remarkResponse?.Value?.Saved);
             }
             return BadRequest(ModelState);
         }

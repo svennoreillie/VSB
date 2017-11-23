@@ -1,3 +1,5 @@
+import { HttpCacheService } from "./../cache/http-cache.service";
+import { ZVZContract } from "./../../models/zvz/contract";
 import { PersonModel } from "./../../models/person";
 import { ZVZContribution, ZVZWarranty, ZVZLetter, ZVZPayment } from "./../../models";
 import { Injectable } from "@angular/core";
@@ -8,26 +10,33 @@ import { UrlService } from "./../url/url.service";
 @Injectable()
 export class ZvzService {
 
-    constructor(private http: HttpClient, private urlService: UrlService) {}
+    constructor(private http: HttpClient, 
+        private urlService: UrlService, 
+        private cacheService: HttpCacheService) {}
 
     public getContributions(sinumber: number): Observable<ZVZContribution[]> {
         let url = this.urlService.createUrl(`zvzcontributions/${sinumber}`); 
-        return this.http.get<ZVZContribution[]>(url);
+        return this.cacheService.get<ZVZContribution[]>(url).shareReplay(1);
+    }
+
+    public getContract(sinumber: number): Observable<ZVZContract> {
+        let url = this.urlService.createUrl(`zvzcontracts/${sinumber}`); 
+        return this.cacheService.get<ZVZContract>(url).shareReplay(1);
     }
 
     public getWarranties(sinumber: number): Observable<ZVZWarranty[]>  {
         let url = this.urlService.createUrl(`zvzwarranties/${sinumber}`); 
-        return this.http.get<ZVZWarranty[]>(url);
+        return this.cacheService.get<ZVZWarranty[]>(url);
     }
 
     public getPayments(sinumber: number): Observable<ZVZPayment[]> {
         let url = this.urlService.createUrl(`zvzwarranties/${sinumber}/payments`); 
-        return this.http.get<ZVZPayment[]>(url);
+        return this.cacheService.get<ZVZPayment[]>(url).shareReplay(1);
     }
 
     public getSpecificPayments(sinumber: number, requestDate: Date): Observable<ZVZPayment[]> {
         let url = this.urlService.createUrl(`zvzwarranties/${sinumber}/payments/${requestDate}`); 
-        return this.http.get<ZVZPayment[]>(url);
+        return this.cacheService.get<ZVZPayment[]>(url).shareReplay(1);
     }
 
     public getLetters(person: PersonModel): Observable<ZVZLetter[]> {
@@ -42,7 +51,7 @@ export class ZvzService {
 
         url = this.urlService.addQueryParameters(url, model);
         
-        return this.http.get<ZVZLetter[]>(url);
+        return this.cacheService.get<ZVZLetter[]>(url).shareReplay(1);
     }
 
 }

@@ -64,6 +64,7 @@ namespace VSBaseAngular.Business
             if (!string.IsNullOrEmpty(search.MemberNr)) peopleTasks.Add(SearchByMemberNr(search));
             if (search.SiNumber.HasValue) peopleTasks.Add(SearchBySiNumber(search.SiNumber.Value));
             if (!string.IsNullOrEmpty(search.Name)) peopleTasks.Add(SearchByName(search));
+            if (search.SiNumbers?.Any() == true) peopleTasks.Add(SearchBySiNumbers(search.SiNumbers));
             switch (search.Pillar)
             {
                 case "ZVZ":

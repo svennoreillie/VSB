@@ -8,10 +8,15 @@ import { Component } from "@angular/core";
 
 export class SocPanelComponent {
 
+    private visible: boolean = true;
     @Input() public loading: boolean = false;
     @Input() public collapsable: boolean = true;
     @Input() public paneltitle: string;
     @Input() public type: SocPanelLoadingType = SocPanelLoadingType.bar;
+
+    public toggle() {
+        this.visible = !this.visible;
+    }
 }
 
 export enum SocPanelLoadingType {

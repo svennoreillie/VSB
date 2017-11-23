@@ -73,7 +73,9 @@ import "rxjs/add/operator/toPromise";
         services.ThabService,
         services.ZvzService,
         services.UrlService,
+        services.VSBService,
         services.ConfigService,
+        services.HttpCacheService,
     ],
     imports: [
         MatDatepickerModule,
@@ -95,6 +97,7 @@ import "rxjs/add/operator/toPromise";
         angular.CommonModule,
         angular.FormsModule,
         angular.ReactiveFormsModule,
+        angular.HttpModule,
         // angular.HttpModule,
         angular.RouterModule.forRoot([{
                 path: "",

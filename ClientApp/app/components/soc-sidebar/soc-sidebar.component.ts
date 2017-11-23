@@ -20,7 +20,7 @@ export class SocSidebarComponent implements OnInit, OnDestroy {
     @Output() public socSelect: EventEmitter<PersonModel> = new EventEmitter<PersonModel>();
     @Output() public bottomScroll: EventEmitter<any> = new EventEmitter<any>();
     public scroll = new Subject<Event>();
-    private formVisible: boolean = true;
+    public formVisible: boolean = true;
 
     public ngOnInit(): void {
         this.subscription = this.scroll

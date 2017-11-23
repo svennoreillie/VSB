@@ -1,6 +1,7 @@
 export class SearchModel {
     public skip: number = 0;
     public limit: number = 100;
+    public csv: boolean = false;
 }
 
 export class NameSearchModel extends SearchModel {

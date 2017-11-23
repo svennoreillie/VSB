@@ -4,7 +4,7 @@ namespace VSBaseAngular.Models
 {
     public class Person : ModelBase
     {
-        public int SiNumber { get; set; }
+        public long SiNumber { get; set; }
         public string Insz { get; set; }
 
         public int FederationNumber { get; set; }

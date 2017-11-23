@@ -21,4 +21,9 @@ export class SearchByInszComponent extends SelectPersonController  {
             this.doSearch(this.searchModel);
         }
     }
+
+    public downloadList() {
+        this.doDownloadList(this.searchModel);
+    }
+
 }

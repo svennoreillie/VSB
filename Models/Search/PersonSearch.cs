@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace VSBaseAngular.Models.Search
 {
@@ -18,5 +19,7 @@ namespace VSBaseAngular.Models.Search
         public DateTime? StateCompletedDate { get; set; }
         public bool? StateRejected { get; set; }
         public DateTime? StateRejectedDate { get; set; }
+
+        public IEnumerable<long> SiNumbers { get; set; }
     }
 }

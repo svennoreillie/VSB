@@ -115,10 +115,8 @@ export class ContentThabComponent implements OnInit, OnDestroy {
                     element.initialRemark = element.remark;
                 })
                 return data;
-            })
-            .share();
-        this.payments = this.thabService.getPayments(this.person.siNumber, this.person.insz)
-            .share();
+            });
+        this.payments = this.thabService.getPayments(this.person.siNumber, this.person.insz);
 
     }
 

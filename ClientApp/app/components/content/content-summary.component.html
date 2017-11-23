@@ -1,96 +1,75 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>Summary</h1>
-        </div>
-    </div>
-</div>
-<!-- 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !person }"
-                 [hidden]="vsbInfo.zvzInfo.fullContract.contract.closeDate">
-                <div class="soc-collapser">
-                    <i class="fa fa-ellipsis-h fa-lg"
-                       aria-hidden="true"></i>
-                </div>
-                <div class="soc-title">{{'ZVZ_CONTRACT_LEGEND' | translate}}</div>
-                <div class="soc-content">
+    <ng-container *ngIf="person;then content else notfound"></ng-container>
+
+    <ng-template #notfound>
+        <div class="soc-not-found"
+             translate>Summary Select person</div>
+    </ng-template>
+
+    <ng-template #content>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <!-- Contracts -->
+                <soc-panel paneltitle="Contracts"
+                           collapsable="true"
+                           type="bar">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <b [hidden]="!(vsbInfo != null && vsbInfo.zvzInfo != null && vsbInfo.zvzInfo.fullContract != null && vsbInfo.zvzInfo.fullContract.contract)"><span translate="ZVZ_CONTRACT_CONTRACT_STARTED"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractDate | date: ('COMMON_DATEFORMAT' | translate)}}</b>
-                                    <b [hidden]="vsbInfo != null && vsbInfo.zvzInfo != null && vsbInfo.zvzInfo.fullContract != null && vsbInfo.zvzInfo.fullContract.contract"><span translate="ZVZ_CONTRACT_CONTRACT_NOT_FOUND"></span></b>
+                        <ng-template #noLastContract>
+                            <b><span translate>ZVZ_CONTRACT_CONTRACT_NOT_FOUND</span></b>
+                        </ng-template>
+                        <div class="row"
+                             *ngIf="lastContract | async;let contract else noLastContract">
+                            <ng-template *ngIf="contract.closeDate;else noclosedate">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <b><span translate>ZVZ_CONTRACT_CONTRACT_TERMINATED</span>: {{contract.closeDate | date: ('COMMON_DATEFORMAT' | translate)}}</b>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <span translate="ZVZ_CONTRACT_CONTRACT_STARTED_MOTIVE"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractMotive}}
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <span translate>ZVZ_CONTRACT_CONTRACT_TERMINATED_MOTIVE</span>: {{contract.closeMotive}}
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <span translate="ZVZ_CONTRACT_CONTRACT_STARTED_REASON"></span>: {{vsbInfo.zvzInfo.fullContract.contract.contractReason}}
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <span translate>ZVZ_CONTRACT_CONTRACT_TERMINATED_REASON</span>: {{contract.closeReason}}
+                                    </div>
                                 </div>
-                            </div>
+                            </ng-template>
+                            <ng-template #noclosedate>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <b *ngIf="contract; else nocontract">
+                                            <span translate>ZVZ_CONTRACT_CONTRACT_STARTED</span>: {{contract.contractDate | date: ('COMMON_DATEFORMAT' | translate)}}
+                                        </b>
+                                        <ng-template #nocontract>
+                                            <b><span translate>ZVZ_CONTRACT_CONTRACT_NOT_FOUND</span></b>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <span translate>ZVZ_CONTRACT_CONTRACT_STARTED_MOTIVE</span>: {{contract.contractMotive}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <span translate>ZVZ_CONTRACT_CONTRACT_STARTED_REASON</span>: {{contract.contractReason}}
+                                    </div>
+                                </div>
+                            </ng-template>
                         </div>
                     </div>
-                </div>
+                </soc-panel>
             </div>
 
-            <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !person }"
-                 [hidden]="!vsbInfo.zvzInfo.fullContract.contract.closeDate">
-                <div class="soc-collapser">
-                    <i class="fa fa-ellipsis-h fa-lg"
-                       aria-hidden="true"></i>
-                </div>
-                <div class="soc-title">{{'ZVZ_CONTRACT_LEGEND' | translate}}</div>
-                <div class="soc-content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <b><span translate="ZVZ_CONTRACT_CONTRACT_TERMINATED"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeDate | date: ('COMMON_DATEFORMAT' | translate)}}</b>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <span translate="ZVZ_CONTRACT_CONTRACT_TERMINATED_MOTIVE"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeMotive}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <span translate="ZVZ_CONTRACT_CONTRACT_TERMINATED_REASON"></span>: {{vsbInfo.zvzInfo.fullContract.contract.closeReason}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-        </div>
 
-
-        <div class="col-sm-12">
-            <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !person }">
-                <div class="soc-collapser">
-                    <i class="fa fa-ellipsis-h fa-lg"
-                       aria-hidden="true"></i>
-                </div>
-                <div class="soc-title">{{'VSB_CURRENT_SITUATION_LEGEND' | translate}}</div>
-                <div class="soc-content">
+            <div class="col-sm-12">
+                <!-- Contracts -->
+                <soc-panel paneltitle="VSB Current Situation"
+                           collapsable="true"
+                           type="bar">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
@@ -99,41 +78,41 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_STATUS"></th>
-                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_DECISIONDATE"></th>
-                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_REQUESTDATE"></th>
-                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_STARTDATE"></th>
-                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_ENDDATE"></th>
-                                                <th translate="VSB_CURRENT_SITUATION_COLUMN_REFUSALREASON"></th>
+                                                <th translate>VSB_CURRENT_SITUATION_COLUMN_STATUS</th>
+                                                <th translate>VSB_CURRENT_SITUATION_COLUMN_DECISIONDATE</th>
+                                                <th translate>VSB_CURRENT_SITUATION_COLUMN_REQUESTDATE</th>
+                                                <th translate>VSB_CURRENT_SITUATION_COLUMN_STARTDATE</th>
+                                                <th translate>VSB_CURRENT_SITUATION_COLUMN_ENDDATE</th>
+                                                <th translate>VSB_CURRENT_SITUATION_COLUMN_REFUSALREASON</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td translate="VSB_CURRENT_SITUATION_ROW_ZVZ"></td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].state}}</td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].requestDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].startDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.zvzInfo.fullContract.warranties[0].refusalReason}}</td>
+                                            <tr *ngFor="let warranty of warranties | async | slice:0:1">
+                                                <td translate>VSB_CURRENT_SITUATION_ROW_ZVZ</td>
+                                                <td>{{warranty.state}}</td>
+                                                <td>{{warranty.decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{warranty.requestDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{warranty.startDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{warranty.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{warranty.refusalReason}}</td>
                                             </tr>
-                                            <tr>
-                                                <td translate="VSB_CURRENT_SITUATION_ROW_BOB"></td>
-                                                <td>{{vsbInfo.bobInfo.certificates[0].state}}</td>
-                                                <td>{{vsbInfo.bobInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                            <tr *ngFor="let bobCert of bobCertificates | async | slice:0:1">
+                                                <td translate>VSB_CURRENT_SITUATION_ROW_BOB</td>
+                                                <td>{{bobCert.state}}</td>
+                                                <td>{{bobCert.decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td></td>
-                                                <td>{{vsbInfo.bobInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.bobInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.bobInfo.certificates[0].terminationReason}}</td>
+                                                <td>{{bobCert.beginDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{bobCert.endDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{bobCert.terminationReason}}</td>
                                             </tr>
-                                            <tr>
-                                                <td translate="VSB_CURRENT_SITUATION_ROW_THAB"></td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].state}}</td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].referenceDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].beginDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].endDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                <td>{{vsbInfo.thabInfo.certificates[0].terminationReason}}</td>
+                                            <tr *ngFor="let thabCert of thabCertificates | async | slice:0:1">
+                                                <td translate>VSB_CURRENT_SITUATION_ROW_THAB</td>
+                                                <td>{{thabCert.state}}</td>
+                                                <td>{{thabCert.decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{thabCert.referenceDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{thabCert.beginDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{thabCert.endDate| date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{thabCert.terminationReason}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -141,19 +120,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </soc-panel>
             </div>
-        </div>
 
-        <div class="col-sm-12">
-            <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !person }">
-                <div class="soc-collapser">
-                    <i class="fa fa-ellipsis-h fa-lg"
-                       aria-hidden="true"></i>
-                </div>
-                <div class="soc-title">{{'ZVZ_CONTRIBUTIONS_LEGEND' | translate}}</div>
-                <div class="soc-content">
+            <div class="col-sm-12">
+                <soc-panel paneltitle="ZVZ_CONTRIBUTIONS_LEGEND"
+                           [loading]="contributions && !(contributions|async)"
+                           collapsable="true"
+                           type="bar">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
@@ -161,15 +135,15 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_YEAR"></th>
-                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_AMOUNT"></th>
-                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_STATUS"></th>
-                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_CIRCUIT"></th>
-                                                <th translate="ZVZ_CONTRIBUTIONS_COLUMN_PAYMENTDATE"></th>
+                                                <th translate>ZVZ_CONTRIBUTIONS_COLUMN_YEAR</th>
+                                                <th translate>ZVZ_CONTRIBUTIONS_COLUMN_AMOUNT</th>
+                                                <th translate>ZVZ_CONTRIBUTIONS_COLUMN_STATUS</th>
+                                                <th translate>ZVZ_CONTRIBUTIONS_COLUMN_CIRCUIT</th>
+                                                <th translate>ZVZ_CONTRIBUTIONS_COLUMN_PAYMENTDATE</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let cont of vsbInfo.zvzInfo.fullContract.contributions">
+                                            <tr *ngFor="let cont of contributions | async">
                                                 <td>{{cont.year}}</td>
                                                 <td>{{cont.amount}} {{cont.currency}}</td>
                                                 <td>{{cont.state}}</td>
@@ -179,53 +153,49 @@
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
+                </soc-panel>
             </div>
-        </div>
 
-        <div class="col-sm-12 ">
-            <div class="soc-panel"
-                 [ngStyle]="{'collapsed': !person }">
-                <div class="soc-collapser">
-                    <i class="fa fa-ellipsis-h fa-lg"
-                       aria-hidden="true"></i>
-                </div>
-                <div class="soc-title">{{'VSB_REMARK_LEGEND' | translate}}</div>
-                <div class="soc-content">
+            <div class="col-sm-12">
+                <soc-panel paneltitle="VSB_REMARK_LEGEND"
+                           collapsable="true"
+                           type="bar">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
-                                <textarea class="form-control"
-                                          rows="7"
-                                          [(ngModel)]="vsbInfo.vsbRemark"></textarea>
+                                <mat-form-field style="width:100%">
+                                    <textarea class="form-control"
+                                              rows="2"
+                                              matInput
+                                              placeholder="{{'Remark' | translate}}"
+                                              [(ngModel)]="vsbRemark">
+                                    </textarea>
+                                </mat-form-field>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row"
+                             *ngIf="vsbRemark">
                             <div class="form-group">
                                 <div class="col-sm-12">
-
                                     <a [href]="createMailTo()"
-                                       class="notunderlinedlink btn btn-default"
-                                       [hidden]="vsbInfo.vsbRemark == null || vsbInfo.vsbRemark == '' ">
-                                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                        </a>
-                                    <button title="{{'VSB_REMARK_SAVE' | translate}} "
-                                            (click)="saveVsbRemark()"
-                                            [hidden]="vsbInfo.vsbRemark == null || vsbInfo.vsbRemark == oldvsbRemark"
+                                       class="notunderlinedlink btn btn-default">
+                                       <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                </a>
+                                    <button title="{{'VSB_REMARK_SAVE' | translate}}"
+                                            ng-click="saveVsbRemark()"
                                             class="btn btn-default">
-                                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                        </button>
+                                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </soc-panel>
             </div>
-        </div>
 
-    </div>
-</div> -->
+        </div>
+    </ng-template>
+</div>

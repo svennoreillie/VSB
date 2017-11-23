@@ -1,6 +1,9 @@
-<div class="soc-panel">
+<div class="soc-panel"
+[ngClass]="{'collapsed': !visible}">
     <div class="soc-collapser"
-         *ngIf="collapsable">
+         
+         *ngIf="collapsable"
+         (click)="toggle()">
         <i class="fa fa-ellipsis-h fa-lg"
            aria-hidden="true"></i>
     </div>

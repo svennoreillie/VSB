@@ -3,9 +3,10 @@
 
     <!-- tabheader -->
     <div class="soc-header fixed"
-         *ngIf="person">
+         *ngIf="person; else noperson">
         <div>
-            <span class="soc-header-right" *ngIf="person.locality">{{person.locality}}</span>
+            <span class="soc-header-right"
+                  *ngIf="person.locality">{{person.locality}}</span>
             <span class="soc-header-title">
                     <span class="soc-typography-name">{{person.name}} </span> {{person.firstName}}
             <i *ngIf="person.sex === genderTypeModel.Male"
@@ -18,40 +19,48 @@
         </div>
         <div>
             <span>{{person.insz}}</span>
-            <span class="soc-header-right" *ngIf="!person.memberNumber">{{person.federationNumber}}</span>
-            <span class="soc-header-right" *ngIf="person.memberNumber">{{person.federationNumber}}/{{person.memberNumber}}</span>
+            <span class="soc-header-right"
+                  *ngIf="!person.memberNumber">{{person.federationNumber}}</span>
+            <span class="soc-header-right"
+                  *ngIf="person.memberNumber">{{person.federationNumber}}/{{person.memberNumber}}</span>
         </div>
     </div>
 
     <!-- tabheader if no person -->
-    <div class="soc-header fixed"
-         *ngIf="!person">
-        <div class="soc-header-title">{{'VSB_HEADER_NOTHING_SELECTED' | translate}}</div>
-        <div>&nbsp;</div>
-    </div>
+    <ng-template #noperson>
+        <div class="soc-header fixed">
+            <div class="soc-header-title">{{'VSB_HEADER_NOTHING_SELECTED' | translate}}</div>
+            <div>&nbsp;</div>
+        </div>
+    </ng-template>
 
     <div class="soc-main-content">
 
         <div class="soc-tabs top follow-header">
             <ul class="nav nav-tabs">
                 <li [ngClass]="{'active': getActive(contentTab.Summary)}">
-                    <a (click)="setView(contentTab.Summary)" translate>VSB_TAB_HEADING_SUMMARY</a>
+                    <a (click)="setView(contentTab.Summary)">
+                        {{'VSB_TAB_HEADING_SUMMARY' | translate }}</a>
                 </li>
                 <li [ngClass]="{'active': getActive(contentTab.Zorgverzekering)}">
-                    <a (click)="setView(contentTab.Zorgverzekering)" translate>VSB_TAB_HEADING_ZVZ</a>
+                    <a (click)="setView(contentTab.Zorgverzekering)">
+                        {{'VSB_TAB_HEADING_ZVZ' | translate }}</a>
                 </li>
                 <li [ngClass]="{'active': getActive(contentTab.Bob)}">
-                    <a (click)="setView(contentTab.Bob)" translate>VSB_TAB_HEADING_BOB</a>
+                    <a (click)="setView(contentTab.Bob)">
+                        {{'VSB_TAB_HEADING_BOB' | translate }}</a>
                 </li>
                 <li [ngClass]="{'active': getActive(contentTab.Thab)}">
-                    <a (click)="setView(contentTab.Thab)" translate>VSB_TAB_HEADING_THAB</a>
+                    <a (click)="setView(contentTab.Thab)">
+                        {{'VSB_TAB_HEADING_THAB' | translate }}</a>
                 </li>
                 <li [ngClass]="{'active': getActive(contentTab.Attachments)}">
-                    <a (click)="setView(contentTab.Attachments)" translate>VSB_ATTACHMENTS_TITLE</a>
+                    <a (click)="setView(contentTab.Attachments)">
+                        {{'VSB_ATTACHMENTS_TITLE' | translate }}</a>
                 </li>
-                
+
                 <!-- <li [ngClass]="{'active': getActive(contentTab.Returns)}">
-                    <a (click)="setView(contentTab.Returns)" translate>VSB_TAB_HEADING_RETURNS</a>
+                    {{'VSB_TAB_HEADING_RETURNS' | translate }}</a>
                 </li> -->
             </ul>
             <div class="tab-content">
@@ -63,24 +72,24 @@
                 <div id="tab_zvz"
                      class="tab-pane"
                      [ngClass]="{'active': getActive(contentTab.Zorgverzekering)}">
-                     <content-zvz></content-zvz>
+                    <content-zvz></content-zvz>
                 </div>
                 <div id="tab_bob"
                      class="tab-pane"
                      [ngClass]="{'active': getActive(contentTab.Bob)}">
-                     <content-bob></content-bob>
+                    <content-bob></content-bob>
                 </div>
                 <div id="tab_thab"
                      class="tab-pane"
                      [ngClass]="{'active': getActive(contentTab.Thab)}">
-                     <content-thab></content-thab>
+                    <content-thab></content-thab>
                 </div>
                 <div id="tab_thab"
                      class="tab-pane"
                      [ngClass]="{'active': getActive(contentTab.Attachments)}">
                     <!-- <content-attachment person="person" /> -->
                 </div>
-<!--                 
+                <!--                 
                 <div id="tab_returns"
                      class="tab-pane"
                      [ngClass]="{'active': getActive(contentTab.Returns)}">

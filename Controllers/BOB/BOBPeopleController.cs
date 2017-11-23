@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using AutoMapper;
 using BobService;
 using Microsoft.AspNetCore.Mvc;
 using VSBaseAngular.Business;
@@ -13,10 +14,12 @@ namespace VSBaseAngular.Controllers
     public class BOBPeopleController : BaseController
     {
         private readonly IBobService _service;
+        private readonly IMapper _mapper;
 
-        public BOBPeopleController(IServiceFactory<IBobService> bobServiceFactory)
+        public BOBPeopleController(IServiceFactory<IBobService> bobServiceFactory, IMapper mapper)
         {
             _service = bobServiceFactory.GetService();
+            _mapper = mapper;
         }
 
 
@@ -57,7 +60,9 @@ namespace VSBaseAngular.Controllers
             var response = await _service.GetPersonAsync(new GetPersonRequest() { SiNumber = sinumber });
             if (response.BusinessMessages != null && response.BusinessMessages.Length > 0) 
                 return BadRequest(response.BusinessMessages);
-            return Ok(response.Value?.person?.contactData);
+
+            var mappedModel = _mapper.Map<BobContact>(response.Value?.person?.contactData);
+            return Ok(mappedModel);
         }
     }
 }

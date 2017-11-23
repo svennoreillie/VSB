@@ -4,17 +4,20 @@ import { Injectable } from "@angular/core";
 import { THABCertificate, THABPayableAmount, THABPayment } from "../../models";
 import { Observable } from "rxjs/Observable";
 import { THABNotification } from "../../models/thab/notification";
+import { HttpCacheService } from "../index";
 
 @Injectable()
 export class ThabService {
 
-     constructor(private http: HttpClient, private urlService: UrlService) {}
+     constructor(private http: HttpClient, 
+        private urlService: UrlService, 
+        private cacheService: HttpCacheService) {}
 
     public getCertificates(sinumber: number, insz: string): Observable<THABCertificate[]> {
         let url = this.urlService.createUrl('thabcertificates', sinumber.toString());
         url = this.urlService.addQueryParameters(url, { insz: insz});
         
-        return this.http.get<THABCertificate[]>(url);
+        return this.cacheService.get<THABCertificate[]>(url).share();
     }
 
     public getRemark(sinumber: number, certificate: THABCertificate): Observable<string> {
@@ -32,19 +35,19 @@ export class ThabService {
     public getPayableAmounts(sinumber: number, certificateid: string): Observable<THABPayableAmount[]> {
         let url = this.urlService.createUrl('thabcertificates', sinumber.toString(), 'payableamounts', certificateid);
         
-        return this.http.get<THABPayableAmount[]>(url);
+        return this.cacheService.get<THABPayableAmount[]>(url).share();
     }
 
     public getPayments(sinumber: number, insz: string): Observable<THABPayment[]> {
         let url = this.urlService.createUrl('thabcertificates', sinumber.toString(), 'payments');
         url = this.urlService.addQueryParameters(url, { insz: insz});
         
-        return this.http.get<THABPayment[]>(url);
+        return this.cacheService.get<THABPayment[]>(url).share();
     }
 
     public getNotifications(certificateid: string): Observable<THABNotification> {
         let url = this.urlService.createUrl('thabnotifications', certificateid);
         
-        return this.http.get<THABNotification>(url);
+        return this.cacheService.get<THABNotification>(url);
     }
 }

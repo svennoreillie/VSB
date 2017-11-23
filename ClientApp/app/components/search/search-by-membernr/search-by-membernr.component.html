@@ -1,7 +1,7 @@
 <soc-sidebar [people]="people | async"
              (socSelect)="selectPerson($event)"
              [loading]="people && !(people | async)"
-             (socDownload)="downloadPersons()">
+             (socDownload)="downloadList()">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">

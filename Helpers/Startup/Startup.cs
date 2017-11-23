@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.HttpSys;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +35,13 @@ namespace VSBaseAngular
             DependencyInjection.AddServices(services);
             Automapper.AddMapper(services);
 
-            //services.AddCors();
+            //services.Configure<IISOptions>(options =>
+            //{
+            //    options.AutomaticAuthentication = true;
+            //});
+
+            //services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            //services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 
             services.AddMvc();
 

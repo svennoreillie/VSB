@@ -30,7 +30,7 @@ import {
 export class SearchByStateComponent extends SelectPersonController implements OnInit, OnDestroy {
     
     private generalDataSub: Subscription;
-    private peopleLoading: boolean;
+    public peopleLoading: boolean;
     private allLoaded: boolean = false;;
     private subscription: Subscription;
     private loadCount: number = 20;
@@ -74,6 +74,10 @@ export class SearchByStateComponent extends SelectPersonController implements On
             if (this.stateRejectedDate) this.searchModel.stateRejectedDate = this.stateRejectedDate.toISOString();
             this.makeSearchCall();
         }
+    }
+
+    public downloadList() {
+        this.doDownloadList(this.searchModel);
     }
 
     public isSearchDisabled = (): boolean => {

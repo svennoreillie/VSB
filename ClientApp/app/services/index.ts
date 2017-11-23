@@ -1,3 +1,6 @@
+export { HttpCacheService } from "./cache/http-cache.service";
+
+export { VSBService } from "./api/vsb.service";
 export { ThabService } from "./api/thab.service";
 export { ZvzService } from "./api/zvz.service";
 export { UrlService } from "./url/url.service";

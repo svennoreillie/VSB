@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 import { SearchModel } from "./../../components/search/models/search";
 import { UrlService } from "./../url/url.service";
 import { ReplaySubject } from "rxjs/ReplaySubject";
+import { HttpCacheService } from "../index";
 
 @Injectable()
 export class PeopleService implements OnDestroy {
@@ -15,7 +16,9 @@ export class PeopleService implements OnDestroy {
     private currentActivePerson: PersonModel | null;
     private updatePersonSubscription: Subscription;
 
-    constructor(private http: HttpClient, private urlService: UrlService) { 
+    constructor(private http: HttpClient, 
+        private urlService: UrlService, 
+        private cacheService: HttpCacheService) { 
         this.activePersonSubject = new ReplaySubject<PersonModel|null>();
         this.activePersonFullDetailSubject = new ReplaySubject<PersonModel|null>();
     }
@@ -66,11 +69,19 @@ export class PeopleService implements OnDestroy {
         let url = this.urlService.createUrl("people");
         url = this.urlService.addQueryParameters(url, search);
 
-        return this.http.get<PersonModel[]>(url);
+        return this.cacheService.get<PersonModel[]>(url);
     }
 
     public get(sinumber: number): Observable<PersonModel> {
         let url = this.urlService.createUrl("people", sinumber.toString());
-        return this.http.get<PersonModel>(url);
+        return this.cacheService.get<PersonModel>(url);
+    }
+
+    public downloadCSV(search: SearchModel): Observable<Blob> {
+        let url = this.urlService.createUrl("people");
+        search.csv = true;
+        url = this.urlService.addQueryParameters(url, search);
+        
+        return this.http.get(url, { responseType: "blob"});
     }
 }

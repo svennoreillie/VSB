@@ -6,7 +6,7 @@ import nl from "../../../translations/nl.json";
 @Injectable()
 export class TranslateService {
 
-    public getReplacementValue = (originalValue: string, description: string): string => {
+    public getReplacementValue = (originalValue: string, description?: string): string => {
         const original: string = this.getOriginalText(originalValue);
         const key: string = this.getTransformedText(originalValue);
 
@@ -20,7 +20,7 @@ export class TranslateService {
 
             const translationWarning = "Translation not found, add the following json block to the translation files ";
             const jsonExampleTranslation = '"' + key + '" : ' + JSON.stringify(newTranslation) + ",";
-            console.warn(translationWarning + "\n\n" + jsonExampleTranslation);
+            console.info(translationWarning + "\n\n" + jsonExampleTranslation);
             return key;
         }
         if (!translation.value) return translation.originalText;

@@ -66,9 +66,9 @@ export class ContentBobComponent implements OnInit, OnDestroy {
     private loadData() {
         if (this.person == null) return;
 
-        this.certificates = this.bobService.getCertificates(this.person.siNumber).share();
-        this.payments = this.bobService.getPayments(this.person.siNumber).share();
-        this.letters = this.bobService.getLetters(this.person.siNumber).share();
+        this.certificates = this.bobService.getCertificates(this.person.siNumber);
+        this.payments = this.bobService.getPayments(this.person.siNumber);
+        this.letters = this.bobService.getLetters(this.person.siNumber);
     }
 
 }
