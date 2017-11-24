@@ -1,6 +1,12 @@
-import { HttpClientModule } from "@angular/common/http";
-import { MatDialogModule } from "@angular/material/dialog";
-import { PopoverModule } from "ngx-popover"
+import {
+    HttpClientModule, HTTP_INTERCEPTORS
+} from "@angular/common/http";
+import {
+    MatDialogModule
+} from "@angular/material/dialog";
+import {
+    PopoverModule
+} from "ngx-popover"
 import {
     MatButtonModule,
     MatCardModule,
@@ -26,13 +32,23 @@ import * as directives from "./directives";
 import * as services from "./services";
 
 // Components
-import { AppComponent } from "./components/app/app.component";
+import {
+    AppComponent
+} from "./components/app/app.component";
 import * as content from "./components/content";
-import { NavMenuComponent } from "./components/navmenu/navmenu.component";
+import {
+    NavMenuComponent
+} from "./components/navmenu/navmenu.component";
 import * as search from "./components/search";
-import { SocPanelComponent } from "./components/soc-panel/soc-panel.component";
-import { SocSidebarComponent } from "./components/soc-sidebar/soc-sidebar.component";
-import { VersionComponent } from "./components/version/version.component";
+import {
+    SocPanelComponent
+} from "./components/soc-panel/soc-panel.component";
+import {
+    SocSidebarComponent
+} from "./components/soc-sidebar/soc-sidebar.component";
+import {
+    VersionComponent
+} from "./components/version/version.component";
 
 // rxjs
 import "rxjs/add/operator/catch";
@@ -42,6 +58,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/share";
 import "rxjs/add/operator/shareReplay";
 import "rxjs/add/operator/toPromise";
+import { HttpCacheInterceptor } from "./services";
 
 @angular.NgModule({
     declarations: [
@@ -76,8 +93,13 @@ import "rxjs/add/operator/toPromise";
         services.UrlService,
         services.VSBService,
         services.ConfigService,
-        services.HttpCacheService,
         services.ErrorMessageService,
+        services.CacheService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpCacheInterceptor,
+            multi: true,
+        },
     ],
     imports: [
         MatDatepickerModule,
