@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { THABCertificate, THABPayableAmount, THABPayment } from "../../models";
 import { Observable } from "rxjs/Observable";
 import { THABNotification } from "../../models/thab/notification";
+import { THABLetter } from "../../models/thab/letter";
 
 @Injectable()
 export class ThabService {
@@ -43,9 +44,21 @@ export class ThabService {
         return this.http.get<THABPayment[]>(url).share();
     }
 
+    public getLetters = (sinumber: number, insz: string): Observable<THABLetter[]> => {
+        let url = this.urlService.createUrl('thabletters', sinumber.toString());
+        url = this.urlService.addQueryParameters(url, { insz: insz});
+        return this.http.get<THABLetter[]>(url).share();
+    }
+
     public getNotifications(certificateid: string): Observable<THABNotification> {
         let url = this.urlService.createUrl('thabnotifications', certificateid);
         
         return this.http.get<THABNotification>(url);
+    }
+
+    public downloadForm(sinumber: number, referenceDate: Date): Observable<Blob> {
+        let url = this.urlService.createUrl('thabforms', sinumber.toString());
+        url = this.urlService.addQueryParameters(url, { referenceDate: referenceDate });
+        return this.http.get(url, { responseType: "blob"});
     }
 }

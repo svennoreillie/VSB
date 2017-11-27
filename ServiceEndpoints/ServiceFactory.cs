@@ -30,6 +30,8 @@ public class ServiceFactory<T> : IServiceFactory<T> where T : class
             Enum.TryParse<HttpProxyCredentialType>(config.Transport?.ProxyCredentialsType, out proxyType);
         }
 
+        
+
         switch (config.Binding)
         {
             case BindingMode.BasicHttp:
@@ -45,6 +47,11 @@ public class ServiceFactory<T> : IServiceFactory<T> where T : class
                     httpbinding.Security.Transport.ClientCredentialType = clientType;
                     httpbinding.Security.Transport.ProxyCredentialType = proxyType;
                 }
+
+                httpbinding.MaxBufferPoolSize = 655369999;
+                httpbinding.MaxBufferSize = 655369999;
+                httpbinding.MaxReceivedMessageSize = 655369999;
+
                 binding = httpbinding;
                 break;
 
@@ -60,6 +67,11 @@ public class ServiceFactory<T> : IServiceFactory<T> where T : class
                     httpsbinding.Security.Transport.ClientCredentialType = clientType;
                     httpsbinding.Security.Transport.ProxyCredentialType = proxyType;
                 }
+                
+                httpsbinding.MaxBufferPoolSize = 655369999;
+                httpsbinding.MaxBufferSize = 655369999;
+                httpsbinding.MaxReceivedMessageSize = 655369999;
+
                 binding = httpsbinding;
                 break;
 

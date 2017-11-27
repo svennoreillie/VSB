@@ -20,7 +20,7 @@
                 <!-- Certificates -->
                 <soc-panel paneltitle="THAB_ADMISSIONS_LEGEND"
                            collapsable="true"
-                           [loading]="personDetailsLoading || (certificates && !(certificates|async))"
+                           [loading]="personDetailsLoading || loading"
                            type="bar">
 
                     <popover-content #certificatePopoverTemplate>
@@ -57,7 +57,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let cert of certificates | async"
+                                            <tr *ngFor="let cert of certificates"
                                                 (click)="selectCertificate(cert)">
                                                 <td>{{cert.certificateId}}</td>
                                                 <td>
@@ -163,83 +163,73 @@
                     </div>
                 </soc-panel>
 
-            </div>
-        </div>
-    </ng-template>
-</div>
 
-<!-- <div class="container-fluid">
-
-    <div ng-hide="vm.vsbInfo.thabInfo == null || vm.vsbInfo.thabInfo.certificates == null">
-        <div class="row">
-            <div>
-
-                <div class="soc-panel"
-                     ng-show="vm.vsbInfo.thabInfo != null && vm.vsbInfo.thabInfo.certificates != null">
-                    <div class="soc-collapser">
-                        <i class="fa fa-ellipsis-h fa-lg"
-                           aria-hidden="true"></i>
-                    </div>
-                    <div class="soc-title">{{'THAB_LETTERS_LEGEND' | translate}}</div>
-                    <div class="soc-content">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <span translate>THAB_DOCUMENTS"></spanbr />
-                                        <div class="soc-table striped secondary">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th translate>THAB_DOCUMENTS_COLUMN_ID</th>
-                                                        <th translate>THAB_DOCUMENTS_COLUMN_DOWNLOAD</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="cert in vm.vsbInfo.thabInfo.certificates">
-                                                        <td>{{cert.certificateId}}</td>
-                                                        <td><a ng-hide="cert.calculationBasicRightDocument == null || cert.calculationBasicRightDocument.UniqueId == '' "
-                                                               ng-click="vm.downloadThabCalculationDocument(cert)"
-                                                               class="fa fa-file notunderlinedlink btn btn-default"></a></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                <!-- Letters -->
+                <soc-panel paneltitle="THAB_LETTERS_LEGEND"
+                           collapsable="true"
+                           [loading]="personDetailsLoading || loading"
+                           type="bar">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <span translate>THAB_DOCUMENTS</span><br />
+                                <div class="soc-table striped secondary">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th translate>THAB_DOCUMENTS_COLUMN_ID</th>
+                                                <th translate>THAB_DOCUMENTS_COLUMN_DOWNLOAD</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cert of certificates">
+                                                <td>{{cert.certificateId}}</td>
+                                                <td><a [hidden]="cert.calculationBasicRightDocument == null || cert.calculationBasicRightDocument.UniqueId == '' "
+                                                       (click)="downloadThabCalculationDocument(cert)"
+                                                       class="fa fa-file notunderlinedlink btn btn-default"></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="soc-table striped secondary">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th translate>THAB_LETTERS_COLUMN_DATE</th>
-                                                        <th translate>THAB_LETTERS_COLUMN_ID</th>
-                                                        <th translate>THAB_LETTERS_COLUMN_TYPE</th>
-                                                        <th translate>THAB_LETTERS_COLUMN_DOWNLOAD</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="let in vm.vsbInfo.thabInfo.letters">
-                                                        <td>{{let.letterDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
-                                                        <td>{{let.certificateId}}</td>
-                                                        <td>{{let.type}}</td>
-                                                        <td ng-hide="let.type===vm.extraInfoLetterType"><a target="_blank"
-                                                               ng-show="let.url != ''"
-                                                               href="{{let.url != '' ? let.url : '#'}}"
-                                                               class="fa fa-file notunderlinedlink btn btn-default"></a></td>
-                                                        <td ng-show="let.type===vm.extraInfoLetterType"><a ng-click="vm.downloadThabForm(let)"
-                                                               href="#"
-                                                               class="fa fa-file notunderlinedlink btn btn-default"></a>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="soc-table striped secondary">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th translate>THAB_LETTERS_COLUMN_DATE</th>
+                                                <th translate>THAB_LETTERS_COLUMN_ID</th>
+                                                <th translate>THAB_LETTERS_COLUMN_TYPE</th>
+                                                <th translate>THAB_LETTERS_COLUMN_DOWNLOAD</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let letter of letters">
+                                                <td>{{letter.letterDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{letter.certificateId}}</td>
+                                                <td>{{letter.type}}</td>
+                                                <td *ngIf="letter.type !== extraInfoLetterType && letter.url && letter.url != null">
+                                                    <a target="_blank"
+                                                       [hidden]="letter.url == ''"
+                                                       [href]="letter.url"
+                                                       class="fa fa-file notunderlinedlink btn btn-default"></a>
+                                                </td>
+                                                <td *ngIf="letter.type === extraInfoLetterType">
+                                                    <a (click)="downloadThabForm(letter)"
+                                                       href="#"
+                                                       class="fa fa-file notunderlinedlink btn btn-default"></a>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </soc-panel>
+
             </div>
         </div>
-    </div> -->
+    </ng-template>
+</div>

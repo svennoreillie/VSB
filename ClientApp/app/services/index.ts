@@ -1,7 +1,7 @@
 export { HttpCacheInterceptor } from "./interceptors/http-cache.interceptor.service";
 
-export { CacheService } from "./cache/cach.service";
-export { ErrorMessageService } from "./error/error-message.service";
+export { CacheService } from "./cache/cache.service";
+export { NotificationService } from "./notification/notification.service";
 
 export { VSBService } from "./api/vsb.service";
 export { ThabService } from "./api/thab.service";

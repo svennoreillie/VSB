@@ -1,4 +1,3 @@
-import { THABNotification } from "./../../models/thab/notification";
 import {
     ThabService
 } from "./../../services/api/thab.service";
@@ -20,7 +19,9 @@ import {
     PersonModel,
     THABCertificate,
     THABPayableAmount,
-    THABPayment
+    THABNotification,
+    THABPayment,
+    THABLetter
 } from "../../models";
 
 @Component({
@@ -29,22 +30,24 @@ import {
 })
 export class ContentThabComponent implements OnInit, OnDestroy {
 
-
     //Properties
-    public personDetailsLoading: boolean = false;
-    public notificationSub: Subscription;
-    public remarkSub: Subscription;
-    public activePersonSubscription: Subscription;
-    public activePersonFullDetailSubscription: Subscription;
-    public downloadBob: Subscription;
+    private notificationSub: Subscription;
+    private certificateLettersSub: Subscription;
+    private remarkSub: Subscription;
+    private activePersonSubscription: Subscription;
+    private activePersonFullDetailSubscription: Subscription;
+    private downloadBobSub: Subscription;
 
+    public extraInfoLetterType: string = "Opvragen extra gegevens THAB";
+    public personDetailsLoading: boolean = false;
+    public loading: boolean;
     public person: PersonModel | null;
     public payments: Observable < THABPayment[] > ;
     public selectedCertificate: THABCertificate;
-    public certificateNotification: Observable<THABNotification>;
+    public certificateNotification: Observable < THABNotification > ;
     public payableAmounts: Observable < THABPayableAmount[] > ;
-    public certificates: Observable < THABCertificate[] > ;
-
+    public certificates: THABCertificate[];
+    public letters: THABLetter[];
 
 
     //Lifecycle hooks
@@ -63,6 +66,8 @@ export class ContentThabComponent implements OnInit, OnDestroy {
         this.activePersonFullDetailSubscription.unsubscribe();
         if (this.notificationSub) this.notificationSub.unsubscribe();
         if (this.remarkSub) this.remarkSub.unsubscribe();
+        if (this.certificateLettersSub) this.certificateLettersSub.unsubscribe();
+        if (this.downloadBobSub) this.downloadBobSub.unsubscribe();
     }
 
 
@@ -81,17 +86,33 @@ export class ContentThabComponent implements OnInit, OnDestroy {
 
     public setCertificatePopover(certificate: THABCertificate) {
         this.certificateNotification = this.thabService.getNotifications(certificate.certificateId)
-                                                       .shareReplay(1);
+            .shareReplay(1);
     }
 
     public saveThabRemark(certificate: THABCertificate) {
         if (this.person != null) {
             this.thabService.saveRemark(this.person.siNumber, certificate)
-                            .subscribe(data => data, 
-                                       error => console.error(error));
+                .subscribe(data => data,
+                    error => console.error(error));
         }
     }
 
+    public downloadThabForm(letter: THABLetter) {
+        let cert = this.certificates.filter((c: THABCertificate) => c.certificateId == letter.certificateId)[0];
+        if (this.person !== null && cert !== null) {
+            this.downloadBobSub = this.thabService.downloadForm(this.person.siNumber, cert.referenceDate)
+                .subscribe(blob => {
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    if (this.person != null) link.download = `aanvraag formulier bob voor ${this.person.firstName} ${this.person.name}.pdf`;
+                    link.click();
+                }, error => console.error(error));
+        }
+    }
+
+    public downloadThabCalculationDocument(certificate: THABCertificate) {
+        console.log("download thab calculation todo");
+    }
 
 
     //Private methods
@@ -108,17 +129,37 @@ export class ContentThabComponent implements OnInit, OnDestroy {
 
     private loadDetailData() {
         if (this.person == null) return;
-
-        this.certificates = this.thabService.getCertificates(this.person.siNumber, this.person.insz)
-            .map(data => {
-                data.forEach(element => {
-                    element.initialRemark = element.remark;
-                })
-                return data;
-            });
         this.payments = this.thabService.getPayments(this.person.siNumber, this.person.insz);
 
+        this.loading = true;
+        this.certificateLettersSub = Observable.forkJoin(
+            this.thabService.getCertificates(this.person.siNumber, this.person.insz),
+            this.thabService.getLetters(this.person.siNumber, this.person.insz)
+        ).subscribe(data => {
+            this.certificates = data[0];
+
+            this.certificates.forEach(element => {
+                element.initialRemark = element.remark;
+            })
+            if (this.certificates.length == 1) this.selectCertificate(this.certificates[0]);
+
+            this.letters = data[1];
+        }, error => error,
+         () => {
+            this.createExtraInfoLetters();            
+            this.loading = false
+        });
     }
 
-}
+    private createExtraInfoLetters(): void {
+        if (this.certificates) {
+            let letters = this.certificates.filter(c => c.state == "In afwachting");
+            if (letters.length > 0) {
+                var extraLetters = letters.map(c => new THABLetter(c.certificateId, this.extraInfoLetterType));
 
+                if (this.letters === undefined) this.letters = extraLetters;
+                else this.letters = extraLetters.concat(this.letters);
+            }
+        }
+    }
+}

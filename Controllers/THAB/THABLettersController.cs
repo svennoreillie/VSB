@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using BobService;
 using Microsoft.AspNetCore.Mvc;
+using ThabService;
 using VSBaseAngular.Business;
 using VSBaseAngular.Models;
 using VSBaseAngular.Models.Keys;
@@ -12,35 +12,33 @@ namespace VSBaseAngular.Controllers
 {
     [ApiVersion(ControllerVersion.v1)]
     [Route("api/v{version:apiVersion}/[Controller]")]
-    public class BOBLettersController : BaseController
+    public class THABLettersController : BaseController
     {
-        private readonly IBobService _service;
+        private readonly IThabService _service;
         private readonly IMapper _mapper;
 
-        public BOBLettersController(IServiceFactory<IBobService> bobServiceFactory, IMapper mapper)
+        public THABLettersController(IServiceFactory<IThabService> thabServiceFactory, IMapper mapper)
         {
-            _service = bobServiceFactory.GetService();
+            _service = thabServiceFactory.GetService();
             _mapper = mapper;
         }
 
 
         [HttpGet]
-        [Route("~/api/v{version:apiVersion}/bobpeople/{sinumber:long}/certificates/{certificateId}/leters")]
-        [Route("~/api/v{version:apiVersion}/bobcertificates/{certificateId}/leters")]
+        [Route("~/api/v{version:apiVersion}/thabcertificates/{certificateId}/leters")]
         public async Task<IActionResult> Get(string certificateId)
         {
             var response = await _service.GetLettersAsync(new GetLettersRequest() { CertificateId = certificateId });
             if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                 return BadRequest(response.BusinessMessages);
-            var mappedModels = _mapper.Map<IEnumerable<Letter>>(response.Value?.Letters);
+            var mappedModels = _mapper.Map<IEnumerable<ThabLetter>>(response.Value?.Letters);
             return Ok(mappedModels);
         }
 
-        [Route("~/api/v{version:apiVersion}/bobpeople/{sinumber:long}/letters")]
         [Route("{sinumber:long}")]
-        public async Task<IActionResult> GetAll(long sinumber)
+        public async Task<IActionResult> GetAll(long sinumber, [FromQuery]string insz)
         {
-            var certificates = await _service.GetCertificatesAsync(new GetCertificatesRequest { SiNumber = sinumber });
+            var certificates = await _service.GetCertificatesAsync(new GetCertificatesRequest { SiNumber = sinumber, Insz = insz });
 
             List<Letter> letters = new List<Letter>();
 
@@ -49,7 +47,7 @@ namespace VSBaseAngular.Controllers
                 var response = await _service.GetLettersAsync(new GetLettersRequest() { CertificateId = certificate.Id });
                 if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                     return BadRequest(response.BusinessMessages);
-                letters.AddRange(_mapper.Map<IEnumerable<Letter>>(response.Value?.Letters));
+                letters.AddRange(_mapper.Map<IEnumerable<ThabLetter>>(response.Value?.Letters));
             }
 
             return Ok(letters);

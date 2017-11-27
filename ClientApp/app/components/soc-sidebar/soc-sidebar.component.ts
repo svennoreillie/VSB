@@ -14,7 +14,23 @@ export class SocSidebarComponent implements OnInit, OnDestroy {
     
     public subscription: Subscription;
     public selectedPerson: PersonModel;
-    @Input() public people: PersonModel[];
+    
+    private _people : PersonModel[];
+    public get people() : PersonModel[] {
+        return this._people;
+    }
+    @Input()
+    public set people(v : PersonModel[]) {
+        this._people = v;
+        if (this._people) {
+            if (this._people.length == 1) {
+                //auto select
+                this.selectPerson(this._people[0]);
+            }
+        }
+    }
+    
+
     @Input() public loading: boolean = false;
     @Output() public socDownload: EventEmitter<PersonModel[]> = new EventEmitter<PersonModel[]>();
     @Output() public socSelect: EventEmitter<PersonModel> = new EventEmitter<PersonModel>();

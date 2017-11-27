@@ -1,7 +1,4 @@
 import {
-    HttpCacheService
-} from "./../cache/http-cache.service";
-import {
     Injectable, Injector
 } from '@angular/core';
 import {

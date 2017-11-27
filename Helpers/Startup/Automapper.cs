@@ -45,14 +45,20 @@ namespace VSBaseAngular
                         dest.AccountNb = src.Account?.Iban;
                     });
 
-                cfg.CreateMap<BobService.Letter, BobLetter>()
+                cfg.CreateMap<BobService.Letter, Letter>()
                     .ForMember(dest => dest.LetterDate, opt => opt.MapFrom(src => src.Date))
                     .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Description))
                     .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Url));
 
-                cfg.CreateMap<ZvzService.DecisionLetter, ZvzLetter>()
+                cfg.CreateMap<ZvzService.DecisionLetter, Letter>()
                     .ForMember(dest => dest.LetterDate, opt => opt.MapFrom(src => src.SendedDate))
                     .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
+                    .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Url));
+
+                cfg.CreateMap<ThabService.Letter, ThabLetter>()
+                    .ForMember(dest => dest.LetterDate, opt => opt.MapFrom(src => src.Date))
+                    .ForMember(dest => dest.CertificateId, opt => opt.MapFrom(src => src.CertificateId))
+                    .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Description))
                     .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Url));
 
 

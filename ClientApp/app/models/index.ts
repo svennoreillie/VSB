@@ -1,3 +1,5 @@
+export { THABLetter } from "./thab/letter";
+export { THABNotification } from "./thab/notification";
 export { THABPayment } from "./thab/payment";
 export { THABPayableAmount } from "./thab/payableamount";
 export { THABCertificate } from "./thab/certificate";

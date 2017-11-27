@@ -31,7 +31,7 @@ namespace VSBaseAngular.Controllers
 
 
         [HttpGet]
-        [Route("~/api/v{version:apiVersion}/thabcertificates/{sinumber:long}/payableamounts/{referenceDate:datetime}")]
+        [Route("~/api/v{version:apiVersion}/thabcertificates/{sinumber:long}/payableamounts/{certificateid}")]
         public async Task<IActionResult> Get(long sinumber, string certificateid)
         {
             var request = new GetCertificatesPayableAmountRequest()

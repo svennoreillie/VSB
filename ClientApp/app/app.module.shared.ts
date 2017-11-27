@@ -1,3 +1,4 @@
+import { HttpErrorInterceptor } from "./services/interceptors/http-error.interceptor.service";
 import {
     HttpClientModule, HTTP_INTERCEPTORS
 } from "@angular/common/http";
@@ -58,6 +59,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/share";
 import "rxjs/add/operator/shareReplay";
 import "rxjs/add/operator/toPromise";
+import "rxjs/add/observable/forkJoin";
 import { HttpCacheInterceptor } from "./services";
 
 @angular.NgModule({
@@ -93,8 +95,13 @@ import { HttpCacheInterceptor } from "./services";
         services.UrlService,
         services.VSBService,
         services.ConfigService,
-        services.ErrorMessageService,
+        services.NotificationService,
         services.CacheService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true,
+        },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: HttpCacheInterceptor,

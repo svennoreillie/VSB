@@ -46,7 +46,7 @@ namespace VSBaseAngular.Controllers
             if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                 return BadRequest(response.BusinessMessages);
 
-            var mappedModel = _mapper.Map<IEnumerable<ZvzLetter>>(response.Value?.DecisionLetters);
+            var mappedModel = _mapper.Map<IEnumerable<Letter>>(response.Value?.DecisionLetters);
 
             return Ok(mappedModel);
         }
