@@ -1,3 +1,4 @@
+export { ContentAttachmentComponent } from "./content-attachment.component";
 export { ContentThabComponent } from "./content-thab.component";
 export { ContentZvzComponent } from "./content-zvz.component";
 export { ContentBobComponent } from "./content-bob.component";

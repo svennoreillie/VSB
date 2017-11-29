@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';    
+
 
 @Injectable()
 export class NotificationService {
@@ -10,6 +11,11 @@ export class NotificationService {
         this.snackBar.open(message, undefined, {
             duration: 2000,
             extraClasses: ['soc-error']
+          });
+    }
+    public showInfo(message: string): any {
+        this.snackBar.open(message, undefined, {
+            duration: 2000
           });
     }
 } 

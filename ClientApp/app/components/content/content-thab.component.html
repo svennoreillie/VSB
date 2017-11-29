@@ -210,16 +210,16 @@
                                                 <td>{{letter.letterDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{letter.certificateId}}</td>
                                                 <td>{{letter.type}}</td>
-                                                <td *ngIf="letter.type !== extraInfoLetterType && letter.url && letter.url != null">
-                                                    <a target="_blank"
+                                                <td *ngIf="letter.type !== extraInfoLetterType">
+                                                    <a *ngIf="letter.url && letter.url != null"
+                                                        target="_blank"
                                                        [hidden]="letter.url == ''"
                                                        [href]="letter.url"
                                                        class="fa fa-file notunderlinedlink btn btn-default"></a>
                                                 </td>
                                                 <td *ngIf="letter.type === extraInfoLetterType">
-                                                    <a (click)="downloadThabForm(letter)"
-                                                       href="#"
-                                                       class="fa fa-file notunderlinedlink btn btn-default"></a>
+                                                    <button (click)="downloadThabForm(letter)"
+                                                            class="fa fa-file notunderlinedlink btn btn-default"></button>
                                             </tr>
                                         </tbody>
                                     </table>

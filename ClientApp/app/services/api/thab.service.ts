@@ -61,4 +61,10 @@ export class ThabService {
         url = this.urlService.addQueryParameters(url, { referenceDate: referenceDate });
         return this.http.get(url, { responseType: "blob"});
     }
+
+    public downloadCalculation(sinumber: number, certificateId: string, insz: string): Observable<Blob> {
+        let url = this.urlService.createUrl('thabcalculationdocuments', sinumber.toString());
+        url = this.urlService.addQueryParameters(url, { certificateId: certificateId, insz: insz });
+        return this.http.get(url, { responseType: "blob"});
+    }
 }

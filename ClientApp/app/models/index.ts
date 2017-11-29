@@ -1,3 +1,4 @@
+export { Attachment } from "./attachment";
 export { THABLetter } from "./thab/letter";
 export { THABNotification } from "./thab/notification";
 export { THABPayment } from "./thab/payment";

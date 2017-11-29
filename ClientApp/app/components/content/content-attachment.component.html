@@ -1,0 +1,111 @@
+<div class="container-fluid">
+    <ng-container *ngIf="hasData();then content else notfound"></ng-container>
+
+    <ng-template #notfound>
+        <div class="soc-not-found">
+            {{'ATTACHMENT_NO_DATA_FOUND' | translate }}<small>{{'ATTACHMENT_NO_DATA_FOUND_SUBTITLE' |translate }}</small>
+        </div>
+    </ng-template>
+
+    <ng-template #content>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-header">
+                    <h1 translate>VSB_ATTACHMENTS_OVERVIEW_TITLE</h1>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+
+                <!-- list -->
+                <soc-panel paneltitle="BOB VSB_ATTACHMENTS_OVERVIEW_TITLE"
+                           collapsable="true"
+                           [loading]="attachments && !(attachments|async)"
+                           type="bar">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="soc-table striped secondary">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th translate>ATTACHMENTS_COLUMN_FILENAME</th>
+                                                <th translate>ATTACHMENTS_COLUMN_USERNAME</th>
+                                                <th translate>ATTACHMENTS_COLUMN_UPLOADDATE</th>
+                                                <th translate>ATTACHMENTS_COLUMN_ACTIONS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let att of attachments | async">
+                                                <td>{{att.filename}}</td>
+                                                <td>{{att.username}}</td>
+                                                <td>{{att.uploadDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td class="soc-table-action">
+                                                    <div class="action"
+                                                         (click)="download(att)"
+                                                         [hidden]="!att.filePath">
+                                                        <i class="fa fa-download"
+                                                           aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="action"
+                                                         (click)="remove(att)"
+                                                         [hidden]="!att.filePath"
+                                                         *ngIf="att.username === ctrl.username">
+                                                        <i class="fa fa-remove"
+                                                           aria-hidden="true"></i>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </soc-panel>
+
+
+                <!-- upload -->
+                <soc-panel paneltitle="VSB_ATTACHMENTS_UPLOAD_TITLE"
+                           collapsable="true">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            <input type="file"
+                                            #fileInput />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            <input type="submit"
+                                                   value="Upload" 
+                                                   (click)="upload()"/>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <!-- <div ng2FileDrop
+                                     [ng2FileDropAcceptMultiple]="true"
+                                     (ng2FileDropFileAccepted)="dragFileAccepted($event)"
+                                     class="drop-box">
+                                    <div>
+                                        {{'VSB_ATTACHMENTS_DROP_TEXT' | translate}}
+                                    </div>
+                                    <div class="sub">
+                                        {{'VSB_ATTACHMENTS_DROP_SUBTEXT' | translate}}
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </soc-panel>
+
+            </div>
+        </div>
+    </ng-template>
+</div>

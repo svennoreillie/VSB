@@ -50,7 +50,7 @@ export class ContentBobComponent implements OnInit, OnDestroy {
                                               .subscribe(blob => {
                                                   var link = document.createElement('a');
                                                   link.href = window.URL.createObjectURL(blob);
-                                                  if (this.person != null) link.download = `aanvraag formulier bob voor ${this.person.firstName} ${this.person.name}.pdf`;
+                                                  if (this.person != null) link.download = `Opgave van administratieve gegevens voor de uitbetaling van het BOB voor ${this.person.firstName} ${this.person.name}.pdf`;
                                                   link.click();
                                               }, error => console.error(error));
         }

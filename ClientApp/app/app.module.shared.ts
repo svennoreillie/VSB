@@ -79,6 +79,7 @@ import { HttpCacheInterceptor } from "./services";
         content.ContentBobComponent,
         content.ContentZvzComponent,
         content.ContentThabComponent,
+        content.ContentAttachmentComponent,
         // Directives
         directives.TranslateDirective,
         directives.TranslatePipe,
@@ -109,6 +110,7 @@ import { HttpCacheInterceptor } from "./services";
         },
     ],
     imports: [
+        //material
         MatDatepickerModule,
         MatNativeDateModule,
         MatInputModule,
@@ -123,6 +125,7 @@ import { HttpCacheInterceptor } from "./services";
         MatTooltipModule,
         MatDialogModule,
         MatSnackBarModule,
+        //3rd pary
         PopoverModule,
         // Modules
         HttpClientModule,

@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpRequest, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { UrlService } from "./../url/url.service";
+import { Attachment } from "../../models/index";
 
 @Injectable()
 export class VSBService {
@@ -20,4 +21,19 @@ export class VSBService {
         
         return this.http.post(url, { remark: remark });
     }
+
+    public getAttachments(sinumber: number) : Observable<Attachment[]> {
+        let url = this.urlService.createUrl('attachments', sinumber.toString());
+        return this.http.get<Attachment[]>(url);
+    }
+
+    public postAttachment(sinumber: number, username: string, formData: any): Observable<any> {
+        let url = this.urlService.createUrl('attachments', sinumber.toString());
+        url = this.urlService.addQueryParameters(url, { username: username });
+
+        // let request = new HttpRequest("POST", url, formData) ;
+        // request.headers.delete('Content-Type');
+
+        return this.http.post(url, formData);
+      }
 }

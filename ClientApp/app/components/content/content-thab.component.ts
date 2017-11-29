@@ -29,6 +29,7 @@ import {
     templateUrl: 'content-thab.component.html'
 })
 export class ContentThabComponent implements OnInit, OnDestroy {
+    downloadCalculationSub: Subscription;
 
     //Properties
     private notificationSub: Subscription;
@@ -104,14 +105,22 @@ export class ContentThabComponent implements OnInit, OnDestroy {
                 .subscribe(blob => {
                     var link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
-                    if (this.person != null) link.download = `aanvraag formulier bob voor ${this.person.firstName} ${this.person.name}.pdf`;
+                    if (this.person != null) link.download = `Opvragen gegevens ${this.person.firstName} ${this.person.name}.docx`;
                     link.click();
                 }, error => console.error(error));
         }
     }
 
     public downloadThabCalculationDocument(certificate: THABCertificate) {
-        console.log("download thab calculation todo");
+        if (this.person !== null) {
+            this.downloadCalculationSub = this.thabService.downloadCalculation(this.person.siNumber, certificate.certificateId, this.person.insz)
+                .subscribe(blob => {
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    if (this.person != null) link.download = `ThabCalculation ${this.person.firstName} ${this.person.name}.pdf`;
+                    link.click();
+                }, error => console.error(error));
+        }
     }
 
 

@@ -69,7 +69,7 @@ export class CacheService implements OnDestroy {
         }
     }
     public ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        if (this.subscription) this.subscription.unsubscribe();
     }
 
     private clearCacheRoutine() {
