@@ -45,7 +45,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             .catch(err => {
                 this.process(err, translateService, notificationService);
                 return Observable.throw(err);
-            });;
+            });
 
     }
 

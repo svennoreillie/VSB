@@ -67,39 +67,22 @@
 
                 <!-- upload -->
                 <soc-panel paneltitle="VSB_ATTACHMENTS_UPLOAD_TITLE"
+                           *ngIf="isBrowserMode"
                            collapsable="true">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <div class="col-md-10">
-                                            <input type="file"
-                                            #fileInput />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-10">
-                                            <input type="submit"
-                                                   value="Upload" 
-                                                   (click)="upload()"/>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
 
-                                <!-- <div ng2FileDrop
-                                     [ng2FileDropAcceptMultiple]="true"
-                                     (ng2FileDropFileAccepted)="dragFileAccepted($event)"
-                                     class="drop-box">
+                                <file-drop class="drop-box"
+                                           (onFileDrop)="dropped($event)">
                                     <div>
                                         {{'VSB_ATTACHMENTS_DROP_TEXT' | translate}}
                                     </div>
                                     <div class="sub">
                                         {{'VSB_ATTACHMENTS_DROP_SUBTEXT' | translate}}
                                     </div>
-                                </div> -->
+                                </file-drop>
+
                             </div>
                         </div>
                     </div>

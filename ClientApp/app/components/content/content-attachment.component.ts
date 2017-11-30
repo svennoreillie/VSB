@@ -20,7 +20,9 @@ import {
     Component,
     OnInit,
     OnDestroy,
-    ViewChild
+    ViewChild,
+    Inject,
+    PLATFORM_ID
 } from "@angular/core";
 import {
     PeopleService
@@ -28,6 +30,12 @@ import {
 import {
     Attachment
 } from "../../models/index";
+import {
+    UploadEvent
+} from "ngx-file-drop";
+import {
+    isPlatformBrowser
+} from '@angular/common';
 
 @Component({
     selector: 'content-attachment',
@@ -42,13 +50,15 @@ export class ContentAttachmentComponent implements OnInit, OnDestroy {
     public attachments: Observable < Attachment[] > ;
     public person: PersonModel | null;
     public username: string;
+    public isBrowserMode: boolean = false;
 
 
     //Lifecycle hooks
     constructor(private peopleService: PeopleService,
         private vsbService: VSBService,
         private generalService: GeneralDataService,
-        private notificationService: NotificationService) {}
+        private notificationService: NotificationService,
+        @Inject(PLATFORM_ID) private platformId: Object) {}
 
     public ngOnInit(): void {
         this.userSub = this.generalService.getUser().subscribe(data => this.username = data.user);
@@ -59,6 +69,10 @@ export class ContentAttachmentComponent implements OnInit, OnDestroy {
                 this.attachments = this.vsbService.getAttachments(this.person.siNumber);
             }
         });
+
+        if (isPlatformBrowser(this.platformId)) {
+            this.isBrowserMode = true;
+        }
     }
 
     public ngOnDestroy(): void {
@@ -73,20 +87,18 @@ export class ContentAttachmentComponent implements OnInit, OnDestroy {
         return this.person !== undefined && this.person !== null;
     }
 
-    @ViewChild('fileInput') fileInput: any;
 
-    public upload() {
-        if (this.person != null) {
-            let fileBrowser = this.fileInput.nativeElement;
-            if (fileBrowser.files && fileBrowser.files[0]) {
+    public dropped(event: UploadEvent) {
+        for (var file of event.files) {
+            file.fileEntry.file((info: any) => {
                 const formData = new FormData();
-                formData.append("file", fileBrowser.files[0]);
+                formData.append("file", info);
                 this.vsbService.postAttachment(this.person.siNumber, this.username, formData)
                     .subscribe(res => {
                         console.log(res);
                         this.notificationService.showInfo("File uploaded");
                     });
-            }
+            });
         }
     }
 
@@ -98,23 +110,5 @@ export class ContentAttachmentComponent implements OnInit, OnDestroy {
         console.log("remove");
     }
 
-    // public dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
-
-    //     let fileReader = new FileReader();
-    //     fileReader.onload = () => {
-    //         if (this.person == null) return;
-
-    //         const formData = new FormData();
-    //         formData.append("image", fileReader.result);
-    //         this.vsbService.postAttachment(this.person.siNumber, this.username, formData)
-    //             .subscribe(res => {
-    //                 console.log(res);
-    //                 this.notificationService.showInfo("File uploaded");
-    //             });
-    //     };
-
-    //     // Read in the file
-    //     fileReader.readAsDataURL(acceptedFile.file);
-    // }
 
 }

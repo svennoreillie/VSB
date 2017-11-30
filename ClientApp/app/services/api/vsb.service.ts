@@ -27,13 +27,13 @@ export class VSBService {
         return this.http.get<Attachment[]>(url);
     }
 
-    public postAttachment(sinumber: number, username: string, formData: any): Observable<any> {
+    public postAttachment(sinumber: number, username: string, formData: any): Observable<Attachment> {
         let url = this.urlService.createUrl('attachments', sinumber.toString());
         url = this.urlService.addQueryParameters(url, { username: username });
 
         // let request = new HttpRequest("POST", url, formData) ;
         // request.headers.delete('Content-Type');
 
-        return this.http.post(url, formData);
+        return this.http.post<Attachment>(url, formData);
       }
 }

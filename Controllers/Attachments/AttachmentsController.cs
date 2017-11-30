@@ -101,96 +101,40 @@ public class AttachmentsController : BaseController
     }
 
     [HttpPost]
-    [Route("{sinumber:long}")]
-    public async Task<IActionResult> Post(long sinumber, [FromForm]IFormFile file)
+    [Route("{sinumber}")]
+    public async Task<IActionResult> Post(string sinumber, [FromQuery]string username, [FromForm]IFormFile file)
     {
         if (file == null) throw new Exception("File is null");
         if (file.Length == 0) throw new Exception("File is empty");
 
-        var filePath = Path.GetTempFileName();
-        using (var stream = new FileStream(filePath, FileMode.Create))
+        if (string.IsNullOrEmpty(sinumber)) return BadRequest("SiNumber was not provided");
+        if (string.IsNullOrEmpty(username)) return BadRequest("Username was not provided");
+
+        try
         {
-            await file.CopyToAsync(stream);
+            var clientFolder = GetClientAttachmentsFolder(sinumber);
+            if (!Directory.Exists(clientFolder)) Directory.CreateDirectory(clientFolder);
+
+            string originalFilename = file.FileName.Replace("\"", string.Empty);
+            string newFileName = string.Format("{0}_{1}", username, originalFilename);
+
+            string path = Path.Combine(clientFolder, newFileName);
+
+            if (newFileName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0) return BadRequest("Invalid filename");
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return Ok(new VSBAttachment());
         }
-        return Ok();
-
-        //  using (Stream stream = file.OpenReadStream())
-        //     {
-        //         using (var binaryReader = new BinaryReader(stream))
-        //         {
-        //             var fileContent = binaryReader.ReadBytes((int)file.Length);
-        //             await _uploadService.AddFile(fileContent, file.FileName, file.ContentType);
-        //         }
-        //     }
-
-
-
-
-
-        //         long size = files.Sum(f => f.Length);
-
-        //         // full path to file in temp location
-        //         var filePath = Path.GetTempFileName();
-
-        //         foreach (var formFile in files)
-        //         {
-        //             if (formFile.Length > 0)
-        //             {
-        //                 using (var stream = new FileStream(filePath, FileMode.Create))
-        //                 {
-        //                     await formFile.CopyToAsync(stream);
-        //                 }
-        //             }
-        //         }
-
-        //         // process uploaded files
-        //         // Don't rely on or trust the FileName property without validation.
-
-        //         return Ok(new { count = files.Count, size, filePath });
+        catch (UnauthorizedAccessException)
+        {
+            return Unauthorized();
+        }
     }
 
-    // [HttpPost]
-    // public async Task<IHttpActionResult> PostAttachment([FromUri]string sinumber, [FromUri]string username)
-    // {
-    //     if (string.IsNullOrEmpty(sinumber)) return BadRequest("SiNumber was not provided");
-    //     if (string.IsNullOrEmpty(username)) return BadRequest("Username was not provided");
-    //     string filePath = null;
-    //     try
-    //     {
-    //         if (!Request.Content.IsMimeMultipartContent())
-    //         {
-    //             this.Request.CreateResponse(HttpStatusCode.UnsupportedMediaType);
-    //         }
-
-    //         var provider = GetMultipartProvider();
-    //         var result = await Request.Body.ReadAsMultipartAsync(provider);
-    //         var clientFolder = GetClientAttachmentsFolder(sinumber);
-    //         if (!Directory.Exists(clientFolder)) Directory.CreateDirectory(clientFolder);
-
-    //         // On upload, files are given a generic name like "BodyPart_26d6abe1-3ae1-416a-9429-b35f15e6e5d5"
-    //         foreach (var file in result.FileData)
-    //         {
-    //             string originalFilename = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
-    //             string newFileName = string.Format("{0}_{1}", username, originalFilename);
-
-    //             string path = Path.Combine(clientFolder, newFileName);
-
-    //             //Copy to attachmentShare
-    //             File.Move(file.LocalFileName, path);
-    //         }
-
-    //         return Ok();
-    //     }
-    //     catch (UnauthorizedAccessException ex)
-    //     {
-    //         ex.LogToErrorLog();
-    //         return Unauthorized();
-    //     }
-    //     finally
-    //     {
-    //         if (filePath != null) File.Delete(filePath);
-    //     }
-    // }
 
 
     private string GetClientAttachmentsFolder(string SiNumber)
@@ -202,14 +146,6 @@ public class AttachmentsController : BaseController
         // var folderName = ConfigurationManager.AppSettings.Get("AttachmentFolder");
         // return Path.Combine(shareLocation, folderName, SiNumber);
     }
-
-    // private MultipartFormDataStreamProvider GetMultipartProvider()
-    // {
-    //     var uploadFolder = "~/App_Data/Tmp/FileUploads";
-    //     var root = System.Web.HttpContext.Current.Server.MapPath(uploadFolder);
-    //     Directory.CreateDirectory(root);
-    //     return new MultipartFormDataStreamProvider(root);
-    // }
 
     private IEnumerable<VSBAttachment> ProjectAttachments(string sinumber, string[] files)
     {

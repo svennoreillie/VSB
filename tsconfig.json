@@ -9,7 +9,7 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "strict": true,
     "lib": [ "es6", "dom" ],
     "types": [ "webpack-env" ]

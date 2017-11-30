@@ -5863,6 +5863,21 @@
       "integrity": "sha1-KzJxhOiZIQEXeyhWP7XnECrNDKk=",
       "dev": true
     },
+    "ngx-file-drop": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/ngx-file-drop/-/ngx-file-drop-2.0.1.tgz",
+      "integrity": "sha512-oni+AMXo9ICnZ7p65eyrCCRqLw4bhoGNt6pG9OCMeV4DHO9OBIWm6fR+UNGQLhj5tOROiV2DdALt0nefp9QV4w==",
+      "requires": {
+        "@angular/common": "4.4.4",
+        "@angular/compiler": "4.4.4",
+        "@angular/core": "4.4.4",
+        "@angular/platform-browser": "4.4.4",
+        "@angular/platform-browser-dynamic": "4.4.4",
+        "@angular/router": "4.4.4",
+        "rxjs": "5.4.2",
+        "zone.js": "0.8.12"
+      }
+    },
     "ngx-popover": {
       "version": "0.0.16",
       "resolved": "https://registry.npmjs.org/ngx-popover/-/ngx-popover-0.0.16.tgz",

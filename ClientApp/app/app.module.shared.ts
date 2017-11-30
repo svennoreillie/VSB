@@ -25,6 +25,7 @@ import {
 } from "@angular/material";
 // 3rd party
 import * as angular from "./angular-barrel";
+import { FileDropModule } from 'ngx-file-drop';
 
 // Directives
 import * as directives from "./directives";
@@ -127,6 +128,7 @@ import { HttpCacheInterceptor } from "./services";
         MatSnackBarModule,
         //3rd pary
         PopoverModule,
+        FileDropModule,
         // Modules
         HttpClientModule,
         angular.CommonModule,

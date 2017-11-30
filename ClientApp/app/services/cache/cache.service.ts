@@ -60,7 +60,6 @@ export class CacheService implements OnDestroy {
             item.observable = null;
             item.data = data;
         }
-        return null;
     }
 
     public init(): void {

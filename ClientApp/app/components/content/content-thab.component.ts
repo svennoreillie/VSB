@@ -50,7 +50,6 @@ export class ContentThabComponent implements OnInit, OnDestroy {
     public certificates: THABCertificate[];
     public letters: THABLetter[];
 
-
     //Lifecycle hooks
     constructor(private thabService: ThabService,
         private peopleService: PeopleService) {}
@@ -71,6 +70,7 @@ export class ContentThabComponent implements OnInit, OnDestroy {
         if (this.downloadBobSub) this.downloadBobSub.unsubscribe();
     }
 
+    
 
 
     //Template methods
