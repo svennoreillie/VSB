@@ -1,3 +1,4 @@
+import { ActiveContentPageService } from "./../../services/activecontent/active-content-page.service";
 import { Subscription } from "rxjs/Subscription";
 import { PeopleService } from "./../../services/api/people.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
@@ -20,31 +21,25 @@ export class MainContentComponent implements OnInit, OnDestroy {
     public currentTab: ContentTab = ContentTab.Summary;
     public person: PersonModel | null;
 
-    constructor(private peopleService: PeopleService) { }
+    constructor(private peopleService: PeopleService, private activeContentService: ActiveContentPageService) { }
 
     public ngOnInit(): void {
         this.activePersonSubscription = this.peopleService.activePerson.subscribe(p => this.person = p);
         this.updatePersonSubscription = this.peopleService.activePersonFullDetails.subscribe(p => this.person = p);
+        this.activeContentService.activePage = ContentTab.Summary;
     }
 
     public ngOnDestroy(): void {
         this.activePersonSubscription.unsubscribe();
         this.updatePersonSubscription.unsubscribe();
-        //if (this.peopleSubsricption) this.peopleSubsricption.unsubscribe();
     }
 
     public setView(tab: ContentTab) {
         this.currentTab = tab;
+        this.activeContentService.activePage = tab;
     }
 
     public getActive(tab: ContentTab): boolean {
-        return this.currentTab === tab;
+        return this.activeContentService.activePage === tab;
     }
-
-    // private personChanged(person: PersonModel | null)  {
-    //     this.person = person;
-    //     if (person == null) return;
-    //     this.peopleSubsricption = this.peopleService.get(person.siNumber)
-    //                                                 .subscribe(response => this.person = response);
-    // }
 }

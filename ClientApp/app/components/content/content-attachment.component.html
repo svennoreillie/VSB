@@ -18,9 +18,9 @@
             <div class="col-sm-12">
 
                 <!-- list -->
-                <soc-panel paneltitle="BOB VSB_ATTACHMENTS_OVERVIEW_TITLE"
+                <soc-panel paneltitle="VSB_ATTACHMENTS_OVERVIEW_TITLE"
                            collapsable="true"
-                           [loading]="attachments && !(attachments|async)"
+                           [loading]="attachmentsLoading"
                            type="bar">
                     <div class="container-fluid">
                         <div class="row">
@@ -36,7 +36,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let att of attachments | async">
+                                            <tr *ngFor="let att of attachments">
                                                 <td>{{att.filename}}</td>
                                                 <td>{{att.username}}</td>
                                                 <td>{{att.uploadDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
@@ -50,7 +50,7 @@
                                                     <div class="action"
                                                          (click)="remove(att)"
                                                          [hidden]="!att.filePath"
-                                                         *ngIf="att.username === ctrl.username">
+                                                         *ngIf="att.username == username">
                                                         <i class="fa fa-remove"
                                                            aria-hidden="true"></i>
                                                     </div>
@@ -68,6 +68,7 @@
                 <!-- upload -->
                 <soc-panel paneltitle="VSB_ATTACHMENTS_UPLOAD_TITLE"
                            *ngIf="isBrowserMode"
+                           [loading]="uploadLoading"
                            collapsable="true">
                     <div class="container-fluid">
                         <div class="row">
@@ -77,9 +78,6 @@
                                            (onFileDrop)="dropped($event)">
                                     <div>
                                         {{'VSB_ATTACHMENTS_DROP_TEXT' | translate}}
-                                    </div>
-                                    <div class="sub">
-                                        {{'VSB_ATTACHMENTS_DROP_SUBTEXT' | translate}}
                                     </div>
                                 </file-drop>
 

@@ -22,18 +22,25 @@ export class VSBService {
         return this.http.post(url, { remark: remark });
     }
 
-    public getAttachments(sinumber: number) : Observable<Attachment[]> {
+    public getAttachments(sinumber: number, noCache?: boolean): Observable<Attachment[]> {
         let url = this.urlService.createUrl('attachments', sinumber.toString());
+        if (noCache) url = this.urlService.disableCache(url);
         return this.http.get<Attachment[]>(url);
     }
 
-    public postAttachment(sinumber: number, username: string, formData: any): Observable<Attachment> {
+
+    public postAttachment(sinumber: number, formData: any): Observable<Attachment> {
         let url = this.urlService.createUrl('attachments', sinumber.toString());
-        url = this.urlService.addQueryParameters(url, { username: username });
-
-        // let request = new HttpRequest("POST", url, formData) ;
-        // request.headers.delete('Content-Type');
-
         return this.http.post<Attachment>(url, formData);
-      }
+    }
+
+    public removeAttachment(sinumber: number, name: string): Observable<Attachment> {
+        let url = this.urlService.createUrl('attachments', sinumber.toString(), name);
+        return this.http.delete < Attachment>(url);
+    }
+
+    public downloadAttachment(sinumber: number, name: string): Observable<Blob> {
+        let url = this.urlService.createUrl('attachments', sinumber.toString(), name);
+        return this.http.get(url, { responseType: "blob"});
+    }
 }

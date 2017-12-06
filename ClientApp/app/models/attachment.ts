@@ -1,7 +1,7 @@
 export class Attachment {
-    SiNumber: string;
-    Username: string;
-    Filename: string;
-    FilePath: string;
-    UploadDate: Date;
+    siNumber: string;
+    username: string;
+    filename: string;
+    filePath: string;
+    uploadDate: Date;
 }

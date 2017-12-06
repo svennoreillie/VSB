@@ -86,7 +86,7 @@ namespace VSBaseAngular.Business
             //temp fix for federation state search => should be in calls for mainframe!!!!!!
             if (search.Federation.HasValue && search.Federation.Value % 100 != 0)
             {
-                people = people.Where(p => p.FederationNumber == search.Federation.Value);
+                people = people.Where(p => p?.FederationNumber == search.Federation.Value);
             }
 
             return people;

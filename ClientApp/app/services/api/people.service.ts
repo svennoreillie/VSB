@@ -36,6 +36,7 @@ export class PeopleService implements OnDestroy {
     public setActivePerson(p : PersonModel) {
         if (p === null || p === undefined) this.clearActivePerson();
         else {
+            this.clearActivePerson();
             this.currentActivePerson = p;
             this.activePersonSubject.next(this.currentActivePerson);
             // get more details

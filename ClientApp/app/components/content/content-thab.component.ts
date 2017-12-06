@@ -78,7 +78,8 @@ export class ContentThabComponent implements OnInit, OnDestroy {
         return this.person !== undefined && this.person !== null;
     }
 
-    public selectCertificate(certificate: THABCertificate) {
+    public selectCertificate(certificate: THABCertificate | null) {
+        if (certificate == null) this.payableAmounts = null;
         this.selectedCertificate = certificate;
         if (this.person != null && certificate) {
             this.payableAmounts = this.thabService.getPayableAmounts(this.person.siNumber, certificate.certificateId);
@@ -126,6 +127,9 @@ export class ContentThabComponent implements OnInit, OnDestroy {
 
     //Private methods
     private personChanged(person: PersonModel | null) {
+        if (person == null) {
+
+        }
         this.person = person;
         this.personDetailsLoading = true;
     }
@@ -151,6 +155,7 @@ export class ContentThabComponent implements OnInit, OnDestroy {
                 element.initialRemark = element.remark;
             })
             if (this.certificates.length == 1) this.selectCertificate(this.certificates[0]);
+            else this.selectCertificate(null);
 
             this.letters = data[1];
         }, error => error,

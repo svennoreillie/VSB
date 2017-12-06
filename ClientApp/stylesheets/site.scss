@@ -42,3 +42,10 @@ label{
 .soc-error {
     background-color: red;
 }
+
+.soc-warning {
+    background-color: orangered;
+    .mat-simple-snackbar-action {
+        color: black;
+    }
+}

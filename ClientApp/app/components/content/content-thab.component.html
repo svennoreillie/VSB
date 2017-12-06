@@ -172,29 +172,6 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
-                                <span translate>THAB_DOCUMENTS</span><br />
-                                <div class="soc-table striped secondary">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th translate>THAB_DOCUMENTS_COLUMN_ID</th>
-                                                <th translate>THAB_DOCUMENTS_COLUMN_DOWNLOAD</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let cert of certificates">
-                                                <td>{{cert.certificateId}}</td>
-                                                <td><a [hidden]="cert.calculationBasicRightDocument == null || cert.calculationBasicRightDocument.UniqueId == '' "
-                                                       (click)="downloadThabCalculationDocument(cert)"
-                                                       class="fa fa-file notunderlinedlink btn btn-default"></a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
                                 <div class="soc-table striped secondary">
                                     <table>
                                         <thead>
@@ -206,6 +183,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr *ngFor="let cert of certificates">
+                                                <td>{{cert.decisionDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                <td>{{cert.certificateId}}</td>
+                                                <td>{{'THAB_DOCUMENTS' | translate}}</td>
+                                                <td>
+                                                    <a [hidden]="cert.calculationBasicRightDocument == null || cert.calculationBasicRightDocument.UniqueId == '' "
+                                                       (click)="downloadThabCalculationDocument(cert)"
+                                                       class="fa fa-file notunderlinedlink btn btn-default"></a>
+                                                </td>
+                                            </tr>
                                             <tr *ngFor="let letter of letters">
                                                 <td>{{letter.letterDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{letter.certificateId}}</td>

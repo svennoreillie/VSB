@@ -1,3 +1,4 @@
+import { HttpHoldOffInterceptor } from "./services/interceptors/http-holdoff.interceptor.service";
 import { HttpErrorInterceptor } from "./services/interceptors/http-error.interceptor.service";
 import {
     HttpClientModule, HTTP_INTERCEPTORS
@@ -99,6 +100,7 @@ import { HttpCacheInterceptor } from "./services";
         services.ConfigService,
         services.NotificationService,
         services.CacheService,
+        services.ActiveContentPageService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: HttpErrorInterceptor,
@@ -106,9 +108,14 @@ import { HttpCacheInterceptor } from "./services";
         },
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: HttpCacheInterceptor,
+            useClass: HttpHoldOffInterceptor,
             multi: true,
         },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpCacheInterceptor,
+            multi: true,
+        }
     ],
     imports: [
         //material

@@ -8,15 +8,30 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.Options;
 using VSBaseAngular.Controllers;
+using VSBaseAngular.Helpers.Options;
+using VSBaseAngular.Business;
+using VSBaseAngular.Models;
+using VSBaseAngular.Models.Keys;
 
 [ApiVersion(ControllerVersion.v1)]
 [Route("api/v{version:apiVersion}/[controller]")]
 public class AttachmentsController : BaseController
 {
+    private readonly IOptions<AppConfig> _config;
+    private readonly IReader<User> _userReader;
+
+    public AttachmentsController(IOptions<AppConfig> config, IReader<User> userReader)
+    {
+        _config = config;
+        _userReader = userReader;
+    }
+
+
     [HttpGet]
-    [Route("{sinumber:long}")]
-    public async Task<IActionResult> GetAttachments(string sinumber)
+    [Route("{sinumber}")]
+    public IActionResult GetAttachments(string sinumber)
     {
         try
         {
@@ -38,9 +53,9 @@ public class AttachmentsController : BaseController
     }
 
     [HttpGet]
-    [Route("{sinumber:long}")]
+    [Route("{sinumber}/{filename}")]
 
-    public async Task<IActionResult> GetAttachment(string sinumber, [FromQuery]string filename)
+    public async Task<IActionResult> GetAttachment(string sinumber, string filename)
     {
         try
         {
@@ -73,11 +88,13 @@ public class AttachmentsController : BaseController
     }
 
     [HttpDelete]
-    [Route("{sinumber}")]
-    public async Task<IActionResult> Delete(string sinumber, [FromQuery]string username, [FromQuery]string filename)
+    [Route("{sinumber}/{filename}")]
+    public async Task<IActionResult> Delete(string sinumber, string filename)
     {
         try
         {
+            var username = await this.GetUserName();
+            if (string.IsNullOrEmpty(username)) return BadRequest("username was not provided");
             if (string.IsNullOrEmpty(sinumber)) return BadRequest("SiNumber was not provided");
 
             var clientAttachmentsFolder = GetClientAttachmentsFolder(sinumber);
@@ -91,8 +108,7 @@ public class AttachmentsController : BaseController
 
             System.IO.File.Delete(file.FilePath);
 
-            return Ok();
-
+            return Ok(file);
         }
         catch (DirectoryNotFoundException)
         {
@@ -102,13 +118,14 @@ public class AttachmentsController : BaseController
 
     [HttpPost]
     [Route("{sinumber}")]
-    public async Task<IActionResult> Post(string sinumber, [FromQuery]string username, [FromForm]IFormFile file)
+    public async Task<IActionResult> Post(string sinumber, [FromForm]IFormFile file)
     {
         if (file == null) throw new Exception("File is null");
         if (file.Length == 0) throw new Exception("File is empty");
 
-        if (string.IsNullOrEmpty(sinumber)) return BadRequest("SiNumber was not provided");
+        var username = await this.GetUserName();
         if (string.IsNullOrEmpty(username)) return BadRequest("Username was not provided");
+        if (string.IsNullOrEmpty(sinumber)) return BadRequest("SiNumber was not provided");
 
         try
         {
@@ -127,7 +144,14 @@ public class AttachmentsController : BaseController
                 await file.CopyToAsync(stream);
             }
 
-            return Ok(new VSBAttachment());
+            return Ok(new VSBAttachment
+            {
+                SiNumber = sinumber,
+                Username = username,
+                Filename = newFileName,
+                FilePath = path,
+                UploadDate = DateTime.Now
+            });
         }
         catch (UnauthorizedAccessException)
         {
@@ -139,12 +163,19 @@ public class AttachmentsController : BaseController
 
     private string GetClientAttachmentsFolder(string SiNumber)
     {
-        //todo
-        return "c:/";
-        // if (string.IsNullOrWhiteSpace(SiNumber)) throw new ArgumentException("SiNumber");
-        // var shareLocation = ConfigurationManager.AppSettings.Get("AttachmentShare");
-        // var folderName = ConfigurationManager.AppSettings.Get("AttachmentFolder");
-        // return Path.Combine(shareLocation, folderName, SiNumber);
+        if (string.IsNullOrWhiteSpace(SiNumber)) throw new ArgumentException("SiNumber");
+        var shareLocation = _config.Value?.AttachmentShare;
+        var folderName = _config.Value?.AttachmentFolder;
+        return Path.Combine(shareLocation, folderName, SiNumber);
+    }
+
+    private async Task<string> GetUserName()
+    {
+        string user = User.Identity.Name;
+        if (string.IsNullOrEmpty(user)) return null;
+
+        var response = await _userReader.GetAsync(new UserKey(user.Split('\\')[0], user.Split('\\')[1]));
+        return response.DisplayName;
     }
 
     private IEnumerable<VSBAttachment> ProjectAttachments(string sinumber, string[] files)

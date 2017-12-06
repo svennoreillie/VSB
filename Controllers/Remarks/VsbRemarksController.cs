@@ -33,13 +33,19 @@ namespace VSBaseAngular.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = await _vsbService.SaveRemarkAsync(new SaveRemarkRequest() { Sinr = sinumber, Remark = model.Remark, Userid = "TODO UID" });
+                var response = await _vsbService.SaveRemarkAsync(new SaveRemarkRequest() { Sinr = sinumber, Remark = model.Remark, Userid = GetUserID() });
                 if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                     return BadRequest(response.BusinessMessages);
 
                 return Ok(response.Value?.saved);
             }
             return BadRequest(ModelState);
+        }
+
+        private string GetUserID()
+        {
+            string user = User.Identity.Name;
+            return user.Substring(user.IndexOf('\\') + 1);
         }
 
     }

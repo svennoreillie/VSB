@@ -12,9 +12,10 @@
 
     <div class="soc-content">
         <!--Loader-->
-        <mat-progress-bar *ngIf="loading;else panelContent"
-                          mode="indeterminate">
-        </mat-progress-bar>
+        <div *ngIf="loading;else panelContent">
+            <mat-progress-bar mode="indeterminate">
+            </mat-progress-bar>
+        </div>
 
         <!--Actual content -->
         <ng-template #panelContent>

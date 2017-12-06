@@ -12,7 +12,6 @@ export class SocPanelComponent {
     @Input() public loading: boolean = false;
     @Input() public collapsable: boolean = true;
     @Input() public paneltitle: string;
-    @Input() public type: SocPanelLoadingType = SocPanelLoadingType.bar;
 
     public toggle() {
         this.visible = !this.visible;

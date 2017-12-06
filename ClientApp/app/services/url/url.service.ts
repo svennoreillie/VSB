@@ -24,6 +24,11 @@ export class UrlService {
         return url;
     }
 
+    public disableCache(url: string): string {
+        let random: string = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+        return this.addQueryParameters(url, { nocache: random });
+    }
+
     private encodeQueryData = (data: any): string => {
         const ret = [];
         for (const key in data) {

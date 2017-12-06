@@ -1,3 +1,6 @@
+export { HttpHoldOffInterceptor } from "./interceptors/http-holdoff.interceptor.service";
+export { HttpErrorInterceptor } from "./interceptors/http-error.interceptor.service";
+export { ActiveContentPageService } from "./activecontent/active-content-page.service";
 export { HttpCacheInterceptor } from "./interceptors/http-cache.interceptor.service";
 
 export { CacheService } from "./cache/cache.service";

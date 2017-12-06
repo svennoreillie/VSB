@@ -125,8 +125,6 @@ export class ContentSummaryComponent implements OnInit, OnDestroy {
         if (p != null) {
             this.lastContract = this.zvzService.getContract(p.siNumber);
             this.warranties = this.zvzService.getWarranties(p.siNumber);
-            this.bobCertificates = this.bobService.getCertificates(p.siNumber);
-            this.contributions = this.zvzService.getContributions(p.siNumber);
             this.bobContactSub = this.bobService.getBOBContact(p.siNumber).subscribe(data => this.contact = data);
             this.vsbGetRemarkSub = this.vsbService.getRemark(p.siNumber).subscribe(data => this.vsbRemark = data);
         }
@@ -135,6 +133,8 @@ export class ContentSummaryComponent implements OnInit, OnDestroy {
     private personDetailsChanged(p: PersonModel | null): void {
         this.person = p;
         if (p != null) {
+            this.bobCertificates = this.bobService.getCertificates(p.siNumber);
+            this.contributions = this.zvzService.getContributions(p.siNumber);
             this.thabCertificates = this.thabService.getCertificates(p.siNumber, p.insz);
         }
     }
