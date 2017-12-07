@@ -210,12 +210,6 @@ namespace VSBaseAngular.Controllers
                         thabDetailSb = new StringBuilder(data.Certificate.Id);
                         thabDetailSb.Append(space);
 
-                        if (data.CertificateNotifications != null && data.CertificateNotifications.notificications != null && data.CertificateNotifications.notificications.Any())
-                        {
-                            thabDetailSb.Append(data.CertificateNotifications.notificications.First().CreationDate.ToString("dd-MM-yyyy"));
-                            thabDetailSb.Append(space);
-                        }
-
                         if (data.Remark != null)
                             thabDetailSb.Append(data.Remark.TrimEnd());
 
