@@ -1,0 +1,96 @@
+<div class="container-fluid">
+    <ng-container *ngIf="hasData();then content else notfound"></ng-container>
+
+    <ng-template #notfound>
+        <div class="soc-not-found">
+            {{'RETURNS_NO_DATA_FOUND' | translate }}<small>{{'RETURNS_NO_DATA_FOUND_SUBTITLE' |translate }}</small>
+        </div>
+    </ng-template>
+
+    <ng-template #content>
+        <div class="row">
+
+            <!-- Title -->
+            <div class="col-sm-12">
+                <div class="page-header">
+                    <h1 translate>VSB Returns</h1>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <mat-horizontal-stepper [linear]="true">
+
+                    <!-- STEP 1 -->
+                    <mat-step label="{{'RETURNS_REGISTRATION_FILTERS_LEGEND' | translate}}"
+                              [stepControl]="step1Valid">
+                        <div class="return-form">
+                            <mat-checkbox [(ngModel)]="returnItem.isFraude">{{'RETURNS_LABEL_FRAUDE' | translate}}</mat-checkbox>
+
+                            <mat-checkbox [(ngModel)]="returnItem.isError">{{'RETURNS_LABEL_OWNERROR' | translate}}</mat-checkbox>
+
+                            <mat-form-field>
+                                <mat-select placeholder="{{'RETURNS_LABEL_REASON' | translate}}"
+                                            [(ngModel)]="returnItem.reason">
+                                    <mat-option *ngFor="let reason of reasons"
+                                                [value]="reason.value">{{reason.displayValue | translate}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field *ngIf="returnItem.reason == 'VALUES_REASON_OTHER'">
+                                <input matInput
+                                       [(ngModel)]="returnItem.otherReason"
+                                       [formControl]="OtherReason"
+                                       type="text"
+                                       placeholder="{{'RETURNS_LABEL_OTHERREASON' | translate}}">
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <textarea class="form-control"
+                                          rows="4"
+                                          maxlength="999"
+                                          matInput
+                                          placeholder="{{'RETURNS_LABEL_REMARK' | translate}}"
+                                          [(ngModel)]="returnItem.remark">
+                                </textarea>
+                            </mat-form-field>
+
+
+                            <div>
+                                <button mat-button
+                                        matStepperNext>{{'BUTTONS_SAVE' | translate}}</button>
+                                <button mat-button
+                                        (click)="cancelReturnItem()">{{'BUTTONS_CANCEL' | translate}}</button>
+                            </div>
+                        </div>
+                    </mat-step>
+
+
+
+                    <!-- STEP 2 -->
+                    <mat-step label="{{'RETURNS_REGISTRATION_CALCULATION_LEGEND' | translate}}"
+                              [stepControl]="step2Valid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>This will not be a form</p>
+                            </div>
+                        </div>
+                    </mat-step>
+
+
+
+                    <!-- STEP 3 -->
+                    <mat-step>
+                        <ng-template matStepLabel>Done</ng-template>
+                        You are now done.
+                        <div>
+                            <button mat-button
+                                    matStepperPrevious>Back</button>
+                        </div>
+                    </mat-step>
+                </mat-horizontal-stepper>
+
+
+            </div>
+        </div>
+    </ng-template>
+</div>

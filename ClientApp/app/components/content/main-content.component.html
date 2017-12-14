@@ -58,10 +58,10 @@
                     <a (click)="setView(contentTab.Attachments)">
                         {{'VSB_ATTACHMENTS_TITLE' | translate }}</a>
                 </li>
-
-                <!-- <li [ngClass]="{'active': getActive(contentTab.Returns)}">
-                    {{'VSB_TAB_HEADING_RETURNS' | translate }}</a>
-                </li> -->
+                <li [ngClass]="{'active': getActive(contentTab.Returns)}">
+                    <a (click)="setView(contentTab.Returns)">
+                            {{'VSB_TAB_HEADING_RETURNS' | translate }}</a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div id="tab_summary"
@@ -87,15 +87,13 @@
                 <div id="tab_thab"
                      class="tab-pane"
                      [ngClass]="{'active': getActive(contentTab.Attachments)}">
-                     <content-attachment></content-attachment>
+                    <content-attachment></content-attachment>
                 </div>
-                <!--                 
                 <div id="tab_returns"
                      class="tab-pane"
                      [ngClass]="{'active': getActive(contentTab.Returns)}">
-                    <content-returns person="person"
-                                     vsb-info="vsbInfo" />
-                </div> -->
+                    <content-returns></content-returns>
+                </div>
             </div>
         </div>
     </div>

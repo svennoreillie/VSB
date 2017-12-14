@@ -7,6 +7,11 @@ using VSBaseAngular.Business;
 using VSBaseAngular.Models.Keys;
 using ThabService;
 using VSBaseAngular.Controllers;
+using System.Net.Http;
+using Microsoft.Extensions.Options;
+using VSBaseAngular.Helpers.Options;
+using System.IO;
+using System.Web;
 
 [ApiVersion(ControllerVersion.v1)]
 [Route("api/v{version:apiVersion}/[Controller]")]
@@ -15,14 +20,20 @@ public class THABCalculationDocumentsController : BaseController
     private readonly IDocumentServiceVSB _documentService;
     private readonly IThabService _thabService;
     private readonly IReader<ThabCertificate> _thabCertificateReader;
+    private HttpClient _client;
+    private readonly IOptions<ApiConfig> _apiConfigs;
 
     public THABCalculationDocumentsController(IServiceFactory<IDocumentServiceVSB> documentServiceFabric, 
         IReader<ThabCertificate> thabCertificateReader, 
-        IServiceFactory<IThabService> thabServiceFactory)
+        IServiceFactory<IThabService> thabServiceFactory,
+        HttpClient client,
+        IOptions<ApiConfig> apiConfigs)
     {
         _documentService = documentServiceFabric.GetService();
         _thabService = thabServiceFactory.GetService();
         _thabCertificateReader = thabCertificateReader;
+        _client = client;
+        _apiConfigs = apiConfigs;
     }
 
     [Route("{sinumber:long}")]
@@ -34,27 +45,21 @@ public class THABCalculationDocumentsController : BaseController
 
         var fileName = string.Format($"ThabCalculation_{sinumber}.pdf");
 
-        var GetDocumentRequest = new GetIrisDocBinaryRequest() { memberNsi = sinumber.ToString(), reference = document.Reference, uniqueID = document.UniqueId };
-        var GetDocumentResponse = await _documentService.GetIrisDocBinaryAsync(GetDocumentRequest);
-        var documentLink = GetDocumentResponse.DocumentLinks.FirstOrDefault();
+        var section = _apiConfigs.Value?.Configs?.FirstOrDefault(a => a.ApplicationName == "IrisDocuments");
+        if (section == null) throw new Exception("No configuration found for Popu Api");
 
-        if (documentLink == null || string.IsNullOrWhiteSpace(documentLink.docNum))
-            throw new Exception("GetIrisDocBinary returns nothing.");
+        var url = Path.Combine(section.Url, sinumber.ToString());
+        var uriBuilder = new UriBuilder(url);
+        var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+        query["reference"] = document.Reference;
+        query["uniqueid"] = document.UniqueId;
+        uriBuilder.Query = query.ToString();
 
-        if (!documentLink.irisDocBinaryLink.StartsWith("\\"))
-            throw new Exception(string.Format("GetIrisDocBinary:{0}", documentLink.irisDocBinaryLink));
-
-        var downloadIrisDocBinaryResponse = await _documentService.DownloadIrisDocBinaryAsync(
-            new DownloadIrisDocBinaryRequest { docNum = documentLink.docNum, pathToTempFile = documentLink.irisDocBinaryLink });
-            
-
-        if (downloadIrisDocBinaryResponse.binaryType == "")
-            throw new Exception(string.Format("DownloadIrisDocBinary:{0}", downloadIrisDocBinaryResponse.binaryFile));
 
         string applicationType = "application/pdf";
-            HttpContext.Response.ContentType = applicationType;
-            var bytes = await System.IO.File.ReadAllBytesAsync(downloadIrisDocBinaryResponse.binaryFile);
-            FileContentResult result = new FileContentResult(bytes, applicationType) { FileDownloadName = fileName };
-            return result;
+        HttpContext.Response.ContentType = applicationType;
+        var bytes = await _client.GetByteArrayAsync(uriBuilder.ToString());
+        FileContentResult result = new FileContentResult(bytes, applicationType) { FileDownloadName = fileName };
+        return result;
     }
 }

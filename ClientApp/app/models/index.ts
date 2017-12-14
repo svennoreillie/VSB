@@ -1,3 +1,4 @@
+export { ReturnReason } from "./returns/returnreason";
 export { Attachment } from "./attachment";
 export { THABLetter } from "./thab/letter";
 export { THABNotification } from "./thab/notification";
