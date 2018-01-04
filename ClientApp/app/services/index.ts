@@ -1,3 +1,4 @@
+export { ReturnsService } from "./api/return.service";
 export { HttpHoldOffInterceptor } from "./interceptors/http-holdoff.interceptor.service";
 export { HttpErrorInterceptor } from "./interceptors/http-error.interceptor.service";
 export { ActiveContentPageService } from "./activecontent/active-content-page.service";

@@ -22,56 +22,206 @@
 
                     <!-- STEP 1 -->
                     <mat-step label="{{'RETURNS_REGISTRATION_FILTERS_LEGEND' | translate}}"
-                              [stepControl]="step1Valid">
-                        <div class="return-form">
-                            <mat-checkbox [(ngModel)]="returnItem.isFraude">{{'RETURNS_LABEL_FRAUDE' | translate}}</mat-checkbox>
+                              [stepControl]="checkStep(1)">
+                        <mat-card>
+                            <div class="return-form">
+                                <mat-checkbox [(ngModel)]="returnItem.isFraude">{{'RETURNS_LABEL_FRAUDE' | translate}}</mat-checkbox>
 
-                            <mat-checkbox [(ngModel)]="returnItem.isError">{{'RETURNS_LABEL_OWNERROR' | translate}}</mat-checkbox>
+                                <mat-checkbox [(ngModel)]="returnItem.isError">{{'RETURNS_LABEL_OWNERROR' | translate}}</mat-checkbox>
 
-                            <mat-form-field>
-                                <mat-select placeholder="{{'RETURNS_LABEL_REASON' | translate}}"
-                                            [(ngModel)]="returnItem.reason">
-                                    <mat-option *ngFor="let reason of reasons"
-                                                [value]="reason.value">{{reason.displayValue | translate}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                                <mat-form-field>
+                                    <mat-select placeholder="{{'RETURNS_LABEL_REASON' | translate}}"
+                                                [(ngModel)]="returnItem.reason">
+                                        <mat-option *ngFor="let reason of reasons"
+                                                    [value]="reason.value">{{reason.displayValue | translate}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
 
-                            <mat-form-field *ngIf="returnItem.reason == 'VALUES_REASON_OTHER'">
-                                <input matInput
-                                       [(ngModel)]="returnItem.otherReason"
-                                       [formControl]="OtherReason"
-                                       type="text"
-                                       placeholder="{{'RETURNS_LABEL_OTHERREASON' | translate}}">
-                            </mat-form-field>
+                                <mat-form-field *ngIf="returnItem.reason == 'VALUES_REASON_OTHER'">
+                                    <input matInput
+                                           [(ngModel)]="returnItem.otherReason"
+                                           [formControl]="OtherReason"
+                                           type="text"
+                                           placeholder="{{'RETURNS_LABEL_OTHERREASON' | translate}}">
+                                </mat-form-field>
 
-                            <mat-form-field>
-                                <textarea class="form-control"
-                                          rows="4"
-                                          maxlength="999"
-                                          matInput
-                                          placeholder="{{'RETURNS_LABEL_REMARK' | translate}}"
-                                          [(ngModel)]="returnItem.remark">
+                                <mat-form-field>
+                                    <textarea class="form-control"
+                                              rows="1"
+                                              maxlength="999"
+                                              matInput
+                                              placeholder="{{'RETURNS_LABEL_REMARK' | translate}}"
+                                              [(ngModel)]="returnItem.remark">
                                 </textarea>
-                            </mat-form-field>
+                                </mat-form-field>
 
 
-                            <div>
-                                <button mat-button
-                                        matStepperNext>{{'BUTTONS_SAVE' | translate}}</button>
-                                <button mat-button
-                                        (click)="cancelReturnItem()">{{'BUTTONS_CANCEL' | translate}}</button>
+                                <div>
+                                    <button mat-button
+                                            matStepperNext>{{'BUTTONS_SAVE' | translate}}</button>
+                                    <button mat-button
+                                            (click)="cancelReturnItem()">{{'BUTTONS_CANCEL' | translate}}</button>
+                                </div>
                             </div>
-                        </div>
+                        </mat-card>
                     </mat-step>
 
 
 
                     <!-- STEP 2 -->
                     <mat-step label="{{'RETURNS_REGISTRATION_CALCULATION_LEGEND' | translate}}"
-                              [stepControl]="step2Valid">
+                              [stepControl]="checkStep(2)">
+
                         <div class="row">
                             <div class="col-sm-12">
-                                <p>This will not be a form</p>
+                                <!-- ZVZPayments -->
+                                <soc-panel paneltitle="VSB_TAB_HEADING_ZVZ"
+                                           collapsable="false"
+                                           [loading]="zvzPayments && !(zvzPayments|async)"
+                                           type="bar">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="soc-table striped secondary">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_TYPE</th>
+                                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_STARTDATE</th>
+                                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_ENDDATE</th>
+                                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_AMOUNT</th>
+                                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_PAYMENTDATE</th>
+                                                                <th translate>ZVZ_WARRANTY_PAYMENTS_COLUMN_ACCOUNTNUMBER</th>
+                                                                <th translate>RETURNS_TABLEHEADER_RECOVER</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let paym of zvzPayments | async">
+                                                                <td>{{zvzWarranty.careForm}}</td>
+                                                                <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                                <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                                <td>{{paym.amount}} {{paym.currency}}</td>
+                                                                <td>{{paym.sendDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                                <td>{{paym.accountNb}}</td>
+                                                                <td (click)="selectPayment(paym, ReturnCalculationKind.ZVZ)">
+                                                                    <i class="fa fa-square-o"
+                                                                       *ngIf="!isPaymentSelected(paym)"
+                                                                       aria-hidden="true"></i>
+                                                                    <i class="fa fa-check-square-o"
+                                                                       *ngIf="isPaymentSelected(paym)"
+                                                                       aria-hidden="true"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </soc-panel>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <!-- BOBPayments -->
+                                <soc-panel paneltitle="VSB_TAB_HEADING_BOB"
+                                           collapsable="false"
+                                           [loading]="bobPayments && !(bobPayments|async)"
+                                           type="bar">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="soc-table striped secondary">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_TYPE</th>
+                                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_STARTDATE</th>
+                                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_ENDDATE</th>
+                                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_AMOUNT</th>
+                                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE</th>
+                                                                <th translate>BOB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER</th>
+                                                                <th translate>RETURNS_TABLEHEADER_RECOVER</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let paym of bobPayments | async">
+                                                                <td>{{'VSB_TAB_HEADING_BOB' | translate}}</td>
+                                                                <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                                <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                                <td>{{paym.amount}} {{paym.currency}}</td>
+                                                                <td>{{paym.sendDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                                <td>{{paym.accountNb}}</td>
+                                                                <td (click)="selectPayment(paym, ReturnCalculationKind.BOB)">
+                                                                        <i class="fa fa-square-o"
+                                                                           *ngIf="!isPaymentSelected(paym)"
+                                                                           aria-hidden="true"></i>
+                                                                        <i class="fa fa-check-square-o"
+                                                                           *ngIf="isPaymentSelected(paym)"
+                                                                           aria-hidden="true"></i>
+                                                                    </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </soc-panel>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <!-- THABPayments -->
+                                <soc-panel paneltitle="VSB_TAB_HEADING_THAB"
+                                           collapsable="false"
+                                           [loading]="thabPayments && !(thabPayments|async)"
+                                           type="bar">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="soc-table striped secondary">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_TYPE</th>
+                                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_STARTDATE</th>
+                                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_ENDDATE</th>
+                                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_AMOUNT</th>
+                                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE</th>
+                                                                <th translate>THAB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER</th>
+                                                                <th translate>RETURNS_TABLEHEADER_RECOVER</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let paym of thabPayments | async">
+                                                                <td>{{'VSB_TAB_HEADING_THAB' | translate}}</td>
+                                                                <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                                <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                                <td>{{paym.amount}} {{paym.currency}}</td>
+                                                                <td>{{paym.sendDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
+                                                                <td>{{paym.accountNb}}</td>
+                                                                <td (click)="selectPayment(paym, ReturnCalculationKind.THAB)">
+                                                                        <i class="fa fa-square-o"
+                                                                           *ngIf="!isPaymentSelected(paym)"
+                                                                           aria-hidden="true"></i>
+                                                                        <i class="fa fa-check-square-o"
+                                                                           *ngIf="isPaymentSelected(paym)"
+                                                                           aria-hidden="true"></i>
+                                                                    </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </soc-panel>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <button mat-button
+                                        matStepperNext>{{'BUTTONS_CREATE_PROPOSAL' | translate}}</button>
+                                <button mat-button
+                                        matStepperPrevious>{{'BUTTONS_BACK' | translate}}</button>
                             </div>
                         </div>
                     </mat-step>

@@ -1,4 +1,6 @@
-export class THABPayment {
+import { Payment } from "../index";
+
+export interface THABPayment extends Payment {
     Amount: number;
     Currency: string;
     SendDate: Date;

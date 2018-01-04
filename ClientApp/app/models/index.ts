@@ -1,3 +1,4 @@
+export { Payment } from "./payment";
 export { ReturnReason } from "./returns/returnreason";
 export { Attachment } from "./attachment";
 export { THABLetter } from "./thab/letter";
