@@ -54,3 +54,14 @@ label{
     display:flex; 
     flex-direction: column;
 } 
+
+
+
+.soc-step-icon {
+    border-radius: 50%;
+  height: 50;
+  width: 50;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

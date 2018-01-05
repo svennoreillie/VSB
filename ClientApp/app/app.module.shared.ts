@@ -23,7 +23,8 @@ import {
     MatSelectModule,
     MatTooltipModule,
     MatSnackBarModule,
-    MatStepperModule
+    MatStepperModule,
+    MatIconModule
 } from "@angular/material";
 // 3rd party
 import * as angular from "./angular-barrel";
@@ -95,6 +96,7 @@ import { HttpCacheInterceptor } from "./services";
         services.GeneralDataService,
         services.PeopleService,
         services.BobService,
+        services.ReturnsService,
         services.ThabService,
         services.ZvzService,
         services.UrlService,
@@ -136,6 +138,7 @@ import { HttpCacheInterceptor } from "./services";
         MatDialogModule,
         MatSnackBarModule,
         MatStepperModule,
+        MatIconModule,
         //3rd pary
         PopoverModule,
         FileDropModule,

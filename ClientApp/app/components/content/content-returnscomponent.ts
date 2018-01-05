@@ -1,19 +1,9 @@
-import { List } from 'linqts';
 import {
-    Payment
-} from "./../../models/payment";
-import {
-    ThabService
-} from "./../../services/api/thab.service";
+    List
+} from 'linqts';
 import {
     Observable
 } from "rxjs/Observable";
-import {
-    ReturnCalculationRequest,
-    ReturnCalculationLine,
-    ReturnCalculationKind,
-    ReturnCalculationPayment
-} from "./../../models/returns/returncalculationrequest";
 import {
     Subscription
 } from "rxjs/Subscription";
@@ -26,7 +16,9 @@ import {
     NotificationService,
     PeopleService,
     ZvzService,
-    BobService
+    BobService,
+    ReturnsService,
+    ThabService
 } from "../../services/index";
 import {
     TranslateService
@@ -40,7 +32,13 @@ import {
     ZVZPayment,
     BOBPayment,
     THABPayment,
-    ZVZWarranty
+    ZVZWarranty,
+    Payment,
+    ReturnCalculationRequest,
+    ReturnCalculationPayment,
+    ReturnCalculationLine,
+    ReturnCalculationKind,
+    ReturnCalculationResponse
 } from "../../models/index";
 
 
@@ -50,20 +48,25 @@ import {
 })
 export class ContentReturnsComponent implements OnInit, OnDestroy {
 
+
     //Properties
     private activePersonSubscription: Subscription;
     private activePersonDetailSubscription: Subscription;
+    private returnCalculationSubscription: Subscription;
     private person: PersonModel | null;
 
     public returnItem: ReturnCalculationRequest = new ReturnCalculationRequest();
+    public returnItemResponse: ReturnCalculationResponse | null = null;
     public reasonList: ReturnReason[] = [];
+
     public zvzWarranty: Observable < ZVZWarranty[] > ;
     public zvzPayments: Observable < ZVZPayment[] > ;
     public bobPayments: Observable < BOBPayment[] > ;
     public thabPayments: Observable < THABPayment[] > ;
-    public selectedPayments: any[] = [];
+
     public totalAmountToReturn: number;
-    
+    public ReturnCalculationKind = ReturnCalculationKind;
+
 
     //Lifecycle hooks
     constructor(
@@ -73,7 +76,8 @@ export class ContentReturnsComponent implements OnInit, OnDestroy {
         private thabService: ThabService,
         private notificationService: NotificationService,
         private translationService: TranslateService,
-        private snackBar: MatSnackBar) {}
+        private snackBar: MatSnackBar,
+        private returnsService: ReturnsService) {}
 
 
     public ngOnInit(): void {
@@ -85,16 +89,24 @@ export class ContentReturnsComponent implements OnInit, OnDestroy {
     public ngOnDestroy(): void {
         this.activePersonSubscription.unsubscribe();
         this.activePersonDetailSubscription.unsubscribe();
+        if (this.returnCalculationSubscription) this.returnCalculationSubscription.unsubscribe();
     }
 
     private personSelected(person: PersonModel) {
         this.person = person;
-        this.zvzPayments = this.zvzService.getPayments(this.person.siNumber);
-        this.bobPayments = this.bobService.getPayments(this.person.siNumber);
-        this.zvzWarranty = this.zvzService.getWarranties(this.person.siNumber);
+
+        if (this.person == null) {
+            this.cancel();
+        } else {
+            this.zvzPayments = this.zvzService.getPayments(this.person.siNumber);
+            this.bobPayments = this.bobService.getPayments(this.person.siNumber);
+            this.zvzWarranty = this.zvzService.getWarranties(this.person.siNumber);
+        }
     }
 
     private personSelectedDetails(person: PersonModel) {
+        if (this.person == null) return;
+
         this.person = person;
         this.thabPayments = this.thabService.getPayments(this.person.siNumber, this.person.insz);
     }
@@ -123,21 +135,33 @@ export class ContentReturnsComponent implements OnInit, OnDestroy {
         return this.person !== undefined && this.person !== null;
     }
 
+    private _step: number;
+    get currentStep() {
+        return this._step;
+    }
+    set currentStep(index: number) {
+        if (this.checkStep(index)) {
+            this._step = index;
+        }
+    }
+
     public checkStep(stepNumber: number): boolean {
         switch (stepNumber) {
             case 1:
-                if (this.returnItem === null) return false;
-                if (this.returnItem.IsFraude == undefined) return false;
-                if (this.returnItem.IsError == undefined) return false;
-                if (this.returnItem.Reason == undefined) return false;
-                if (this.returnItem.Reason == "") return false;
-                if (this.returnItem.Reason == "VALUES_REASON_OTHER") {
-                    if (this.returnItem.OtherReason == undefined) return false;
-                    if (this.returnItem.OtherReason == "") return false;
-                }
                 break;
             case 2:
+                if (this.returnItem === null) return false;
+                if (this.returnItem.isFraude == undefined) return false;
+                if (this.returnItem.isError == undefined) return false;
+                if (this.returnItem.reason == undefined) return false;
+                if (this.returnItem.reason == "") return false;
+                if (this.returnItem.reason == "VALUES_REASON_OTHER") {
+                    if (this.returnItem.otherReason == undefined) return false;
+                    if (this.returnItem.otherReason == "") return false;
+                }
                 break;
+            case 3:
+                return this.returnItemResponse != null && this.returnItemResponse != undefined;
             default:
                 return false;
         }
@@ -146,68 +170,55 @@ export class ContentReturnsComponent implements OnInit, OnDestroy {
 
 
 
-    public cancelReturnItem() {
+    public cancel() {
         this.returnItem = new ReturnCalculationRequest();
     }
 
 
-    public selectZVZPayment(payment: ZVZPayment) {
+
+    public selectPayment(payment: Payment, kind: ReturnCalculationKind) {
         let paymentLine: ReturnCalculationPayment = new ReturnCalculationPayment(payment.amount, payment.unCode, payment.beginDate, payment.endDate, payment.sendDate);
 
-        let lines = new List<ReturnCalculationLine>(this.returnItem.ReturnLines)
-        if (lines.Any(line => line.Kind == ReturnCalculationKind.ZVZ)) {
-            lines.First(line => line.Kind == ReturnCalculationKind.ZVZ).PaymentLines.push(paymentLine);
+        let lines = new List < ReturnCalculationLine > (this.returnItem.returnLines)
+        if (lines.Any(line => line.kind == kind)) {
+            lines.First(line => line.kind == kind).paymentLines.push(paymentLine);
         } else {
             let newLine: ReturnCalculationLine = new ReturnCalculationLine();
-            newLine.Kind = ReturnCalculationKind.ZVZ;
-            newLine.PaymentLines.push(paymentLine);
-            this.returnItem.ReturnLines.push(newLine);
+            newLine.kind = kind;
+            newLine.paymentLines.push(paymentLine);
+            this.returnItem.returnLines.push(newLine);
         }
         this.calcTotalAmountToReturn();
     }
 
-    public selectBOBPayment(payment: BOBPayment) {
+    public isPaymentSelected(payment: Payment, kind: ReturnCalculationKind) {
         let paymentLine: ReturnCalculationPayment = new ReturnCalculationPayment(payment.amount, payment.unCode, payment.beginDate, payment.endDate, payment.sendDate);
-
-        let lines = new List<ReturnCalculationLine>(this.returnItem.ReturnLines)
-        if (lines.Any(line => line.Kind == ReturnCalculationKind.BOB)) {
-            lines.First(line => line.Kind == ReturnCalculationKind.BOB).PaymentLines.push(paymentLine);
-        } else {
-            let newLine: ReturnCalculationLine = new ReturnCalculationLine();
-            newLine.Kind = ReturnCalculationKind.BOB;
-            newLine.PaymentLines.push(paymentLine);
-            this.returnItem.ReturnLines.push(newLine);
-        }
-        this.calcTotalAmountToReturn();
-    }
-
-    public selectTHABPayment(payment: THABPayment) {
-        let paymentLine: ReturnCalculationPayment = new ReturnCalculationPayment(payment.Amount, payment.UnCode, payment.PeriodStart, payment.PeriodEnd, payment.SendDate);
-
-        let lines = new List<ReturnCalculationLine>(this.returnItem.ReturnLines)
-        if (lines.Any(line => line.Kind == ReturnCalculationKind.THAB)) {
-            lines.First(line => line.Kind == ReturnCalculationKind.THAB).PaymentLines.push(paymentLine);
-        } else {
-            let newLine: ReturnCalculationLine = new ReturnCalculationLine();
-            newLine.Kind = ReturnCalculationKind.THAB;
-            newLine.PaymentLines.push(paymentLine);
-            this.returnItem.ReturnLines.push(newLine);
-        }
-        this.calcTotalAmountToReturn();
-    }
-
-    public isPaymentSelected(payment: Payment) {
-        return this.selectedPayments.indexOf(payment) >= 0;
+        let lines = new List < ReturnCalculationLine > (this.returnItem.returnLines);
+        let line = lines.FirstOrDefault(line => line.kind == kind);
+        if (line == null || line == undefined) return false;
+        let paymentLines = new List < ReturnCalculationPayment > (line.paymentLines);
+        return paymentLines.Any(p => {
+            if (p.amount !== payment.amount) return false;
+            if (p.startDate !== payment.beginDate) return false;
+            if (p.endDate !== payment.endDate) return false;
+            if (p.sendDate !== payment.sendDate) return false;
+            if (p.unCode !== payment.unCode) return false;
+            return true;
+        });
     }
 
     private calcTotalAmountToReturn() {
         this.totalAmountToReturn = 0;
-        for (let line of this.returnItem.ReturnLines) {
-            for (let payment of line.PaymentLines) {
-                this.totalAmountToReturn += payment.Amount;
+        for (let line of this.returnItem.returnLines) {
+            for (let payment of line.paymentLines) {
+                this.totalAmountToReturn += payment.amount;
             }
         }
         this.getCalculationRequest();
     }
 
+    private getCalculationRequest() {
+        this.returnCalculationSubscription = this.returnsService.getReturnCalculation(this.returnItem)
+            .subscribe(data => this.returnItemResponse = data);
+    }
 }

@@ -28,24 +28,7 @@ namespace VSBaseAngular.Controllers
             _mapper = mapper;
         }
 
-
-        [HttpGet]
-        [Route("~/api/v{version:apiVersion}/thabcertificates/{sinumber:long}/payments/{referenceDate:datetime}")]
-        public async Task<IActionResult> Get(long sinumber, DateTime referenceDate)
-        {
-            var request = new GetPaymentsRequest()
-            {
-                SiNumber = sinumber,
-                ReferenceDate = referenceDate
-            };
-            var response = await _service.GetPaymentsAsync(request);
-            if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
-                return BadRequest(response.BusinessMessages);
-
-            var mappedModels = _mapper.Map<IEnumerable<ThabPayment>>(response?.Value?.Payments);
-            return Ok(mappedModels);
-        }
-
+       
         [HttpGet]
         [Route("~/api/v{version:apiVersion}/thabcertificates/{sinumber:long}/payments")]
         public async Task<IActionResult> Get(long sinumber, [FromQuery]string insz)
@@ -65,7 +48,7 @@ namespace VSBaseAngular.Controllers
                 if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                     return BadRequest(response.BusinessMessages);
 
-                var mappedModels = _mapper.Map<IEnumerable<ThabPayment>>(response?.Value?.Payments);
+                var mappedModels = _mapper.Map<IEnumerable<ThabPayment>>(response?.Value?.Payments, opt => opt.Items["Id"] = certificateId););
                 payments.AddRange(mappedModels);
             }
 

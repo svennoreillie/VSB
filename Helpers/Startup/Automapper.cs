@@ -116,9 +116,10 @@ namespace VSBaseAngular
                 cfg.CreateMap<ThabService.Payment, ThabPayment>()
                     .ForMember(dest => dest.Currency, opt => opt.MapFrom(src => src.Currency))
                     .ForMember(dest => dest.SendDate, opt => opt.MapFrom(src => src.SendDate))
-                    .ForMember(dest => dest.Iban, opt => opt.MapFrom(src => src.Account != null ? src.Account.Iban : null))
-                    .ForMember(dest => dest.PeriodStart, opt => opt.MapFrom(src => src.PeriodStart))
-                    .ForMember(dest => dest.PeriodEnd, opt => opt.MapFrom(src => src.PeriodEnd))
+                    .ForMember(dest => dest.CertificateId, opt => opt.ResolveUsing((src, dest, value, context) => context.Options.Items["Id"]))
+                    // .ForMember(dest => dest.Iban, opt => opt.MapFrom(src => src.Account != null ? src.Account.Iban : null))
+                    .ForMember(dest => dest.BeginDate, opt => opt.MapFrom(src => src.PeriodStart))
+                    .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.PeriodEnd))
                     .ForMember(dest => dest.UnCode, opt => opt.MapFrom(src => src.UnCode));
 
                 cfg.CreateMap<ThabService.CertificatePayableAmount, ThabPayableAmount>()

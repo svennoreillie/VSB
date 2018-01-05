@@ -1,0 +1,18 @@
+<div class="soc-panel">
+    <div class="soc-title">
+        <ng-template *ngFor="let step of steps; let i = index; let isLast = last">
+            <soc-step-header 
+                             (click)="step.select()"
+                             [index]="i"
+                             [label]="selectedIndex === i ? step.activeTitle : step.title"
+                             [selected]="selectedIndex === i">
+            </soc-step-header>
+            <div *ngIf="!isLast"
+                 class="mat-stepper-horizontal-line"></div>
+        </ng-template>
+    </div>
+
+    <div class="soc-content">
+        <ng-content></ng-content>
+    </div>
+</div>

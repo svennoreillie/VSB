@@ -1,3 +1,9 @@
+export { ReturnCalculationType } from "./returns/enums";
+export { ReturnCalculationKind } from "./returns/enums";
+export { ReturnCalculationLine } from "./returns/returncalculationline";
+export { ReturnCalculationPayment } from "./returns/returncalculationline";
+export { ReturnCalculationResponse } from "./returns/returncalculationresponse";
+export { ReturnCalculationRequest } from "./returns/returncalculationrequest";
 export { Payment } from "./payment";
 export { ReturnReason } from "./returns/returnreason";
 export { Attachment } from "./attachment";

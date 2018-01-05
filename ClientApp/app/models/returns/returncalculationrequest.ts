@@ -1,66 +1,36 @@
+import { ReturnCalculationLine } from "../index";
+
 export class ReturnCalculationRequest {
-    public SiNumber: number;
-    public ReturnCalculationId: number;
-    public FederationNumber: number;
+    public siNumber: number;
+    public returnCalculationId: number;
+    public federationNumber: number;
 
-    public IsFraude: boolean;
-    public IsError: boolean;
-    public Reason: string;
-    public OtherReason: string;
-    public Remark: string;
-    public Insz: string;
-    public CreatedBy: string;
+    public isFraude: boolean;
+    public isError: boolean;
+    public reason: string;
+    public otherReason: string;
+    public remark: string;
+    public insz: string;
+    public createdBy: string;
 
-    public ReturnByDeduction: number;
-    public ReturnByOGM: number;
+    public returnByDeduction: number;
+    public returnByOGM: number;
     
-    public RegularLetterCreateDate: Date;
-    public RegularLetterCreatedBy: string;
-    public SignedLetterCreateDate: Date;
-    public SignedLetterCreatedBy: string;
+    public regularLetterCreateDate: Date;
+    public regularLetterCreatedBy: string;
+    public signedLetterCreateDate: Date;
+    public signedLetterCreatedBy: string;
 
-    public ObjectionMade: boolean;
-    public ObjectionDate: Date;
-    public ReturnStarted: boolean;
+    public objectionMade: boolean;
+    public objectionDate: Date;
+    public returnStarted: boolean;
 
-    public ReturnLines: ReturnCalculationLine[];
+    public returnLines: ReturnCalculationLine[];
 
     constructor() {
-        this.ReturnLines = new Array<ReturnCalculationLine>();
-        this.IsFraude = false;
+        this.returnLines = new Array<ReturnCalculationLine>();
+        this.isFraude = false;
     }
 
     
-}
-
-export class ReturnCalculationLine {
-    public Kind: ReturnCalculationKind;
-    public PaymentLines: ReturnCalculationPayment[];
-
-    constructor() {
-        this.PaymentLines = new Array<ReturnCalculationPayment>();
-    }
-}
-
-export class ReturnCalculationPayment {
-    constructor(public Amount: number,
-        public UnCode: number,
-        public StartDate: Date,
-        public EndDate: Date,
-        public SendDate: Date) {
-
-    }
-}
-
-export enum ReturnCalculationKind {
-    ZVZ = 1,
-    BOB = 2,
-    THAB = 3
-}
-
-export enum ReturnCalculationType {
-    NothingToReturn = 0,
-    FullDeduction = 1,
-    PartialDeduction = 2,
-    NonDeductable = 3
 }

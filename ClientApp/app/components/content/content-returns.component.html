@@ -18,11 +18,12 @@
             </div>
 
             <div class="col-sm-12">
-                <mat-horizontal-stepper [linear]="true">
+                <soc-stepper>
 
                     <!-- STEP 1 -->
-                    <mat-step label="{{'RETURNS_REGISTRATION_FILTERS_LEGEND' | translate}}"
-                              [stepControl]="checkStep(1)">
+                    <soc-step title="{{'Returns step 1 short title' | translate}}"
+                              activeTitle="{{'Returns step 1 title' | translate}}"
+                              [valid]="checkStep(1)">
                         <mat-card>
                             <div class="return-form">
                                 <mat-checkbox [(ngModel)]="returnItem.isFraude">{{'RETURNS_LABEL_FRAUDE' | translate}}</mat-checkbox>
@@ -57,20 +58,20 @@
 
 
                                 <div>
+
                                     <button mat-button
-                                            matStepperNext>{{'BUTTONS_SAVE' | translate}}</button>
-                                    <button mat-button
-                                            (click)="cancelReturnItem()">{{'BUTTONS_CANCEL' | translate}}</button>
+                                            soc-step-next>{{'BUTTONS_SAVE' | translate}}</button>
                                 </div>
                             </div>
                         </mat-card>
-                    </mat-step>
+                    </soc-step>
 
 
 
                     <!-- STEP 2 -->
-                    <mat-step label="{{'RETURNS_REGISTRATION_CALCULATION_LEGEND' | translate}}"
-                              [stepControl]="checkStep(2)">
+                    <soc-step title="{{'Returns step 2 short title' | translate}}"
+                            activeTitle="{{'Returns step 2 title' | translate}}"
+                            [valid]="checkStep(2)">
 
                         <div class="row">
                             <div class="col-sm-12">
@@ -105,10 +106,10 @@
                                                                 <td>{{paym.accountNb}}</td>
                                                                 <td (click)="selectPayment(paym, ReturnCalculationKind.ZVZ)">
                                                                     <i class="fa fa-square-o"
-                                                                       *ngIf="!isPaymentSelected(paym)"
+                                                                       *ngIf="!isPaymentSelected(paym, ReturnCalculationKind.ZVZ)"
                                                                        aria-hidden="true"></i>
                                                                     <i class="fa fa-check-square-o"
-                                                                       *ngIf="isPaymentSelected(paym)"
+                                                                       *ngIf="isPaymentSelected(paym, ReturnCalculationKind.ZVZ)"
                                                                        aria-hidden="true"></i>
                                                                 </td>
                                                             </tr>
@@ -152,13 +153,13 @@
                                                                 <td>{{paym.sendDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                                 <td>{{paym.accountNb}}</td>
                                                                 <td (click)="selectPayment(paym, ReturnCalculationKind.BOB)">
-                                                                        <i class="fa fa-square-o"
-                                                                           *ngIf="!isPaymentSelected(paym)"
-                                                                           aria-hidden="true"></i>
-                                                                        <i class="fa fa-check-square-o"
-                                                                           *ngIf="isPaymentSelected(paym)"
-                                                                           aria-hidden="true"></i>
-                                                                    </td>
+                                                                    <i class="fa fa-square-o"
+                                                                       *ngIf="!isPaymentSelected(paym, ReturnCalculationKind.BOB)"
+                                                                       aria-hidden="true"></i>
+                                                                    <i class="fa fa-check-square-o"
+                                                                       *ngIf="isPaymentSelected(paym, ReturnCalculationKind.BOB)"
+                                                                       aria-hidden="true"></i>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -200,13 +201,13 @@
                                                                 <td>{{paym.sendDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                                 <td>{{paym.accountNb}}</td>
                                                                 <td (click)="selectPayment(paym, ReturnCalculationKind.THAB)">
-                                                                        <i class="fa fa-square-o"
-                                                                           *ngIf="!isPaymentSelected(paym)"
-                                                                           aria-hidden="true"></i>
-                                                                        <i class="fa fa-check-square-o"
-                                                                           *ngIf="isPaymentSelected(paym)"
-                                                                           aria-hidden="true"></i>
-                                                                    </td>
+                                                                    <i class="fa fa-square-o"
+                                                                       *ngIf="!isPaymentSelected(paym, ReturnCalculationKind.THAB)"
+                                                                       aria-hidden="true"></i>
+                                                                    <i class="fa fa-check-square-o"
+                                                                       *ngIf="isPaymentSelected(paym, ReturnCalculationKind.THAB)"
+                                                                       aria-hidden="true"></i>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -219,25 +220,42 @@
 
                             <div class="col-sm-12">
                                 <button mat-button
-                                        matStepperNext>{{'BUTTONS_CREATE_PROPOSAL' | translate}}</button>
+                                        soc-step-previous>{{'BUTTONS_SAVE' | translate}}</button>
                                 <button mat-button
-                                        matStepperPrevious>{{'BUTTONS_BACK' | translate}}</button>
+                                        soc-step-next>{{'BUTTONS_CREATE_PROPOSAL' | translate}}</button>
                             </div>
                         </div>
-                    </mat-step>
+                    </soc-step>
 
 
 
                     <!-- STEP 3 -->
-                    <mat-step>
-                        <ng-template matStepLabel>Done</ng-template>
+                    <soc-step title="{{'Returns step 3 short title' | translate}}"
+                    activeTitle="{{'Returns step 3 title' | translate}}"
+                    [valid]="checkStep(3)">
+                        Step 3
+                        <div>
+                            <button mat-button
+                                soc-step-previous>{{'BUTTONS_BACK' | translate}}</button>
+                            <button mat-button
+                                soc-step-next>{{'BUTTONS_NEXT' | translate}}</button>
+                            
+                        </div>
+                    </soc-step>
+
+
+
+                    <!-- STEP 3 -->
+                    <soc-step title="{{'Returns step 4 short title' | translate}}"
+                    activeTitle="{{'Returns step 4 title' | translate}}"
+                    [valid]="checkStep(4)">
                         You are now done.
                         <div>
                             <button mat-button
-                                    matStepperPrevious>Back</button>
+                                soc-step-previous>{{'BUTTONS_BACK' | translate}}</button>
                         </div>
-                    </mat-step>
-                </mat-horizontal-stepper>
+                    </soc-step>
+                </soc-stepper>
 
 
             </div>
