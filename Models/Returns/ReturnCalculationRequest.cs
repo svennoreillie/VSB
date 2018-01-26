@@ -1,10 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
-namespace VSBaseAngular.Models {
+namespace VSBaseAngular.Models
+{
+
+    public class NewReturnCalculationRequest
+    {
+        [Required]
+        public long SiNumber { get; set; }
+        public bool IsFraude { get; set; }
+        public bool IsError { get; set; }
+        public string Reason { get; set; }
+        public string Remark { get; set; }
+    }
+
+
     public class ReturnCalculationRequest {
         [Required]
         public long SiNumber { get; set; }

@@ -31,9 +31,18 @@
   <ItemGroup>
     <Content Include="ClientApp\config.json" />
     <Content Include="ClientApp\translations\nl.json" />
+    <Content Include="Docs\Bob\**" CopyToPublishDirectory="PreserveNewest" Link="Docs\Bob\%(RecursiveDir)\%(Filename)%(Extension)" />
+    <Content Include="Docs\Returns\**" CopyToPublishDirectory="PreserveNewest" Link="Docs\Returns\%(RecursiveDir)\%(Filename)%(Extension)" />
+    <Content Include="Docs\Thab\**" CopyToPublishDirectory="PreserveNewest" Link="Docs\Thab\%(RecursiveDir)\%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClientApp\app\directives\NewFolder\" />
     <Folder Include="ClientApp\images\" />
+    <Folder Include="Configs\" />
+    <Folder Include="Configs\" />
+    <Folder Include="Docs\">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Folder>
   </ItemGroup>
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->

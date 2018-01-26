@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VSBaseAngular.Models;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace VSBaseAngular.Business
 {
@@ -16,13 +17,13 @@ namespace VSBaseAngular.Business
 
         public ReturnPropositionService(IReturnValidationService validation,
                                         IPaymentLineService paymentLineService,
-                                        IReturnItemService[] returnItemServices)
+                                        IServiceProvider serviceProvider)
         {
 
             _validation = validation;
             _paymentLineService = paymentLineService;
-            _returnItemServices = returnItemServices.ToList();
-
+            
+            _returnItemServices = serviceProvider.GetServices<IReturnItemService>();
         }
 
 
@@ -39,13 +40,10 @@ namespace VSBaseAngular.Business
             return sum;
         }
 
-        public async Task<(List<ReturnCalculationLine> lines, decimal amount)> DistributeAmount(decimal amount, long siNumber, string insz)
+        public async Task<(List<ReturnCalculationResultLine> lines, decimal amount)> DistributeAmount(decimal amount, long siNumber, string insz)
         {
-            var maximumAmount = await this.CalculateMaximumDeductableAmount(siNumber, insz);
-            if (amount > maximumAmount) throw new ArgumentOutOfRangeException("Amount too high");
-
-
-            List<ReturnCalculationLine> lines = new List<ReturnCalculationLine>();
+            List<ReturnCalculationResultLine> lines = new List<ReturnCalculationResultLine>();
+            if (await CalculateMaximumDeductableAmount(siNumber, insz) == 0) return (lines, amount);
 
             foreach (var service in _returnItemServices.OrderBy(ris => ris.Kind))
             {
@@ -56,11 +54,23 @@ namespace VSBaseAngular.Business
 
                 decimal lineAmount = Math.Min(maxAmount, amount);
 
-                var line = new ReturnCalculationLine(service.Kind);
-                line.PaymentLines.AddRange(service.GetPaymentLines(lineAmount));
+                var line = new ReturnCalculationResultLine(service.Kind);
+                line.Amount = lineAmount;
                 lines.Add(line);
 
                 amount -= lineAmount;
+            }
+
+            if (amount > 0 && lines.Count > 0)
+            {
+                //Distribute evenly over all possible lines
+                decimal extra = amount / lines.Count;
+                decimal rest = amount % lines.Count;
+                for (int i = 0; i < lines.Count; i++)
+                {
+                    lines[i].Amount += extra;
+                    if (i == 0) lines[i].Amount += rest;
+                }
             }
 
             return (lines, amount);
@@ -83,6 +93,7 @@ namespace VSBaseAngular.Business
             if (request.ReturnLines == null || request.ReturnLines.Count() == 0) return new Result<ReturnCalculationResponse>(response);
 
             response.AmountNonRefundable = _paymentLineService.GetUnreturnableAmount(request.IsFraude, request.ReturnLines);
+            response.AmountRefundableByFOD = _paymentLineService.GetReturnableAmountByFOD(request.IsFraude, request.ReturnLines);
             decimal amountToRecover = _paymentLineService.GetReturnableAmount(request.IsFraude, request.ReturnLines);
 
             var distributeResponse = await this.DistributeAmount(amountToRecover, request.SiNumber, request.Insz);

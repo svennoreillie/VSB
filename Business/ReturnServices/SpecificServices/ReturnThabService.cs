@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using ThabService;
 
 namespace VSBaseAngular.Business
@@ -22,9 +21,9 @@ namespace VSBaseAngular.Business
 
 
 
-        public ReturnThabService(IThabService thabService, IReturnCalculationService helper)
+        public ReturnThabService(IServiceFactory<IThabService> thabServiceFactory, IReturnCalculationService helper)
         {
-            _thabService = thabService;
+            _thabService = thabServiceFactory.GetService();
             _helperService = helper;
         }
 
@@ -36,16 +35,7 @@ namespace VSBaseAngular.Business
             var response = await _thabService.GetCertificatesAsync(new GetCertificatesRequest() { SiNumber = siNumber, Insz = insz });
             return await CalcMaxAmount(siNumber, response);
         }
-
-        public IEnumerable<ReturnCalculationPayment> GetPaymentLines(decimal totalAmount)
-        {
-            //TODO
-            yield return new ReturnCalculationPayment()
-            {
-                Amount = totalAmount,
-            };
-        }
-
+        
 
 
 
@@ -79,8 +69,9 @@ namespace VSBaseAngular.Business
                 decimal sum = 0;
                 foreach (var fc in futureCertifcates)
                 {
-                    sum += _helperService.PaymentsBetweenDates(fc.Until) * (await GetCurrentPaymentAmount(siNumber, fc.InitialDate)) * maxPercentage;
+                    sum += _helperService.PaymentsBetweenDates(fc.Until) * (await GetCurrentPaymentAmount(siNumber, fc.InitialDate)) * maxPercentage / 100;
                 }
+                return sum;
             }
             else if (response.BusinessMessages != null && response.BusinessMessages.Any())
             {

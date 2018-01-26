@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using VSBaseAngular.Models;
 
-namespace VSBaseAngular.Business {
+namespace VSBaseAngular.Business
+{
     public interface IReturnPropositionService {
 
-        Task<(List<ReturnCalculationLine> lines, decimal amount)> DistributeAmount(decimal amount, long siNumber, string insz);
+        Task<(List<ReturnCalculationResultLine> lines, decimal amount)> DistributeAmount(decimal amount, long siNumber, string insz);
 
         /// <summary>
         /// Calculates the maximum deductable amount for a given person by combining the known services together

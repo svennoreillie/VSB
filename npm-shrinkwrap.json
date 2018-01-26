@@ -5883,6 +5883,11 @@
         "zone.js": "0.8.12"
       }
     },
+    "ngx-order-pipe": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/ngx-order-pipe/-/ngx-order-pipe-1.1.2.tgz",
+      "integrity": "sha512-uWI0+jVODGKhOtQCZS8pZLa/cebuLp9aAz+6080SxbtCkfn98ObNHE7csIaXkDQCEC3xwORY84cjtxV6DqdcGw=="
+    },
     "ngx-popover": {
       "version": "0.0.16",
       "resolved": "https://registry.npmjs.org/ngx-popover/-/ngx-popover-0.0.16.tgz",

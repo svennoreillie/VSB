@@ -7,7 +7,13 @@ public class ThabCertificate : ModelBase
     public string CertificateId { get; set; }
     public DateTime? DecisionDate { get; set; }
     public DateTime? EndDate { get; set; }
-    public bool IsMigrated { get; }
+    public bool IsMigrated
+    {
+        get
+        {
+            return this.MigrateDate.HasValue;
+        }
+    }
     public DateTime? MigrateDate { get; set; }
     public DateTime ReferenceDate { get; set; }
     public DateTime? RegistrationDate { get; set; }

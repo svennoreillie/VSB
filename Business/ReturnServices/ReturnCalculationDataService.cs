@@ -49,13 +49,13 @@ namespace VSBaseAngular.Business.ReturnServices {
                 foreach (var item in lines) {
                     switch (item.Kind) {
                         case VSBaseAngular.Models.ReturnCalculationKind.ZVZ:
-                            serviceRequest.ReturnByZVZ = item.PaymentLines.Sum(pl => pl.Amount);
+                            serviceRequest.ReturnByZVZ = item.Amount;
                             break;
                         case VSBaseAngular.Models.ReturnCalculationKind.BOB:
-                            serviceRequest.ReturnByBOB = item.PaymentLines.Sum(pl => pl.Amount);
+                            serviceRequest.ReturnByBOB = item.Amount;
                             break;
                         case VSBaseAngular.Models.ReturnCalculationKind.THAB:
-                            serviceRequest.ReturnByTHAB = item.PaymentLines.Sum(pl => pl.Amount);
+                            serviceRequest.ReturnByTHAB = item.Amount;
                             break;
                         default:
                             break;

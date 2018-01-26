@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace VSBaseAngular.Business {
+namespace VSBaseAngular.Business
+{
     public class ReturnCalculationService : IReturnCalculationService {
 
         //Aantal maanden maximum
@@ -16,7 +14,7 @@ namespace VSBaseAngular.Business {
         public int PaymentsBetweenDates(DateTime? until, DateTime start) {
             if (!until.HasValue) return maxReturnPeriod;
             int months = (until.Value.Year - DateTime.Today.Year ) * 12 + (until.Value.Month - DateTime.Today.Month );
-            return Math.Min(months, maxReturnPeriod);
+            return Math.Max(0, Math.Min(months, maxReturnPeriod));
         }
     }
 }

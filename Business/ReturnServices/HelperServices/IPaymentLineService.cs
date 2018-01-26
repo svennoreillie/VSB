@@ -8,5 +8,6 @@ namespace VSBaseAngular.Business {
     public interface IPaymentLineService {
         decimal GetUnreturnableAmount(bool isFraude, IEnumerable<ReturnCalculationLine> lines);
         decimal GetReturnableAmount(bool isFraude, IEnumerable<ReturnCalculationLine> lines);
+        decimal GetReturnableAmountByFOD(bool isFraude, IEnumerable<ReturnCalculationLine> lines);
     }
 }

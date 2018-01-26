@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using BobService;
 
 namespace VSBaseAngular.Business
@@ -20,9 +19,9 @@ namespace VSBaseAngular.Business
 
 
 
-        public ReturnBobService(IBobService bobService, IReturnCalculationService helper)
+        public ReturnBobService(IServiceFactory<IBobService> bobServiceFactory, IReturnCalculationService helper)
         {
-            _bobService = bobService;
+            _bobService = bobServiceFactory.GetService();
             _helperService = helper;
         }
 
@@ -33,18 +32,6 @@ namespace VSBaseAngular.Business
             ReturnMessageOfGetCertificatesResponse7nXz08R8 response = await _bobService.GetCertificatesAsync(new GetCertificatesRequest() { SiNumber = siNumber });
             return await CalcMaxAmount(siNumber, response);
         }
-
-
-        public IEnumerable<ReturnCalculationPayment> GetPaymentLines(decimal totalAmount)
-        {
-            //TODO
-            yield return new ReturnCalculationPayment()
-            {
-                Amount = totalAmount,
-            };
-        }
-
-
 
 
         private async Task<decimal> GetCurrentPaymentAmount(long siNumber, DateTime reference)

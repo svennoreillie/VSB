@@ -7,11 +7,12 @@ namespace VSBaseAngular.Models {
     public class ReturnCalculationResponse {
 
         public ReturnCalculationResponse() {
-            this.ReturnLines = new List<ReturnCalculationLine>();
+            this.ReturnLines = new List<ReturnCalculationResultLine>();
         }
 
-        public List<ReturnCalculationLine> ReturnLines { get; set; }
+        public List<ReturnCalculationResultLine> ReturnLines { get; set; }
         public decimal AmountRefundableByOGM { get; set; }
+        public decimal AmountRefundableByFOD { get; set; }
         public decimal AmountNonRefundable { get; set; }
 
 
@@ -21,7 +22,7 @@ namespace VSBaseAngular.Models {
                 if (this.TotalAmount == 0) return ReturnCalculationType.NothingToReturn;
                 if (this.AmountRefundableByDeduction == this.TotalAmount) return ReturnCalculationType.FullDeduction;
                 if (this.AmountRefundableByOGM == this.TotalAmount) return ReturnCalculationType.NonDeductable;
-                return ReturnCalculationType.PartialDeduction;
+                throw new Exception("Both OGM and Decuction is no longer possible");
             }
         }
 
@@ -35,8 +36,7 @@ namespace VSBaseAngular.Models {
             get {
                 if (this.ReturnLines == null) return 0;
                 if (!this.ReturnLines.Any()) return 0;
-                return ReturnLines.Where(l => l.PaymentLines != null)
-                                  .Sum(l => l.PaymentLines.Sum(pl => pl.Amount));
+                return ReturnLines.Sum(l => l.Amount);
             }
         }
         

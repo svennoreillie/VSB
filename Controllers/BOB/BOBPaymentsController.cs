@@ -53,7 +53,8 @@ namespace VSBaseAngular.Controllers
                 var response = await _service.GetPaymentsAsync(new GetPaymentsRequest() { SiNumber = sinumber, ReferenceDate = certificate.From });
                 if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                     return BadRequest(response.BusinessMessages);
-                payments.AddRange(_mapper.Map<IEnumerable<BobPayment>>(response.Value?.Payments, opt => opt.Items["Id"] = certificate.Id));
+                var p = response.Value?.Payments;
+                if (p!= null) payments.AddRange(_mapper.Map<IEnumerable<BobPayment>>(response.Value?.Payments, opt => opt.Items["Id"] = certificate.Id));
             }
 
             return Ok(payments);

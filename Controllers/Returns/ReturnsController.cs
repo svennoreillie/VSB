@@ -5,11 +5,13 @@ using VSBaseAngular.Business;
 using VSBaseAngular.Business.ReturnServices;
 using VSBaseAngular.Models;
 using VsbService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VSBaseAngular.Controllers
 {
     [ApiVersion(ControllerVersion.v1)]
     [Route("api/v{version:apiVersion}/[Controller]")]
+    [Authorize]
     public class ReturnsController : BaseController
     {
         private IReturnCalculationDataService _dataService;
@@ -33,6 +35,7 @@ namespace VSBaseAngular.Controllers
         {
             if (ModelState.IsValid)
             {
+                request.CreatedBy = User.Identity.Name;
                 var result = await _dataService.StoreReturnCalculationAsync(request);
                 if (result.Code != ResultCode.Ok) return BadRequest(string.Join(";", result.Messages));
 

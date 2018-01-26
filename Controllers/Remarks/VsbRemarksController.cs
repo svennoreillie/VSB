@@ -17,10 +17,12 @@ namespace VSBaseAngular.Controllers
 
 
         [HttpGet]
-        [Route("{sinumber:long}")]
-        public async Task<IActionResult> Get(long sinumber)
+        [Route("{sinumber}")]
+        public async Task<IActionResult> Get(string sinumber)
         {
-            var response = await _vsbService.GetRemarkAsync(new GetRemarkRequest() { Sinr = sinumber });
+            long snr;
+            if (!long.TryParse(sinumber, out snr)) return BadRequest();
+            var response = await _vsbService.GetRemarkAsync(new GetRemarkRequest() { Sinr = snr });
             if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                 return BadRequest(response.BusinessMessages);
 
@@ -28,12 +30,14 @@ namespace VSBaseAngular.Controllers
         }
 
         [HttpPost]
-        [Route("{sinumber:long}")]
-        public async Task<IActionResult> Post(long sinumber, [FromBody]PostRemarkModel model)
+        [Route("{sinumber}")]
+        public async Task<IActionResult> Post(string sinumber, [FromBody]PostRemarkModel model)
         {
+            long snr;
+            if (!long.TryParse(sinumber, out snr)) return BadRequest();
             if (ModelState.IsValid)
             {
-                var response = await _vsbService.SaveRemarkAsync(new SaveRemarkRequest() { Sinr = sinumber, Remark = model.Remark, Userid = GetUserID() });
+                var response = await _vsbService.SaveRemarkAsync(new SaveRemarkRequest() { Sinr = snr, Remark = model.Remark, Userid = GetUserID() });
                 if (response.BusinessMessages != null && response.BusinessMessages.Length > 0)
                     return BadRequest(response.BusinessMessages);
 

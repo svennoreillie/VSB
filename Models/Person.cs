@@ -13,7 +13,7 @@ namespace VSBaseAngular.Models
         public string FirstName { get; set; }
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
-        public DateTime DeceaseDate { get; set; }
+        public DateTime? DeceaseDate { get; set; }
         public int Sex { get; set; }
 
         public string Street { get; set; }

@@ -1,22 +1,13 @@
 //Set our own variables first, these can override the bootstrap variables
 @import "templatevariables";
-
 //import soc-core
 @import "~soc-core/src/stylesheets/soc.scss";
-
 //@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 //Add custom scss below
-
 @import '~@angular/material/theming';
-
 @include mat-core();
-
 @import 'materialtheme.scss';
-
 @include angular-material-theme($soc-theme);
-
-
-
 .soc-sidebar {
     .soc-search-form {
         mat-form-field {
@@ -25,7 +16,8 @@
     }
 }
 
-label{
+
+label {
     &.mat-checkbox-layout {
         font-weight: normal;
     }
@@ -51,17 +43,56 @@ label{
 }
 
 .return-form {
-    display:flex; 
+    display: flex;
     flex-direction: column;
-} 
+}
 
-
+.mat-form-field {
+    width: 100%;
+}
 
 .soc-step-icon {
     border-radius: 50%;
-  height: 50;
-  width: 50;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+    height: 27px;
+    width: 27px;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    background-color: lightgray;
+}
+
+.soc-stepper-header-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+}
+
+soc-step-header {
+    flex-basis: auto;
+    flex-grow: 1;
+
+    .selectable {
+        cursor: pointer;
+    }
+
+    .selected {
+        cursor: default;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+}
+
+.soc-stepper-horizontal-line {
+    flex-grow: 3;
+    border-top: 1px solid lightgray;
+    margin: 0px 10px 0px 0px;
+}
+
+.soc-table {
+    &.small {
+        max-height: 135px;
+    }
 }

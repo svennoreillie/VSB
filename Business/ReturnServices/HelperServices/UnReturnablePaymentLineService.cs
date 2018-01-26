@@ -18,6 +18,7 @@ namespace VSBaseAngular.Business {
             foreach (var line in lines) {
                 ReturnCalculationLine returnLine = new ReturnCalculationLine(line.Kind);
                 returnLine.PaymentLines.AddRange(line.PaymentLines.Where(pl => {
+                    if (line.Kind == ReturnCalculationKind.THAB_FOD) return true;
                     if (pl.SendDate.HasValue) return pl.SendDate < referenceDate;
                     else if (pl.StartDate.HasValue) return pl.StartDate < referenceDate;
                     else if (pl.EndDate.HasValue) return pl.EndDate < referenceDate;
@@ -34,6 +35,7 @@ namespace VSBaseAngular.Business {
             DateTime referenceDate = GetReferenceDate(isFraude);
 
             foreach (var line in lines) {
+                if (line.Kind == ReturnCalculationKind.THAB_FOD) continue;
                 ReturnCalculationLine returnLine = new ReturnCalculationLine(line.Kind);
                 returnLine.PaymentLines.AddRange(line.PaymentLines.Where(pl => {
                     if (pl.SendDate.HasValue) return pl.SendDate >= referenceDate;

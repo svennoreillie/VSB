@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -6,15 +5,15 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using VSBaseAngular.Business;
 using VSBaseAngular.Business.ReturnServices;
 using VSBaseAngular.Models;
-using VsbService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VSBaseAngular.Controllers
 {
     [ApiVersion(ControllerVersion.v1)]
     [Route("api/v{version:apiVersion}/[Controller]")]
+    [Authorize]
     public class ReturnLettersController : BaseController
     {
 
@@ -30,7 +29,8 @@ namespace VSBaseAngular.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostCreateLetter(ReturnCalculationRequest request)
+        [Route("")]
+        public async Task<IActionResult> PostCreateLetter([FromBody]ReturnCalculationRequest request)
         {
             if (ModelState.IsValid)
             {

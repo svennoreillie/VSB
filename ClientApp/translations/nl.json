@@ -1,300 +1,530 @@
 {
-    "MAIN_TITLE": {
-        "originalText": "Main title",
-        "value": "VSBase"
-    },
-    "FILTER_BY_NAME": {
-        "originalText": "Filter by name",
-        "value": "Naam"
-    },
-    "FILTER_BY_NATIONAL_NUMBER": {
-        "originalText": "Filter by national number",
-        "value": "Nationaal nummer"
-    },
-    "FILTER_BY_MEMBER_NUMBER": {
-        "originalText": "Filter by member number",
-        "value": "Lidnummer"
-    },
-    "FILTER_BY_STATE": {
-        "originalText": "Filter by state",
-        "value": "Status van de aanvraag"
-    },
-    "NAME_PLACEHOLDER": {
-        "originalText": "Name Placeholder",
-        "value": "Naam"
-    },
-    "FIRSTNAME_PLACEHOLDER": {
-        "originalText": "First name Placeholder",
-        "value": "Voornaam"
-    },
-    "NAME_IS_REQUIRED": {
-        "originalText": "Name is required",
-        "value": "Naam is verplicht"
-    },
-    "FEDERATION_PLACEHOLDER": {
-        "originalText": "Federation Placeholder",
-        "value": "Federatie"
-    },
-    "MEMBERNR_PLACEHOLDER": {
-        "originalText": "MemberNr Placeholder",
-        "value": "Lidnummer"
-    },
-    "FEDERATION_IS_REQUIRED": {
-        "originalText": "Federation is required",
-        "value": "Federatie is verplicht"
-    },
-    "MEMBERNR_IS_REQUIRED": {
-        "originalText": "MemberNr is required",
-        "value": "Lidnummer is verplicht"
-    },
-    "COLLAPSE": {
-        "originalText": "Collapse",
-        "description": "Search collapse button",
-        "value": "Filter & Zoek"
-    },
-    "SEARCH": {
-        "originalText": "Search",
-        "description": "Button search form",
-        "value": "Zoeken"
-    },
-    "VSB_TAB_HEADING_SUMMARY": {
-        "originalText": "VSB_TAB_HEADING_SUMMARY",
-        "value": "Overzicht"
-    },
-    "VSB_TAB_HEADING_ZVZ": {
-        "originalText": "VSB_TAB_HEADING_ZVZ",
-        "value": "Zorgverzekering"
-    },
-    "VSB_TAB_HEADING_BOB": {
-        "originalText": "VSB_TAB_HEADING_BOB",
-        "value": "BOB"
-    },
-    "VSB_TAB_HEADING_THAB": {
-        "originalText": "VSB_TAB_HEADING_THAB",
-        "value": "THAB"
-    },
-    "VSB_ATTACHMENTS_TITLE": {
-        "originalText": "VSB_ATTACHMENTS_TITLE",
-        "value": "Bijlagen"
-    },
-    "STATE_SEARCH_BY_AREA": {
-        "originalText": "State Search By Area",
-        "value": "Domein VSB"
-    },
-    "STATE_SEARCH_BY_STATE": {
-        "originalText": "State Search By State",
-        "value": "Status"
-    },
-    "STATE_SEARCH_BY_FEDERATION": {
-        "originalText": "State Search By Federation",
-        "value": "Federatie"
-    },
-    "VSB_SEARCHBYSTATE_INFO": {
-        "originalText": "VSB_SEARCHBYSTATE_INFO",
-        "description": "Optional search information before search button at state search",
-        "value": "U moet domein VSB, status én federatie invullen"
-    },
-    "ZVZ": {
-        "originalText": "ZVZ",
-        "value": "ZVZ"
-    },
-    "BOB": {
-        "originalText": "BOB",
-        "value": "BOB"
-    },
-    "THAB": {
-        "originalText": "THAB",
-        "value": "THAB"
-    },
-    "INITIATED": {
-        "originalText": "Initiated",
-        "value": "In afwachting"
-    },
-    "REJECTED": {
-        "originalText": "Rejected",
-        "value": "Geweigerd"
-    },
-    "CONFIRMED": {
-        "originalText": "Confirmed",
-        "value": "Aanvaard"
-    },
-    "INSZ_PLACEHOLDER": {
-        "originalText": "insz Placeholder",
-        "value": "Nationaal nummer"
-    },
-    "INSZ_REQUIRED": {
-        "originalText": "INSZ required",
-        "value": "Nationaal nummer is verplicht"
-    },
-    "COMMON_DATEFORMAT": {
-        "originalText": "COMMON_DATEFORMAT",
-        "value": "dd/MM/yyyy"
-    },
-    "BOB_NO_DATA_FOUND": {
-        "originalText": "BOB_NO_DATA_FOUND",
-        "value": "Geen BOB gegevens gevonden"
-    },
-    "BOB_ADMISSIONS_COLUMN_ADMISSION_ID": {
-        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_ID",
-        "value": "Erkenning ID"
-    },
-    "BOB_ADMISSIONS_COLUMN_ADMISSION_START": {
-        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_START",
-        "value": "Begindatum erkenning"
-    },
-    "BOB_ADMISSIONS_COLUMN_ADMISSION_END": {
-        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_END",
-        "value": "Einddatum erkenning"
-    },
-    "BOB_ADMISSIONS_COLUMN_ADMISSION_STATE": {
-        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_STATE",
-        "value": "Status"
-    },
-    "BOB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE": {
-        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE",
-        "value": "Beslissingsdatum"
-    },
-    "BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_TERMINATED": {
-        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_TERMINATED",
-        "value": "Stopzetting betaling"
-    },
-    "BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON": {
-        "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON",
-        "value": "Reden stopzetting"
-    },
-    "BOB_CERTIFICATES": {
-        "value": "Erkenningsperiodes"
-    },
-    "BOB_LETTERS" : {"value":"Brieven"},
-    "VSB_HEADER_NOTHING_SELECTED" : {"value":"Geen persoon geselecteerd"},
-    "BOB_ADMISSION_PAYMENTS_LEGEND" : {"value":"BOB: uitbetalingen"},
-    "BOB_ADMISSION_PAYMENTS_COLUMN_ID" : {"value":"Erkenning ID"},
-    "BOB_ADMISSION_PAYMENTS_COLUMN_STARTDATE" : {"value":"Begindatum"},
-    "BOB_ADMISSION_PAYMENTS_COLUMN_ENDDATE" : {"value":"Einddatum"},
-    "BOB_ADMISSION_PAYMENTS_COLUMN_AMOUNT" : {"value":"Bedrag"},
-    "BOB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE" : {"value":"Data uitbetalingen"},
-    "BOB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER" : {"value":"Rekeningnummer begunstigde"},
-    "BOB_FORM" : {"value":"Formulier BOB"},
-    "BOB_LETTERS_COLUMN_DATE" : {"value":"Datum brief"},
-    "BOB_LETTERS_COLUMN_TYPE" : {"value":"Type brief"},
-    "BOB_LETTERS_COLUMN_DOWNLOAD" : {"value":"Download"},
-    "ZVZ_NO_DATA_FOUND" : {"value":"Geen ZVZ gegevens gevonden"},
-    "THAB_NO_DATA_FOUND" : {"value":"Geen THAB gegevens gevonden"},
-    "FEDERATION" : {"value":"Federatie"},
-    "ALL" : {"value":"Alle"},
-    "CHOOSE_A_DATE" : {"value":"Kies een datum"},
-    "ZVZ_FULL" : {"value":"Zorgverzekering"},
-    
-    "ZVZ_WARRANTIES" : {"value":"Tenlastenemingen"},
-    "ZVZ_WARRANTIES_COLUMN_CAREFORM" : {"value":"Zorgvorm"},
-    "ZVZ_WARRANTIES_COLUMN_REQUESTDATE" : {"value":"Datum aanvraag"},
-    "ZVZ_WARRANTIES_COLUMN_STARTDATE" : {"value":"Startdatum"},
-    "ZVZ_WARRANTIES_COLUMN_ENDDATE" : {"value":"Einddatum"},
-    "ZVZ_WARRANTIES_COLUMN_STATUS" : {"value":"Status"},
-    "ZVZ_WARRANTIES_COLUMN_DECISIONDATE" : {"value":"Beslissingsdatum"},
-    "ZVZ_WARRANTIES_COLUMN_CERTIFICATE" : {"value":"Attest"},
-    "ZVZ_WARRANTIES_COLUMN_SCALE" : {"value":"Schaal"},
-    "ZVZ_WARRANTIES_COLUMN_REFUSALREASON" : {"value":"Reden weigering"},
+  "MAIN_TITLE": {
+    "originalText": "Main title",
+    "value": "VSBase"
+  },
+  "FILTER_BY_NAME": {
+    "originalText": "Filter by name",
+    "value": "Naam"
+  },
+  "FILTER_BY_NATIONAL_NUMBER": {
+    "originalText": "Filter by national number",
+    "value": "Nationaal nummer"
+  },
+  "FILTER_BY_MEMBER_NUMBER": {
+    "originalText": "Filter by member number",
+    "value": "Lidnummer"
+  },
+  "FILTER_BY_STATE": {
+    "originalText": "Filter by state",
+    "value": "Status van de aanvraag"
+  },
+  "NAME_PLACEHOLDER": {
+    "originalText": "Name Placeholder",
+    "value": "Naam"
+  },
+  "FIRSTNAME_PLACEHOLDER": {
+    "originalText": "First name Placeholder",
+    "value": "Voornaam"
+  },
+  "NAME_IS_REQUIRED": {
+    "originalText": "Name is required",
+    "value": "Naam is verplicht"
+  },
+  "FEDERATION_PLACEHOLDER": {
+    "originalText": "Federation Placeholder",
+    "value": "Federatie"
+  },
+  "MEMBERNR_PLACEHOLDER": {
+    "originalText": "MemberNr Placeholder",
+    "value": "Lidnummer"
+  },
+  "FEDERATION_IS_REQUIRED": {
+    "originalText": "Federation is required",
+    "value": "Federatie is verplicht"
+  },
+  "MEMBERNR_IS_REQUIRED": {
+    "originalText": "MemberNr is required",
+    "value": "Lidnummer is verplicht"
+  },
+  "COLLAPSE": {
+    "originalText": "Collapse",
+    "description": "Search collapse button",
+    "value": "Filter & Zoek"
+  },
+  "SEARCH": {
+    "originalText": "Search",
+    "description": "Button search form",
+    "value": "Zoeken"
+  },
+  "VSB_TAB_HEADING_SUMMARY": {
+    "originalText": "VSB_TAB_HEADING_SUMMARY",
+    "value": "Overzicht"
+  },
+  "VSB_TAB_HEADING_ZVZ": {
+    "originalText": "VSB_TAB_HEADING_ZVZ",
+    "value": "Zorgverzekering"
+  },
+  "VSB_TAB_HEADING_BOB": {
+    "originalText": "VSB_TAB_HEADING_BOB",
+    "value": "BOB"
+  },
+  "VSB_TAB_HEADING_THAB": {
+    "originalText": "VSB_TAB_HEADING_THAB",
+    "value": "THAB"
+  },
+  "VSB_TAB_HEADING_THAB_FOD": {
+    "originalText": "VSB_TAB_HEADING_THAB_FOD",
+    "value": "THAB - FOD betalingen"
+  },
+  "VSB_ATTACHMENTS_TITLE": {
+    "originalText": "VSB_ATTACHMENTS_TITLE",
+    "value": "Bijlagen"
+  },
+  "STATE_SEARCH_BY_AREA": {
+    "originalText": "State Search By Area",
+    "value": "Domein VSB"
+  },
+  "STATE_SEARCH_BY_STATE": {
+    "originalText": "State Search By State",
+    "value": "Status"
+  },
+  "STATE_SEARCH_BY_FEDERATION": {
+    "originalText": "State Search By Federation",
+    "value": "Federatie"
+  },
+  "VSB_SEARCHBYSTATE_INFO": {
+    "originalText": "VSB_SEARCHBYSTATE_INFO",
+    "description": "Optional search information before search button at state search",
+    "value": "U moet domein VSB, status én federatie invullen"
+  },
+  "ZVZ": {
+    "originalText": "ZVZ",
+    "value": "ZVZ"
+  },
+  "BOB": {
+    "originalText": "BOB",
+    "value": "BOB"
+  },
+  "THAB": {
+    "originalText": "THAB",
+    "value": "THAB"
+  },
+  "INITIATED": {
+    "originalText": "Initiated",
+    "value": "In afwachting"
+  },
+  "REJECTED": {
+    "originalText": "Rejected",
+    "value": "Geweigerd"
+  },
+  "CONFIRMED": {
+    "originalText": "Confirmed",
+    "value": "Aanvaard"
+  },
+  "INSZ_PLACEHOLDER": {
+    "originalText": "insz Placeholder",
+    "value": "Nationaal nummer"
+  },
+  "INSZ_REQUIRED": {
+    "originalText": "INSZ required",
+    "value": "Nationaal nummer is verplicht"
+  },
+  "COMMON_DATEFORMAT": {
+    "originalText": "COMMON_DATEFORMAT",
+    "value": "dd/MM/yyyy"
+  },
+  "BOB_NO_DATA_FOUND": {
+    "originalText": "BOB_NO_DATA_FOUND",
+    "value": "Geen BOB gegevens gevonden"
+  },
+  "BOB_ADMISSIONS_COLUMN_ADMISSION_ID": {
+    "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_ID",
+    "value": "Erkenning ID"
+  },
+  "BOB_ADMISSIONS_COLUMN_ADMISSION_START": {
+    "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_START",
+    "value": "Begindatum erkenning"
+  },
+  "BOB_ADMISSIONS_COLUMN_ADMISSION_END": {
+    "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_END",
+    "value": "Einddatum erkenning"
+  },
+  "BOB_ADMISSIONS_COLUMN_ADMISSION_STATE": {
+    "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_STATE",
+    "value": "Status"
+  },
+  "BOB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE": {
+    "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE",
+    "value": "Beslissingsdatum"
+  },
+  "BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_TERMINATED": {
+    "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_PAYMENT_TERMINATED",
+    "value": "Stopzetting betaling"
+  },
+  "BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON": {
+    "originalText": "BOB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON",
+    "value": "Reden stopzetting"
+  },
+  "BOB_CERTIFICATES": {
+    "value": "Erkenningsperiodes"
+  },
+  "BOB_LETTERS": { "value": "Brieven" },
+  "VSB_HEADER_NOTHING_SELECTED": { "value": "Geen persoon geselecteerd" },
+  "BOB_ADMISSION_PAYMENTS_LEGEND": { "value": "BOB: uitbetalingen" },
+  "BOB_ADMISSION_PAYMENTS_COLUMN_ID": { "value": "Erkenning ID" },
+  "BOB_ADMISSION_PAYMENTS_COLUMN_STARTDATE": { "value": "Begindatum" },
+  "BOB_ADMISSION_PAYMENTS_COLUMN_ENDDATE": { "value": "Einddatum" },
+  "BOB_ADMISSION_PAYMENTS_COLUMN_AMOUNT": { "value": "Bedrag" },
+  "BOB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE": { "value": "Data uitbetalingen" },
+  "BOB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER": { "value": "Rekeningnummer begunstigde" },
+  "BOB_FORM": { "value": "Formulier BOB" },
+  "BOB_LETTERS_COLUMN_DATE": { "value": "Datum brief" },
+  "BOB_LETTERS_COLUMN_TYPE": { "value": "Type brief" },
+  "BOB_LETTERS_COLUMN_DOWNLOAD": { "value": "Download" },
+  "ZVZ_NO_DATA_FOUND": { "value": "Geen ZVZ gegevens gevonden" },
+  "THAB_NO_DATA_FOUND": { "value": "Geen THAB gegevens gevonden" },
+  "FEDERATION": { "value": "Federatie" },
+  "ALL": { "value": "Alle" },
+  "CHOOSE_A_DATE": { "value": "Kies een datum" },
+  "ZVZ_FULL": { "value": "Zorgverzekering" },
 
-    "ZVZ_DECISION_LETTERS_LEGEND" : {"value":"Documenten en brieven"},
-    "ZVZ_DECISION_LETTERS_COLUMN_DATE" : {"value":"Datum brief"},
-    "ZVZ_DECISION_LETTERS_COLUMN_TYPE" : {"value":"Type brief"},
-    "ZVZ_DECISION_LETTERS_COLUMN_DOWNLOAD" : {"value":"Download"},
+  "ZVZ_WARRANTIES": { "value": "Tenlastenemingen" },
+  "ZVZ_WARRANTIES_COLUMN_CAREFORM": { "value": "Zorgvorm" },
+  "ZVZ_WARRANTIES_COLUMN_REQUESTDATE": { "value": "Datum aanvraag" },
+  "ZVZ_WARRANTIES_COLUMN_STARTDATE": { "value": "Startdatum" },
+  "ZVZ_WARRANTIES_COLUMN_ENDDATE": { "value": "Einddatum" },
+  "ZVZ_WARRANTIES_COLUMN_STATUS": { "value": "Status" },
+  "ZVZ_WARRANTIES_COLUMN_DECISIONDATE": { "value": "Beslissingsdatum" },
+  "ZVZ_WARRANTIES_COLUMN_CERTIFICATE": { "value": "Attest" },
+  "ZVZ_WARRANTIES_COLUMN_SCALE": { "value": "Schaal" },
+  "ZVZ_WARRANTIES_COLUMN_REFUSALREASON": { "value": "Reden weigering" },
 
-    "THAB_ADMISSIONS" : {"value":"Erkenningen"},
-    "THAB_ADMISSIONS_LEGEND" : {"value":"Erkenningen"},
-    "THAB_ADMISSIONS_COLUMN_ADMISSION_ID" : {"value":"Erkenning ID"},
-    "THAB_ADMISSIONS_COLUMN_ADMISSION_MIGRATED" : {"value":"Migratie"},
-    "THAB_ADMISSIONS_COLUMN_ADMISSION_INITIALDATE" : {"value":"Initiatiedatum erkenning"},
-    "THAB_ADMISSIONS_COLUMN_ADMISSION_START" : {"value":"Begindatum erkenning"},
-    "THAB_ADMISSIONS_COLUMN_ADMISSION_END" : {"value":"Einddatum erkenning"},
-    "THAB_ADMISSIONS_COLUMN_ADMISSION_STATE" : {"value":"Status"},
-    "THAB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE" : {"value":"Beslissingsdatum"},
-    "THAB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON" : {"value":"Reden stopzetting"},
-    "THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_REMARK" : {"value":"Dossierbeheerder/Opmerking"},
-    "REMARK" : {"value":"Opmerking"},
-    "THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_SAVE" : {"value":"Opslaan"},
-    
-    "THAB_PAYABLEAMOUNT" : {"value":"Bedrag per periode"},
-    "THAB_PAYABLEAMOUNT_COLUMN_ID" : {"value":"Erkenning ID"},
-    "THAB_PAYABLEAMOUNT_COLUMN_START" : {"value":"Begindatum"},
-    "THAB_PAYABLEAMOUNT_COLUMN_END" : {"value":"Einddatum"},
-    "THAB_PAYABLEAMOUNT_COLUMN_AMOUNT" : {"value":"Bedrag"},
+  "ZVZ_DECISION_LETTERS_LEGEND": { "value": "Documenten en brieven" },
+  "ZVZ_DECISION_LETTERS_COLUMN_DATE": { "value": "Datum brief" },
+  "ZVZ_DECISION_LETTERS_COLUMN_TYPE": { "value": "Type brief" },
+  "ZVZ_DECISION_LETTERS_COLUMN_DOWNLOAD": { "value": "Download" },
 
-    "THAB_ADMISSION_PAYMENTS_LEGEND" : {"value":"THAB: Uitbetalingen"},
-    "THAB_ADMISSION_PAYMENTS_COLUMN_ID" : {"value":"Erkenning ID"},
-    "THAB_ADMISSION_PAYMENTS_COLUMN_STARTDATE" : {"value":"Begindatum"},
-    "THAB_ADMISSION_PAYMENTS_COLUMN_ENDDATE" : {"value":"Einddatum"},
-    "THAB_ADMISSION_PAYMENTS_COLUMN_AMOUNT" : {"value":"Bedrag"},
-    "THAB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE" : {"value":"Data uitbetalingen"},
-    "THAB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER" : {"value":"Rekeningnummer begunstigde"},
-    "SUMMARY_SELECT_PERSON" : {"value":"Geen persoon geselecteerd"},
-    "VSB_CURRENT_SITUATION_COLUMN_STATUS" : {"value":"Status"},
-    "VSB_CURRENT_SITUATION_COLUMN_DECISIONDATE" : {"value":"Beslissingsdatum"},
-    "VSB_CURRENT_SITUATION_COLUMN_REQUESTDATE" : {"value":"Datum aanvraag"},
-    "VSB_CURRENT_SITUATION_COLUMN_STARTDATE" : {"value":"Begindatum"},
-    "VSB_CURRENT_SITUATION_COLUMN_ENDDATE" : {"value":"Einddatum"},
-    "VSB_CURRENT_SITUATION_COLUMN_REFUSALREASON" : {"value":"Reden weigering"},
-    "ZVZ_CONTRIBUTIONS_COLUMN_YEAR" : {"value":"Jaar"},
-    "ZVZ_CONTRIBUTIONS_COLUMN_AMOUNT" : {"value":"Bedrag"},
-    "ZVZ_CONTRIBUTIONS_COLUMN_STATUS" : {"value":"Status"},
-    "ZVZ_CONTRIBUTIONS_COLUMN_CIRCUIT" : {"value":"Circuit"},
-    "ZVZ_CONTRIBUTIONS_COLUMN_PAYMENTDATE" : {"value":"Betaaldatum"},
-    "ZVZ_CONTRACT_CONTRACT_NOT_FOUND" : {"value":"Geen aansluiting"},
-    "CONTRACTS" : {"value":"Contract zorgkas"},
-    
-    "VSB_CURRENT_SITUATION" : {"value":"Huidige situatie"},
-    "ZVZ_CONTRIBUTIONS_LEGEND" : {"value":"Bijdragen"},
-    "VSB_REMARK_LEGEND" : {"value":"Opmerkingen"},
-    "ZVZ_CONTRACT_CONTRACT_STARTED_MOTIVE" : {"value":"Motief"},
-    "ZVZ_CONTRACT_CONTRACT_STARTED_REASON" : {"value":"Reden"},
-    "ZVZ_CONTRACT_CONTRACT_STARTED" : {"value":"Aangesloten"},
-    "VSB_CURRENT_SITUATION_ROW_BOB" : {"value":"BOB"},
-    "VSB_CURRENT_SITUATION_ROW_THAB" : {"value":"THAB"},
-    "ZVZ_WARRANTY_PAYMENTS_COLUMN_STARTDATE" : {"value":"Begindatum"},
-    "ZVZ_WARRANTY_PAYMENTS_COLUMN_ENDDATE" : {"value":"Einddatum"},
-    "ZVZ_WARRANTY_PAYMENTS_COLUMN_AMOUNT" : {"value":"Bedrag"},
-    "ZVZ_WARRANTY_PAYMENTS_COLUMN_PAYMENTDATE" : {"value":"Datum betaling"},
-    "ZVZ_WARRANTY_PAYMENTS_COLUMN_ACCOUNTNUMBER" : {"value":"Rekeningnummer begunstigde"},
-    "ZVZ_WARRANTY_PAYMENTS_LEGEND" : {"value":"Tenlastenemingen: uitbetalingen"},
-    "VSB_CURRENT_SITUATION_ROW_ZVZ" : {"value":"Zorgverzekering"},
-    "VSB_MAIL_SUBJECT_LEGEND" : {"value":"Doorverwijzing"},
-    "VSB_MAIL_BODY_LINE_NAME" : {"value":"Naam:"},
-    "VSB_MAIL_BODY_LINE_NISSNUMBER" : {"value":"Rijksregisternummer:"},
-    "VSB_MAIL_BODY_LINE_PHONE" : {"value":"Telefoonnummer:"},
-    "VSB_MAIL_BODY_LINE_MAIL" : {"value":"Email:"},
-    "VSB_MAIL_BODY_LINE_EMPTY" : {"value":"geen"},
-    "VSB_MAIL_BODY_LINE_REMARK" : {"value":"Opmerking:"},
-    "VSB_REMARK_SAVE" : {"value":"Opslaan"},
-    "ZVZ_LETTERS_ERROR" : {"value":"ZVZ brieven ophalen mislukt"},
-    "ZVZ_PAYMENTS_ERROR" : {"value":"ZVZ betalingen ophalen mislukt"},
-    "ZVZ_WARRANTIES_ERROR" : {"value":"ZVZ tenlastenemingen ophalen mislukt"},
-    "ZVZ_CONTRACT_ERROR" : {"value":"ZVZ contracten ophalen mislukt"},
-    "ZVZ_CONTRIBUTIONS_ERROR" : {"value":"ZVZ bijdragen ophalen mislukt"},
-    "ATTACHMENT_NO_DATA_FOUND" : {"value":"Bijlagen niet beschikbaar"},
-    "ATTACHMENT_NO_DATA_FOUND_SUBTITLE" : {"value":"Selecteer eerst een persoon"},
-    "GENERAL_HTTP_ERROR" : {"value":"Er is een algemeen probleem opgetreden. Probeer het later opnieuw."},
-    "THAB_DOCUMENTS" : {"value":"Berekening basisrecht THAB"},
-    "THAB_DOCUMENTS_COLUMN_ID" : {"value":"Erkenning ID"},
-    "THAB_DOCUMENTS_COLUMN_DOWNLOAD" : {"value":"Download"},
+  "THAB_ADMISSIONS": { "value": "Erkenningen" },
+  "THAB_ADMISSIONS_LEGEND": { "value": "Erkenningen" },
+  "THAB_ADMISSIONS_COLUMN_ADMISSION_ID": { "value": "Erkenning ID" },
+  "THAB_ADMISSIONS_COLUMN_ADMISSION_MIGRATED": { "value": "Migratie" },
+  "THAB_ADMISSIONS_COLUMN_ADMISSION_INITIALDATE": { "value": "Initiatiedatum erkenning" },
+  "THAB_ADMISSIONS_COLUMN_ADMISSION_START": { "value": "Begindatum erkenning" },
+  "THAB_ADMISSIONS_COLUMN_ADMISSION_END": { "value": "Einddatum erkenning" },
+  "THAB_ADMISSIONS_COLUMN_ADMISSION_STATE": { "value": "Status" },
+  "THAB_ADMISSIONS_COLUMN_ADMISSION_DECISIONDATE": { "value": "Beslissingsdatum" },
+  "THAB_ADMISSIONS_COLUMN_ADMISSION_TERMINATED_REASON": { "value": "Reden stopzetting" },
+  "THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_REMARK": { "value": "Dossierbeheerder/Opmerking" },
+  "REMARK": { "value": "Opmerking" },
+  "THAB_ADMISSIONS_COLUMN_FILE_ADMINISTRATOR_SAVE": { "value": "Opslaan" },
 
-    "THAB_LETTERS_COLUMN_DATE" : {"value":"Datum brief"},
-    "THAB_LETTERS_COLUMN_ID" : {"value":"Erkenning ID"},
-    "THAB_LETTERS_COLUMN_TYPE" : {"value":"Type brief"},
-    "THAB_LETTERS_COLUMN_DOWNLOAD" : {"value":"Download"},
-    "THAB_LETTERS_LEGEND" : {"value":"Documenten en brieven"},
-    "VSB_ATTACHMENTS_OVERVIEW_TITLE" : {"value":"Overzicht bijlagen"},
-    "ATTACHMENTS_COLUMN_FILENAME" : {"value":"Bestandsnaam"},
-    "ATTACHMENTS_COLUMN_USERNAME" : {"value":"Gebruiker"},
-    "ATTACHMENTS_COLUMN_UPLOADDATE" : {"value":"Datum upload"},
-    "ATTACHMENTS_COLUMN_ACTIONS" : {"value":"Acties"},
-    "VSB_ATTACHMENTS_DROP_TEXT" : {"value":"Sleep je bestanden hier naartoe"},
-    "VSB_ATTACHMENTS_DROP_SUBTEXT" : {"value":""},
-    "VSB_ATTACHMENTS_UPLOAD_TITLE" : {"value":"Upload nieuwe bijlage"},
-    "DELETE" : {"value":"Verwijderen"},
-    "DELETE_ATTACHMENT_QUESTION" : {"value":"Bent u zeker dat u de bijlage wilt verwijderen?"},
-    "FILE_DELETED" : {"value":"Bijlage verwijderd"},
-    "FILE_UPLOADED" : {"value":"Upload voltooid"}
+  "THAB_PAYABLEAMOUNT": { "value": "Bedrag per periode" },
+  "THAB_PAYABLEAMOUNT_COLUMN_ID": { "value": "Erkenning ID" },
+  "THAB_PAYABLEAMOUNT_COLUMN_START": { "value": "Begindatum" },
+  "THAB_PAYABLEAMOUNT_COLUMN_END": { "value": "Einddatum" },
+  "THAB_PAYABLEAMOUNT_COLUMN_AMOUNT": { "value": "Bedrag" },
+
+  "THAB_ADMISSION_PAYMENTS_LEGEND": { "value": "THAB: Uitbetalingen" },
+  "THAB_ADMISSION_PAYMENTS_COLUMN_ID": { "value": "Erkenning ID" },
+  "THAB_ADMISSION_PAYMENTS_COLUMN_STARTDATE": { "value": "Begindatum" },
+  "THAB_ADMISSION_PAYMENTS_COLUMN_ENDDATE": { "value": "Einddatum" },
+  "THAB_ADMISSION_PAYMENTS_COLUMN_AMOUNT": { "value": "Bedrag" },
+  "THAB_ADMISSION_PAYMENTS_COLUMN_LASTPAYMENTDATE": { "value": "Data uitbetalingen" },
+  "THAB_ADMISSION_PAYMENTS_COLUMN_ACCOUNTNUMBER": { "value": "Rekeningnummer begunstigde" },
+  "SUMMARY_SELECT_PERSON": { "value": "Geen persoon geselecteerd" },
+  "VSB_CURRENT_SITUATION_COLUMN_STATUS": { "value": "Status" },
+  "VSB_CURRENT_SITUATION_COLUMN_DECISIONDATE": { "value": "Beslissingsdatum" },
+  "VSB_CURRENT_SITUATION_COLUMN_REQUESTDATE": { "value": "Datum aanvraag" },
+  "VSB_CURRENT_SITUATION_COLUMN_STARTDATE": { "value": "Begindatum" },
+  "VSB_CURRENT_SITUATION_COLUMN_ENDDATE": { "value": "Einddatum" },
+  "VSB_CURRENT_SITUATION_COLUMN_REFUSALREASON": { "value": "Reden weigering" },
+  "ZVZ_CONTRIBUTIONS_COLUMN_YEAR": { "value": "Jaar" },
+  "ZVZ_CONTRIBUTIONS_COLUMN_AMOUNT": { "value": "Bedrag" },
+  "ZVZ_CONTRIBUTIONS_COLUMN_STATUS": { "value": "Status" },
+  "ZVZ_CONTRIBUTIONS_COLUMN_CIRCUIT": { "value": "Circuit" },
+  "ZVZ_CONTRIBUTIONS_COLUMN_PAYMENTDATE": { "value": "Betaaldatum" },
+  "ZVZ_CONTRACT_CONTRACT_NOT_FOUND": { "value": "Geen aansluiting" },
+  "CONTRACTS": { "value": "Contract zorgkas" },
+
+  "VSB_CURRENT_SITUATION": { "value": "Huidige situatie" },
+  "ZVZ_CONTRIBUTIONS_LEGEND": { "value": "Bijdragen" },
+  "VSB_REMARK_LEGEND": { "value": "Opmerkingen" },
+  "ZVZ_CONTRACT_CONTRACT_STARTED_MOTIVE": { "value": "Motief" },
+  "ZVZ_CONTRACT_CONTRACT_STARTED_REASON": { "value": "Reden" },
+  "ZVZ_CONTRACT_CONTRACT_STARTED": { "value": "Aangesloten" },
+  "VSB_CURRENT_SITUATION_ROW_BOB": { "value": "BOB" },
+  "VSB_CURRENT_SITUATION_ROW_THAB": { "value": "THAB" },
+  "ZVZ_WARRANTY_PAYMENTS_COLUMN_STARTDATE": { "value": "Begindatum" },
+  "ZVZ_WARRANTY_PAYMENTS_COLUMN_ENDDATE": { "value": "Einddatum" },
+  "ZVZ_WARRANTY_PAYMENTS_COLUMN_AMOUNT": { "value": "Bedrag" },
+  "ZVZ_WARRANTY_PAYMENTS_COLUMN_PAYMENTDATE": { "value": "Datum betaling" },
+  "ZVZ_WARRANTY_PAYMENTS_COLUMN_ACCOUNTNUMBER": { "value": "Rekeningnummer begunstigde" },
+  "ZVZ_WARRANTY_PAYMENTS_LEGEND": { "value": "Tenlastenemingen: uitbetalingen" },
+  "VSB_CURRENT_SITUATION_ROW_ZVZ": { "value": "Zorgverzekering" },
+  "VSB_MAIL_SUBJECT_LEGEND": { "value": "Doorverwijzing" },
+  "VSB_MAIL_BODY_LINE_NAME": { "value": "Naam:" },
+  "VSB_MAIL_BODY_LINE_NISSNUMBER": { "value": "Rijksregisternummer:" },
+  "VSB_MAIL_BODY_LINE_PHONE": { "value": "Telefoonnummer:" },
+  "VSB_MAIL_BODY_LINE_MAIL": { "value": "Email:" },
+  "VSB_MAIL_BODY_LINE_EMPTY": { "value": "geen" },
+  "VSB_MAIL_BODY_LINE_REMARK": { "value": "Opmerking:" },
+  "VSB_REMARK_SAVE": { "value": "Opslaan" },
+  "ZVZ_LETTERS_ERROR": { "value": "ZVZ brieven ophalen mislukt" },
+  "ZVZ_PAYMENTS_ERROR": { "value": "ZVZ betalingen ophalen mislukt" },
+  "ZVZ_WARRANTIES_ERROR": { "value": "ZVZ tenlastenemingen ophalen mislukt" },
+  "ZVZ_CONTRACT_ERROR": { "value": "ZVZ contracten ophalen mislukt" },
+  "ZVZ_CONTRIBUTIONS_ERROR": { "value": "ZVZ bijdragen ophalen mislukt" },
+  "ATTACHMENT_NO_DATA_FOUND": { "value": "Bijlagen niet beschikbaar" },
+  "ATTACHMENT_NO_DATA_FOUND_SUBTITLE": { "value": "Selecteer eerst een persoon" },
+  "GENERAL_HTTP_ERROR": { "value": "Er is een algemeen probleem opgetreden. Probeer het later opnieuw." },
+  "THAB_DOCUMENTS": { "value": "Berekening basisrecht THAB" },
+  "THAB_DOCUMENTS_COLUMN_ID": { "value": "Erkenning ID" },
+  "THAB_DOCUMENTS_COLUMN_DOWNLOAD": { "value": "Download" },
+
+  "THAB_LETTERS_COLUMN_DATE": { "value": "Datum brief" },
+  "THAB_LETTERS_COLUMN_ID": { "value": "Erkenning ID" },
+  "THAB_LETTERS_COLUMN_TYPE": { "value": "Type brief" },
+  "THAB_LETTERS_COLUMN_DOWNLOAD": { "value": "Download" },
+  "THAB_LETTERS_LEGEND": { "value": "Documenten en brieven" },
+  "VSB_ATTACHMENTS_OVERVIEW_TITLE": { "value": "Overzicht bijlagen" },
+  "ATTACHMENTS_COLUMN_FILENAME": { "value": "Bestandsnaam" },
+  "ATTACHMENTS_COLUMN_USERNAME": { "value": "Gebruiker" },
+  "ATTACHMENTS_COLUMN_UPLOADDATE": { "value": "Datum upload" },
+  "ATTACHMENTS_COLUMN_ACTIONS": { "value": "Acties" },
+  "VSB_ATTACHMENTS_DROP_TEXT": { "value": "Sleep je bestanden hier naartoe" },
+  "VSB_ATTACHMENTS_DROP_SUBTEXT": { "value": "" },
+  "VSB_ATTACHMENTS_UPLOAD_TITLE": { "value": "Upload nieuwe bijlage" },
+  "DELETE": { "value": "Verwijderen" },
+  "DELETE_ATTACHMENT_QUESTION": { "value": "Bent u zeker dat u de bijlage wilt verwijderen?" },
+  "FILE_DELETED": { "value": "Bijlage verwijderd" },
+  "FILE_UPLOADED": { "value": "Upload voltooid" },
+
+  "VSB_TAB_HEADING_RETURNS": {
+    "originalText": "VSB_TAB_HEADING_RETURNS",
+    "value": "Terugvorderingen"
+  },
+  "RETURNS_NO_DATA_FOUND": {
+    "originalText": "RETURNS_NO_DATA_FOUND",
+    "value": "Geen terugvordering mogelijk"
+  },
+  "RETURNS_NO_DATA_FOUND_SUBTITLE": {
+    "originalText": "RETURNS_NO_DATA_FOUND_SUBTITLE",
+    "value": "Selecteer eerst een persoon"
+  },
+  "VSB_RETURNS": {
+    "originalText": "VSB Returns",
+    "value": "Terugvordering"
+  },
+  "STEP_1_SHORT_TITLE": {
+    "originalText": "step 1 short title",
+    "value": "Vaststelling"
+  },
+  "STEP_1_TITLE": {
+    "originalText": "step 1 title",
+    "value": "Vaststelling terugvordering - Registratie en filters"
+  },
+  "RETURNS_STEP_2_SHORT_TITLE": {
+    "originalText": "Returns step 2 short title",
+    "value": "Berekening"
+  },
+  "RETURNS_STEP_2_TITLE": {
+    "originalText": "Returns step 2 title",
+    "value": "Berekening saldo terugvordering"
+  },
+  "RETURNS_STEP_3_SHORT_TITLE": {
+    "originalText": "Returns step 3 short title",
+    "value": "Voorstel"
+  },
+  "RETURNS_STEP_3_TITLE": {
+    "originalText": "Returns step 3 title",
+    "value": "Voorstel terugvordering"
+  },
+  "RETURNS_STEP_4_SHORT_TITLE": {
+    "originalText": "Returns step 4 short title",
+    "value": "Brief"
+  },
+  "RETURNS_STEP_4_TITLE": {
+    "originalText": "Returns step 4 title",
+    "value": "Brief aanmaken"
+  },
+  "RETURNS_STEP_5_SHORT_TITLE": {
+    "originalText": "Returns step 5 short title",
+    "value": "Aanpassing"
+  },
+  "RETURNS_STEP_5_TITLE": {
+    "originalText": "Returns step 5 title",
+    "value": "Voorstel aanpassen"
+  },
+  "RETURNS_STEP_6_SHORT_TITLE": {
+    "originalText": "Returns step 6 short title",
+    "value": "Reactie"
+  },
+  "RETURNS_STEP_6_TITLE": {
+    "originalText": "Returns step 6 title",
+    "value": "Registratie reactie gebruiker"
+  },
+  "RETURNS_LABEL_REASON": {
+    "originalText": "RETURNS_LABEL_REASON",
+    "value": "Reden terugvordering"
+  },
+  "RETURNS_LABEL_REMARK": {
+    "originalText": "RETURNS_LABEL_REMARK",
+    "value": "Opmerking"
+  },
+  "RETURNREASON0": {
+    "originalText": "ReturnReason0",
+    "value": "Laattijdig doorgeven overlijden"
+  },
+  "RETURNREASON1": {
+    "originalText": "ReturnReason1",
+    "value": "Overlap uitbetaling met andere zorgkas"
+  },
+  "RETURNREASON2": {
+    "originalText": "ReturnReason2",
+    "value": "Stopzetting erkenning"
+  },
+  "RETURNREASON3": {
+    "originalText": "ReturnReason3",
+    "value": "Heeft geen aansluitingsplicht zorgkas meer"
+  },
+  "RETURNREASONOTHER": {
+    "originalText": "ReturnReasonOther",
+    "value": "Andere, namelijk:"
+  },
+  "RETURNS_LABEL_FRAUDE": {
+    "originalText": "RETURNS_LABEL_FRAUDE",
+    "value": "Is er sprake van bedrog?"
+  },
+  "RETURNS_LABEL_OWNERROR": {
+    "originalText": "RETURNS_LABEL_OWNERROR",
+    "value": "Fout zorgkas?"
+  },
+  "BUTTONS_SAVE": {
+    "originalText": "BUTTONS_SAVE",
+    "value": "Opslaan"
+  },
+  "BUTTONS_CREATE_PROPOSAL": {
+    "originalText": "BUTTONS_CREATE_PROPOSAL",
+    "value": "Voorstel maken"
+  },
+  "BUTTONS_BACK": {
+    "originalText": "BUTTONS_BACK",
+    "value": "Vorige"
+  },
+  "BUTTONS_CANCEL": {
+    "originalText": "BUTTONS_CANCEL",
+    "value": "Annuleren"
+  },
+  "ZVZ_WARRANTY_PAYMENTS_COLUMN_TYPE": {
+    "originalText": "ZVZ_WARRANTY_PAYMENTS_COLUMN_TYPE",
+    "value": "Type"
+  },
+  "RETURNS_TABLEHEADER_RECOVER": {
+    "originalText": "RETURNS_TABLEHEADER_RECOVER",
+    "value": "Terugvorderen?"
+  },
+  "BOB_ADMISSION_PAYMENTS_COLUMN_TYPE": {
+    "originalText": "BOB_ADMISSION_PAYMENTS_COLUMN_TYPE",
+    "value": "Type"
+  },
+  "THAB_ADMISSION_PAYMENTS_COLUMN_TYPE": {
+    "originalText": "THAB_ADMISSION_PAYMENTS_COLUMN_TYPE",
+    "value": "Type"
+  },
+  "RETURNS_TOTAL": {
+    "originalText": "RETURNS_TOTAL",
+    "value": "Totaal"
+  },
+  "RETURNS_TOTAL_AMOUNT": {
+    "originalText": "RETURNS_TOTAL_AMOUNT",
+    "value": "Totaal terug te vorderen bedrag door zorgkas"
+  },
+  "RETURNS_DEFAULT_PROPOSITION": {
+    "originalText": "RETURNS_DEFAULT_PROPOSITION",
+    "value": "Voorstel"
+  },
+  "BUTTONS_ALTER_PROPOSAL": {
+    "originalText": "BUTTONS_ALTER_PROPOSAL",
+    "value": "Aanpassen"
+  },
+  "BUTTONS_VALIDATE_PROPOSAL": {
+    "originalText": "BUTTONS_VALIDATE_PROPOSAL",
+    "value": "Valideren"
+  },
+  "RETURNS_TYPE_0": {
+    "originalText": "RETURNS_TYPE_1",
+    "value": "Er is geen terugvordering mogelijk"
+  },
+  "RETURNS_TYPE_1": {
+    "originalText": "RETURNS_TYPE_1",
+    "value": "De terugvordering kan via afhouding door zorgkas"
+  },
+  "RETURNS_TYPE_2": {
+    "originalText": "RETURNS_TYPE_2",
+    "value": "De terugvordering kan GEDEELTELIJK via afhouding"
+  },
+  "RETURNS_TYPE_3": {
+    "originalText": "RETURNS_TYPE_3",
+    "value": "De terugvordering kan NIET via inhouding"
+  },
+  "RETURNS_KIND_1": {
+    "originalText": "RETURNS_KIND_1",
+    "value": "BOB"
+  },
+  "RETURNS_KIND_2": {
+    "originalText": "RETURNS_KIND_2",
+    "value": "ZVZ"
+  },
+  "RETURNS_KIND_3": {
+    "originalText": "RETURNS_KIND_3",
+    "value": "THAB"
+  },
+  "RETURNS_KIND_4": {
+    "originalText": "RETURNS_KIND_4",
+    "value": "THAB FOD"
+  },
+  "RETURNS_KIND_OGM": {
+    "originalText": "OGM",
+    "value": "Restbedrag - OGM"
+  },
+  "THAB_PAYED_BY_FOD": {
+    "originalText": "Payed by FOD",
+    "value": "Uitbetaald door FOD"
+  },
+  "RETURNS_AMOUNT_NON_REFUNDABLE": {
+    "value": "Afzien van terugvordering wegens verjaard"
+  },
+  "RETURNS_AMOUNT_REFUNDABLE_FOD": {
+    "value": "Door te geven aan het AVSB voor terugvordering door FOD"
+  },
+  "RETURNS_LETTER_SIGNEDLETTER_BTN": {
+    "value": "Aangetekende brief aanmaken"
+  },
+  "RETURNS_LETTER_REGULARLETTER_BTN": {
+    "value": "Gewone brief aanmaken"
+  },
+  "RETURNS_LETTER_CREATEDATE": {
+    "value": "Datum brief aangemaakt:"
+  },
+  "RETURNS_LETTER_CREATEDBY": {
+    "value": "Brief aangemaakt door:"
+  },
+  "RETURNS_CREATE_LETTER": {
+    "value": "Brief aanmaken"
+  },
+  "BUTTONS_USER_REACTION": {
+    "value": "Reactie gebruiker"
+  },
+  "RETURNS_LETTER_INFO": {
+    "value": "Ter info: "
+  },
+  "RETURNS_LETTER_DECEASED_TEXT_PRE": {
+    "value": "De gebruiker is overleden op "
+  },
+  "RETURNS_LETTER_DECEASED_TEXT_POST": {
+    "value": ", de brieven worden aan de erfgenamen gericht."
+  }
 }
 
 

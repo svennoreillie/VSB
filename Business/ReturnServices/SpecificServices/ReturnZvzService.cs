@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
-namespace VSBaseAngular.Business {
+namespace VSBaseAngular.Business
+{
 
     public class ReturnZvzService : IReturnItemService {
 
@@ -18,8 +18,8 @@ namespace VSBaseAngular.Business {
         }
 
 
-        public ReturnZvzService(IZvzService zvzService, IReturnCalculationService helper) {
-            _zvzService = zvzService;
+        public ReturnZvzService(IServiceFactory<IZvzService> zvzServiceFactory, IReturnCalculationService helper) {
+            _zvzService = zvzServiceFactory.GetService();
             _helperService = helper;
         }
 
@@ -29,14 +29,6 @@ namespace VSBaseAngular.Business {
             var response = await _zvzService.GetWarrantiesAsync(new GetWarrantiesRequest() { SiNumber = siNumber });
             return await CalcMaxAmount(siNumber, response);
         }
-
-        public IEnumerable<ReturnCalculationPayment> GetPaymentLines(decimal totalAmount) {
-            //TODO
-            yield return new ReturnCalculationPayment() {
-                Amount = totalAmount,
-            };
-        }
-
 
 
         private async Task<decimal> GetCurrentPaymentAmount(long siNumber, DateTime reference) {

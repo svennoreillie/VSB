@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using VSBaseAngular.Business;
 using VSBaseAngular.Models;
 using VsbService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VSBaseAngular.Controllers
 {
     [ApiVersion(ControllerVersion.v1)]
+    [Authorize]
     [Route("api/v{version:apiVersion}/[Controller]")]
     public class ReturnCalculationsController : BaseController
     {
@@ -20,11 +22,11 @@ namespace VSBaseAngular.Controllers
 
 
         [HttpPost]
-        [Route("{sinumber:long}")]
-        public async Task<IActionResult> PostReturnLines(ReturnCalculationRequest request)
+        public async Task<IActionResult> PostReturnLines([FromBody]ReturnCalculationRequest request)
         {
             if (ModelState.IsValid)
             {
+                request.CreatedBy = User.Identity.Name;
                 var response = await _service.CalculateDefaultProposition(request);
                 switch (response.Code)
                 {

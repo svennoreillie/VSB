@@ -9,4 +9,5 @@ public class ZvzPayment
     public DateTime? EndDate { get; set; }
     public DateTime? SendDate { get; set; }
     public int UnCode { get; set; }
+    public string CertificateId { get; set; }
 }

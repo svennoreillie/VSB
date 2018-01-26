@@ -16,13 +16,19 @@ namespace VSBaseAngular.Business {
         public decimal GetUnreturnableAmount(bool isFraude, IEnumerable<ReturnCalculationLine> lines) {
             if (lines == null) throw new ArgumentNullException("lines");
             IEnumerable<ReturnCalculationLine> filteredLines = _unreturnablePaymentLineService.GetUnreturnableLines(isFraude, lines);
-            return CalculateSum(filteredLines);
+            return CalculateSum(filteredLines.Where(pl => pl.Kind != ReturnCalculationKind.THAB_FOD));
         }
 
         public decimal GetReturnableAmount(bool isFraude, IEnumerable<ReturnCalculationLine> lines) {
             if (lines == null) throw new ArgumentNullException("lines");
             IEnumerable<ReturnCalculationLine> filteredLines = _unreturnablePaymentLineService.GetReturnableLines(isFraude, lines);
             return CalculateSum(filteredLines);
+        }
+
+        public decimal GetReturnableAmountByFOD(bool isFraude, IEnumerable<ReturnCalculationLine> lines) {
+            if (lines == null) throw new ArgumentNullException("lines");
+            IEnumerable<ReturnCalculationLine> filteredLines =  _unreturnablePaymentLineService.GetUnreturnableLines(isFraude, lines);
+            return CalculateSum(filteredLines.Where(pl => pl.Kind == ReturnCalculationKind.THAB_FOD));
         }
 
         private decimal CalculateSum(IEnumerable<ReturnCalculationLine> lines) {
