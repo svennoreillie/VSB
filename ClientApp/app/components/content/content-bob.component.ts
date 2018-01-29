@@ -36,7 +36,7 @@ export class ContentBobComponent implements OnInit, OnDestroy {
         this.activePersonSubscription.unsubscribe();
         if (this.downloadBob) this.downloadBob.unsubscribe();
     }
-
+ 
 
 
     //Template methods

@@ -1,3 +1,4 @@
+export { UserModel } from "./admin/usermodel";
 export { ReturnCalculationType } from "./returns/enums";
 export { ReturnCalculationKind } from "./returns/enums";
 export { ReturnCalculationLine } from "./returns/returncalculationline";
@@ -5,7 +6,7 @@ export { ReturnCalculationPayment } from "./returns/returncalculationline";
 export { ReturnCalculationResponse } from "./returns/returncalculationresponse";
 export { ReturnCalculationRequest } from "./returns/returncalculationrequest";
 export { Payment } from "./payment";
-export { ReturnReason } from "./returns/returnreason";
+export { SelectItem } from "./selectitem";
 export { Attachment } from "./attachment";
 export { THABLetter } from "./thab/letter";
 export { THABNotification } from "./thab/notification";

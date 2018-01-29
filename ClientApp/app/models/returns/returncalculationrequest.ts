@@ -30,6 +30,7 @@ export class ReturnCalculationRequest {
     constructor() {
         this.returnLines = new Array<ReturnCalculationLine>();
         this.isFraude = false;
+        this.isError = false;
     }
 
     

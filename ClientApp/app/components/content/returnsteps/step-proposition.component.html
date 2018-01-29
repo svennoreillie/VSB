@@ -1,0 +1,46 @@
+<mat-card>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <soc-panel paneltitle="RETURNS_TOTAL"
+                           [collapsable]="false"
+                           type="bar">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-8 col-md-7">
+                                <h4>{{'RETURNS_TOTAL_AMOUNT' | translate}}</h4>
+                            </div>
+                            <div class="col-xs-4 col-md-2">
+                                <h4>&euro; {{totalAmountToReturn | number: '1.2-2'}}</h4>
+                            </div>
+                            <div class="col-xs-12 col-md-3 text-right" *ngIf="returnItem">
+                                <div *ngFor="let returnLine of returnItem.returnLines">
+                                    <ng-container *ngFor="let returnPayment of returnLine.paymentLines">
+                                        <p *ngIf="returnLine.kind != ReturnCalculationKind.THAB_FOD">{{'RETURNS_KIND_' + returnLine.kind | translate}}:{{returnPayment.startDate | date: ('COMMON_DATEFORMAT' | translate)}}-{{returnPayment.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </soc-panel>
+            </div>
+
+            <div class="col-xs-12">
+                <proposition returnItem="returnItem"></proposition>
+            </div>
+
+            <div class="col-xs-12">
+                <button mat-raised-button
+                        soc-step-previous>
+                    {{'BUTTONS_BACK' | translate}}
+                </button>
+                
+                <button mat-raised-button
+                        [disabled]="!isCompleted()"
+                        (click)="createRegularLetter()">
+                    {{'BUTTONS_VALIDATE_CREATELETTER' | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+</mat-card>

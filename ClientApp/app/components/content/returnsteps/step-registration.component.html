@@ -1,0 +1,51 @@
+<mat-card>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="return-form">
+                    <mat-checkbox [(ngModel)]="returnItem.isFraude">{{'RETURNS_LABEL_FRAUDE' | translate}}</mat-checkbox>
+
+                    <mat-checkbox [(ngModel)]="returnItem.isError">{{'RETURNS_LABEL_OWNERROR' | translate}}</mat-checkbox>
+
+                    <mat-form-field>
+                        <mat-select placeholder="{{'RETURNS_LABEL_REASON' | translate}}"
+                                    [(ngModel)]="returnItem.reason">
+                            <mat-option *ngFor="let reason of reasonList"
+                                        [value]="reason.value">{{reason.displayValue | translate}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="returnItem.reason == 'VALUES_REASON_OTHER'">
+                        <input matInput
+                               [(ngModel)]="returnItem.otherReason"
+                               type="text"
+                               placeholder="{{'RETURNS_LABEL_OTHERREASON' | translate}}">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <textarea class="form-control"
+                                  rows="1"
+                                  maxlength="999"
+                                  matInput
+                                  placeholder="{{'RETURNS_LABEL_REMARK' | translate}}"
+                                  [(ngModel)]="returnItem.remark">
+                                </textarea>
+                    </mat-form-field>
+
+
+                    <div>
+
+                        <button mat-raised-button
+                                [disabled]="!isCompleted()"
+                                soc-step-next>{{'BUTTONS_SAVE' | translate}}</button>
+                        <button mat-raised-button
+                                (click)="cancel()">
+                            {{'BUTTONS_CANCEL' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</mat-card>

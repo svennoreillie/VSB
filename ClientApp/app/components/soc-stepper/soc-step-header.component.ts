@@ -8,4 +8,6 @@ import { Component, Input } from '@angular/core';
 export class SocStepHeaderComponent {
     @Input() public index: number;
     @Input() public label: string;
+    @Input() public selected: boolean;
+    @Input() public valid: boolean;
 } 

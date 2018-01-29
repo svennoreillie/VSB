@@ -103,15 +103,15 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th translate>THAB_PAYABLEAMOUNT_COLUMN_ID</th>
+                                                <!--<th translate>THAB_PAYABLEAMOUNT_COLUMN_ID</th>-->
                                                 <th translate>THAB_PAYABLEAMOUNT_COLUMN_START</th>
                                                 <th translate>THAB_PAYABLEAMOUNT_COLUMN_END</th>
                                                 <th translate>THAB_PAYABLEAMOUNT_COLUMN_AMOUNT</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let amount of payableAmounts | async">
-                                                <td>{{amount.certificateId}}</td>
+                                            <tr *ngFor="let amount of payableAmounts | async | orderBy: 'start': true">
+                                                <!--<td>{{amount.certificateId}}</td>-->
                                                 <td>{{amount.start | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{amount.end | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{amount.amount}} EUR</td>
@@ -147,7 +147,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let paym of payments | async">
+                                            <tr *ngFor="let paym of payments | async | orderBy: 'beginDate': true">
                                                 <td>{{paym.certificateId}}</td>
                                                 <td>{{paym.beginDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>
                                                 <td>{{paym.endDate | date: ('COMMON_DATEFORMAT' | translate)}}</td>

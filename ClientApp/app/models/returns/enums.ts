@@ -1,7 +1,8 @@
 export enum ReturnCalculationKind {
-    ZVZ = 1,
-    BOB = 2,
-    THAB = 3
+    BOB = 1,
+    ZVZ = 2,
+    THAB = 3,
+    THAB_FOD = 4
 }
 
 export enum ReturnCalculationType {

@@ -16,4 +16,7 @@ export class SocStepComponent {
 
     constructor(@Inject(forwardRef(() => SocStepperComponent)) private _stepper: SocStepperComponent) { }
 
+    public select() {
+        this._stepper.setStep(this);
+    }
 }

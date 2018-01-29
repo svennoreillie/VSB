@@ -524,6 +524,9 @@
   },
   "RETURNS_LETTER_DECEASED_TEXT_POST": {
     "value": ", de brieven worden aan de erfgenamen gericht."
+  },
+  "BUTTONS_VALIDATE_CREATELETTER": {
+    "value": "Valideer en stuur brief"
   }
 }
 

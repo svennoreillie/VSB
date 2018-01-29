@@ -12,8 +12,17 @@ export class ReturnsService {
 
     public getReturnCalculation(returnItem: ReturnCalculationRequest): Observable<ReturnCalculationResponse> {
         let url = this.urlService.createUrl('returncalculations');
-        
         return this.http.post<ReturnCalculationResponse>(url, returnItem);
+    }
+
+    public postRegularLetter(returnItem: ReturnCalculationRequest): Observable<Blob> {
+        let url = this.urlService.createUrl('returnletters');
+        return this.http.post(url, returnItem, { responseType: "blob" });
+    }
+
+    public postSignedLetter(returnItem: ReturnCalculationRequest): Observable<Blob> {
+        let url = this.urlService.createUrl('returnletters', 'signed');
+        return this.http.post(url, returnItem, { responseType: "blob" });
     }
 
 }

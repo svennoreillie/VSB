@@ -44,6 +44,13 @@ export class ThabService {
         return this.http.get<THABPayment[]>(url).share();
     }
 
+    public getFODPayments(sinumber: number, insz: string): Observable<THABPayment[]> {
+        let url = this.urlService.createUrl('thabcertificates', sinumber.toString(), 'fodpayments');
+        url = this.urlService.addQueryParameters(url, { insz: insz });
+
+        return this.http.get<THABPayment[]>(url).share();
+    }
+
     public getLetters = (sinumber: number, insz: string): Observable<THABLetter[]> => {
         let url = this.urlService.createUrl('thabletters', sinumber.toString());
         url = this.urlService.addQueryParameters(url, { insz: insz});

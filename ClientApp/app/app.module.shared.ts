@@ -1,7 +1,15 @@
-import { HttpHoldOffInterceptor } from "./services/interceptors/http-holdoff.interceptor.service";
-import { HttpErrorInterceptor } from "./services/interceptors/http-error.interceptor.service";
 import {
-    HttpClientModule, HTTP_INTERCEPTORS
+    SocStepperComponent
+} from "./components/soc-stepper/soc-stepper.component";
+import {
+    HttpHoldOffInterceptor
+} from "./services/interceptors/http-holdoff.interceptor.service";
+import {
+    HttpErrorInterceptor
+} from "./services/interceptors/http-error.interceptor.service";
+import {
+    HttpClientModule,
+    HTTP_INTERCEPTORS
 } from "@angular/common/http";
 import {
     MatDialogModule
@@ -27,14 +35,18 @@ import {
     MatIconModule
 } from "@angular/material";
 // 3rd party
+import { OrderModule } from 'ngx-order-pipe';
 import * as angular from "./angular-barrel";
-import { FileDropModule } from 'ngx-file-drop';
+import {
+    FileDropModule
+} from 'ngx-file-drop';
 
 // Directives
 import * as directives from "./directives";
 
 // Services
 import * as services from "./services";
+
 
 // Components
 import {
@@ -54,6 +66,7 @@ import {
 import {
     VersionComponent
 } from "./components/version/version.component";
+import * as stepper from "./components/soc-stepper/index"
 
 // rxjs
 import "rxjs/add/operator/catch";
@@ -64,7 +77,9 @@ import "rxjs/add/operator/share";
 import "rxjs/add/operator/shareReplay";
 import "rxjs/add/operator/toPromise";
 import "rxjs/add/observable/forkJoin";
-import { HttpCacheInterceptor } from "./services";
+import {
+    HttpCacheInterceptor
+} from "./services";
 
 @angular.NgModule({
     declarations: [
@@ -85,10 +100,23 @@ import { HttpCacheInterceptor } from "./services";
         content.ContentThabComponent,
         content.ContentAttachmentComponent,
         content.ContentReturnsComponent,
+
+        content.StepRegistrationComponent,
+        content.StepRegistrationCalculationComponent,
+        content.StepPropositionComponent,
+        content.StepStatusOverviewComponent,
+        content.PropositionComponent,
+
+        stepper.SocStepComponent,
+        stepper.SocStepperComponent,
+        stepper.SocStepHeaderComponent,
         // Directives
         directives.TranslateDirective,
         directives.TranslatePipe,
         directives.SafeHtmlPipe,
+        stepper.SocStepNext,
+        stepper.SocStepPrevious,
+        stepper.SocStepGoTo,
     ],
     providers: [
         // Services
@@ -142,6 +170,7 @@ import { HttpCacheInterceptor } from "./services";
         //3rd pary
         PopoverModule,
         FileDropModule,
+        OrderModule,
         // Modules
         HttpClientModule,
         angular.CommonModule,

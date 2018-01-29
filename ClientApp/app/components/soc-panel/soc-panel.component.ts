@@ -8,17 +8,12 @@ import { Component } from "@angular/core";
 
 export class SocPanelComponent {
 
-    public visible: boolean = true;
     @Input() public loading: boolean = false;
     @Input() public collapsable: boolean = true;
+    @Input() public collapsed: boolean = false;
     @Input() public paneltitle: string;
 
     public toggle() {
-        this.visible = !this.visible;
+        this.collapsed = !this.collapsed;
     }
-}
-
-export enum SocPanelLoadingType {
-    bar,
-    spinner
 }
